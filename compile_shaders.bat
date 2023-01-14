@@ -1,0 +1,2 @@
+%~dp0/Libraries/vulkan/Bin/glslc.exe %~dp0/JackedEngine/Shaders/default.vert -o %~dp0/JackedEngine/Shaders/default.vert.spv
+%~dp0/Libraries/vulkan/Bin/glslc.exe %~dp0/JackedEngine/Shaders/default.frag -o %~dp0/JackedEngine/Shaders/default.frag.spv
