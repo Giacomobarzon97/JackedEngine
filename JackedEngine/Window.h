@@ -1,40 +1,24 @@
 #pragma once
 
-#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 #include <string>
-#include <vector>
-#include <iostream>
-class Window {
+
+class Window
+{
 public:
-	Window(int w, int h, std::string name);
+	Window(const uint32_t w, const uint32_t h, const std::string windowName);
 	~Window();
 
 	Window(const Window &) = delete;
 	Window &operator=(const Window &) = delete;
 
-private:
-	const int width;
-	const int height;
-	std::string windowName;
+	bool ShouldClose();
+	void PollEvents();
+
+private: 
+	const uint32_t width;
+	const uint32_t height;
+	const std::string windowName;
 	GLFWwindow *window;
-	VkInstance vkInstance;
-	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-
-	const std::vector<const char*> validationLayers = {"VK_LAYER_KHRONOS_validation"};
-	#ifdef _DEBUG
-		const bool enableValidationLayers = true;
-	#else
-		const bool enableValidationLayers = false;
-	#endif
-
-	void init();
-	void initGLFW();
-	void initVKInstance();
-	bool checkValidationLayerSupport();
-	std::vector<const char*> getRequiredExtensions();
-	void printAvailableExtensions();
-	void initPhysicalDevice();
-	bool isDeviceSuitable(const VkPhysicalDevice device);
-	void mainLoop();
 };
+
