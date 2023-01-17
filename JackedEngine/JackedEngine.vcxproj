@@ -22,12 +22,14 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pipeline.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
+    <ClCompile Include="Rendering\Queue.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pipeline.h" />
     <ClInclude Include="JackedEngine.h" />
+    <ClInclude Include="Rendering\Queue.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

@@ -2,8 +2,7 @@
 
 #include <vulkan/vulkan.h>
 #include <vector>
-#include <iostream>
-#include "../Window.h"
+#include "Queue.h"
 
 class Renderer 
 {
@@ -16,7 +15,7 @@ public:
 
 private:
 	VkInstance vkInstance;
-	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+	Queue* queue;
 	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef _DEBUG
 	const bool enableValidationLayers = true;
@@ -25,5 +24,4 @@ private:
 #endif
 
 	bool checkValidationLayerSupport();
-	void initPhysicalDevice();
 };
