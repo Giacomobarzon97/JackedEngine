@@ -19,10 +19,9 @@ private:
 	std::string windowName;
 	GLFWwindow *window;
 	VkInstance vkInstance;
+	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 
-	const std::vector<const char*> validationLayers = {
-	"VK_LAYER_KHRONOS_validation"
-	};
+	const std::vector<const char*> validationLayers = {"VK_LAYER_KHRONOS_validation"};
 	#ifdef _DEBUG
 		const bool enableValidationLayers = true;
 	#else
@@ -30,8 +29,12 @@ private:
 	#endif
 
 	void init();
-	void mainLoop();
+	void initGLFW();
+	void initVKInstance();
 	bool checkValidationLayerSupport();
 	std::vector<const char*> getRequiredExtensions();
 	void printAvailableExtensions();
+	void initPhysicalDevice();
+	bool isDeviceSuitable(const VkPhysicalDevice device);
+	void mainLoop();
 };
