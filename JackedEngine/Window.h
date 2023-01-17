@@ -14,6 +14,7 @@ public:
 
 	bool ShouldClose();
 	void PollEvents();
+	static const char** GetRequiredExtensions(uint32_t* extensionCount);
 
 private: 
 	const uint32_t width;
