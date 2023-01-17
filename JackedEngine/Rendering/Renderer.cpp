@@ -1,16 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer(){
-	initVKInstance();
-	initPhysicalDevice();
-}
-
-Renderer::~Renderer() {
-	vkDestroyInstance(vkInstance, nullptr);
-}
-
-
-void Renderer::initVKInstance() {
+Renderer::Renderer(std::string appName, std::vector<const char*> extensions){
 	//Base vulkan Application info
 	VkApplicationInfo appInfo;
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -20,9 +10,6 @@ void Renderer::initVKInstance() {
 	appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
 	appInfo.apiVersion = VK_API_VERSION_1_0;
 	appInfo.pNext = NULL;
-
-	//Get required app extensions
-	std::vector<const char*> extensions = getRequiredExtensions();
 
 	//Enable validators if debug mode is active
 	VkInstanceCreateInfo createInfo{};
@@ -45,10 +32,15 @@ void Renderer::initVKInstance() {
 	createInfo.enabledLayerCount = 0;
 
 	//Create vulkan instance
-	if (vkCreateInstance(&createInfo, nullptr, &vkInstance) != VK_SUCCESS)
-	{
+	if (vkCreateInstance(&createInfo, nullptr, &vkInstance) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create vulkan instance!");
 	}
+
+	initPhysicalDevice();
+}
+
+Renderer::~Renderer() {
+	vkDestroyInstance(vkInstance, nullptr);
 }
 
 bool Renderer::checkValidationLayerSupport() {
@@ -76,31 +68,6 @@ bool Renderer::checkValidationLayerSupport() {
 	return true;
 }
 
-std::vector<const char*> Renderer::getRequiredExtensions() {
-	printAvailableExtensions();
-	uint32_t glfwExtensionCount = 0;
-	const char** glfwExtensions = Window::GetRequiredExtensions(&glfwExtensionCount);
-	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-
-	std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
-
-	if (enableValidationLayers) {
-		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-	}
-
-	return extensions;
-}
-
-void Renderer::printAvailableExtensions() {
-	uint32_t extensionCount = 0;
-	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-	std::vector<VkExtensionProperties> extensions(extensionCount);
-	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
-	std::cout << "available extensions:\n";
-	for (const auto& extension : extensions) {
-		std::cout << '\t' << extension.extensionName << '\n';
-	}
-}
 
 void Renderer::initPhysicalDevice() {
 	uint32_t deviceCount = 0;
@@ -111,24 +78,11 @@ void Renderer::initPhysicalDevice() {
 
 	std::vector<VkPhysicalDevice> devices(deviceCount);
 	vkEnumeratePhysicalDevices(vkInstance, &deviceCount, devices.data());
-	for (const auto& device : devices) {
-		if (isDeviceSuitable(device)) {
-			physicalDevice = device;
-			break;
-		}
-	}
+	physicalDevice = devices[0];
 	if (physicalDevice == VK_NULL_HANDLE) {
 		throw std::runtime_error("failed to find a suitable GPU!");
 	}
 	VkPhysicalDeviceProperties deviceProperties;
 	vkGetPhysicalDeviceProperties(physicalDevice, &deviceProperties);
 	std::cout << deviceProperties.deviceName;
-}
-
-bool Renderer::isDeviceSuitable(const VkPhysicalDevice device) {
-	//VkPhysicalDeviceProperties deviceProperties;
-	//vkGetPhysicalDeviceProperties(device, &deviceProperties);
-	//VkPhysicalDeviceFeatures deviceFeatures;
-	//vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
-	return true;
 }

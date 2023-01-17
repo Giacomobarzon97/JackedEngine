@@ -7,6 +7,7 @@
 class JackedEngine {
 public:
 	JackedEngine();
+	~JackedEngine();
 
 	JackedEngine(const JackedEngine &) = delete;
 	JackedEngine &operator=(const JackedEngine &) = delete;
@@ -17,6 +18,6 @@ private:
 	static const uint32_t  WINDOW_HEIGHT;
 
 	Window window;
-	Renderer renderer;
+	Renderer* renderer;
 	void mainLoop();
 };
