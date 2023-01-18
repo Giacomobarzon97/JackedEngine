@@ -39,8 +39,8 @@ Renderer::Renderer(std::string appName, std::vector<const char*> extensions){
 }
 
 Renderer::~Renderer() {
-	vkDestroyInstance(vkInstance, nullptr);
 	delete queue;
+	vkDestroyInstance(vkInstance, nullptr);
 }
 
 bool Renderer::checkValidationLayerSupport() {
