@@ -35,11 +35,9 @@ Renderer::Renderer(std::string appName, std::vector<const char*> extensions){
 	if (vkCreateInstance(&createInfo, nullptr, &vkInstance) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create vulkan instance!");
 	}
-	queue = new Queue(&vkInstance);
 }
 
 Renderer::~Renderer() {
-	delete queue;
 	vkDestroyInstance(vkInstance, nullptr);
 }
 
@@ -66,4 +64,8 @@ bool Renderer::checkValidationLayerSupport() {
 	}
 
 	return true;
+}
+
+VkInstance* Renderer::Renderer::GetVkInstance() {
+	return &vkInstance;
 }

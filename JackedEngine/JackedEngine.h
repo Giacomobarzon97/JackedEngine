@@ -17,7 +17,9 @@ private:
 	static const uint32_t  WINDOW_WIDTH;
 	static const uint32_t  WINDOW_HEIGHT;
 
-	Window window;
+	Window* window;
 	Renderer* renderer;
+	Queue* queue;
+
 	void mainLoop();
 };

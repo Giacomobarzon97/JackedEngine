@@ -13,9 +13,10 @@ public:
 	Renderer(const Renderer &) = delete;
 	Renderer &operator=(const Renderer &) = delete;
 
+	VkInstance* GetVkInstance();
+
 private:
 	VkInstance vkInstance;
-	Queue* queue;
 	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef _DEBUG
 	const bool enableValidationLayers = true;

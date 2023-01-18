@@ -12,6 +12,9 @@ Window::Window(const uint32_t w, const uint32_t h, const std::string windowName)
 }
 
 Window::~Window() {
+	if (vkInstance.has_value()) {
+		vkDestroySurfaceKHR(*vkInstance.value(), surface, nullptr);
+	}
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
@@ -22,6 +25,22 @@ bool Window::ShouldClose() {
 
 void Window::PollEvents() {
 	glfwPollEvents();
+}
+
+void Window::InitSurface(VkInstance* vkInstance) {
+	this->vkInstance = vkInstance;
+
+	VkWin32SurfaceCreateInfoKHR createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+	createInfo.hwnd = glfwGetWin32Window(window);
+	createInfo.hinstance = GetModuleHandle(nullptr);
+	if (vkCreateWin32SurfaceKHR(*vkInstance, &createInfo, nullptr, &surface) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create window surface!");
+	}
+	if (glfwCreateWindowSurface(*vkInstance, window, nullptr, &surface) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create window surface!");
+	}
+
 }
 
 const char** Window::GetRequiredExtensions(uint32_t* extensionCount) {
