@@ -1,28 +1,22 @@
 #pragma once
 
-#include <vulkan/vulkan.h>
-#include <vector>
+#include <Windows.h>
+#include <string>
 #include "Queue.h"
+#include "Instance.h"
+#include "WindowSurfaces/GLFWWindowSurface.h"
+#include <GLFW/glfw3.h>
 
-class Renderer 
-{
+class Renderer {
 public:
-	Renderer(std::string appName, std::vector<const char*> extensions);
+	Renderer(std::string appName, const char** windowExtensions, uint32_t windowExtensionsCount, GLFWwindow* window);
 	~Renderer();
 
 	Renderer(const Renderer &) = delete;
 	Renderer &operator=(const Renderer &) = delete;
 
-	VkInstance* GetVkInstance();
-
 private:
-	VkInstance vkInstance;
-	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
-#ifdef _DEBUG
-	const bool enableValidationLayers = true;
-#else
-	const bool enableValidationLayers = false;
-#endif
-
-	bool checkValidationLayerSupport();
+	Instance* instance;
+	Queue* queue;
+	BaseWindowSurface* windowSurface;
 };

@@ -19,7 +19,6 @@ private:
 
 	Window* window;
 	Renderer* renderer;
-	Queue* queue;
 
 	void mainLoop();
 };

@@ -19,7 +19,8 @@ public:
 
 	bool ShouldClose();
 	void PollEvents();
-	void InitSurface(VkInstance* vkInstance);
+
+	GLFWwindow* getGLFWWindow();
 
 	static const char** GetRequiredExtensions(uint32_t* extensionCount);
 

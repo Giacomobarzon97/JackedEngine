@@ -23,14 +23,20 @@
     <ClCompile Include="Pipeline.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\Queue.cpp" />
+    <ClCompile Include="Rendering\Instance.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
+    <ClCompile Include="Rendering\WindowSurfaces\GLFWWindowSurface.cpp" />
+    <ClCompile Include="Rendering\WindowSurfaces\BaseWindowSurface.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pipeline.h" />
     <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Rendering\Queue.h" />
+    <ClInclude Include="Rendering\Instance.h" />
     <ClInclude Include="Rendering\Renderer.h" />
+    <ClInclude Include="Rendering\WindowSurfaces\BaseWindowSurface.h" />
+    <ClInclude Include="Rendering\WindowSurfaces\GLFWWindowSurface.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
