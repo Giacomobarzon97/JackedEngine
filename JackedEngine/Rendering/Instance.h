@@ -17,7 +17,9 @@ public:
 
 private:
 	VkInstance vkInstance;
-	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+	const std::vector<const char*> validationLayers = { 
+		"VK_LAYER_KHRONOS_validation" 
+	};
 #ifdef _DEBUG
 	const bool enableValidationLayers = true;
 #else

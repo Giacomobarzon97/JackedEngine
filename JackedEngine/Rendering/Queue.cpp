@@ -37,6 +37,11 @@ void Queue::pickPhysicalDevice() {
 	std::cout << deviceProperties.deviceName;
 }
 
+bool Queue::isDeviceSuitable(VkPhysicalDevice device) {
+	QueueFamilyIndices indices = findQueueFamilies(device);
+	return indices.isValid() && checkDeviceExtensionSupport(device);
+}
+
 QueueFamilyIndices Queue::findQueueFamilies(VkPhysicalDevice device) {
 	QueueFamilyIndices indices;
 	uint32_t queueFamilyCount = 0;
@@ -62,16 +67,24 @@ QueueFamilyIndices Queue::findQueueFamilies(VkPhysicalDevice device) {
 	return indices;
 }
 
-bool Queue::isDeviceSuitable(VkPhysicalDevice device) {
-	QueueFamilyIndices indices = findQueueFamilies(device);
-	bool isValid = indices.isValid();
-	if (isValid) {
-		queueFamilyIndices = indices;
+bool Queue::checkDeviceExtensionSupport(VkPhysicalDevice device) {
+	uint32_t extensionCount;
+	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
+
+	std::vector<VkExtensionProperties> availableExtensions(extensionCount);
+	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, availableExtensions.data());
+
+	std::set<std::string> requiredExtensions(deviceExtensions.begin(), deviceExtensions.end());
+
+	for (const auto& extension : availableExtensions) {
+		requiredExtensions.erase(extension.extensionName);
 	}
-	return isValid;
+
+	return requiredExtensions.empty();
 }
 
 void Queue::createLogicalDevice() {
+	QueueFamilyIndices queueFamilyIndices = findQueueFamilies(physicalDevice);
 	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 	std::set<uint32_t> uniqueQueueFamilies = { queueFamilyIndices.graphicsFamily.value(), queueFamilyIndices.presentFamily.value() };
 
@@ -91,7 +104,8 @@ void Queue::createLogicalDevice() {
 	createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
 	createInfo.pQueueCreateInfos = queueCreateInfos.data();
 	createInfo.pEnabledFeatures = &deviceFeatures;
-	createInfo.enabledExtensionCount = 0;
+	createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+	createInfo.ppEnabledExtensionNames = deviceExtensions.data();
 	if (enableValidationLayers) {
 		createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
 		createInfo.ppEnabledLayerNames = validationLayers.data();

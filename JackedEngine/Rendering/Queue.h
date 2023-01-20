@@ -29,10 +29,14 @@ private:
 	VkSurfaceKHR* surface;
 	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 	VkDevice logicalDevice;
-	QueueFamilyIndices queueFamilyIndices;
 	VkQueue graphicsQueue;
 	VkQueue presentQueue;
-	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+	const std::vector<const char*> validationLayers = { 
+		"VK_LAYER_KHRONOS_validation" 
+	};
+	const std::vector<const char*> deviceExtensions = {
+		VK_KHR_SWAPCHAIN_EXTENSION_NAME
+	};
 #ifdef _DEBUG
 	const bool enableValidationLayers = true;
 #else
@@ -41,7 +45,9 @@ private:
 
 
 	void pickPhysicalDevice();
-	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 	bool isDeviceSuitable(VkPhysicalDevice device);
+	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 	void createLogicalDevice();
+
 };
