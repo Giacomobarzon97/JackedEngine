@@ -6,6 +6,8 @@
 class BaseWindowSurface {
 public:
 	virtual ~BaseWindowSurface() = 0;
+	VkSurfaceKHR* getVkSurface();
+
 protected:
 	VkInstance* vkInstance;
 	VkSurfaceKHR surface;
