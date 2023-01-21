@@ -13,7 +13,16 @@ struct QueueFamilyIndices {
 	bool isValid() {
 		return graphicsFamily.has_value() && presentFamily.has_value();
 	}
+};
 
+struct SwapChainSupportDetails {
+	VkSurfaceCapabilitiesKHR capabilities;
+	std::vector<VkSurfaceFormatKHR> formats;
+	std::vector<VkPresentModeKHR> presentModes;
+
+	bool isValid() {
+		return !formats.empty() && !presentModes.empty();
+	}
 };
 
 class Device {
@@ -47,7 +56,7 @@ private:
 	void pickPhysicalDevice();
 	bool isDeviceSuitable(VkPhysicalDevice device);
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+	SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
 	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 	void createLogicalDevice();
-
 };
