@@ -16,13 +16,13 @@ struct QueueFamilyIndices {
 
 };
 
-class Queue {
+class Device {
 public:
-	Queue(VkInstance* vkInstance, VkSurfaceKHR* surface);
-	~Queue();
+	Device(VkInstance* vkInstance, VkSurfaceKHR* surface);
+	~Device();
 
-	Queue(const Queue &) = delete;
-	Queue &operator=(const Queue &) = delete;
+	Device(const Device &) = delete;
+	Device &operator=(const Device &) = delete;
 
 private:
 	VkInstance* vkInstance;

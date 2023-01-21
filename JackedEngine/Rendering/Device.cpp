@@ -1,6 +1,6 @@
-#include "Queue.h"
+#include "Device.h"
 
-Queue::Queue(VkInstance* vkInstance, VkSurfaceKHR* surface) :
+Device::Device(VkInstance* vkInstance, VkSurfaceKHR* surface) :
 	vkInstance(vkInstance),
 	surface(surface)
 {
@@ -8,11 +8,11 @@ Queue::Queue(VkInstance* vkInstance, VkSurfaceKHR* surface) :
 	createLogicalDevice();
 }
 
-Queue::~Queue() {
+Device::~Device() {
 	vkDestroyDevice(logicalDevice, nullptr);
 }
 
-void Queue::pickPhysicalDevice() {
+void Device::pickPhysicalDevice() {
 	uint32_t deviceCount = 0;
 	vkEnumeratePhysicalDevices(*vkInstance, &deviceCount, nullptr);
 	if (deviceCount == 0) {
@@ -37,12 +37,12 @@ void Queue::pickPhysicalDevice() {
 	std::cout << deviceProperties.deviceName;
 }
 
-bool Queue::isDeviceSuitable(VkPhysicalDevice device) {
+bool Device::isDeviceSuitable(VkPhysicalDevice device) {
 	QueueFamilyIndices indices = findQueueFamilies(device);
 	return indices.isValid() && checkDeviceExtensionSupport(device);
 }
 
-QueueFamilyIndices Queue::findQueueFamilies(VkPhysicalDevice device) {
+QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device) {
 	QueueFamilyIndices indices;
 	uint32_t queueFamilyCount = 0;
 	vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
@@ -67,7 +67,7 @@ QueueFamilyIndices Queue::findQueueFamilies(VkPhysicalDevice device) {
 	return indices;
 }
 
-bool Queue::checkDeviceExtensionSupport(VkPhysicalDevice device) {
+bool Device::checkDeviceExtensionSupport(VkPhysicalDevice device) {
 	uint32_t extensionCount;
 	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
 
@@ -83,7 +83,7 @@ bool Queue::checkDeviceExtensionSupport(VkPhysicalDevice device) {
 	return requiredExtensions.empty();
 }
 
-void Queue::createLogicalDevice() {
+void Device::createLogicalDevice() {
 	QueueFamilyIndices queueFamilyIndices = findQueueFamilies(physicalDevice);
 	std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 	std::set<uint32_t> uniqueQueueFamilies = { queueFamilyIndices.graphicsFamily.value(), queueFamilyIndices.presentFamily.value() };

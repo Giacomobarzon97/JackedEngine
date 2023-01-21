@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 #include <string>
-#include "Queue.h"
+#include "Device.h"
 #include "Instance.h"
 #include "WindowSurfaces/GLFWWindowSurface.h"
 #include <GLFW/glfw3.h>
@@ -17,6 +17,6 @@ public:
 
 private:
 	Instance* instance;
-	Queue* queue;
+	Device* device;
 	BaseWindowSurface* windowSurface;
 };

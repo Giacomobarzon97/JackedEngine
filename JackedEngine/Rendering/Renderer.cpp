@@ -4,11 +4,11 @@ Renderer::Renderer(std::string appName, const char** windowExtensions, uint32_t 
 	std::vector<const char*> extensions(windowExtensions, windowExtensions + windowExtensionsCount);
 	instance = new Instance(appName, extensions);
 	windowSurface = new GLFWWindowSurface(instance->GetVkInstance(), window);
-	queue = new Queue(instance->GetVkInstance(), windowSurface->getVkSurface());
+	device = new Device(instance->GetVkInstance(), windowSurface->getVkSurface());
 }
 
 Renderer::~Renderer() {
-	delete queue;
+	delete device;
 	delete windowSurface;
 	delete instance;
 }

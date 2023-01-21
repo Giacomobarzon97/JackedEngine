@@ -2,7 +2,6 @@
 
 #include <vulkan/vulkan.h>
 #include <vector>
-#include "Queue.h"
 
 class Instance 
 {
