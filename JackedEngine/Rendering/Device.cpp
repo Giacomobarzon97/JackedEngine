@@ -14,13 +14,13 @@ Device::~Device() {
 
 void Device::pickPhysicalDevice() {
 	uint32_t deviceCount = 0;
-	vkEnumeratePhysicalDevices(instance->GetVkInstance(), &deviceCount, nullptr);
+	vkEnumeratePhysicalDevices(*instance->GetVkInstance(), &deviceCount, nullptr);
 	if (deviceCount == 0) {
 		throw std::runtime_error("failed to find GPUs with Vulkan support!");
 	}
 
 	std::vector<VkPhysicalDevice> devices(deviceCount);
-	vkEnumeratePhysicalDevices(instance->GetVkInstance(), &deviceCount, devices.data());
+	vkEnumeratePhysicalDevices(*instance->GetVkInstance(), &deviceCount, devices.data());
 
 	for (const auto& device : devices) {
 		if (isDeviceSuitable(device)) {

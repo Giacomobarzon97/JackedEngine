@@ -30,10 +30,12 @@ struct SwapChainSupportDetails {
 class Device {
 public:
 	Device(Instance* instance, WindowSurface* surface);
+	Device(const Device &) = delete;
+	Device(Device &) = delete;
 	~Device();
 
-	Device(const Device &) = delete;
 	Device &operator=(const Device &) = delete;
+	Device &operator=(Device &) = delete;
 
 private:
 	Instance* instance;

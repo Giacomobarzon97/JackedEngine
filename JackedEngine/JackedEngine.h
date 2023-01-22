@@ -7,10 +7,12 @@
 class JackedEngine {
 public:
 	JackedEngine();
+	JackedEngine(const JackedEngine &) = delete;
+	JackedEngine(JackedEngine &) = delete;
 	~JackedEngine();
 
-	JackedEngine(const JackedEngine &) = delete;
 	JackedEngine &operator=(const JackedEngine &) = delete;
+	JackedEngine &operator=(JackedEngine &) = delete;
 
 private:
 	static const std::string APP_NAME;

@@ -31,8 +31,8 @@ HWND GLFWWindow::GetWindowHandle() {
 	return glfwGetWin32Window(window);
 }
 
-void GLFWWindow::InitiWindowSurface(Instance* instance, VkSurfaceKHR* windowSurface) {
-	if (glfwCreateWindowSurface(instance->GetVkInstance(), window, nullptr, windowSurface) != VK_SUCCESS) {
+void GLFWWindow::InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) {
+	if (glfwCreateWindowSurface(*instance, window, nullptr, windowSurface) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create window surface!");
 	}
 }

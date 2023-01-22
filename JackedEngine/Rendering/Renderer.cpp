@@ -8,7 +8,7 @@ Renderer::Renderer(std::string appName, BaseWindow* window) {
 
 	instance = new Instance(appName, extensions);
 	windowSurface = new WindowSurface(instance, window);
-	window->InitiWindowSurface(instance, windowSurface->getVkSurface());
+	window->InitiWindowSurface(instance->GetVkInstance(), windowSurface->getVkSurface());
 	device = new Device(instance, windowSurface);
 }
 

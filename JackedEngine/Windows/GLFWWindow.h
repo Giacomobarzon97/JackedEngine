@@ -13,18 +13,18 @@ class GLFWWindow : public BaseWindow
 {
 public:
 	GLFWWindow(const uint32_t w, const uint32_t h, const std::string windowName);
+	GLFWWindow(const GLFWWindow &) = delete;
+	GLFWWindow(GLFWWindow &) = delete;
 	~GLFWWindow();
 
-	GLFWWindow(const GLFWWindow &) = delete;
 	GLFWWindow &operator=(const GLFWWindow &) = delete;
+	GLFWWindow &operator=(GLFWWindow &) = delete;
 
-	void InitiWindowSurface(Instance* instance, VkSurfaceKHR* windowSurface);
-
-	bool ShouldClose();
-	void PollEvents();
-
-	HWND GetWindowHandle();
-	const char** GetRequiredExtensions(uint32_t* extensionCount);
+	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) override;
+	virtual bool ShouldClose() override;
+	virtual void PollEvents() override;
+	virtual HWND GetWindowHandle() override;
+	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) override;
 
 private: 
 	GLFWwindow *window;
