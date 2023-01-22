@@ -1,15 +1,14 @@
 #pragma once
 
-#include <Windows.h>
 #include <string>
 #include "Rendering/Device.h"
 #include "Rendering/Instance.h"
-#include "Rendering/WindowSurfaces/GLFWWindowSurface.h"
-#include <GLFW/glfw3.h>
+#include "Windows/BaseWindow.h"
+#include "Rendering/WindowSurface.h"
 
 class Renderer {
 public:
-	Renderer(std::string appName, const char** windowExtensions, uint32_t windowExtensionsCount, GLFWwindow* window);
+	Renderer(std::string appName, BaseWindow* window);
 	~Renderer();
 
 	Renderer(const Renderer &) = delete;
@@ -18,5 +17,5 @@ public:
 private:
 	Instance* instance;
 	Device* device;
-	BaseWindowSurface* windowSurface;
+	WindowSurface* windowSurface;
 };

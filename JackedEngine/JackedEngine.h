@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Window.h"
+#include "Windows\BaseWindow.h"
 #include "Rendering/Renderer.h"
 
 class JackedEngine {
@@ -17,7 +17,7 @@ private:
 	static const uint32_t  WINDOW_WIDTH;
 	static const uint32_t  WINDOW_HEIGHT;
 
-	Window* window;
+	BaseWindow* window;
 	Renderer* renderer;
 
 	void mainLoop();
