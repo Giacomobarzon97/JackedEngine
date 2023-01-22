@@ -48,6 +48,11 @@ SwapChain::SwapChain(Device* device, BaseWindow* window, WindowSurface* windowSu
 	if (vkCreateSwapchainKHR(*device->GetLogicalDevice(), &createInfo, nullptr, &swapChain) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create swap chain!");
 	}
+	vkGetSwapchainImagesKHR(*device->GetLogicalDevice(), swapChain, &imageCount, nullptr);
+	swapChainImages.resize(imageCount);
+	vkGetSwapchainImagesKHR(*device->GetLogicalDevice(), swapChain, &imageCount, swapChainImages.data());
+	swapChainImageFormat = surfaceFormat.format;
+	swapChainExtent = extent;
 }
 
 SwapChain::~SwapChain() {
