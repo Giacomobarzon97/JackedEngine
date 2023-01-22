@@ -48,6 +48,7 @@ void Device::pickPhysicalDevice() {
 	VkPhysicalDeviceProperties deviceProperties;
 	vkGetPhysicalDeviceProperties(physicalDevice, &deviceProperties);
 	std::cout << deviceProperties.deviceName;
+	std::cout << '\n';
 }
 
 bool Device::isDeviceSuitable(VkPhysicalDevice device) {

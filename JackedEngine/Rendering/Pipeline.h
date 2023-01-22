@@ -2,10 +2,16 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
+#include <vulkan/vulkan.h>
 #include "Utils/FileIOr.h"
+#include "Rendering/Device.h"
 
 class Pipeline {
 public:
-	Pipeline(std::string vertShaderPath, std::string fragShaderPath);
+	Pipeline(Device* device, std::string vertShaderPath, std::string fragShaderPath);
+
+private:
+	Device * device;
+
+	VkShaderModule createShaderModule(const std::vector<char>& code);
 };
