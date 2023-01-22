@@ -5,6 +5,8 @@
 #include <set>
 #include <iostream>
 #include <optional>
+#include "Rendering/WindowSurfaces/BaseWindowSurface.h"
+#include "Rendering/Instance.h"
 
 struct QueueFamilyIndices {
 	std::optional<uint32_t> graphicsFamily;
@@ -27,15 +29,15 @@ struct SwapChainSupportDetails {
 
 class Device {
 public:
-	Device(VkInstance* vkInstance, VkSurfaceKHR* surface);
+	Device(Instance* instance, BaseWindowSurface* surface);
 	~Device();
 
 	Device(const Device &) = delete;
 	Device &operator=(const Device &) = delete;
 
 private:
-	VkInstance* vkInstance;
-	VkSurfaceKHR* surface;
+	Instance* instance;
+	BaseWindowSurface* surface;
 	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 	VkDevice logicalDevice;
 	VkQueue graphicsQueue;

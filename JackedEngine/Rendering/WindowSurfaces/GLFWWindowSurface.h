@@ -6,11 +6,11 @@
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
 #include <stdexcept>
-#include "BaseWindowSurface.h"
+#include "Rendering\WindowSurfaces\BaseWindowSurface.h"
 
 class GLFWWindowSurface : public BaseWindowSurface{
 public:
-	GLFWWindowSurface(VkInstance* vkInstance, GLFWwindow* win32Window);
+	GLFWWindowSurface(Instance* instance, GLFWwindow* win32Window);
 	virtual ~GLFWWindowSurface();
 private:
 	GLFWwindow* window;

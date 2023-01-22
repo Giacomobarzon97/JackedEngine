@@ -2,13 +2,14 @@
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
+#include "Rendering/Instance.h"
 
 class BaseWindowSurface {
 public:
 	virtual ~BaseWindowSurface() = 0;
-	VkSurfaceKHR* getVkSurface();
+	VkSurfaceKHR getVkSurface();
 
 protected:
-	VkInstance* vkInstance;
+	Instance* instance;
 	VkSurfaceKHR surface;
 };

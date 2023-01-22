@@ -12,7 +12,7 @@ public:
 	Instance(const Instance &) = delete;
 	Instance &operator=(const Instance &) = delete;
 
-	VkInstance* GetVkInstance();
+	VkInstance GetVkInstance();
 
 private:
 	VkInstance vkInstance;

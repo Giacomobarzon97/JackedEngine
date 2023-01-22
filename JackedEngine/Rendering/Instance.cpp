@@ -66,6 +66,6 @@ bool Instance::checkValidationLayerSupport() {
 	return true;
 }
 
-VkInstance* Instance::Instance::GetVkInstance() {
-	return &vkInstance;
+VkInstance Instance::GetVkInstance() {
+	return vkInstance;
 }

@@ -2,9 +2,9 @@
 
 #include <Windows.h>
 #include <string>
-#include "Device.h"
-#include "Instance.h"
-#include "WindowSurfaces/GLFWWindowSurface.h"
+#include "Rendering/Device.h"
+#include "Rendering/Instance.h"
+#include "Rendering/WindowSurfaces/GLFWWindowSurface.h"
 #include <GLFW/glfw3.h>
 
 class Renderer {

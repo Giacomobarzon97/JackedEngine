@@ -2,6 +2,6 @@
 
 BaseWindowSurface::~BaseWindowSurface(){}
 
-VkSurfaceKHR* BaseWindowSurface::getVkSurface() {
-	return &surface;
+VkSurfaceKHR BaseWindowSurface::getVkSurface() {
+	return surface;
 }
