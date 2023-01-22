@@ -9,7 +9,9 @@
 class SwapChain {
 public:
 	SwapChain(Device* device, BaseWindow* window, WindowSurface* windowSurface);
+	SwapChain(SwapChain &) = delete;
 	~SwapChain();
+	SwapChain &operator=(SwapChain &) = delete;
 
 private:
 	WindowSurface* windowSurface;
@@ -17,6 +19,7 @@ private:
 	BaseWindow* window;
 	VkSwapchainKHR swapChain;
 	std::vector<VkImage> swapChainImages;
+	std::vector<VkImageView> swapChainImageViews;
 	VkFormat swapChainImageFormat;
 	VkExtent2D swapChainExtent;
 
