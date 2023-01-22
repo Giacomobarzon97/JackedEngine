@@ -5,62 +5,60 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{46f09bba-1df0-4b80-9320-857f3c2631f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Source Files\Windows">
+      <UniqueIdentifier>{61e78d4e-1b16-436a-b253-58bae7786b07}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JackedEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Rendering\Device.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Instance.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Device.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows\GLFWWindow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\WindowSurface.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\GLFWWindow.cpp">
+      <Filter>Source Files\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Windows\BaseWindow.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="JackedEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="JackedEngine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Rendering\Device.h">
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Instance.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Device.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\BaseWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\GLFWWindow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\WindowSurface.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\GLFWWindow.h">
+      <Filter>Source Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\BaseWindow.h">
+      <Filter>Source Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="JackedEngine.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
