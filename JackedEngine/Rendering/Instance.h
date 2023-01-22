@@ -7,11 +7,8 @@ class Instance
 {
 public:
 	Instance(std::string appName, std::vector<const char*> extensions);
-	Instance(const Instance &) = delete;
 	Instance(Instance &) = delete;
 	~Instance();
-
-	Instance &operator=(const Instance &) = delete;
 	Instance &operator=(Instance &) = delete;
 
 	VkInstance* GetVkInstance();

@@ -37,4 +37,7 @@ void GLFWWindow::InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSu
 	}
 }
 
+void GLFWWindow::GetFrameBufferSize(int* width, int* height) {
+	glfwGetFramebufferSize(window, width, height);
+}
 

@@ -13,11 +13,8 @@ class GLFWWindow : public BaseWindow
 {
 public:
 	GLFWWindow(const uint32_t w, const uint32_t h, const std::string windowName);
-	GLFWWindow(const GLFWWindow &) = delete;
 	GLFWWindow(GLFWWindow &) = delete;
 	~GLFWWindow();
-
-	GLFWWindow &operator=(const GLFWWindow &) = delete;
 	GLFWWindow &operator=(GLFWWindow &) = delete;
 
 	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) override;
@@ -25,6 +22,7 @@ public:
 	virtual void PollEvents() override;
 	virtual HWND GetWindowHandle() override;
 	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) override;
+	virtual void GetFrameBufferSize(int* width, int* height) override;
 
 private: 
 	GLFWwindow *window;

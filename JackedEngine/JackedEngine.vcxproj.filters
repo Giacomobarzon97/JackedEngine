@@ -37,6 +37,9 @@
     <ClCompile Include="JackedEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\SwapChain.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -59,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="JackedEngine.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SwapChain.h">
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 #include "WindowSurface.h"
 
 WindowSurface::WindowSurface(Instance* instance, BaseWindow* window) :
-	instance(instance)
+	instance(instance),
+	window(window)
 {
 	VkWin32SurfaceCreateInfoKHR createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
@@ -16,6 +17,6 @@ WindowSurface::~WindowSurface() {
 	vkDestroySurfaceKHR(*instance->GetVkInstance(), surface, nullptr);
 }
 
-VkSurfaceKHR* WindowSurface::getVkSurface() {
+VkSurfaceKHR* WindowSurface::GetVkSurface() {
 	return &surface;
 }

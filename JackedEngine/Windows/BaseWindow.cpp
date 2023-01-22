@@ -5,3 +5,7 @@ BaseWindow::BaseWindow(uint32_t width, uint32_t height, std::string windowName):
 	height(height),
 	windowName(windowName)
 {}
+
+std::string BaseWindow::GetWindowName() {
+	return windowName;
+}

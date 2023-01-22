@@ -8,17 +8,17 @@ class BaseWindow {
 
 public:
 	BaseWindow(uint32_t width, uint32_t height, std::string windowName);
-	BaseWindow(const BaseWindow &) = delete;
 	BaseWindow(BaseWindow &) = delete;
-
-	BaseWindow &operator=(const BaseWindow &) = delete;
 	BaseWindow &operator=(BaseWindow &) = delete;
+
+	std::string GetWindowName();
 
 	virtual bool ShouldClose() = 0;
 	virtual void PollEvents() = 0;
 	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) = 0;
 	virtual HWND GetWindowHandle() = 0;
 	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) = 0;
+	virtual void GetFrameBufferSize(int* width, int* height) = 0;
 
 protected:
 	const uint32_t width;

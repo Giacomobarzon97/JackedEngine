@@ -7,11 +7,8 @@
 class JackedEngine {
 public:
 	JackedEngine();
-	JackedEngine(const JackedEngine &) = delete;
 	JackedEngine(JackedEngine &) = delete;
 	~JackedEngine();
-
-	JackedEngine &operator=(const JackedEngine &) = delete;
 	JackedEngine &operator=(JackedEngine &) = delete;
 
 private:

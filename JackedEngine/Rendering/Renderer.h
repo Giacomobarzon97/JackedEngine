@@ -5,19 +5,18 @@
 #include "Rendering/Instance.h"
 #include "Windows/BaseWindow.h"
 #include "Rendering/WindowSurface.h"
+#include "Rendering/SwapChain.h"
 
 class Renderer {
 public:
-	Renderer(std::string appName, BaseWindow* window);
-	Renderer(const Renderer &) = delete;
+	Renderer(BaseWindow* window);
 	Renderer(Renderer &) = delete;
 	~Renderer();
-
-	Renderer &operator=(const Renderer &) = delete;
 	Renderer &operator=(Renderer &) = delete;
 
 private:
 	Instance* instance;
 	Device* device;
 	WindowSurface* windowSurface;
+	SwapChain* swapChain;
 };

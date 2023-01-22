@@ -10,16 +10,14 @@ class WindowSurface {
 
 public:
 	WindowSurface(Instance* instance, BaseWindow* window);
-	WindowSurface(const WindowSurface &) = delete;
 	WindowSurface(WindowSurface &) = delete;
 	~WindowSurface();
-
-	WindowSurface &operator=(const WindowSurface &) = delete;
 	WindowSurface &operator=(WindowSurface &) = delete;
 
-	VkSurfaceKHR* getVkSurface();
+	VkSurfaceKHR* GetVkSurface();
 
 private:
-	Instance* instance;
 	VkSurfaceKHR surface;
+	Instance* instance;
+	BaseWindow* window;
 };

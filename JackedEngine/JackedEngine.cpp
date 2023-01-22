@@ -9,7 +9,7 @@ JackedEngine::JackedEngine()
 {
 	window = new GLFWWindow(WINDOW_WIDTH, WINDOW_HEIGHT, APP_NAME);
 
-	renderer = new Renderer(APP_NAME, window);
+	renderer = new Renderer(window);
 
 	mainLoop();
 }

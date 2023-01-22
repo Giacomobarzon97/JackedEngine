@@ -12,6 +12,19 @@ Device::~Device() {
 	vkDestroyDevice(logicalDevice, nullptr);
 }
 
+VkDevice* Device::GetLogicalDevice() {
+	return &logicalDevice;
+}
+
+
+SwapChainSupportDetails Device::GetSwapChainSupportDetails() {
+	return findSwapChainSupport(physicalDevice);
+}
+
+QueueFamilyIndices Device::GetQueueFamilyIndices() {
+	return findQueueFamilies(physicalDevice);
+}
+
 void Device::pickPhysicalDevice() {
 	uint32_t deviceCount = 0;
 	vkEnumeratePhysicalDevices(*instance->GetVkInstance(), &deviceCount, nullptr);
@@ -39,7 +52,7 @@ void Device::pickPhysicalDevice() {
 
 bool Device::isDeviceSuitable(VkPhysicalDevice device) {
 	QueueFamilyIndices indices = findQueueFamilies(device);
-	SwapChainSupportDetails swapChainSupport = querySwapChainSupport(device);
+	SwapChainSupportDetails swapChainSupport = findSwapChainSupport(device);
 
 	return indices.isValid() && swapChainSupport.isValid() && checkDeviceExtensionSupport(device);
 }
@@ -57,7 +70,7 @@ QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device) {
 		if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
 			indices.graphicsFamily = i;
 		}
-		vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *surface->getVkSurface(), &presentSupport);
+		vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *surface->GetVkSurface(), &presentSupport);
 		if (presentSupport) {
 			indices.presentFamily = i;
 		}
@@ -69,22 +82,22 @@ QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device) {
 	return indices;
 }
 
-SwapChainSupportDetails Device::querySwapChainSupport(VkPhysicalDevice device) {
+SwapChainSupportDetails Device::findSwapChainSupport(VkPhysicalDevice device) {
 	SwapChainSupportDetails details;
-	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, *surface->getVkSurface(), &details.capabilities);
+	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, *surface->GetVkSurface(), &details.capabilities);
 
 	uint32_t formatCount;
-	vkGetPhysicalDeviceSurfaceFormatsKHR(device, *surface->getVkSurface(), &formatCount, nullptr);
+	vkGetPhysicalDeviceSurfaceFormatsKHR(device, *surface->GetVkSurface(), &formatCount, nullptr);
 	if (formatCount != 0) {
 		details.formats.resize(formatCount);
-		vkGetPhysicalDeviceSurfaceFormatsKHR(device, *surface->getVkSurface(), &formatCount, details.formats.data());
+		vkGetPhysicalDeviceSurfaceFormatsKHR(device, *surface->GetVkSurface(), &formatCount, details.formats.data());
 	}
 
 	uint32_t presentModeCount;
-	vkGetPhysicalDeviceSurfacePresentModesKHR(device, *surface->getVkSurface(), &presentModeCount, nullptr);
+	vkGetPhysicalDeviceSurfacePresentModesKHR(device, *surface->GetVkSurface(), &presentModeCount, nullptr);
 	if (presentModeCount != 0) {
 		details.presentModes.resize(presentModeCount);
-		vkGetPhysicalDeviceSurfacePresentModesKHR(device, *surface->getVkSurface(), &presentModeCount, details.presentModes.data());
+		vkGetPhysicalDeviceSurfacePresentModesKHR(device, *surface->GetVkSurface(), &presentModeCount, details.presentModes.data());
 	}
 
 	return details;
@@ -104,24 +117,6 @@ bool Device::checkDeviceExtensionSupport(VkPhysicalDevice device) {
 	}
 
 	return requiredExtensions.empty();
-}
-
-VkSurfaceFormatKHR Device::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) {
-	for (const auto& availableFormat : availableFormats) {
-		if (availableFormat.format == VK_FORMAT_B8G8R8A8_SRGB && availableFormat.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
-			return availableFormat;
-		}
-	}
-	return availableFormats[0];
-}
-
-VkPresentModeKHR Device::chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes) {
-	for (const auto& availablePresentMode : availablePresentModes) {
-		if (availablePresentMode == VK_PRESENT_MODE_MAILBOX_KHR) {
-			return availablePresentMode;
-		}
-	}
-	return VK_PRESENT_MODE_FIFO_KHR;
 }
 
 void Device::createLogicalDevice() {

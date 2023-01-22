@@ -30,12 +30,14 @@ struct SwapChainSupportDetails {
 class Device {
 public:
 	Device(Instance* instance, WindowSurface* surface);
-	Device(const Device &) = delete;
 	Device(Device &) = delete;
 	~Device();
-
-	Device &operator=(const Device &) = delete;
 	Device &operator=(Device &) = delete;
+
+	VkDevice* GetLogicalDevice();
+	SwapChainSupportDetails GetSwapChainSupportDetails();
+	QueueFamilyIndices GetQueueFamilyIndices();
+
 
 private:
 	Instance* instance;
@@ -59,9 +61,7 @@ private:
 	void pickPhysicalDevice();
 	bool isDeviceSuitable(VkPhysicalDevice device);
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
-	SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
+	SwapChainSupportDetails findSwapChainSupport(VkPhysicalDevice device);
 	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
-	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
-	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 	void createLogicalDevice();
 };
