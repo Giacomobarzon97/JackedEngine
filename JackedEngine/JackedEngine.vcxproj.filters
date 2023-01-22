@@ -11,6 +11,12 @@
     <Filter Include="Source Files\Windows">
       <UniqueIdentifier>{61e78d4e-1b16-436a-b253-58bae7786b07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Shaders">
+      <UniqueIdentifier>{690fe339-2080-480c-95b4-f4c6201c5d23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{467c5a11-134e-456f-9d74-97b881e34b3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -40,6 +46,12 @@
     <ClCompile Include="Rendering\SwapChain.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Pipeline.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\FileIO.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -66,5 +78,19 @@
     <ClInclude Include="Rendering\SwapChain.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Pipeline.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\FileIOr.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Rendering\Shaders\default.frag">
+      <Filter>Source Files\Rendering\Shaders</Filter>
+    </None>
+    <None Include="Rendering\Shaders\default.vert">
+      <Filter>Source Files\Rendering\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

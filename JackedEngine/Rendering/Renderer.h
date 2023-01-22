@@ -6,6 +6,7 @@
 #include "Windows/BaseWindow.h"
 #include "Rendering/WindowSurface.h"
 #include "Rendering/SwapChain.h"
+#include "Rendering/Pipeline.h"
 
 class Renderer {
 public:
@@ -19,4 +20,5 @@ private:
 	Device* device;
 	WindowSurface* windowSurface;
 	SwapChain* swapChain;
+	Pipeline* pipeline;
 };
