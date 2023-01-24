@@ -15,6 +15,7 @@ JackedEngine::JackedEngine()
 }
 
 JackedEngine::~JackedEngine() {
+	delete renderer;
 	delete window;
 }
 

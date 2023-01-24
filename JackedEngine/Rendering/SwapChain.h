@@ -13,6 +13,9 @@ public:
 	~SwapChain();
 	SwapChain &operator=(SwapChain &) = delete;
 
+	VkExtent2D GetSwapChainExtent();
+	VkFormat GetSwapChainImageFormat();
+
 private:
 	WindowSurface* windowSurface;
 	Device* device;

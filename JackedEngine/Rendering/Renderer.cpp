@@ -10,13 +10,13 @@ Renderer::Renderer(BaseWindow* window) {
 	window->InitiWindowSurface(instance->GetVkInstance(), windowSurface->GetVkSurface());
 	device = new Device(instance, windowSurface);
 	swapChain = new SwapChain(device, window, windowSurface);
-	pipeline = new Pipeline(device, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
+	pipeline = new Pipeline(device, swapChain, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
 }
 
 Renderer::~Renderer() {
+	delete pipeline;
 	delete swapChain;
 	delete device;
 	delete windowSurface;
-	delete pipeline;
 	delete instance;
 }
