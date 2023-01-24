@@ -2,6 +2,7 @@
 
 #include <vulkan/vulkan.h>
 #include <vector>
+#include <iostream>
 
 class Instance 
 {
@@ -12,9 +13,16 @@ public:
 	Instance &operator=(Instance &) = delete;
 
 	VkInstance* GetVkInstance();
+	static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
+		VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+		VkDebugUtilsMessageTypeFlagsEXT messageType,
+		const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+		void* pUserData
+	);
 
 private:
 	VkInstance vkInstance;
+	VkDebugUtilsMessengerEXT debugMessenger;
 	const std::vector<const char*> validationLayers = { 
 		"VK_LAYER_KHRONOS_validation" 
 	};
