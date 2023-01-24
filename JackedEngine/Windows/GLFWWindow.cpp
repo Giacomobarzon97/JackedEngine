@@ -23,7 +23,6 @@ void GLFWWindow::PollEvents() {
 }
 
 const char** GLFWWindow::GetRequiredExtensions(uint32_t* extensionCount) {
-	char** glfwExtensions;
 	return glfwGetRequiredInstanceExtensions(extensionCount);
 }
 

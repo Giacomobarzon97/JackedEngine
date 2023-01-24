@@ -1,8 +1,7 @@
 #include "Device.h"
 
-Device::Device(Instance* instance, WindowSurface* surface) :
-	instance(instance),
-	surface(surface)
+Device::Device(Instance* instance) :
+	instance(instance)
 {
 	pickPhysicalDevice();
 	createLogicalDevice();
@@ -71,7 +70,7 @@ QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device) {
 		if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
 			indices.graphicsFamily = i;
 		}
-		vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *surface->GetVkSurface(), &presentSupport);
+		vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *instance->GetVkSurface(), &presentSupport);
 		if (presentSupport) {
 			indices.presentFamily = i;
 		}
@@ -85,20 +84,20 @@ QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device) {
 
 SwapChainSupportDetails Device::findSwapChainSupport(VkPhysicalDevice device) {
 	SwapChainSupportDetails details;
-	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, *surface->GetVkSurface(), &details.capabilities);
+	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, *instance->GetVkSurface(), &details.capabilities);
 
 	uint32_t formatCount;
-	vkGetPhysicalDeviceSurfaceFormatsKHR(device, *surface->GetVkSurface(), &formatCount, nullptr);
+	vkGetPhysicalDeviceSurfaceFormatsKHR(device, *instance->GetVkSurface(), &formatCount, nullptr);
 	if (formatCount != 0) {
 		details.formats.resize(formatCount);
-		vkGetPhysicalDeviceSurfaceFormatsKHR(device, *surface->GetVkSurface(), &formatCount, details.formats.data());
+		vkGetPhysicalDeviceSurfaceFormatsKHR(device, *instance->GetVkSurface(), &formatCount, details.formats.data());
 	}
 
 	uint32_t presentModeCount;
-	vkGetPhysicalDeviceSurfacePresentModesKHR(device, *surface->GetVkSurface(), &presentModeCount, nullptr);
+	vkGetPhysicalDeviceSurfacePresentModesKHR(device, *instance->GetVkSurface(), &presentModeCount, nullptr);
 	if (presentModeCount != 0) {
 		details.presentModes.resize(presentModeCount);
-		vkGetPhysicalDeviceSurfacePresentModesKHR(device, *surface->GetVkSurface(), &presentModeCount, details.presentModes.data());
+		vkGetPhysicalDeviceSurfacePresentModesKHR(device, *instance->GetVkSurface(), &presentModeCount, details.presentModes.data());
 	}
 
 	return details;

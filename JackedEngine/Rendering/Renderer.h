@@ -4,7 +4,6 @@
 #include "Rendering/Device.h"
 #include "Rendering/Instance.h"
 #include "Windows/BaseWindow.h"
-#include "Rendering/WindowSurface.h"
 #include "Rendering/SwapChain.h"
 #include "Rendering/Pipeline.h"
 
@@ -18,7 +17,6 @@ public:
 private:
 	Instance* instance;
 	Device* device;
-	WindowSurface* windowSurface;
 	SwapChain* swapChain;
 	Pipeline* pipeline;
 };

@@ -3,12 +3,12 @@
 #define NOMINMAX
 #include <algorithm>
 #include "Rendering/Device.h"
-#include "Rendering/WindowSurface.h"
+#include "Rendering/Instance.h"
 #include "Windows/BaseWindow.h"
 
 class SwapChain {
 public:
-	SwapChain(Device* device, BaseWindow* window, WindowSurface* windowSurface);
+	SwapChain(Instance* instance, Device* device, BaseWindow* window);
 	SwapChain(SwapChain &) = delete;
 	~SwapChain();
 	SwapChain &operator=(SwapChain &) = delete;
@@ -17,7 +17,7 @@ public:
 	VkFormat GetSwapChainImageFormat();
 
 private:
-	WindowSurface* windowSurface;
+	Instance* instance;
 	Device* device;
 	BaseWindow* window;
 	VkSwapchainKHR swapChain;

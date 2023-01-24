@@ -6,10 +6,9 @@ Renderer::Renderer(BaseWindow* window) {
 	std::vector<const char*> extensions(windowExtensions, windowExtensions + windowExtensionCount);
 
 	instance = new Instance(window->GetWindowName(), extensions);
-	windowSurface = new WindowSurface(instance, window);
-	window->InitiWindowSurface(instance->GetVkInstance(), windowSurface->GetVkSurface());
-	device = new Device(instance, windowSurface);
-	swapChain = new SwapChain(device, window, windowSurface);
+	window->InitiWindowSurface(instance->GetVkInstance(), instance->GetVkSurface());
+	device = new Device(instance);
+	swapChain = new SwapChain(instance, device, window);
 	pipeline = new Pipeline(device, swapChain, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
 }
 
@@ -17,6 +16,5 @@ Renderer::~Renderer() {
 	delete pipeline;
 	delete swapChain;
 	delete device;
-	delete windowSurface;
 	delete instance;
 }

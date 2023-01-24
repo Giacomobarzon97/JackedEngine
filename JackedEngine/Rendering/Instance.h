@@ -13,10 +13,13 @@ public:
 	Instance &operator=(Instance &) = delete;
 
 	VkInstance* GetVkInstance();
+	VkSurfaceKHR* GetVkSurface();
+
 	static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
 
 private:
 	VkInstance vkInstance;
+	VkSurfaceKHR surface;
 	VkDebugUtilsMessengerEXT debugMessenger;
 	const std::vector<const char*> validationLayers = { 
 		"VK_LAYER_KHRONOS_validation" 

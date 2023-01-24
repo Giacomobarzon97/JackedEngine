@@ -65,12 +65,16 @@ Instance::~Instance() {
 	if (enableValidationLayers) {
 		DestroyDebugUtilsMessengerEXT(vkInstance, debugMessenger, nullptr);
 	}
-
+	vkDestroySurfaceKHR(vkInstance, surface, nullptr);
 	vkDestroyInstance(vkInstance, nullptr);
 }
 
 VkInstance* Instance::GetVkInstance() {
 	return &vkInstance;
+}
+
+VkSurfaceKHR* Instance::GetVkSurface() {
+	return &surface;
 }
 
 void Instance::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo) {

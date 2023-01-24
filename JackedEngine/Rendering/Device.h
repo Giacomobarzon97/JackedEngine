@@ -5,7 +5,6 @@
 #include <set>
 #include <iostream>
 #include <optional>
-#include "Rendering/WindowSurface.h"
 #include "Rendering/Instance.h"
 
 struct QueueFamilyIndices {
@@ -29,7 +28,7 @@ struct SwapChainSupportDetails {
 
 class Device {
 public:
-	Device(Instance* instance, WindowSurface* surface);
+	Device(Instance* instance);
 	Device(Device &) = delete;
 	~Device();
 	Device &operator=(Device &) = delete;
@@ -41,7 +40,6 @@ public:
 
 private:
 	Instance* instance;
-	WindowSurface* surface;
 	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 	VkDevice logicalDevice;
 	VkQueue graphicsQueue;

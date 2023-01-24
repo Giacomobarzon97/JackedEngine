@@ -26,7 +26,6 @@
     <ClCompile Include="Rendering\Pipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\SwapChain.cpp" />
-    <ClCompile Include="Rendering\WindowSurface.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
@@ -38,7 +37,6 @@
     <ClInclude Include="Rendering\Pipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\SwapChain.h" />
-    <ClInclude Include="Rendering\WindowSurface.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />

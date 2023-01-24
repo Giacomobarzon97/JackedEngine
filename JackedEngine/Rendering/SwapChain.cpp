@@ -1,8 +1,8 @@
 #include "SwapChain.h"
 
-SwapChain::SwapChain(Device* device, BaseWindow* window, WindowSurface* windowSurface) :
+SwapChain::SwapChain(Instance* instance, Device* device, BaseWindow* window) :
 	device(device),
-	windowSurface(windowSurface),
+	instance(instance),
 	window(window)
 {
 	SwapChainSupportDetails swapChainSupport = device->GetSwapChainSupportDetails();
@@ -18,7 +18,7 @@ SwapChain::SwapChain(Device* device, BaseWindow* window, WindowSurface* windowSu
 
 	VkSwapchainCreateInfoKHR createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-	createInfo.surface = *windowSurface->GetVkSurface();
+	createInfo.surface = *instance->GetVkSurface();
 	createInfo.minImageCount = imageCount;
 	createInfo.imageFormat = surfaceFormat.format;
 	createInfo.imageColorSpace = surfaceFormat.colorSpace;
