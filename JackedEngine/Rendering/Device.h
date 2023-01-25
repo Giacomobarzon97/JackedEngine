@@ -40,7 +40,7 @@ public:
 
 private:
 	Instance* instance;
-	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+	VkPhysicalDevice physicalDevice;
 	VkDevice logicalDevice;
 	VkQueue graphicsQueue;
 	VkQueue presentQueue;

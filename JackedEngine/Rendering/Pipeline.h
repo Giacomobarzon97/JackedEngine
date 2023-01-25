@@ -16,11 +16,9 @@ private:
 	Device * device;
 	SwapChain* swapChain;
 	VkPipelineLayout pipelineLayout;
-	VkRenderPass renderPass;
 	VkPipeline graphicsPipeline;
 
 	VkShaderModule createShaderModule(const std::vector<char>& code);
-	void createRenderPass();
 
 	VkPipelineVertexInputStateCreateInfo getVertexInputCreateInfo();
 	VkPipelineInputAssemblyStateCreateInfo getInputAssemblyCreateInfo();
