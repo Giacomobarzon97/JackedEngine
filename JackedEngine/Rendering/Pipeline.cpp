@@ -20,17 +20,6 @@ Pipeline::Pipeline(Device* device, SwapChain* swapChain, std::string vertShaderP
 	fragShaderStageInfo.pName = "main";
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
-	VkViewport viewport{};
-	viewport.x = 0.0f;
-	viewport.y = 0.0f;
-	viewport.width = (float)swapChain->GetSwapChainExtent().width;
-	viewport.height = (float)swapChain->GetSwapChainExtent().height;
-	viewport.minDepth = 0.0f;
-	viewport.maxDepth = 1.0f;
-	VkRect2D scissor{};
-	scissor.offset = { 0, 0 };
-	scissor.extent = swapChain->GetSwapChainExtent();
-
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = 0; // Optional
@@ -86,6 +75,9 @@ Pipeline::~Pipeline() {
 	vkDestroyPipelineLayout(*device->GetLogicalDevice(), pipelineLayout, nullptr);
 }
 
+VkPipeline* Pipeline::GetGraphicsPipeline() {
+	return &graphicsPipeline;
+}
 
 VkShaderModule Pipeline::createShaderModule(const std::vector<char>& code) {
 	VkShaderModuleCreateInfo createInfo{};

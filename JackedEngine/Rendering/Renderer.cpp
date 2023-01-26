@@ -10,9 +10,11 @@ Renderer::Renderer(BaseWindow* window) {
 	device = new Device(instance);
 	swapChain = new SwapChain(instance, device, window);
 	pipeline = new Pipeline(device, swapChain, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
+	commandBuffer = new CommandBuffer(device, swapChain, pipeline);
 }
 
 Renderer::~Renderer() {
+	delete commandBuffer;
 	delete pipeline;
 	delete swapChain;
 	delete device;

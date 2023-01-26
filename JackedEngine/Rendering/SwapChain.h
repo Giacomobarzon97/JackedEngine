@@ -16,7 +16,7 @@ public:
 	VkExtent2D GetSwapChainExtent();
 	VkFormat GetSwapChainImageFormat();
 	VkRenderPass* GetRenderPass();
-
+	VkFramebuffer* GetSwapChainFramebuffer(const uint32_t i);
 private:
 	Instance* instance;
 	Device* device;
