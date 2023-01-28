@@ -13,7 +13,6 @@ public:
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
 	void PresentCommand();
-	void Reset();
 
 private:
 	Device* device;

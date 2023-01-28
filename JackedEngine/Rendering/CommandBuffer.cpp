@@ -38,11 +38,6 @@ CommandBuffer::CommandBuffer(Device* device, SwapChain* swapChain, Pipeline* pip
 
 }
 
-void CommandBuffer::Reset() {
-	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
-	vkResetFences(*device->GetLogicalDevice(), 1, &inFlightFence);
-}
-
 CommandBuffer::~CommandBuffer() {
 	vkDestroySemaphore(*device->GetLogicalDevice(), imageAvailableSemaphore, nullptr);
 	vkDestroySemaphore(*device->GetLogicalDevice(), renderFinishedSemaphore, nullptr);
@@ -51,6 +46,9 @@ CommandBuffer::~CommandBuffer() {
 }
 
 void CommandBuffer::PresentCommand() {
+	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
+	vkResetFences(*device->GetLogicalDevice(), 1, &inFlightFence);
+
 	vkResetCommandBuffer(commandBuffer, 0);
 
 	uint32_t imageIndex = swapChain->GetNextImageIndex(&imageAvailableSemaphore);
@@ -96,9 +94,6 @@ void CommandBuffer::PresentCommand() {
 	if (vkEndCommandBuffer(commandBuffer) != VK_SUCCESS) {
 		throw std::runtime_error("failed to record command buffer!");
 	}
-
-
-
 
 	VkSubmitInfo submitInfo{};
 	submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;

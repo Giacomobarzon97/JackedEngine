@@ -22,7 +22,6 @@ Renderer::~Renderer() {
 }
 
 void Renderer::drawFrame() {
-	commandBuffer->Reset();
 	commandBuffer->PresentCommand();
 }
 
