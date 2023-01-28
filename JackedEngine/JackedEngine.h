@@ -13,8 +13,9 @@ public:
 
 private:
 	static const std::string APP_NAME;
-	static const uint32_t  WINDOW_WIDTH;
-	static const uint32_t  WINDOW_HEIGHT;
+	static const uint32_t  WINDOW_WIDTH = 800;
+	static const uint32_t  WINDOW_HEIGHT = 600;
+	const int MAX_FRAMES_IN_FLIGHT = 2;
 
 	BaseWindow* window;
 	Renderer* renderer;

@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer(BaseWindow* window) {
+Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) {
 	uint32_t windowExtensionCount = 0;
 	const char** windowExtensions = window->GetRequiredExtensions(&windowExtensionCount);
 	std::vector<const char*> extensions(windowExtensions, windowExtensions + windowExtensionCount);
@@ -10,7 +10,7 @@ Renderer::Renderer(BaseWindow* window) {
 	device = new Device(instance);
 	swapChain = new SwapChain(instance, device, window);
 	pipeline = new Pipeline(device, swapChain, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
-	commandBuffer = new CommandBuffer(device, swapChain, pipeline);
+	commandBuffer = new CommandBuffer(device, swapChain, pipeline, maxFramesInFlight);
 }
 
 Renderer::~Renderer() {

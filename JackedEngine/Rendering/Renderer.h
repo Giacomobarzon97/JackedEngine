@@ -10,7 +10,7 @@
 
 class Renderer {
 public:
-	Renderer(BaseWindow* window);
+	Renderer(BaseWindow* window, int maxFramesInFlight);
 	Renderer(Renderer &) = delete;
 	~Renderer();
 	Renderer &operator=(Renderer &) = delete;
