@@ -23,11 +23,4 @@ private:
 	VkPipeline graphicsPipeline;
 
 	VkShaderModule createShaderModule(const std::vector<char>& code);
-
-	VkPipelineVertexInputStateCreateInfo getVertexInputCreateInfo();
-	VkPipelineInputAssemblyStateCreateInfo getInputAssemblyCreateInfo();
-	VkPipelineViewportStateCreateInfo getViewportStateCreateInfo();
-	VkPipelineRasterizationStateCreateInfo getRasterizationCreateInfo();
-	VkPipelineMultisampleStateCreateInfo getMultisampleCreateInfo();
-	VkPipelineColorBlendStateCreateInfo getColorBlendStateCreateInfo();
 };

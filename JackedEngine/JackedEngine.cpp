@@ -3,7 +3,7 @@
 
 const std::string JackedEngine::APP_NAME = "JackedEngine";
 const uint32_t  JackedEngine::WINDOW_WIDTH =  800;
-const uint32_t  JackedEngine::WINDOW_HEIGHT = 800;
+const uint32_t  JackedEngine::WINDOW_HEIGHT = 600;
 
 JackedEngine::JackedEngine()
 {
