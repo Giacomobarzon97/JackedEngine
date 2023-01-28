@@ -105,6 +105,18 @@ VkFramebuffer* SwapChain::GetSwapChainFramebuffer(const uint32_t i) {
 	return &swapChainFramebuffers[i];
 }
 
+VkSwapchainKHR* SwapChain::GetSwapChain() {
+	return &swapChain;
+}
+
+
+uint32_t SwapChain::GetNextImageIndex(VkSemaphore* signalSemaphore) {
+	uint32_t imageIndex;
+	vkAcquireNextImageKHR(*device->GetLogicalDevice(), swapChain, UINT64_MAX, *signalSemaphore, VK_NULL_HANDLE, &imageIndex);
+	return imageIndex;
+}
+
+
 VkSurfaceFormatKHR SwapChain::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) {
 	for (const auto& availableFormat : availableFormats) {
 		if (availableFormat.format == VK_FORMAT_B8G8R8A8_SRGB && availableFormat.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
@@ -144,6 +156,13 @@ VkExtent2D SwapChain::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilit
 }
 
 void SwapChain::createRenderPass() {
+	VkSubpassDependency dependency{};
+	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+	dependency.dstSubpass = 0;
+	dependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.srcAccessMask = 0;
+	dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
 	VkAttachmentDescription colorAttachment{};
 	colorAttachment.format = swapChainImageFormat;
 	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -166,6 +185,8 @@ void SwapChain::createRenderPass() {
 	renderPassInfo.pAttachments = &colorAttachment;
 	renderPassInfo.subpassCount = 1;
 	renderPassInfo.pSubpasses = &subpass;
+	renderPassInfo.dependencyCount = 1;
+	renderPassInfo.pDependencies = &dependency;
 
 	if (vkCreateRenderPass(*device->GetLogicalDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create render pass!");

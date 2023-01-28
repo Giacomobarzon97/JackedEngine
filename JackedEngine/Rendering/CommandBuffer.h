@@ -12,7 +12,8 @@ public:
 
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
-	void recordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
+	void PresentCommand();
+	void Reset();
 
 private:
 	Device* device;
@@ -20,4 +21,7 @@ private:
 	Pipeline* pipeline;
 	VkCommandPool commandPool;
 	VkCommandBuffer commandBuffer;
+	VkSemaphore imageAvailableSemaphore;
+	VkSemaphore renderFinishedSemaphore;
+	VkFence inFlightFence;
 };

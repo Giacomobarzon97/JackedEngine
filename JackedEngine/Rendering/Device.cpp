@@ -15,6 +15,13 @@ VkDevice* Device::GetLogicalDevice() {
 	return &logicalDevice;
 }
 
+VkQueue* Device::GetGraphicsQueue() {
+	return &graphicsQueue;
+}
+
+VkQueue* Device::GetPresentQueue() {
+	return &presentQueue;
+}
 
 SwapChainSupportDetails Device::GetSwapChainSupportDetails() {
 	return findSwapChainSupport(physicalDevice);

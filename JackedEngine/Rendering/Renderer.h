@@ -15,6 +15,9 @@ public:
 	~Renderer();
 	Renderer &operator=(Renderer &) = delete;
 
+	void drawFrame();
+	void reset();
+
 private:
 	Instance* instance;
 	Device* device;

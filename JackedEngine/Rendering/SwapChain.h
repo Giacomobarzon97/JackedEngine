@@ -17,6 +17,9 @@ public:
 	VkFormat GetSwapChainImageFormat();
 	VkRenderPass* GetRenderPass();
 	VkFramebuffer* GetSwapChainFramebuffer(const uint32_t i);
+	VkSwapchainKHR* GetSwapChain();
+	uint32_t GetNextImageIndex(VkSemaphore* signalSemaphore);
+
 private:
 	Instance* instance;
 	Device* device;

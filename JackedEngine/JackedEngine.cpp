@@ -23,5 +23,7 @@ JackedEngine::~JackedEngine() {
 void JackedEngine::mainLoop() {
 	while (!window->ShouldClose()) {
 		window->PollEvents();
+		renderer->drawFrame();
 	}
+	renderer->reset();
 }

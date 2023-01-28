@@ -20,3 +20,12 @@ Renderer::~Renderer() {
 	delete device;
 	delete instance;
 }
+
+void Renderer::drawFrame() {
+	commandBuffer->Reset();
+	commandBuffer->PresentCommand();
+}
+
+void Renderer::reset() {
+	vkDeviceWaitIdle(*device->GetLogicalDevice());
+}
