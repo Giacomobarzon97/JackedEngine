@@ -5,13 +5,75 @@ SwapChain::SwapChain(Instance* instance, Device* device, BaseWindow* window) :
 	instance(instance),
 	window(window)
 {
+	createSwapChain();
+	createImageViews();
+	createRenderPass();
+	createFrameBuffers();
+}
+
+SwapChain::~SwapChain() {
+	cleanup();
+}
+
+void SwapChain::cleanup() {
+	for (auto framebuffer : swapChainFramebuffers) {
+		vkDestroyFramebuffer(*device->GetLogicalDevice(), framebuffer, nullptr);
+	}
+	vkDestroyRenderPass(*device->GetLogicalDevice(), renderPass, nullptr);
+	for (auto imageView : swapChainImageViews) {
+		vkDestroyImageView(*device->GetLogicalDevice(), imageView, nullptr);
+	}
+	vkDestroySwapchainKHR(*device->GetLogicalDevice(), swapChain, nullptr);
+}
+
+VkExtent2D SwapChain::GetSwapChainExtent() {
+	return swapChainExtent;
+}
+
+VkFormat SwapChain::GetSwapChainImageFormat() {
+	return swapChainImageFormat;
+}
+
+VkRenderPass* SwapChain::GetRenderPass() {
+	return &renderPass;
+}
+
+VkFramebuffer* SwapChain::GetSwapChainFramebuffer(const uint32_t i) {
+	return &swapChainFramebuffers[i];
+}
+
+VkSwapchainKHR* SwapChain::GetSwapChain() {
+	return &swapChain;
+}
+
+bool SwapChain::GetNextImageIndex(uint32_t& imageIndex, VkSemaphore* signalSemaphore) {
+	VkResult result = vkAcquireNextImageKHR(*device->GetLogicalDevice(), swapChain, UINT64_MAX, *signalSemaphore, VK_NULL_HANDLE, &imageIndex);
+	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+		Recreate();
+		return false;
+	}
+	else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
+		throw std::runtime_error("failed to acquire swap chain image!");
+	}
+	return true;
+}
+
+void SwapChain::Recreate() {
+	vkDeviceWaitIdle(*device->GetLogicalDevice());
+	cleanup();
+	createSwapChain();
+	createImageViews();
+	createFrameBuffers();
+}
+
+void SwapChain::createSwapChain() {
 	SwapChainSupportDetails swapChainSupport = device->GetSwapChainSupportDetails();
 
 	VkSurfaceFormatKHR surfaceFormat = chooseSwapSurfaceFormat(swapChainSupport.formats);
 	VkPresentModeKHR presentMode = chooseSwapPresentMode(swapChainSupport.presentModes);
 	VkExtent2D extent = chooseSwapExtent(swapChainSupport.capabilities);
 
-	uint32_t imageCount = swapChainSupport.capabilities.minImageCount +1;
+	uint32_t imageCount = swapChainSupport.capabilities.minImageCount + 1;
 	if (swapChainSupport.capabilities.maxImageCount > 0 && imageCount > swapChainSupport.capabilities.maxImageCount) {
 		imageCount = swapChainSupport.capabilities.maxImageCount;
 	}
@@ -54,68 +116,7 @@ SwapChain::SwapChain(Instance* instance, Device* device, BaseWindow* window) :
 	vkGetSwapchainImagesKHR(*device->GetLogicalDevice(), swapChain, &imageCount, swapChainImages.data());
 	swapChainImageFormat = surfaceFormat.format;
 	swapChainExtent = extent;
-	swapChainImageViews.resize(swapChainImages.size());
-	for (size_t i = 0; i < swapChainImages.size(); i++) {
-		VkImageViewCreateInfo createInfo{};
-		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
-		createInfo.image = swapChainImages[i];
-		createInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
-		createInfo.format = swapChainImageFormat;
-		createInfo.components.r = VK_COMPONENT_SWIZZLE_IDENTITY;
-		createInfo.components.g = VK_COMPONENT_SWIZZLE_IDENTITY;
-		createInfo.components.b = VK_COMPONENT_SWIZZLE_IDENTITY;
-		createInfo.components.a = VK_COMPONENT_SWIZZLE_IDENTITY;
-		createInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
-		createInfo.subresourceRange.baseMipLevel = 0;
-		createInfo.subresourceRange.levelCount = 1;
-		createInfo.subresourceRange.baseArrayLayer = 0;
-		createInfo.subresourceRange.layerCount = 1;
-		if (vkCreateImageView(*device->GetLogicalDevice(), &createInfo, nullptr, &swapChainImageViews[i]) != VK_SUCCESS) {
-			throw std::runtime_error("failed to create image views!");
-		}
-	}
-	createRenderPass();
-	createFrameBuffers();
 }
-
-SwapChain::~SwapChain() {
-	for (auto framebuffer : swapChainFramebuffers) {
-		vkDestroyFramebuffer(*device->GetLogicalDevice(), framebuffer, nullptr);
-	}
-	vkDestroyRenderPass(*device->GetLogicalDevice(), renderPass, nullptr);
-	for (auto imageView : swapChainImageViews) {
-		vkDestroyImageView(*device->GetLogicalDevice(), imageView, nullptr);
-	}
-	vkDestroySwapchainKHR(*device->GetLogicalDevice(), swapChain, nullptr);
-}
-
-VkExtent2D SwapChain::GetSwapChainExtent() {
-	return swapChainExtent;
-}
-
-VkFormat SwapChain::GetSwapChainImageFormat() {
-	return swapChainImageFormat;
-}
-
-VkRenderPass* SwapChain::GetRenderPass() {
-	return &renderPass;
-}
-
-VkFramebuffer* SwapChain::GetSwapChainFramebuffer(const uint32_t i) {
-	return &swapChainFramebuffers[i];
-}
-
-VkSwapchainKHR* SwapChain::GetSwapChain() {
-	return &swapChain;
-}
-
-
-uint32_t SwapChain::GetNextImageIndex(VkSemaphore* signalSemaphore) {
-	uint32_t imageIndex;
-	vkAcquireNextImageKHR(*device->GetLogicalDevice(), swapChain, UINT64_MAX, *signalSemaphore, VK_NULL_HANDLE, &imageIndex);
-	return imageIndex;
-}
-
 
 VkSurfaceFormatKHR SwapChain::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) {
 	for (const auto& availableFormat : availableFormats) {
@@ -155,6 +156,51 @@ VkExtent2D SwapChain::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilit
 	}
 }
 
+void SwapChain::createImageViews() {
+	swapChainImageViews.resize(swapChainImages.size());
+	for (size_t i = 0; i < swapChainImages.size(); i++) {
+		VkImageViewCreateInfo createInfo{};
+		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+		createInfo.image = swapChainImages[i];
+		createInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+		createInfo.format = swapChainImageFormat;
+		createInfo.components.r = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.components.g = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.components.b = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.components.a = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		createInfo.subresourceRange.baseMipLevel = 0;
+		createInfo.subresourceRange.levelCount = 1;
+		createInfo.subresourceRange.baseArrayLayer = 0;
+		createInfo.subresourceRange.layerCount = 1;
+		if (vkCreateImageView(*device->GetLogicalDevice(), &createInfo, nullptr, &swapChainImageViews[i]) != VK_SUCCESS) {
+			throw std::runtime_error("failed to create image views!");
+		}
+	}
+}
+
+void SwapChain::createFrameBuffers() {
+	swapChainFramebuffers.resize(swapChainImageViews.size());
+	for (size_t i = 0; i < swapChainImageViews.size(); i++) {
+		VkImageView attachments[] = {
+			swapChainImageViews[i]
+		};
+
+		VkFramebufferCreateInfo framebufferInfo{};
+		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+		framebufferInfo.renderPass = renderPass;
+		framebufferInfo.attachmentCount = 1;
+		framebufferInfo.pAttachments = attachments;
+		framebufferInfo.width = swapChainExtent.width;
+		framebufferInfo.height = swapChainExtent.height;
+		framebufferInfo.layers = 1;
+
+		if (vkCreateFramebuffer(*device->GetLogicalDevice(), &framebufferInfo, nullptr, &swapChainFramebuffers[i]) != VK_SUCCESS) {
+			throw std::runtime_error("failed to create framebuffer!");
+		}
+	}
+}
+
 void SwapChain::createRenderPass() {
 	VkSubpassDependency dependency{};
 	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
@@ -190,27 +236,5 @@ void SwapChain::createRenderPass() {
 
 	if (vkCreateRenderPass(*device->GetLogicalDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create render pass!");
-	}
-}
-
-void SwapChain::createFrameBuffers() {
-	swapChainFramebuffers.resize(swapChainImageViews.size());
-	for (size_t i = 0; i < swapChainImageViews.size(); i++) {
-		VkImageView attachments[] = {
-			swapChainImageViews[i]
-		};
-
-		VkFramebufferCreateInfo framebufferInfo{};
-		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-		framebufferInfo.renderPass = renderPass;
-		framebufferInfo.attachmentCount = 1;
-		framebufferInfo.pAttachments = attachments;
-		framebufferInfo.width = swapChainExtent.width;
-		framebufferInfo.height = swapChainExtent.height;
-		framebufferInfo.layers = 1;
-
-		if (vkCreateFramebuffer(*device->GetLogicalDevice(), &framebufferInfo, nullptr, &swapChainFramebuffers[i]) != VK_SUCCESS) {
-			throw std::runtime_error("failed to create framebuffer!");
-		}
 	}
 }

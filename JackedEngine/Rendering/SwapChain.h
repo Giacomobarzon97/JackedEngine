@@ -18,7 +18,8 @@ public:
 	VkRenderPass* GetRenderPass();
 	VkFramebuffer* GetSwapChainFramebuffer(const uint32_t i);
 	VkSwapchainKHR* GetSwapChain();
-	uint32_t GetNextImageIndex(VkSemaphore* signalSemaphore);
+	bool GetNextImageIndex(uint32_t& imageIndex, VkSemaphore* signalSemaphore);
+	void Recreate();
 
 private:
 	Instance* instance;
@@ -35,6 +36,11 @@ private:
 	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
-	void createRenderPass();
+
+	void createSwapChain();
+	void createImageViews();
 	void createFrameBuffers();
+	void createRenderPass();
+	void cleanup();
+
 };

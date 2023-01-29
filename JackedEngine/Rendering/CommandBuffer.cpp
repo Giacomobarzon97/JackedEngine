@@ -58,11 +58,14 @@ CommandBuffer::~CommandBuffer() {
 
 void CommandBuffer::PresentCommand() {
 	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
+
+	uint32_t imageIndex;
+	if (!swapChain->GetNextImageIndex(imageIndex, &imageAvailableSemaphores[currentFrame])) {
+		return;
+	}
+
 	vkResetFences(*device->GetLogicalDevice(), 1, &inFlightFences[currentFrame]);
-
 	vkResetCommandBuffer(commandBuffers[currentFrame], 0);
-
-	uint32_t imageIndex = swapChain->GetNextImageIndex(&imageAvailableSemaphores[currentFrame]);
 
 	VkExtent2D swapChainExtent = swapChain->GetSwapChainExtent();
 
@@ -131,7 +134,14 @@ void CommandBuffer::PresentCommand() {
 	presentInfo.pSwapchains = swapChains;
 	presentInfo.pImageIndices = &imageIndex;
 	presentInfo.pResults = nullptr; // Optional
-	vkQueuePresentKHR(*device->GetPresentQueue(), &presentInfo);
+	VkResult result = vkQueuePresentKHR(*device->GetPresentQueue(), &presentInfo);
+
+	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
+		swapChain->Recreate();
+	}
+	else if (result != VK_SUCCESS) {
+		throw std::runtime_error("failed to present swap chain image!");
+	}
 
 	currentFrame = (currentFrame + 1) % maxFramesInFlight;
 }
