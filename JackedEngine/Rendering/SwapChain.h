@@ -14,7 +14,6 @@ public:
 	SwapChain &operator=(SwapChain &) = delete;
 
 	VkExtent2D GetSwapChainExtent();
-	VkFormat GetSwapChainImageFormat();
 	VkRenderPass* GetRenderPass();
 	VkFramebuffer* GetSwapChainFramebuffer(const uint32_t i);
 	VkSwapchainKHR* GetSwapChain();

@@ -20,7 +20,6 @@ public:
 	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) override;
 	virtual bool ShouldClose() override;
 	virtual void PollEvents() override;
-	virtual HWND GetWindowHandle() override;
 	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) override;
 	virtual void GetFrameBufferSize(int* width, int* height) override;
 	virtual void SetBufferResizeCallback(void* buffer, void(*func)(void*)) override;

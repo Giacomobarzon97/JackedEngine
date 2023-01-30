@@ -1,9 +1,8 @@
 #include "CommandBuffer.h"
 
-CommandBuffer::CommandBuffer(Device* device, SwapChain* swapChain, Pipeline* pipeline, int maxFramesInFlight) :
+CommandBuffer::CommandBuffer(Device* device, SwapChain* swapChain, int maxFramesInFlight) :
 	device(device),
 	swapChain(swapChain),
-	pipeline(pipeline),
 	maxFramesInFlight(maxFramesInFlight)
 {
 	commandBuffers.resize(maxFramesInFlight);
@@ -56,7 +55,7 @@ CommandBuffer::~CommandBuffer() {
 	vkDestroyCommandPool(*device->GetLogicalDevice(), commandPool, nullptr);
 }
 
-void CommandBuffer::PresentCommand() {
+void CommandBuffer::PresentCommand(Pipeline* pipeline) {
 	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;

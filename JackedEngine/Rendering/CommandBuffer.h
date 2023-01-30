@@ -6,20 +6,19 @@
 
 class CommandBuffer {
 public:
-	CommandBuffer(Device* device, SwapChain* swapChain, Pipeline* pipeline, int maxFramesInFlight);
+	CommandBuffer(Device* device, SwapChain* swapChain, int maxFramesInFlight);
 	CommandBuffer(CommandBuffer&) = delete;
 	~CommandBuffer();
 
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
-	void PresentCommand();
+	void PresentCommand(Pipeline* pipeline);
 
 	static void FramebufferResizeCallback(void * buffer);
 
 private:
 	Device* device;
 	SwapChain* swapChain;
-	Pipeline* pipeline;
 	VkCommandPool commandPool;
 	std::vector<VkCommandBuffer> commandBuffers;
 	std::vector<VkSemaphore> imageAvailableSemaphores;

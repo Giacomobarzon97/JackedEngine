@@ -9,8 +9,8 @@ Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) {
 	window->InitiWindowSurface(instance->GetVkInstance(), instance->GetVkSurface());
 	device = new Device(instance);
 	swapChain = new SwapChain(instance, device, window);
-	pipeline = new Pipeline(device, swapChain, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
-	commandBuffer = new CommandBuffer(device, swapChain, pipeline, maxFramesInFlight);
+	pipeline = new Pipeline(device, swapChain);
+	commandBuffer = new CommandBuffer(device, swapChain, maxFramesInFlight);
 	window->SetBufferResizeCallback(commandBuffer, CommandBuffer::FramebufferResizeCallback);
 }
 
@@ -22,10 +22,10 @@ Renderer::~Renderer() {
 	delete instance;
 }
 
-void Renderer::drawFrame() {
-	commandBuffer->PresentCommand();
+void Renderer::DrawFrame() {
+	commandBuffer->PresentCommand(pipeline);
 }
 
-void Renderer::reset() {
+void Renderer::Reset() {
 	vkDeviceWaitIdle(*device->GetLogicalDevice());
 }

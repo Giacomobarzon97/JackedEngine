@@ -15,8 +15,8 @@ public:
 	~Renderer();
 	Renderer &operator=(Renderer &) = delete;
 
-	void drawFrame();
-	void reset();
+	void DrawFrame();
+	void Reset();
 
 private:
 	Instance* instance;

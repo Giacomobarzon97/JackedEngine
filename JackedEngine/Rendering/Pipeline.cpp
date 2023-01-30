@@ -1,11 +1,11 @@
 #include "Pipeline.h"
 
-Pipeline::Pipeline(Device* device, SwapChain* swapChain, std::string vertShaderPath, std::string fragShaderPath) :
+Pipeline::Pipeline(Device* device, SwapChain* swapChain, std::string shaderName) :
 	device(device),
 	swapChain(swapChain)
 {
-	auto vertShaderCode = FileIO::readFile(vertShaderPath);
-	auto fragShaderCode = FileIO::readFile(fragShaderPath);
+	auto vertShaderCode = FileIO::readFile("Rendering/Shaders/"+ shaderName +".vert.spv");
+	auto fragShaderCode = FileIO::readFile("Rendering/Shaders/" + shaderName + ".frag.spv");
 
 	VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
 	VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);

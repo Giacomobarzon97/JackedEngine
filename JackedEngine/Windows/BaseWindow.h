@@ -16,7 +16,6 @@ public:
 	virtual bool ShouldClose() = 0;
 	virtual void PollEvents() = 0;
 	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) = 0;
-	virtual HWND GetWindowHandle() = 0;
 	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) = 0;
 	virtual void GetFrameBufferSize(int* width, int* height) = 0;
 	virtual void SetBufferResizeCallback(void* buffer, void (*func)(void*)) = 0;

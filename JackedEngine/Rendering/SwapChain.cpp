@@ -30,10 +30,6 @@ VkExtent2D SwapChain::GetSwapChainExtent() {
 	return swapChainExtent;
 }
 
-VkFormat SwapChain::GetSwapChainImageFormat() {
-	return swapChainImageFormat;
-}
-
 VkRenderPass* SwapChain::GetRenderPass() {
 	return &renderPass;
 }

@@ -9,7 +9,7 @@
 
 class Pipeline {
 public:
-	Pipeline(Device* device, SwapChain* swapChain, std::string vertShaderPath, std::string fragShaderPath);
+	Pipeline(Device* device, SwapChain* swapChain, std::string shaderName = "default");
 	Pipeline(Pipeline &) = delete;
 	~Pipeline();
 	Pipeline &operator=(Pipeline &) = delete;
