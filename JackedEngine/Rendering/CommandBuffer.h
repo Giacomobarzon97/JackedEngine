@@ -14,6 +14,8 @@ public:
 
 	void PresentCommand();
 
+	static void FramebufferResizeCallback(void * buffer);
+
 private:
 	Device* device;
 	SwapChain* swapChain;
@@ -24,6 +26,7 @@ private:
 	std::vector<VkSemaphore> renderFinishedSemaphores;
 	std::vector<VkFence> inFlightFences;
 
+	bool framebufferResized = false;
 	uint32_t currentFrame = 0;
 	int maxFramesInFlight;
 };

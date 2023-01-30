@@ -19,6 +19,8 @@ public:
 	virtual HWND GetWindowHandle() = 0;
 	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) = 0;
 	virtual void GetFrameBufferSize(int* width, int* height) = 0;
+	virtual void SetBufferResizeCallback(void* buffer, void (*func)(void*)) = 0;
+	virtual void WaitWhileMinimized() = 0;
 
 protected:
 	const uint32_t width;

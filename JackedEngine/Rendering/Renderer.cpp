@@ -11,6 +11,7 @@ Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) {
 	swapChain = new SwapChain(instance, device, window);
 	pipeline = new Pipeline(device, swapChain, "Rendering/Shaders/default.vert.spv", "Rendering/Shaders/default.frag.spv");
 	commandBuffer = new CommandBuffer(device, swapChain, pipeline, maxFramesInFlight);
+	window->SetBufferResizeCallback(commandBuffer, CommandBuffer::FramebufferResizeCallback);
 }
 
 Renderer::~Renderer() {

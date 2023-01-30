@@ -23,8 +23,13 @@ public:
 	virtual HWND GetWindowHandle() override;
 	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) override;
 	virtual void GetFrameBufferSize(int* width, int* height) override;
+	virtual void SetBufferResizeCallback(void* buffer, void(*func)(void*)) override;
+	virtual void WaitWhileMinimized() override;
 
 private: 
 	GLFWwindow *window;
+	static void (*bufferCallback)(void*);
+
+	static void BufferResizeCallback(GLFWwindow* window, int width, int height);
 };
 

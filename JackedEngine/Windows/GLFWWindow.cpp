@@ -1,11 +1,12 @@
 #include "GLFWWindow.h"
 
+void(*GLFWWindow::bufferCallback)(void*) = nullptr;
+
 GLFWWindow::GLFWWindow(const uint32_t w, const uint32_t h, const std::string windowName) :
 	BaseWindow(w, h, windowName)
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
 }
 
@@ -40,3 +41,23 @@ void GLFWWindow::GetFrameBufferSize(int* width, int* height) {
 	glfwGetFramebufferSize(window, width, height);
 }
 
+void GLFWWindow::SetBufferResizeCallback(void* buffer, void(*func)(void*)) {
+	glfwSetWindowUserPointer(window, buffer);
+	glfwSetFramebufferSizeCallback(window, BufferResizeCallback);
+	GLFWWindow::bufferCallback = func;
+}
+
+
+void GLFWWindow::BufferResizeCallback(GLFWwindow* window, int width, int height) {
+	void* buffer = glfwGetWindowUserPointer(window);
+	bufferCallback(buffer);
+}
+
+void GLFWWindow::WaitWhileMinimized() {
+	int width = 0, height = 0;
+	glfwGetFramebufferSize(window, &width, &height);
+	while (width == 0 || height == 0) {
+		glfwGetFramebufferSize(window, &width, &height);
+		glfwWaitEvents();
+	}
+}

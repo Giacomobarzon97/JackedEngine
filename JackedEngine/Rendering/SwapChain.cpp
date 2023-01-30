@@ -13,13 +13,13 @@ SwapChain::SwapChain(Instance* instance, Device* device, BaseWindow* window) :
 
 SwapChain::~SwapChain() {
 	cleanup();
+	vkDestroyRenderPass(*device->GetLogicalDevice(), renderPass, nullptr);
 }
 
 void SwapChain::cleanup() {
 	for (auto framebuffer : swapChainFramebuffers) {
 		vkDestroyFramebuffer(*device->GetLogicalDevice(), framebuffer, nullptr);
 	}
-	vkDestroyRenderPass(*device->GetLogicalDevice(), renderPass, nullptr);
 	for (auto imageView : swapChainImageViews) {
 		vkDestroyImageView(*device->GetLogicalDevice(), imageView, nullptr);
 	}
@@ -59,6 +59,7 @@ bool SwapChain::GetNextImageIndex(uint32_t& imageIndex, VkSemaphore* signalSemap
 }
 
 void SwapChain::Recreate() {
+	window->WaitWhileMinimized();
 	vkDeviceWaitIdle(*device->GetLogicalDevice());
 	cleanup();
 	createSwapChain();
@@ -105,7 +106,7 @@ void SwapChain::createSwapChain() {
 	createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 	createInfo.presentMode = presentMode;
 	createInfo.clipped = VK_TRUE;
-	createInfo.oldSwapchain = VK_NULL_HANDLE;
+	//createInfo.oldSwapchain = VK_NULL_HANDLE;
 
 	if (vkCreateSwapchainKHR(*device->GetLogicalDevice(), &createInfo, nullptr, &swapChain) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create swap chain!");

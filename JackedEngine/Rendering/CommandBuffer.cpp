@@ -136,7 +136,8 @@ void CommandBuffer::PresentCommand() {
 	presentInfo.pResults = nullptr; // Optional
 	VkResult result = vkQueuePresentKHR(*device->GetPresentQueue(), &presentInfo);
 
-	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
+	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
+		framebufferResized = false;
 		swapChain->Recreate();
 	}
 	else if (result != VK_SUCCESS) {
@@ -144,4 +145,9 @@ void CommandBuffer::PresentCommand() {
 	}
 
 	currentFrame = (currentFrame + 1) % maxFramesInFlight;
+}
+
+void CommandBuffer::FramebufferResizeCallback(void * buffer) {
+	CommandBuffer* cb = reinterpret_cast<CommandBuffer*>(buffer);
+	cb->framebufferResized = true;
 }
