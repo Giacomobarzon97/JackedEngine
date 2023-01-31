@@ -34,6 +34,7 @@ public:
 	Device &operator=(Device &) = delete;
 
 	VkDevice* GetLogicalDevice();
+	VkPhysicalDevice* GetPhysicalDevice();
 	VkQueue* GetGraphicsQueue();
 	VkQueue* GetPresentQueue();
 	SwapChainSupportDetails GetSwapChainSupportDetails();

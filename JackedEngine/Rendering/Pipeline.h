@@ -6,6 +6,7 @@
 #include "Utils/FileIOr.h"
 #include "Rendering/Device.h"
 #include "Rendering/SwapChain.h"
+#include "Logic/Vertex.h"
 
 class Pipeline {
 public:

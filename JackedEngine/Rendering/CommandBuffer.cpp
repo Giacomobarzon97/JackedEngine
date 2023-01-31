@@ -55,7 +55,7 @@ CommandBuffer::~CommandBuffer() {
 	vkDestroyCommandPool(*device->GetLogicalDevice(), commandPool, nullptr);
 }
 
-void CommandBuffer::PresentCommand(Pipeline* pipeline) {
+void CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffer) {
 	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;
@@ -86,6 +86,10 @@ void CommandBuffer::PresentCommand(Pipeline* pipeline) {
 	renderPassInfo.pClearValues = &clearColor;
 	vkCmdBeginRenderPass(commandBuffers[currentFrame], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 	vkCmdBindPipeline(commandBuffers[currentFrame], VK_PIPELINE_BIND_POINT_GRAPHICS, *pipeline->GetGraphicsPipeline());
+
+	VkBuffer vertexBuffers[] = { *vertexBuffer->GetVertexBuffer() };
+	VkDeviceSize offsets[] = { 0 };
+	vkCmdBindVertexBuffers(commandBuffers[currentFrame], 0, 1, vertexBuffers, offsets);
 
 	VkViewport viewport{};
 	viewport.x = 0.0f;

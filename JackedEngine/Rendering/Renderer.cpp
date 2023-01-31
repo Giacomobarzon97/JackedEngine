@@ -10,6 +10,7 @@ Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) {
 	device = new Device(instance);
 	swapChain = new SwapChain(instance, device, window);
 	pipeline = new Pipeline(device, swapChain);
+	vertexBuffer = new VertexBuffer(device);
 	commandBuffer = new CommandBuffer(device, swapChain, maxFramesInFlight);
 	window->SetBufferResizeCallback(commandBuffer, CommandBuffer::FramebufferResizeCallback);
 }
@@ -18,12 +19,13 @@ Renderer::~Renderer() {
 	delete commandBuffer;
 	delete pipeline;
 	delete swapChain;
+	delete vertexBuffer;
 	delete device;
 	delete instance;
 }
 
 void Renderer::DrawFrame() {
-	commandBuffer->PresentCommand(pipeline);
+	commandBuffer->PresentCommand(pipeline,vertexBuffer);
 }
 
 void Renderer::Reset() {

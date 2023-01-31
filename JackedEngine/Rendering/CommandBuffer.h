@@ -3,6 +3,7 @@
 #include "Rendering/Device.h"
 #include "Rendering/SwapChain.h"
 #include "Rendering/Pipeline.h"
+#include "Rendering/VertexBuffer.h"
 
 class CommandBuffer {
 public:
@@ -12,7 +13,7 @@ public:
 
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
-	void PresentCommand(Pipeline* pipeline);
+	void PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffer);
 
 	static void FramebufferResizeCallback(void * buffer);
 

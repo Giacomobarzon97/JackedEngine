@@ -6,6 +6,7 @@
 #include "Windows/BaseWindow.h"
 #include "Rendering/SwapChain.h"
 #include "Rendering/Pipeline.h"
+#include "Rendering/VertexBuffer.h"
 #include "Rendering/CommandBuffer.h"
 
 class Renderer {
@@ -23,5 +24,6 @@ private:
 	Device* device;
 	SwapChain* swapChain;
 	Pipeline* pipeline;
+	VertexBuffer* vertexBuffer;
 	CommandBuffer* commandBuffer;
 };

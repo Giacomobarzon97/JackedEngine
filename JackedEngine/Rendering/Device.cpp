@@ -15,6 +15,10 @@ VkDevice* Device::GetLogicalDevice() {
 	return &logicalDevice;
 }
 
+VkPhysicalDevice* Device::GetPhysicalDevice() {
+	return &physicalDevice;
+}
+
 VkQueue* Device::GetGraphicsQueue() {
 	return &graphicsQueue;
 }
