@@ -21,9 +21,26 @@ VertexBuffer::VertexBuffer(Device* device, VkCommandPool* commandPool) :
 
 	vkDestroyBuffer(*device->GetLogicalDevice(), stagingBuffer, nullptr);
 	vkFreeMemory(*device->GetLogicalDevice(), stagingBufferMemory, nullptr);
+
+
+	bufferSize = sizeof(indices[0]) * indices.size();
+	createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBuffer, stagingBufferMemory);
+
+	vkMapMemory(*device->GetLogicalDevice(), stagingBufferMemory, 0, bufferSize, 0, &data);
+	memcpy(data, indices.data(), (size_t)bufferSize);
+	vkUnmapMemory(*device->GetLogicalDevice(), stagingBufferMemory);
+
+	createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, indexBuffer, indexBufferMemory);
+
+	copyBuffer(stagingBuffer, indexBuffer, bufferSize);
+
+	vkDestroyBuffer(*device->GetLogicalDevice(), stagingBuffer, nullptr);
+	vkFreeMemory(*device->GetLogicalDevice(), stagingBufferMemory, nullptr);
 }
 
 VertexBuffer::~VertexBuffer() {
+	vkDestroyBuffer(*device->GetLogicalDevice(), indexBuffer, nullptr);
+	vkFreeMemory(*device->GetLogicalDevice(), indexBufferMemory, nullptr);
 	vkDestroyBuffer(*device->GetLogicalDevice(), vertexBuffer, nullptr);
 	vkFreeMemory(*device->GetLogicalDevice(), vertexBufferMemory, nullptr);
 }
@@ -37,10 +54,6 @@ uint32_t VertexBuffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags
 		}
 	}
 	throw std::runtime_error("failed to find suitable memory type!");
-}
-
-VkBuffer* VertexBuffer::GetVertexBuffer() {
-	return &vertexBuffer;
 }
 
 void VertexBuffer::createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory) {
@@ -99,4 +112,16 @@ void VertexBuffer::copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSi
 	vkQueueWaitIdle(*device->GetGraphicsQueue());
 	vkFreeCommandBuffers(*device->GetLogicalDevice(), *commandPool, 1, &commandBuffer);
 
+}
+
+VkBuffer* VertexBuffer::GetVertexBuffer() {
+	return &vertexBuffer;
+}
+
+VkBuffer* VertexBuffer::GetIndexBuffer() {
+	return &indexBuffer;
+}
+
+uint32_t VertexBuffer::GetIndicesNumber() {
+	return static_cast<uint32_t>(indices.size());
 }

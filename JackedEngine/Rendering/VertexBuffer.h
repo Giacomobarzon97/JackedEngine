@@ -13,17 +13,26 @@ public:
 	VertexBuffer &operator=(VertexBuffer &) = delete;
 
 	VkBuffer* GetVertexBuffer();
+	VkBuffer* GetIndexBuffer();
+	uint32_t GetIndicesNumber();
 
 private:
 	Device* device;
 	VkBuffer vertexBuffer;
 	VkDeviceMemory vertexBufferMemory;
 	VkCommandPool* commandPool;
+	VkBuffer indexBuffer;
+	VkDeviceMemory indexBufferMemory;
 
 	const std::vector<Vertex> vertices = {
-		Vertex({0.0f, -0.5f}, {1.0f, 1.0f, 1.0f}),
-		Vertex({0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}),
-		Vertex({-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f})
+		{{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+		{{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
+		{{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
+		{{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
+	};
+
+	const std::vector<uint16_t> indices = {
+	0, 1, 2, 2, 3, 0
 	};
 
 	uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);

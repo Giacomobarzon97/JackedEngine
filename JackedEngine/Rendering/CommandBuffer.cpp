@@ -90,6 +90,8 @@ void CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffe
 	VkBuffer vertexBuffers[] = { *vertexBuffer->GetVertexBuffer() };
 	VkDeviceSize offsets[] = { 0 };
 	vkCmdBindVertexBuffers(commandBuffers[currentFrame], 0, 1, vertexBuffers, offsets);
+	vkCmdBindIndexBuffer(commandBuffers[currentFrame],*vertexBuffer->GetIndexBuffer(), 0, VK_INDEX_TYPE_UINT16);
+
 
 	VkViewport viewport{};
 	viewport.x = 0.0f;
@@ -105,7 +107,8 @@ void CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffe
 	scissor.extent = swapChainExtent;
 	vkCmdSetScissor(commandBuffers[currentFrame], 0, 1, &scissor);
 
-	vkCmdDraw(commandBuffers[currentFrame], 3, 1, 0, 0);
+	vkCmdDrawIndexed(commandBuffers[currentFrame], vertexBuffer->GetIndicesNumber(), 1, 0, 0, 0);
+
 	vkCmdEndRenderPass(commandBuffers[currentFrame]);
 
 	if (vkEndCommandBuffer(commandBuffers[currentFrame]) != VK_SUCCESS) {
