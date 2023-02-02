@@ -26,4 +26,5 @@ private:
 	Pipeline* pipeline;
 	VertexBuffer* vertexBuffer;
 	CommandBuffer* commandBuffer;
+	VkCommandPool commandPool;
 };
