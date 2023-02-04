@@ -1,6 +1,6 @@
 #include "CommandBuffer.h"
 
-CommandBuffer::CommandBuffer(Device* device) :
+CommandBuffer::CommandBuffer(const Device* const device) :
 	device(device)
 {
 	VkCommandBufferAllocateInfo allocInfo{};
@@ -33,7 +33,7 @@ CommandBuffer::~CommandBuffer() {
 	vkDestroyFence(*device->GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-VkResult CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffer) {
+const VkResult CommandBuffer::PresentCommand(const Pipeline* const pipeline, const VertexBuffer* const vertexBuffer) const {
 	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;

@@ -17,7 +17,7 @@ void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 	}
 }
 
-Device::Device(BaseWindow* window) :
+Device::Device(const BaseWindow* const window) :
 window(window)
 {
 	createInstance();
@@ -461,39 +461,39 @@ void Device::cleanupSwapChain() {
 }
 
 
-VkDevice* Device::GetLogicalDevice() {
+const VkDevice* const Device::GetLogicalDevice() const {
 	return &logicalDevice;
 }
 
-VkPhysicalDevice* Device::GetPhysicalDevice() {
+const VkPhysicalDevice* const Device::GetPhysicalDevice() const {
 	return &physicalDevice;
 }
 
-VkQueue* Device::GetGraphicsQueue() {
+const VkQueue* const Device::GetGraphicsQueue() const {
 	return &graphicsQueue;
 }
 
-VkQueue* Device::GetPresentQueue() {
+const VkQueue* const Device::GetPresentQueue() const {
 	return &presentQueue;
 }
 
-VkSwapchainKHR* Device::GetSwapChain() {
+const VkSwapchainKHR* const Device::GetSwapChain() const {
 	return &swapChain;
 }
 
-VkExtent2D* Device::GetSwapChainExtent() {
+const VkExtent2D* const Device::GetSwapChainExtent() const {
 	return &swapChainExtent;
 }
 
-VkFramebuffer* Device::GetSwapChainFramebuffer(const uint32_t i) {
+const VkFramebuffer* const Device::GetSwapChainFramebuffer(const uint32_t i) const {
 	return &swapChainFramebuffers[i];
 }
 
-VkRenderPass* Device::GetRenderPass() {
+const VkRenderPass* const Device::GetRenderPass() const {
 	return &renderPass;
 }
 
-VkCommandPool* Device::GetCommandPool() {
+const VkCommandPool* const Device::GetCommandPool() const {
 	return &commandPool;
 }
 

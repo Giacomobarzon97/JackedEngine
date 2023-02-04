@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) :
+Renderer::Renderer(const BaseWindow* const window, const int maxFramesInFlight) :
 	maxFramesInFlight(maxFramesInFlight)
 {
 	device = new Device(window);
@@ -33,7 +33,7 @@ void Renderer::DrawFrame() {
 	currentFrame = (currentFrame + 1) % maxFramesInFlight;
 }
 
-void Renderer::Reset() {
+void Renderer::Reset() const {
 	vkDeviceWaitIdle(*device->GetLogicalDevice());
 }
 

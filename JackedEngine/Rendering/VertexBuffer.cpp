@@ -1,6 +1,6 @@
 #include "VertexBuffer.h"
 
-VertexBuffer::VertexBuffer(Device* device) :
+VertexBuffer::VertexBuffer(const Device* const device) :
 	device(device)
 {
 	VkBuffer stagingBuffer;
@@ -113,14 +113,14 @@ void VertexBuffer::copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSi
 
 }
 
-VkBuffer* VertexBuffer::GetVertexBuffer() {
+const VkBuffer* const VertexBuffer::GetVertexBuffer() const {
 	return &vertexBuffer;
 }
 
-VkBuffer* VertexBuffer::GetIndexBuffer() {
+const VkBuffer* const VertexBuffer::GetIndexBuffer() const {
 	return &indexBuffer;
 }
 
-uint32_t VertexBuffer::GetIndicesNumber() {
+const uint32_t VertexBuffer::GetIndicesNumber() const {
 	return static_cast<uint32_t>(indices.size());
 }

@@ -6,18 +6,18 @@
 
 class VertexBuffer {
 public:
-	VertexBuffer(Device* device);
+	VertexBuffer(const Device* const device);
 	VertexBuffer(VertexBuffer&) = delete;
 	~VertexBuffer();
 
 	VertexBuffer &operator=(VertexBuffer &) = delete;
 
-	VkBuffer* GetVertexBuffer();
-	VkBuffer* GetIndexBuffer();
-	uint32_t GetIndicesNumber();
+	const VkBuffer * const GetVertexBuffer() const;
+	const VkBuffer* const GetIndexBuffer() const;
+	const uint32_t GetIndicesNumber() const;
 
 private:
-	Device* device;
+	const Device* const device;
 	VkBuffer vertexBuffer;
 	VkDeviceMemory vertexBufferMemory;
 	VkBuffer indexBuffer;

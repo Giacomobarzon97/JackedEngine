@@ -9,15 +9,15 @@
 
 class Pipeline {
 public:
-	Pipeline(Device* device, std::string shaderName = "default");
+	Pipeline(const Device* const device, const std::string shaderName = "default");
 	Pipeline(Pipeline &) = delete;
 	~Pipeline();
 	Pipeline &operator=(Pipeline &) = delete;
 
-	VkPipeline* GetGraphicsPipeline();
+	const VkPipeline* const GetGraphicsPipeline() const;
 
 private:
-	Device * device;
+	const Device * const device;
 	VkPipelineLayout pipelineLayout;
 	VkPipeline graphicsPipeline;
 

@@ -11,15 +11,15 @@ public:
 	BaseWindow(BaseWindow &) = delete;
 	BaseWindow &operator=(BaseWindow &) = delete;
 
-	std::string GetWindowName();
+	const std::string GetWindowName() const;
 
-	virtual bool ShouldClose() = 0;
-	virtual void PollEvents() = 0;
-	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) = 0;
-	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) = 0;
-	virtual void GetFrameBufferSize(int* width, int* height) = 0;
-	virtual void SetBufferResizeCallback(void* buffer, void (*func)(void*)) = 0;
-	virtual void WaitWhileMinimized() = 0;
+	virtual const bool ShouldClose() const = 0;
+	virtual void PollEvents() const = 0;
+	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) const = 0;
+	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) const = 0;
+	virtual void GetFrameBufferSize(int* width, int* height) const = 0;
+	virtual void SetBufferResizeCallback(void* buffer, void (*func)(void*)) const = 0;
+	virtual void WaitWhileMinimized() const = 0;
 
 protected:
 	const uint32_t width;

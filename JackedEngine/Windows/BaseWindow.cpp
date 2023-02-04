@@ -6,6 +6,6 @@ BaseWindow::BaseWindow(uint32_t width, uint32_t height, std::string windowName):
 	windowName(windowName)
 {}
 
-std::string BaseWindow::GetWindowName() {
+const std::string BaseWindow::GetWindowName() const{
 	return windowName;
 }

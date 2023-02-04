@@ -1,6 +1,6 @@
 #include "Pipeline.h"
 
-Pipeline::Pipeline(Device* device, std::string shaderName) :
+Pipeline::Pipeline(const Device* const device , const std::string shaderName) :
 	device(device)
 {
 	auto vertShaderCode = FileIO::readFile("Rendering/Shaders/"+ shaderName +".vert.spv");
@@ -119,7 +119,7 @@ Pipeline::~Pipeline() {
 	vkDestroyPipelineLayout(*device->GetLogicalDevice(), pipelineLayout, nullptr);
 }
 
-VkPipeline* Pipeline::GetGraphicsPipeline() {
+const VkPipeline* const Pipeline::GetGraphicsPipeline() const {
 	return &graphicsPipeline;
 }
 
