@@ -33,6 +33,7 @@ window(window)
 }
 
 Device::~Device() {
+	vkDestroyCommandPool(logicalDevice, commandPool, nullptr);
 	cleanupSwapChain();
 	vkDestroyRenderPass(logicalDevice, renderPass, nullptr);
 	vkDestroyDevice(logicalDevice, nullptr);

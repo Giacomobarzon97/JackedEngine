@@ -17,9 +17,15 @@ public:
 	void DrawFrame();
 	void Reset();
 
+	static void FramebufferResizeCallback(void * buffer);
+
 private:
 	Device* device;
 	Pipeline* pipeline;
 	VertexBuffer* vertexBuffer;
-	CommandBuffer* commandBuffer;
+	std::vector<CommandBuffer*> commandBuffers;
+
+	bool framebufferResized = false;
+	uint32_t currentFrame = 0;
+	int maxFramesInFlight;
 };

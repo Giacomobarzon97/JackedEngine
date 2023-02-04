@@ -1,24 +1,43 @@
 #include "Renderer.h"
 
-Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) {
+Renderer::Renderer(BaseWindow* window, int maxFramesInFlight) :
+	maxFramesInFlight(maxFramesInFlight)
+{
 	device = new Device(window);
 	pipeline = new Pipeline(device);
-	vertexBuffer = new VertexBuffer(device);
-	commandBuffer = new CommandBuffer(device, maxFramesInFlight);
-	window->SetBufferResizeCallback(commandBuffer, CommandBuffer::FramebufferResizeCallback);
+	vertexBuffer = new VertexBuffer(device);	
+	for (size_t i = 0; i < maxFramesInFlight; i++) {
+		commandBuffers.push_back(new CommandBuffer(device));
+	}
+	window->SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
 
 Renderer::~Renderer() {
-	delete commandBuffer;
+	for (size_t i = 0; i < maxFramesInFlight; i++) {
+		delete commandBuffers[i];
+	}
 	delete pipeline;
 	delete vertexBuffer;
 	delete device;
 }
 
 void Renderer::DrawFrame() {
-	commandBuffer->PresentCommand(pipeline,vertexBuffer);
+	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline,vertexBuffer);
+	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
+		framebufferResized = false;
+		device->RecreateSwapChain();
+	}
+	else if (result != VK_SUCCESS) {
+		throw std::runtime_error("failed to present swap chain image!");
+	}
+	currentFrame = (currentFrame + 1) % maxFramesInFlight;
 }
 
 void Renderer::Reset() {
 	vkDeviceWaitIdle(*device->GetLogicalDevice());
+}
+
+void Renderer::FramebufferResizeCallback(void * buffer) {
+	Renderer* renderer = reinterpret_cast<Renderer*>(buffer);
+	renderer->framebufferResized = true;
 }
