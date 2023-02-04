@@ -6,7 +6,7 @@
 
 class VertexBuffer {
 public:
-	VertexBuffer(Device* device, VkCommandPool* commandPool);
+	VertexBuffer(Device* device);
 	VertexBuffer(VertexBuffer&) = delete;
 	~VertexBuffer();
 
@@ -20,7 +20,6 @@ private:
 	Device* device;
 	VkBuffer vertexBuffer;
 	VkDeviceMemory vertexBufferMemory;
-	VkCommandPool* commandPool;
 	VkBuffer indexBuffer;
 	VkDeviceMemory indexBufferMemory;
 

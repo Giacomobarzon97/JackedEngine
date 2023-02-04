@@ -1,23 +1,14 @@
 #include "CommandBuffer.h"
 
-CommandBuffer::CommandBuffer(Device* device, SwapChain* swapChain, int maxFramesInFlight) :
+CommandBuffer::CommandBuffer(Device* device, int maxFramesInFlight) :
 	device(device),
-	swapChain(swapChain),
 	maxFramesInFlight(maxFramesInFlight)
 {
 	commandBuffers.resize(maxFramesInFlight);
-	QueueFamilyIndices queueFamilyIndices = device->GetQueueFamilyIndices();
-	VkCommandPoolCreateInfo poolInfo{};
-	poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	poolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-	poolInfo.queueFamilyIndex = queueFamilyIndices.graphicsFamily.value();
-	if (vkCreateCommandPool(*device->GetLogicalDevice(), &poolInfo, nullptr, &commandPool) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create command pool!");
-	}
 
 	VkCommandBufferAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-	allocInfo.commandPool = commandPool;
+	allocInfo.commandPool = *device->GetCommandPool();
 	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
 	allocInfo.commandBufferCount = (uint32_t)commandBuffers.size();
 	if (vkAllocateCommandBuffers(*device->GetLogicalDevice(), &allocInfo, commandBuffers.data()) != VK_SUCCESS) {
@@ -52,21 +43,26 @@ CommandBuffer::~CommandBuffer() {
 		vkDestroySemaphore(*device->GetLogicalDevice(), imageAvailableSemaphores[i], nullptr);
 		vkDestroyFence(*device->GetLogicalDevice(), inFlightFences[i], nullptr);
 	}
-	vkDestroyCommandPool(*device->GetLogicalDevice(), commandPool, nullptr);
+	vkDestroyCommandPool(*device->GetLogicalDevice(), *device->GetCommandPool(), nullptr);
 }
 
 void CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffer) {
 	vkWaitForFences(*device->GetLogicalDevice(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;
-	if (!swapChain->GetNextImageIndex(imageIndex, &imageAvailableSemaphores[currentFrame])) {
+	VkResult result = vkAcquireNextImageKHR(*device->GetLogicalDevice(), *device->GetSwapChain(), UINT64_MAX, imageAvailableSemaphores[currentFrame], VK_NULL_HANDLE, &imageIndex);
+	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+		device->RecreateSwapChain();
 		return;
+	}
+	else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
+		throw std::runtime_error("failed to acquire swap chain image!");
 	}
 
 	vkResetFences(*device->GetLogicalDevice(), 1, &inFlightFences[currentFrame]);
 	vkResetCommandBuffer(commandBuffers[currentFrame], 0);
 
-	VkExtent2D swapChainExtent = swapChain->GetSwapChainExtent();
+	VkExtent2D swapChainExtent = *device->GetSwapChainExtent();
 
 	VkCommandBufferBeginInfo beginInfo{};
 	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
@@ -77,8 +73,8 @@ void CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffe
 	}
 	VkRenderPassBeginInfo renderPassInfo{};
 	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-	renderPassInfo.renderPass = *swapChain->GetRenderPass();
-	renderPassInfo.framebuffer = *swapChain->GetSwapChainFramebuffer(imageIndex);
+	renderPassInfo.renderPass = *device->GetRenderPass();
+	renderPassInfo.framebuffer = *device->GetSwapChainFramebuffer(imageIndex);
 	renderPassInfo.renderArea.offset = { 0, 0 };
 	renderPassInfo.renderArea.extent = swapChainExtent;
 	VkClearValue clearColor = { {{0.0f, 0.0f, 0.0f, 1.0f}} };
@@ -135,16 +131,16 @@ void CommandBuffer::PresentCommand(Pipeline* pipeline, VertexBuffer* vertexBuffe
 	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
 	presentInfo.waitSemaphoreCount = 1;
 	presentInfo.pWaitSemaphores = signalSemaphores;
-	VkSwapchainKHR swapChains[] = { *swapChain->GetSwapChain() };
+	VkSwapchainKHR swapChains[] = { *device->GetSwapChain() };
 	presentInfo.swapchainCount = 1;
 	presentInfo.pSwapchains = swapChains;
 	presentInfo.pImageIndices = &imageIndex;
 	presentInfo.pResults = nullptr; // Optional
-	VkResult result = vkQueuePresentKHR(*device->GetPresentQueue(), &presentInfo);
+	VkResult result2 = vkQueuePresentKHR(*device->GetPresentQueue(), &presentInfo);
 
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;
-		swapChain->Recreate();
+		device->RecreateSwapChain();
 	}
 	else if (result != VK_SUCCESS) {
 		throw std::runtime_error("failed to present swap chain image!");

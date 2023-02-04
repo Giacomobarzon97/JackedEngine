@@ -24,10 +24,8 @@
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffer.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
-    <ClCompile Include="Rendering\Instance.cpp" />
     <ClCompile Include="Rendering\Pipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
-    <ClCompile Include="Rendering\SwapChain.cpp" />
     <ClCompile Include="Rendering\VertexBuffer.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
@@ -38,10 +36,8 @@
     <ClInclude Include="Logic\Vertex.h" />
     <ClInclude Include="Rendering\CommandBuffer.h" />
     <ClInclude Include="Rendering\Device.h" />
-    <ClInclude Include="Rendering\Instance.h" />
     <ClInclude Include="Rendering\Pipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
-    <ClInclude Include="Rendering\SwapChain.h" />
     <ClInclude Include="Rendering\VertexBuffer.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />

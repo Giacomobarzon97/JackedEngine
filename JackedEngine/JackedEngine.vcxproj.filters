@@ -28,9 +28,6 @@
     <ClCompile Include="Rendering\Device.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Instance.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Renderer.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
@@ -42,9 +39,6 @@
     </ClCompile>
     <ClCompile Include="JackedEngine.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\SwapChain.cpp">
-      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Pipeline.cpp">
       <Filter>Source Files\Rendering</Filter>
@@ -66,9 +60,6 @@
     <ClInclude Include="Rendering\Device.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Instance.h">
-      <Filter>Source Files\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Renderer.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
@@ -80,9 +71,6 @@
     </ClInclude>
     <ClInclude Include="JackedEngine.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\SwapChain.h">
-      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Pipeline.h">
       <Filter>Source Files\Rendering</Filter>

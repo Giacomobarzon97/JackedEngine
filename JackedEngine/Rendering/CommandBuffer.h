@@ -1,13 +1,12 @@
 #pragma once
 
 #include "Rendering/Device.h"
-#include "Rendering/SwapChain.h"
 #include "Rendering/Pipeline.h"
 #include "Rendering/VertexBuffer.h"
 
 class CommandBuffer {
 public:
-	CommandBuffer(Device* device, SwapChain* swapChain, int maxFramesInFlight);
+	CommandBuffer(Device* device, int maxFramesInFlight);
 	CommandBuffer(CommandBuffer&) = delete;
 	~CommandBuffer();
 
@@ -19,8 +18,6 @@ public:
 
 private:
 	Device* device;
-	SwapChain* swapChain;
-	VkCommandPool commandPool;
 	std::vector<VkCommandBuffer> commandBuffers;
 	std::vector<VkSemaphore> imageAvailableSemaphores;
 	std::vector<VkSemaphore> renderFinishedSemaphores;

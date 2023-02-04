@@ -5,12 +5,11 @@
 #include <vulkan/vulkan.h>
 #include "Utils/FileIOr.h"
 #include "Rendering/Device.h"
-#include "Rendering/SwapChain.h"
 #include "Logic/Vertex.h"
 
 class Pipeline {
 public:
-	Pipeline(Device* device, SwapChain* swapChain, std::string shaderName = "default");
+	Pipeline(Device* device, std::string shaderName = "default");
 	Pipeline(Pipeline &) = delete;
 	~Pipeline();
 	Pipeline &operator=(Pipeline &) = delete;
@@ -19,7 +18,6 @@ public:
 
 private:
 	Device * device;
-	SwapChain* swapChain;
 	VkPipelineLayout pipelineLayout;
 	VkPipeline graphicsPipeline;
 

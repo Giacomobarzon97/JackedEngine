@@ -1,8 +1,7 @@
 #include "Pipeline.h"
 
-Pipeline::Pipeline(Device* device, SwapChain* swapChain, std::string shaderName) :
-	device(device),
-	swapChain(swapChain)
+Pipeline::Pipeline(Device* device, std::string shaderName) :
+	device(device)
 {
 	auto vertShaderCode = FileIO::readFile("Rendering/Shaders/"+ shaderName +".vert.spv");
 	auto fragShaderCode = FileIO::readFile("Rendering/Shaders/" + shaderName + ".frag.spv");
@@ -103,7 +102,7 @@ Pipeline::Pipeline(Device* device, SwapChain* swapChain, std::string shaderName)
 	pipelineInfo.pColorBlendState = &colorBlending;
 	pipelineInfo.pDynamicState = &dynamicState;
 	pipelineInfo.layout = pipelineLayout;
-	pipelineInfo.renderPass = *swapChain->GetRenderPass();
+	pipelineInfo.renderPass = *device->GetRenderPass();
 	pipelineInfo.subpass = 0;
 	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 

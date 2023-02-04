@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vulkan/vulkan.h>
 #include <Windows.h>
-#include "Rendering/Instance.h"
 
 class BaseWindow {
 
