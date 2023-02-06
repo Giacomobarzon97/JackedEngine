@@ -15,6 +15,7 @@ public:
 	Pipeline &operator=(Pipeline &) = delete;
 
 	const VkPipeline* const GetGraphicsPipeline() const;
+	void GetScreenData(VkViewport& viewport, VkRect2D& scissor) const;
 
 private:
 	const Device * const device;

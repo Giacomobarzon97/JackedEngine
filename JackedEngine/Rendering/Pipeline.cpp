@@ -134,3 +134,19 @@ VkShaderModule Pipeline::createShaderModule(const std::vector<char>& code) {
 	}
 	return shaderModule;
 }
+
+void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
+	VkExtent2D swapChainExtent = *device->GetSwapChainExtent();
+	
+	viewport = {};
+	viewport.x = 0.0f;
+	viewport.y = 0.0f;
+	viewport.width = static_cast<float>(swapChainExtent.width);
+	viewport.height = static_cast<float>(swapChainExtent.height);
+	viewport.minDepth = 0.0f;
+	viewport.maxDepth = 1.0f;
+
+	scissor = {};
+	scissor.offset = { 0, 0 };
+	scissor.extent = swapChainExtent;
+}

@@ -75,18 +75,12 @@ const VkResult CommandBuffer::PresentCommand(const Pipeline* const pipeline, con
 	vkCmdBindIndexBuffer(commandBuffer,*vertexBuffer->GetIndexBuffer(), 0, VK_INDEX_TYPE_UINT16);
 
 
-	VkViewport viewport{};
-	viewport.x = 0.0f;
-	viewport.y = 0.0f;
-	viewport.width = static_cast<float>(swapChainExtent.width);
-	viewport.height = static_cast<float>(swapChainExtent.height);
-	viewport.minDepth = 0.0f;
-	viewport.maxDepth = 1.0f;
-	vkCmdSetViewport(commandBuffer, 0, 1, &viewport);
+	VkViewport viewport;
+	VkRect2D scissor;
 
-	VkRect2D scissor{};
-	scissor.offset = { 0, 0 };
-	scissor.extent = swapChainExtent;
+	pipeline->GetScreenData(viewport, scissor);
+
+	vkCmdSetViewport(commandBuffer, 0, 1, &viewport);
 	vkCmdSetScissor(commandBuffer, 0, 1, &scissor);
 
 	vkCmdDrawIndexed(commandBuffer, vertexBuffer->GetIndicesNumber(), 1, 0, 0, 0);
