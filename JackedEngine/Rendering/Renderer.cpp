@@ -8,6 +8,7 @@ Renderer::Renderer(const BaseWindow* const window, const int maxFramesInFlight) 
 	vertexBuffer = new VertexBuffer(device);	
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers.push_back(new CommandBuffer(device));
+		uniformBuffers.push_back(new UniformBuffer(device));
 	}
 	window->SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -15,6 +16,7 @@ Renderer::Renderer(const BaseWindow* const window, const int maxFramesInFlight) 
 Renderer::~Renderer() {
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
+		delete uniformBuffers[i];
 	}
 	delete pipeline;
 	delete vertexBuffer;
@@ -22,6 +24,8 @@ Renderer::~Renderer() {
 }
 
 void Renderer::DrawFrame() {
+	uniformBuffers[currentFrame]->UpdateUniformBuffer();
+
 	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline,vertexBuffer);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;

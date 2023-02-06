@@ -1,10 +1,11 @@
 #pragma once
 #include <vulkan/vulkan.h>
 #include<vector>
+#include "Rendering/Buffers/BaseBuffer.h"
 #include "Rendering/Device.h"
 #include "Logic/Vertex.h"
 
-class VertexBuffer {
+class VertexBuffer : public BaseBuffer{
 public:
 	VertexBuffer(const Device* const device);
 	VertexBuffer(VertexBuffer&) = delete;
@@ -17,7 +18,6 @@ public:
 	const uint32_t GetIndicesNumber() const;
 
 private:
-	const Device* const device;
 	VkBuffer vertexBuffer;
 	VkDeviceMemory vertexBufferMemory;
 	VkBuffer indexBuffer;
@@ -33,8 +33,4 @@ private:
 	const std::vector<uint16_t> indices = {
 	0, 1, 2, 2, 3, 0
 	};
-
-	uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
-	void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
-	void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 };

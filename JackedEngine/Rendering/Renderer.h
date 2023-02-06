@@ -5,6 +5,7 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
+#include "Rendering/Buffers/UniformBuffer.h"
 #include "Rendering/CommandBuffer.h"
 
 class Renderer {
@@ -24,7 +25,8 @@ private:
 	const Pipeline* pipeline;
 	const VertexBuffer* vertexBuffer;
 	std::vector<const CommandBuffer*> commandBuffers;
-
+	std::vector<const UniformBuffer*> uniformBuffers;
+ 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;
 	int maxFramesInFlight;

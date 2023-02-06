@@ -55,7 +55,13 @@
     <ClCompile Include="Logic\Vertex.cpp">
       <Filter>Source Files\Logic</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp">
+      <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClCompile>
     <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp">
+      <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Buffers\UniformBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,7 +93,13 @@
     <ClInclude Include="Logic\Vertex.h">
       <Filter>Source Files\Logic</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Buffers\BaseBuffer.h">
+      <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClInclude>
     <ClInclude Include="Rendering\Buffers\VertexBuffer.h">
+      <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Buffers\UniformBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
   </ItemGroup>
