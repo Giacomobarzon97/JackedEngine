@@ -20,6 +20,9 @@
     <Filter Include="Source Files\Logic">
       <UniqueIdentifier>{c276a586-96c9-4a5e-b52e-c9a09e33f27d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Buffers">
+      <UniqueIdentifier>{59bf4c4e-23f5-43d1-a31d-5986533506ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -49,11 +52,11 @@
     <ClCompile Include="Rendering\CommandBuffer.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\VertexBuffer.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Logic\Vertex.cpp">
       <Filter>Source Files\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp">
+      <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,11 +84,11 @@
     <ClInclude Include="Rendering\CommandBuffer.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\VertexBuffer.h">
-      <Filter>Source Files\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Logic\Vertex.h">
       <Filter>Source Files\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Buffers\VertexBuffer.h">
+      <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

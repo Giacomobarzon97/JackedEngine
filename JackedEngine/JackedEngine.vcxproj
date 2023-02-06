@@ -26,7 +26,7 @@
     <ClCompile Include="Rendering\Device.cpp" />
     <ClCompile Include="Rendering\Pipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
-    <ClCompile Include="Rendering\VertexBuffer.cpp" />
+    <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
@@ -38,7 +38,7 @@
     <ClInclude Include="Rendering\Device.h" />
     <ClInclude Include="Rendering\Pipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
-    <ClInclude Include="Rendering\VertexBuffer.h" />
+    <ClInclude Include="Rendering\Buffers\VertexBuffer.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />

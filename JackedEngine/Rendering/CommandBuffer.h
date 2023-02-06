@@ -2,7 +2,7 @@
 
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
-#include "Rendering/VertexBuffer.h"
+#include "Rendering/Buffers/VertexBuffer.h"
 
 class CommandBuffer {
 public:

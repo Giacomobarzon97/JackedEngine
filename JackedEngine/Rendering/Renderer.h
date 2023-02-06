@@ -4,7 +4,7 @@
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
-#include "Rendering/VertexBuffer.h"
+#include "Rendering/Buffers/VertexBuffer.h"
 #include "Rendering/CommandBuffer.h"
 
 class Renderer {
