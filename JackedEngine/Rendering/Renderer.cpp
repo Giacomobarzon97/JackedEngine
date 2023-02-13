@@ -4,11 +4,11 @@ Renderer::Renderer(const BaseWindow* const window, const int maxFramesInFlight) 
 	maxFramesInFlight(maxFramesInFlight)
 {
 	device = new Device(window);
-	pipeline = new Pipeline(device);
+	pipeline = new Pipeline(device, maxFramesInFlight);
 	vertexBuffer = new VertexBuffer(device);	
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers.push_back(new CommandBuffer(device));
-		uniformBuffers.push_back(new UniformBuffer(device));
+		uniformBuffers.push_back(new UniformBuffer(device, pipeline));
 	}
 	window->SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -26,7 +26,7 @@ Renderer::~Renderer() {
 void Renderer::DrawFrame() {
 	uniformBuffers[currentFrame]->UpdateUniformBuffer();
 
-	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline,vertexBuffer);
+	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline,vertexBuffer, uniformBuffers[currentFrame]);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;
 		device->RecreateSwapChain();
