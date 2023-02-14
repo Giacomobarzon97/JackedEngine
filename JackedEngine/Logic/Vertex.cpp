@@ -1,6 +1,6 @@
 #include "Vertex.h"
 
-Vertex::Vertex(glm::vec2 position, glm::vec3 color):
+Vertex::Vertex(glm::vec4 position, glm::vec4 color):
 	position(position),
 	color(color)
 {}

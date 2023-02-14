@@ -6,12 +6,12 @@
 
 class Vertex {
 public:
-	Vertex(glm::vec2 position, glm::vec3 color);
+	Vertex(glm::vec4 position, glm::vec4 color);
 
 	static VkVertexInputBindingDescription getBindingDescription();
 	static std::array<VkVertexInputAttributeDescription, 2> getAttributeDescriptions();
 
 private:
-	glm::vec2 position;
-	glm::vec3 color;
+	glm::vec4 position;
+	glm::vec4 color;
 };
