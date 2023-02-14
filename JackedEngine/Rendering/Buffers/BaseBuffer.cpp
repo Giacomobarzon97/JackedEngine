@@ -4,6 +4,7 @@ BaseBuffer::BaseBuffer(const Device* const device) :
 	device(device)
 {}
 
+BaseBuffer::~BaseBuffer(){}
 
 uint32_t BaseBuffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties) {
 	VkPhysicalDeviceMemoryProperties memProperties;

@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <chrono>
 #include "Rendering/Buffers/BaseBuffer.h"
-#include "Rendering/Pipeline.h"
+#include "Rendering/Descriptors/DescriptorPools/BaseDescriptorPool.h"
 
 struct UniformBufferObject {
 	alignas(16) glm::mat4 model;
@@ -14,22 +14,18 @@ struct UniformBufferObject {
 
 class UniformBuffer : public BaseBuffer{
 public:
-	UniformBuffer(const Device* const device, const Pipeline* const pipeline);
+	UniformBuffer(const Device* const device);
 	UniformBuffer(UniformBuffer&) = delete;
-	~UniformBuffer();
+	virtual ~UniformBuffer() override;
 
 	UniformBuffer &operator=(UniformBuffer &) = delete;
 
 	void UpdateUniformBuffer() const;
-
-	const VkDescriptorSet* const GetDescriptorSet() const;
+	const VkBuffer* const GetUniformBuffer() const;
 
 private:
 	static std::chrono::steady_clock::time_point startTime;
-	const Pipeline* const pipeline;
 	VkBuffer uniformBuffer;
 	VkDeviceMemory uniformBufferMemory;
 	void* uniformBufferMapped;
-	VkDescriptorSet descriptorSet;
-
 };

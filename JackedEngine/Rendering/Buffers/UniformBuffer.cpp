@@ -2,38 +2,12 @@
 
 std::chrono::steady_clock::time_point UniformBuffer::startTime = std::chrono::high_resolution_clock::now();
 
-UniformBuffer::UniformBuffer(const Device* const device, const Pipeline* const pipeline) :
-	BaseBuffer(device),
-	pipeline(pipeline)
+UniformBuffer::UniformBuffer(const Device* const device) :
+	BaseBuffer(device)
 {
 	VkDeviceSize bufferSize = sizeof(UniformBufferObject);
 	createBuffer(bufferSize, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, uniformBuffer, uniformBufferMemory);
 	vkMapMemory(*device->GetLogicalDevice(), uniformBufferMemory, 0, bufferSize, 0, &uniformBufferMapped);
-
-	VkDescriptorSetAllocateInfo allocInfo{};
-	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-	allocInfo.descriptorPool = *pipeline->GetDescriptorPool();
-	allocInfo.descriptorSetCount = 1;
-	allocInfo.pSetLayouts = pipeline->GetDescriptorSetLayout();
-	if (vkAllocateDescriptorSets(*device->GetLogicalDevice(), &allocInfo, &descriptorSet) != VK_SUCCESS) {
-		throw std::runtime_error("failed to allocate descriptor sets!");
-	}
-
-	VkDescriptorBufferInfo bufferInfo{};
-	bufferInfo.buffer = uniformBuffer;
-	bufferInfo.offset = 0;
-	bufferInfo.range = sizeof(UniformBufferObject);
-	VkWriteDescriptorSet descriptorWrite{};
-	descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-	descriptorWrite.dstSet = descriptorSet;
-	descriptorWrite.dstBinding = 0;
-	descriptorWrite.dstArrayElement = 0;
-	descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-	descriptorWrite.descriptorCount = 1;
-	descriptorWrite.pBufferInfo = &bufferInfo;
-	descriptorWrite.pImageInfo = nullptr; // Optional
-	descriptorWrite.pTexelBufferView = nullptr; // Optional
-	vkUpdateDescriptorSets(*device->GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
 UniformBuffer::~UniformBuffer() {
@@ -53,6 +27,6 @@ void UniformBuffer::UpdateUniformBuffer() const{
 	memcpy(uniformBufferMapped, &ubo, sizeof(ubo));
 }
 
-const VkDescriptorSet* const UniformBuffer::GetDescriptorSet() const {
-	return &descriptorSet;
+const VkBuffer* const UniformBuffer::GetUniformBuffer() const{
+	return &uniformBuffer;
 }

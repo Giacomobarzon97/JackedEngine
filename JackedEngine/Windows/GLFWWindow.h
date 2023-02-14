@@ -14,7 +14,7 @@ class GLFWWindow : public BaseWindow
 public:
 	GLFWWindow(const uint32_t w, const uint32_t h, const std::string windowName);
 	GLFWWindow(GLFWWindow &) = delete;
-	~GLFWWindow();
+	virtual ~GLFWWindow() override;
 	GLFWWindow &operator=(GLFWWindow &) = delete;
 
 	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) const override;

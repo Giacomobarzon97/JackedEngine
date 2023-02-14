@@ -5,8 +5,9 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
-#include "Rendering/Buffers/UniformBuffer.h"
 #include "Rendering/CommandBuffer.h"
+#include "Rendering/Descriptors/DescriptorPools/Base3DDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorSets/Base3DDescriptorSet.h"
 
 class Renderer {
 public:
@@ -25,7 +26,8 @@ private:
 	const Pipeline* pipeline;
 	const VertexBuffer* vertexBuffer;
 	std::vector<const CommandBuffer*> commandBuffers;
-	std::vector<const UniformBuffer*> uniformBuffers;
+	const Base3DDescriptorPool* descriptorPool;
+	std::vector<const Base3DDescriptorSet*> descriptorSets;
  
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;

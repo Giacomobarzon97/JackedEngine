@@ -23,6 +23,10 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffer.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
     <ClCompile Include="Rendering\Pipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
@@ -37,6 +41,10 @@
     <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Logic\Vertex.h" />
     <ClInclude Include="Rendering\CommandBuffer.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
     <ClInclude Include="Rendering\Pipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />

@@ -13,6 +13,7 @@ public:
 
 	const std::string GetWindowName() const;
 
+	virtual ~BaseWindow() = 0;
 	virtual const bool ShouldClose() const = 0;
 	virtual void PollEvents() const = 0;
 	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) const = 0;

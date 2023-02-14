@@ -4,6 +4,7 @@
 class BaseBuffer {
 public:
 	BaseBuffer(const Device* const device);
+	virtual ~BaseBuffer() = 0;
 
 protected:
 	const Device* const device;

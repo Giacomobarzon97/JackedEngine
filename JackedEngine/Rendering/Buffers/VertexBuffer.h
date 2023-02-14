@@ -9,7 +9,7 @@ class VertexBuffer : public BaseBuffer{
 public:
 	VertexBuffer(const Device* const device);
 	VertexBuffer(VertexBuffer&) = delete;
-	~VertexBuffer();
+	virtual ~VertexBuffer() override;
 
 	VertexBuffer &operator=(VertexBuffer &) = delete;
 

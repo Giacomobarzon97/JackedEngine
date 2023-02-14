@@ -1,36 +1,8 @@
 #include "Pipeline.h"
 
-Pipeline::Pipeline(const Device* const device, int nFrames, const std::string shaderName) :
+Pipeline::Pipeline(const Device* const device, const BaseDescriptorPool* const descriptorPool, const std::string shaderName) :
 	device(device)
 {
-	VkDescriptorSetLayoutBinding uboLayoutBinding{};
-	uboLayoutBinding.binding = 0;
-	uboLayoutBinding.descriptorCount = 1;
-	uboLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-	uboLayoutBinding.pImmutableSamplers = nullptr;
-	uboLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
-	VkDescriptorSetLayoutCreateInfo layoutInfo{};
-	layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-	layoutInfo.bindingCount = 1;
-	layoutInfo.pBindings = &uboLayoutBinding;
-	if (vkCreateDescriptorSetLayout(*device->GetLogicalDevice(), &layoutInfo, nullptr, &descriptorSetLayout) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create descriptor set layout!");
-	}
-
-	VkDescriptorPoolSize poolSize{};
-	poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-	poolSize.descriptorCount = static_cast<uint32_t>(nFrames);
-	VkDescriptorPoolCreateInfo poolInfo{};
-	poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
-	poolInfo.poolSizeCount = 1;
-	poolInfo.pPoolSizes = &poolSize;
-	poolInfo.maxSets = static_cast<uint32_t>(nFrames);
-
-	if (vkCreateDescriptorPool(*device->GetLogicalDevice(), &poolInfo, nullptr, &descriptorPool) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create descriptor pool!");
-	}
-
-
 	auto vertShaderCode = FileIO::readFile("Rendering/Shaders/"+ shaderName +".vert.spv");
 	auto fragShaderCode = FileIO::readFile("Rendering/Shaders/" + shaderName + ".frag.spv");
 
@@ -112,7 +84,7 @@ Pipeline::Pipeline(const Device* const device, int nFrames, const std::string sh
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = 1;
-	pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout;
+	pipelineLayoutInfo.pSetLayouts = descriptorPool->GetDescriptorSetLayout();
 	pipelineLayoutInfo.pushConstantRangeCount = 0;
 
 	if (vkCreatePipelineLayout(*device->GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
@@ -144,8 +116,6 @@ Pipeline::Pipeline(const Device* const device, int nFrames, const std::string sh
 }
 
 Pipeline::~Pipeline() {
-	vkDestroyDescriptorPool(*device->GetLogicalDevice(), descriptorPool, nullptr);
-	vkDestroyDescriptorSetLayout(*device->GetLogicalDevice(), descriptorSetLayout, nullptr);
 	vkDestroyPipeline(*device->GetLogicalDevice(), graphicsPipeline, nullptr);
 	vkDestroyPipelineLayout(*device->GetLogicalDevice(), pipelineLayout, nullptr);
 }
@@ -183,14 +153,6 @@ void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
 	scissor = {};
 	scissor.offset = { 0, 0 };
 	scissor.extent = swapChainExtent;
-}
-
- const VkDescriptorSetLayout* const Pipeline::GetDescriptorSetLayout() const{
-	return &descriptorSetLayout;
-}
-
- const VkDescriptorPool* const Pipeline::GetDescriptorPool() const {
-	return &descriptorPool;
 }
 
  const VkPipelineLayout* const Pipeline::GetPipelineLayout() const {

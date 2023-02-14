@@ -23,6 +23,15 @@
     <Filter Include="Source Files\Rendering\Buffers">
       <UniqueIdentifier>{59bf4c4e-23f5-43d1-a31d-5986533506ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Descriptors">
+      <UniqueIdentifier>{94e984da-c05f-4a86-b832-c3ce29dd3887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Descriptors\DescriptorPools">
+      <UniqueIdentifier>{c0e6de25-1024-49f7-85b0-f2a36e6e5006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Descriptors\DescriptorSets">
+      <UniqueIdentifier>{002162fc-4554-454a-949d-7f2b53ffcc10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -64,6 +73,18 @@
     <ClCompile Include="Rendering\Buffers\UniformBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -101,6 +122,18 @@
     </ClInclude>
     <ClInclude Include="Rendering\Buffers\UniformBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
