@@ -17,12 +17,12 @@ void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 	}
 }
 
-Device::Device(const BaseWindow* const window) :
+Device::Device(const BaseWindow& window) :
 window(window)
 {
 	createInstance();
 	setupDebugMessenger();
-	window->InitiWindowSurface(&instance, &surface);
+	window.InitiWindowSurface(instance, surface);
 	pickPhysicalDevice();
 	createLogicalDevice();
 	createSwapChain();
@@ -50,12 +50,12 @@ void Device::createInstance() {
 	}
 
 	uint32_t windowExtensionCount = 0;
-	const char** windowExtensions = window->GetRequiredExtensions(&windowExtensionCount);
+	const char** windowExtensions = window.GetRequiredExtensions(windowExtensionCount);
 	std::vector<const char*> extensions(windowExtensions, windowExtensions + windowExtensionCount);
 
 	VkApplicationInfo appInfo{};
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-	appInfo.pApplicationName = window->GetWindowName().c_str();
+	appInfo.pApplicationName = window.GetWindowName().c_str();
 	appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
 	appInfo.pEngineName = "No Engine";
 	appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
@@ -343,7 +343,7 @@ VkExtent2D Device::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities
 	}
 	else {
 		int width, height;
-		window->GetFrameBufferSize(&width, &height);
+		window.GetFrameBufferSize(&width, &height);
 
 		VkExtent2D actualExtent = {
 			static_cast<uint32_t>(width),
@@ -461,44 +461,44 @@ void Device::cleanupSwapChain() {
 }
 
 
-const VkDevice* const Device::GetLogicalDevice() const {
-	return &logicalDevice;
+const VkDevice& Device::GetLogicalDevice() const {
+	return logicalDevice;
 }
 
-const VkPhysicalDevice* const Device::GetPhysicalDevice() const {
-	return &physicalDevice;
+const VkPhysicalDevice& Device::GetPhysicalDevice() const {
+	return physicalDevice;
 }
 
-const VkQueue* const Device::GetGraphicsQueue() const {
-	return &graphicsQueue;
+const VkQueue& Device::GetGraphicsQueue() const {
+	return graphicsQueue;
 }
 
-const VkQueue* const Device::GetPresentQueue() const {
-	return &presentQueue;
+const VkQueue& Device::GetPresentQueue() const {
+	return presentQueue;
 }
 
-const VkSwapchainKHR* const Device::GetSwapChain() const {
-	return &swapChain;
+const VkSwapchainKHR& Device::GetSwapChain() const {
+	return swapChain;
 }
 
-const VkExtent2D* const Device::GetSwapChainExtent() const {
-	return &swapChainExtent;
+const VkExtent2D& Device::GetSwapChainExtent() const {
+	return swapChainExtent;
 }
 
-const VkFramebuffer* const Device::GetSwapChainFramebuffer(const uint32_t i) const {
-	return &swapChainFramebuffers[i];
+const VkFramebuffer& Device::GetSwapChainFramebuffer(const uint32_t i) const {
+	return swapChainFramebuffers[i];
 }
 
-const VkRenderPass* const Device::GetRenderPass() const {
-	return &renderPass;
+const VkRenderPass& Device::GetRenderPass() const {
+	return renderPass;
 }
 
-const VkCommandPool* const Device::GetCommandPool() const {
-	return &commandPool;
+const VkCommandPool& Device::GetCommandPool() const {
+	return commandPool;
 }
 
 void Device::RecreateSwapChain() {
-	window->WaitWhileMinimized();
+	window.WaitWhileMinimized();
 	vkDeviceWaitIdle(logicalDevice);
 	cleanupSwapChain();
 

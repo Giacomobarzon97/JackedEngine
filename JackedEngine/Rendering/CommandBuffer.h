@@ -7,16 +7,16 @@
 
 class CommandBuffer {
 public:
-	CommandBuffer(const Device* const device);
+	CommandBuffer(const Device& device);
 	CommandBuffer(CommandBuffer&) = delete;
 	~CommandBuffer();
 
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
-	const VkResult PresentCommand(const Pipeline* const pipeline, const VertexBuffer* const vertexBuffer, const BaseDescriptorSet* const descriptorSet) const;
+	const VkResult PresentCommand(const Pipeline& pipeline, const VertexBuffer& vertexBuffer, const BaseDescriptorSet& descriptorSet) const;
 
 private:
-	const Device* const device;
+	const Device& device;
 	VkCommandBuffer commandBuffer;
 	VkSemaphore imageAvailableSemaphore;
 	VkSemaphore renderFinishedSemaphore;

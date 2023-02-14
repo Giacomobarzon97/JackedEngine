@@ -11,20 +11,20 @@
 
 class Device {
 public:
-	Device(const BaseWindow* const window);
+	Device(const BaseWindow& window);
 	Device(Device &) = delete;
 	~Device();
 	Device &operator=(Device &) = delete;
 
-	const VkDevice* const GetLogicalDevice() const;
-	const VkPhysicalDevice* const GetPhysicalDevice() const;
-	const VkQueue* const GetGraphicsQueue() const;
-	const VkQueue* const GetPresentQueue() const;
-	const VkSwapchainKHR* const GetSwapChain() const;
-	const VkExtent2D* const GetSwapChainExtent() const;
-	const VkFramebuffer* const GetSwapChainFramebuffer(const uint32_t i) const;
-	const VkRenderPass* const GetRenderPass() const;
-	const VkCommandPool* const GetCommandPool() const;
+	const VkDevice& GetLogicalDevice() const;
+	const VkPhysicalDevice& GetPhysicalDevice() const;
+	const VkQueue& GetGraphicsQueue() const;
+	const VkQueue& GetPresentQueue() const;
+	const VkSwapchainKHR& GetSwapChain() const;
+	const VkExtent2D& GetSwapChainExtent() const;
+	const VkFramebuffer& GetSwapChainFramebuffer(const uint32_t i) const;
+	const VkRenderPass& GetRenderPass() const;
+	const VkCommandPool& GetCommandPool() const;
 
 	void RecreateSwapChain();
 
@@ -50,7 +50,7 @@ private:
 		}
 	};
 
-	const BaseWindow* const window;
+	const BaseWindow& window;
 	VkInstance instance;
 	VkSurfaceKHR surface;
 	VkDebugUtilsMessengerEXT debugMessenger;

@@ -5,15 +5,15 @@
 
 class Base3DDescriptorSet : public BaseDescriptorSet{
 public:
-	Base3DDescriptorSet(const Device* const device, const Base3DDescriptorPool* const);
+	Base3DDescriptorSet(const Device& device, const Base3DDescriptorPool& descriptorPool);
 	Base3DDescriptorSet(Base3DDescriptorSet&) = delete;
 	virtual ~Base3DDescriptorSet() override;
 
 	Base3DDescriptorSet &operator=(Base3DDescriptorSet &) = delete;
 
-	void UpdateDescriptorSet() const;
+	virtual void UpdateDescriptorSet() const override;
 
 private:
-	const UniformBuffer* const mvpUniform;
+	const UniformBuffer mvpUniform;
 
 };

@@ -1,6 +1,6 @@
 #include "Pipeline.h"
 
-Pipeline::Pipeline(const Device* const device, const BaseDescriptorPool* const descriptorPool, const std::string shaderName) :
+Pipeline::Pipeline(const Device& device, const BaseDescriptorPool& descriptorPool, const std::string shaderName) :
 	device(device)
 {
 	auto vertShaderCode = FileIO::readFile("Rendering/Shaders/"+ shaderName +".vert.spv");
@@ -84,10 +84,10 @@ Pipeline::Pipeline(const Device* const device, const BaseDescriptorPool* const d
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = 1;
-	pipelineLayoutInfo.pSetLayouts = descriptorPool->GetDescriptorSetLayout();
+	pipelineLayoutInfo.pSetLayouts = &descriptorPool.GetDescriptorSetLayout();
 	pipelineLayoutInfo.pushConstantRangeCount = 0;
 
-	if (vkCreatePipelineLayout(*device->GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
+	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
 	}
 
@@ -103,28 +103,21 @@ Pipeline::Pipeline(const Device* const device, const BaseDescriptorPool* const d
 	pipelineInfo.pColorBlendState = &colorBlending;
 	pipelineInfo.pDynamicState = &dynamicState;
 	pipelineInfo.layout = pipelineLayout;
-	pipelineInfo.renderPass = *device->GetRenderPass();
+	pipelineInfo.renderPass = device.GetRenderPass();
 	pipelineInfo.subpass = 0;
 	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-	if (vkCreateGraphicsPipelines(*device->GetLogicalDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline) != VK_SUCCESS) {
+	if (vkCreateGraphicsPipelines(device.GetLogicalDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create graphics pipeline!");
 	}
 
-	vkDestroyShaderModule(*device->GetLogicalDevice(), fragShaderModule, nullptr);
-	vkDestroyShaderModule(*device->GetLogicalDevice(), vertShaderModule, nullptr);
+	vkDestroyShaderModule(device.GetLogicalDevice(), fragShaderModule, nullptr);
+	vkDestroyShaderModule(device.GetLogicalDevice(), vertShaderModule, nullptr);
 }
 
 Pipeline::~Pipeline() {
-	vkDestroyPipeline(*device->GetLogicalDevice(), graphicsPipeline, nullptr);
-	vkDestroyPipelineLayout(*device->GetLogicalDevice(), pipelineLayout, nullptr);
-}
-
-const VkPipeline* const Pipeline::GetGraphicsPipeline() const {
-	return &graphicsPipeline;
-}
-
-void Pipeline::createDescriptors() {
+	vkDestroyPipeline(device.GetLogicalDevice(), graphicsPipeline, nullptr);
+	vkDestroyPipelineLayout(device.GetLogicalDevice(), pipelineLayout, nullptr);
 }
 
 VkShaderModule Pipeline::createShaderModule(const std::vector<char>& code) {
@@ -133,14 +126,14 @@ VkShaderModule Pipeline::createShaderModule(const std::vector<char>& code) {
 	createInfo.codeSize = code.size();
 	createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
 	VkShaderModule shaderModule;
-	if (vkCreateShaderModule(*device->GetLogicalDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+	if (vkCreateShaderModule(device.GetLogicalDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create shader module!");
 	}
 	return shaderModule;
 }
 
 void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
-	VkExtent2D swapChainExtent = *device->GetSwapChainExtent();
+	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
 	
 	viewport = {};
 	viewport.x = 0.0f;
@@ -155,6 +148,10 @@ void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
 	scissor.extent = swapChainExtent;
 }
 
- const VkPipelineLayout* const Pipeline::GetPipelineLayout() const {
-	 return &pipelineLayout;
+ const VkPipelineLayout& Pipeline::GetPipelineLayout() const {
+	 return pipelineLayout;
+ }
+
+ const VkPipeline& Pipeline::GetGraphicsPipeline() const {
+	 return graphicsPipeline;
  }

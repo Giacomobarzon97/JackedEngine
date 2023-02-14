@@ -17,10 +17,10 @@ public:
 	virtual ~GLFWWindow() override;
 	GLFWWindow &operator=(GLFWWindow &) = delete;
 
-	virtual void InitiWindowSurface(VkInstance* instance, VkSurfaceKHR* windowSurface) const override;
+	virtual void InitiWindowSurface(VkInstance& instance, VkSurfaceKHR& windowSurface) const override;
 	virtual const bool ShouldClose() const override;
 	virtual void PollEvents() const override;
-	virtual const char** GetRequiredExtensions(uint32_t* extensionCount) const override;
+	virtual const char** GetRequiredExtensions(uint32_t& extensionCount) const override;
 	virtual void GetFrameBufferSize(int* width, int* height) const override;
 	virtual void SetBufferResizeCallback(void* buffer, void(*func)(void*)) const override;
 	virtual void WaitWhileMinimized() const override;

@@ -7,14 +7,14 @@
 
 class VertexBuffer : public BaseBuffer{
 public:
-	VertexBuffer(const Device* const device);
+	VertexBuffer(const Device& device);
 	VertexBuffer(VertexBuffer&) = delete;
 	virtual ~VertexBuffer() override;
 
 	VertexBuffer &operator=(VertexBuffer &) = delete;
 
-	const VkBuffer * const GetVertexBuffer() const;
-	const VkBuffer* const GetIndexBuffer() const;
+	const VkBuffer& GetVertexBuffer() const;
+	const VkBuffer& GetIndexBuffer() const;
 	const uint32_t GetIndicesNumber() const;
 
 private:

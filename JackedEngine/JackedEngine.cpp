@@ -7,7 +7,7 @@ JackedEngine::JackedEngine()
 {
 	window = new GLFWWindow(WINDOW_WIDTH, WINDOW_HEIGHT, APP_NAME);
 
-	renderer = new Renderer(window, MAX_FRAMES_IN_FLIGHT);
+	renderer = new Renderer(*window, MAX_FRAMES_IN_FLIGHT);
 
 	mainLoop();
 }

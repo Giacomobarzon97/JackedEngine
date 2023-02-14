@@ -10,20 +10,19 @@
 
 class Pipeline {
 public:
-	Pipeline(const Device* const device, const BaseDescriptorPool* const descriptorPool, const std::string shaderName = "default");
+	Pipeline(const Device& device, const BaseDescriptorPool& descriptorPool, const std::string shaderName = "default");
 	Pipeline(Pipeline &) = delete;
 	~Pipeline();
 	Pipeline &operator=(Pipeline &) = delete;
 
-	const VkPipelineLayout* const GetPipelineLayout() const;
-	const VkPipeline* const GetGraphicsPipeline() const;
+	const VkPipelineLayout& GetPipelineLayout() const;
+	const VkPipeline& GetGraphicsPipeline() const;
 	void GetScreenData(VkViewport& viewport, VkRect2D& scissor) const;
 
 private:
-	const Device * const device;
+	const Device& device;
 	VkPipelineLayout pipelineLayout;
 	VkPipeline graphicsPipeline;
 
 	VkShaderModule createShaderModule(const std::vector<char>& code);
-	void createDescriptors();
 };

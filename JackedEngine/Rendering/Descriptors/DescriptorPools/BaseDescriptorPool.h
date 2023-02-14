@@ -3,14 +3,14 @@
 
 class BaseDescriptorPool {
 public:
-	BaseDescriptorPool(const Device* const device);
+	BaseDescriptorPool(const Device& device);
 	virtual ~BaseDescriptorPool() = 0;
 
-	const VkDescriptorSetLayout* const GetDescriptorSetLayout() const;
-	const VkDescriptorPool* const GetDescriptorPool() const;
+	const VkDescriptorSetLayout& GetDescriptorSetLayout() const;
+	const VkDescriptorPool& GetDescriptorPool() const;
 
 protected:
-	const Device* const device;
+	const Device& device;
 	VkDescriptorSetLayout descriptorSetLayout;
 	VkDescriptorPool descriptorPool;
 };

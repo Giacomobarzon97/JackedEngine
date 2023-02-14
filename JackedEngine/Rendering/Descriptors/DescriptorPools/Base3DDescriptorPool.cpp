@@ -1,6 +1,6 @@
 #include "Base3DDescriptorPool.h"
 
-Base3DDescriptorPool::Base3DDescriptorPool(const Device* const device, int nFrames) :
+Base3DDescriptorPool::Base3DDescriptorPool(const Device& device, int nFrames) :
 	BaseDescriptorPool(device)
 {
 	VkDescriptorSetLayoutBinding uboLayoutBinding{};
@@ -13,7 +13,7 @@ Base3DDescriptorPool::Base3DDescriptorPool(const Device* const device, int nFram
 	layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
 	layoutInfo.bindingCount = 1;
 	layoutInfo.pBindings = &uboLayoutBinding;
-	if (vkCreateDescriptorSetLayout(*device->GetLogicalDevice(), &layoutInfo, nullptr, &descriptorSetLayout) != VK_SUCCESS) {
+	if (vkCreateDescriptorSetLayout(device.GetLogicalDevice(), &layoutInfo, nullptr, &descriptorSetLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create descriptor set layout!");
 	}
 
@@ -26,7 +26,7 @@ Base3DDescriptorPool::Base3DDescriptorPool(const Device* const device, int nFram
 	poolInfo.pPoolSizes = &poolSize;
 	poolInfo.maxSets = static_cast<uint32_t>(nFrames);
 
-	if (vkCreateDescriptorPool(*device->GetLogicalDevice(), &poolInfo, nullptr, &descriptorPool) != VK_SUCCESS) {
+	if (vkCreateDescriptorPool(device.GetLogicalDevice(), &poolInfo, nullptr, &descriptorPool) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create descriptor pool!");
 	}
 }

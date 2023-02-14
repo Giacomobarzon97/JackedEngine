@@ -3,12 +3,14 @@
 
 class BaseDescriptorSet {
 public:
-	BaseDescriptorSet(const Device* const device);
+	BaseDescriptorSet(const Device& device);
 	virtual ~BaseDescriptorSet() = 0;
 
-	const VkDescriptorSet* const GetDescriptorSet() const;
+	const VkDescriptorSet& GetDescriptorSet() const;
+
+	virtual void UpdateDescriptorSet() const = 0;
 
 protected:
-	const Device* const device;
+	const Device& device;
 	VkDescriptorSet descriptorSet;
 };

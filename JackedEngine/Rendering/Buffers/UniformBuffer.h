@@ -14,14 +14,14 @@ struct UniformBufferObject {
 
 class UniformBuffer : public BaseBuffer{
 public:
-	UniformBuffer(const Device* const device);
+	UniformBuffer(const Device& device);
 	UniformBuffer(UniformBuffer&) = delete;
 	virtual ~UniformBuffer() override;
 
 	UniformBuffer &operator=(UniformBuffer &) = delete;
 
 	void UpdateUniformBuffer() const;
-	const VkBuffer* const GetUniformBuffer() const;
+	const VkBuffer& GetUniformBuffer() const;
 
 private:
 	static std::chrono::steady_clock::time_point startTime;

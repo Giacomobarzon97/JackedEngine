@@ -3,11 +3,11 @@
 
 class BaseBuffer {
 public:
-	BaseBuffer(const Device* const device);
+	BaseBuffer(const Device& device);
 	virtual ~BaseBuffer() = 0;
 
 protected:
-	const Device* const device;
+	const Device& device;
 
 	uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 	void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

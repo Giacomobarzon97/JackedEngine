@@ -4,7 +4,7 @@
 
 class Base3DDescriptorPool : public BaseDescriptorPool{
 public:
-	Base3DDescriptorPool(const Device* const device, int nFrames);
+	Base3DDescriptorPool(const Device& device, int nFrames);
 	Base3DDescriptorPool(Base3DDescriptorPool &) = delete;
 	virtual ~Base3DDescriptorPool() override;
 
