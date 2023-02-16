@@ -1,7 +1,7 @@
 #include "Renderer.h"
 
-Renderer::Renderer(const BaseWindow& window, const int maxFramesInFlight) :
-	maxFramesInFlight(maxFramesInFlight),
+Renderer::Renderer(const BaseWindow& window, const CameraObject& camera) :
+	camera(camera),
 	device(window),
 	descriptorPool(device, maxFramesInFlight),
 	pipeline(device, descriptorPool),
@@ -26,7 +26,7 @@ Renderer::~Renderer() {
 
 
 void Renderer::DrawFrame() {
-	descriptorSets[currentFrame]->UpdateDescriptorSet();
+	descriptorSets[currentFrame]->UpdateDescriptorSet(camera);
 
 	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline,vertexBuffer, *descriptorSets[currentFrame]);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {

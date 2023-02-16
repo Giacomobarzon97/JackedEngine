@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Logic\Vertex.cpp" />
+    <ClCompile Include="Logic\SceneObjects\BaseSceneObject.cpp" />
+    <ClCompile Include="Logic\SceneObjects\CameraObject.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffer.cpp" />
@@ -40,6 +42,8 @@
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Logic\Vertex.h" />
+    <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h" />
+    <ClInclude Include="Logic\SceneObjects\CameraObject.h" />
     <ClInclude Include="Rendering\CommandBuffer.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
