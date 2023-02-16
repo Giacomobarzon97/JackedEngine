@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Logic/SceneObjects/CameraObject.h"
+#include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
@@ -12,7 +12,7 @@
 
 class Renderer {
 public:
-	Renderer(const BaseWindow& window, const CameraObject& camera);
+	Renderer(const BaseWindow& window, const BaseCameraObject& camera);
 	Renderer(Renderer &) = delete;
 	~Renderer();
 
@@ -26,7 +26,7 @@ public:
 private:
 	int maxFramesInFlight = 2;
 
-	const CameraObject& camera;
+	const BaseCameraObject& camera;
 	Device device;
 	const Base3DDescriptorPool descriptorPool;
 	const Pipeline pipeline;

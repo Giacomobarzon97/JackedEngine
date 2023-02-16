@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Logic/SceneObjects/CameraObject.h"
+#include "Logic\SceneObjects\Cameras\BaseCameraObject.h"
 #include "Windows\BaseWindow.h"
 #include "Rendering/Renderer.h"
 #include <chrono>
@@ -19,7 +19,7 @@ private:
 	static const uint32_t  WINDOW_HEIGHT = 600;
 	const int MAX_FRAMES_IN_FLIGHT = 2;
 
-	CameraObject* camera;
+	BaseCameraObject* camera;
 	BaseWindow* window;
 	Renderer* renderer;
 

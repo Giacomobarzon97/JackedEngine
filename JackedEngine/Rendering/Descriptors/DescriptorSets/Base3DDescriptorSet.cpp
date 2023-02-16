@@ -34,7 +34,7 @@ Base3DDescriptorSet::Base3DDescriptorSet(const Device& device, const Base3DDescr
 
 Base3DDescriptorSet::~Base3DDescriptorSet(){}
 
-void Base3DDescriptorSet::UpdateDescriptorSet(const CameraObject& camera) const {
+void Base3DDescriptorSet::UpdateDescriptorSet(const BaseCameraObject& camera) const {
 	auto currentTime = std::chrono::high_resolution_clock::now();
 	float time = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - startTime).count();
 	UniformBufferObject ubo{};

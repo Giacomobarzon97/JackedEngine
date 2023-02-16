@@ -1,4 +1,5 @@
 #include "JackedEngine.h"
+#include "Logic/SceneObjects/Cameras/PerspectiveCamera.h"
 #include "Windows/GLFWWindow.h"
 
 const std::string JackedEngine::APP_NAME = "JackedEngine";
@@ -7,7 +8,7 @@ JackedEngine::JackedEngine()
 {
 	window = new GLFWWindow(WINDOW_WIDTH, WINDOW_HEIGHT, APP_NAME);
 
-	camera = new CameraObject(*window);
+	camera = new PerspectiveCamera(*window);
 
 	renderer = new Renderer(*window, *camera);
 

@@ -16,7 +16,7 @@ public:
 
 	Base3DDescriptorSet &operator=(Base3DDescriptorSet &) = delete;
 
-	virtual void UpdateDescriptorSet(const CameraObject& camera) const override;
+	virtual void UpdateDescriptorSet(const BaseCameraObject& camera) const override;
 
 private:
 	static std::chrono::steady_clock::time_point startTime;

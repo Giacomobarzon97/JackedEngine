@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer(const BaseWindow& window, const CameraObject& camera) :
+Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	camera(camera),
 	device(window),
 	descriptorPool(device, maxFramesInFlight),

@@ -35,6 +35,9 @@
     <Filter Include="Source Files\Logic\SceneObjects">
       <UniqueIdentifier>{b8162b91-e7c9-4e38-92f3-564e68556b74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Logic\SceneObjects\Cameras">
+      <UniqueIdentifier>{a75bb13d-2302-4e88-a124-eee13bd49f73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -91,8 +94,11 @@
     <ClCompile Include="Logic\SceneObjects\BaseSceneObject.cpp">
       <Filter>Source Files\Logic\SceneObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\SceneObjects\CameraObject.cpp">
-      <Filter>Source Files\Logic\SceneObjects</Filter>
+    <ClCompile Include="Logic\SceneObjects\Cameras\BaseCameraObject.cpp">
+      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp">
+      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,8 +153,11 @@
     <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h">
       <Filter>Source Files\Logic\SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\SceneObjects\CameraObject.h">
-      <Filter>Source Files\Logic\SceneObjects</Filter>
+    <ClInclude Include="Logic\SceneObjects\Cameras\BaseCameraObject.h">
+      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h">
+      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

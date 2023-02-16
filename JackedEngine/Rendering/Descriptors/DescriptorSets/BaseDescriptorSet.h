@@ -1,6 +1,6 @@
 #pragma once
 #include "Rendering/Device.h"
-#include "Logic/SceneObjects/CameraObject.h"
+#include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
 
 class BaseDescriptorSet {
 public:
@@ -9,7 +9,7 @@ public:
 
 	const VkDescriptorSet& GetDescriptorSet() const;
 
-	virtual void UpdateDescriptorSet(const CameraObject& camera) const = 0;
+	virtual void UpdateDescriptorSet(const BaseCameraObject& camera) const = 0;
 
 protected:
 	const Device& device;

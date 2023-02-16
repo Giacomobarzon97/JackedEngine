@@ -3,20 +3,20 @@
 #include <cmath>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Logic/SceneObjects/BaseSceneObject.h"
+#include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
 #include "Windows/BaseWindow.h"
 
-class CameraObject : public BaseSceneObject
+class PerspectiveCamera : public BaseCameraObject
 {
 public:
-	CameraObject(BaseWindow& window);
+	PerspectiveCamera(BaseWindow& window);
 
 	virtual void Rotate(float x, float y, float z) override;
 	virtual void Translate(float x, float y, float z) override;
 	virtual void SetPosition(float x, float y, float z) override;
 	virtual void SetRotation(float x, float y, float z) override;
 
-	glm::mat4 GetViewProjectionMatrix() const;
+	virtual glm::mat4 GetViewProjectionMatrix() const override;
 
 private:
 	BaseWindow& window;
