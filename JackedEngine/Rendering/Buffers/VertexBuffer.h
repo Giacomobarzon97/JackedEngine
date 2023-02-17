@@ -3,11 +3,11 @@
 #include<vector>
 #include "Rendering/Buffers/BaseBuffer.h"
 #include "Rendering/Device.h"
-#include "Logic/Vertex.h"
+#include "Logic/Model.h"
 
 class VertexBuffer : public BaseBuffer{
 public:
-	VertexBuffer(const Device& device);
+	VertexBuffer(const Device& device, const Model& model);
 	VertexBuffer(VertexBuffer&) = delete;
 	virtual ~VertexBuffer() override;
 
@@ -18,19 +18,9 @@ public:
 	const uint32_t GetIndicesNumber() const;
 
 private:
+	const Model& model;
 	VkBuffer vertexBuffer;
 	VkDeviceMemory vertexBufferMemory;
 	VkBuffer indexBuffer;
 	VkDeviceMemory indexBufferMemory;
-
-	const std::vector<Vertex> vertices = {
-		{{-0.5f, -0.5f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}},
-		{{0.5f, -0.5f, 0.0f, 1.0f}, {0.0f, 1.0f, 0.0f, 1.0f}},
-		{{0.5f, 0.5f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}},
-		{{-0.5f, 0.5f, 0.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}}
-	};
-
-	const std::vector<uint16_t> indices = {
-		0, 1, 2, 2, 3, 0
-	};
 };

@@ -3,8 +3,7 @@
 #include <string>
 #include "Logic\SceneObjects\Cameras\BaseCameraObject.h"
 #include "Windows\BaseWindow.h"
-#include "Rendering/Renderer.h"
-#include <chrono>
+#include "Rendering\Renderer.h"
 
 class JackedEngine {
 public:

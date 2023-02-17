@@ -100,6 +100,12 @@
     <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp">
       <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
     </ClCompile>
+    <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp">
+      <Filter>Source Files\Logic\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\Model.cpp">
+      <Filter>Source Files\Logic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -158,6 +164,12 @@
     </ClInclude>
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h">
       <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\SceneObjects\RenderableObject.h">
+      <Filter>Source Files\Logic\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Model.h">
+      <Filter>Source Files\Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

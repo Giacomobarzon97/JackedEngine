@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
+#include "Logic/SceneObjects/RenderableObject.h"
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
@@ -18,7 +19,7 @@ public:
 
 	Renderer &operator=(Renderer &) = delete;
 
-	void DrawFrame();
+	void DrawObject(RenderableObject& object);
 	void Reset() const;
 
 	static void FramebufferResizeCallback(void * buffer);
@@ -30,7 +31,6 @@ private:
 	Device device;
 	const Base3DDescriptorPool descriptorPool;
 	const Pipeline pipeline;
-	const VertexBuffer vertexBuffer;
 
 	std::vector<CommandBuffer* > commandBuffers;
 	std::vector<Base3DDescriptorSet* > descriptorSets;

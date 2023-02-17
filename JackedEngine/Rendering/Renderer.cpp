@@ -4,8 +4,7 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	camera(camera),
 	device(window),
 	descriptorPool(device, maxFramesInFlight),
-	pipeline(device, descriptorPool),
-	vertexBuffer(device)
+	pipeline(device, descriptorPool)
 {
 	commandBuffers.resize(maxFramesInFlight);
 	descriptorSets.resize(maxFramesInFlight);
@@ -25,10 +24,12 @@ Renderer::~Renderer() {
 }
 
 
-void Renderer::DrawFrame() {
+void Renderer::DrawObject(RenderableObject& object) {
+	VertexBuffer* vertexBuffer = new VertexBuffer(device,object.GetModel());
+
 	descriptorSets[currentFrame]->UpdateDescriptorSet(camera);
 
-	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline,vertexBuffer, *descriptorSets[currentFrame]);
+	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, *vertexBuffer, *descriptorSets[currentFrame]);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;
 		device.RecreateSwapChain();
@@ -37,6 +38,8 @@ void Renderer::DrawFrame() {
 		throw std::runtime_error("failed to present swap chain image!");
 	}
 	currentFrame = (currentFrame + 1) % maxFramesInFlight;
+	vkDeviceWaitIdle(device.GetLogicalDevice());
+	delete vertexBuffer;
 }
 
 void Renderer::Reset() const {

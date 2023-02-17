@@ -4,5 +4,5 @@
 class BaseCameraObject : public BaseSceneObject{
 public:
 	virtual ~BaseCameraObject();
-	virtual glm::mat4 GetViewProjectionMatrix() const = 0;
+	virtual const glm::mat4 GetViewProjectionMatrix() const = 0;
 };
