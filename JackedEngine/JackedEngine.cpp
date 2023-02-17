@@ -24,11 +24,9 @@ JackedEngine::~JackedEngine() {
 void JackedEngine::mainLoop() {
 	static auto startTime = std::chrono::high_resolution_clock::now();
 
-
 	while (!window->ShouldClose()) {
 		auto currentTime = std::chrono::high_resolution_clock::now();
 		float time = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - startTime).count();
-		//camera->Translate(time / 100,0, 0);
 		window->PollEvents();
 		renderer->DrawFrame();
 	}
