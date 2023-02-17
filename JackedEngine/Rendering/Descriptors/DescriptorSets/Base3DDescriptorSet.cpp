@@ -1,7 +1,5 @@
 #include "Base3DDescriptorSet.h"
 
-std::chrono::steady_clock::time_point Base3DDescriptorSet::startTime = std::chrono::high_resolution_clock::now();
-
 Base3DDescriptorSet::Base3DDescriptorSet(const Device& device, const Base3DDescriptorPool& descriptorPool) :
 	BaseDescriptorSet(device),
 	mvpUniform(device, sizeof(UniformBufferObject))
@@ -34,12 +32,8 @@ Base3DDescriptorSet::Base3DDescriptorSet(const Device& device, const Base3DDescr
 
 Base3DDescriptorSet::~Base3DDescriptorSet(){}
 
-void Base3DDescriptorSet::UpdateDescriptorSet(const BaseCameraObject& camera) const {
-	auto currentTime = std::chrono::high_resolution_clock::now();
-	float time = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - startTime).count();
+void Base3DDescriptorSet::UpdateDescriptorSet(const BaseCameraObject& camera, const RenderableObject& object) const {
 	UniformBufferObject ubo{};
-	glm::mat4 model = glm::rotate(glm::mat4(1.0f), time * glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	ubo.mvp = camera.GetViewProjectionMatrix() * model;
-
+	ubo.mvp = camera.GetViewProjectionMatrix() * object.GetModelMatrix();
 	mvpUniform.UpdateUniformBuffer(&ubo);
 }

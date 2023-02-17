@@ -27,7 +27,7 @@ Renderer::~Renderer() {
 void Renderer::DrawObject(RenderableObject& object) {
 	VertexBuffer* vertexBuffer = new VertexBuffer(device,object.GetModel());
 
-	descriptorSets[currentFrame]->UpdateDescriptorSet(camera);
+	descriptorSets[currentFrame]->UpdateDescriptorSet(camera, object);
 
 	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, *vertexBuffer, *descriptorSets[currentFrame]);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {

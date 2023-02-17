@@ -1,4 +1,6 @@
 #pragma once
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include "Logic/SceneObjects/BaseSceneObject.h"
 #include "Logic/Model.h"
 
