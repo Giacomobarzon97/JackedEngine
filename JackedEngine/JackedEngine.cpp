@@ -21,6 +21,7 @@ JackedEngine::JackedEngine()
 JackedEngine::~JackedEngine() {
 	delete renderer;
 	delete window;
+	delete camera;
 }
 
 
@@ -36,6 +37,7 @@ void JackedEngine::mainLoop() {
 			0, 1, 2, 2, 3, 0
 		}
 	);
+	
 	RenderableObject object = RenderableObject(model);
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 	while (!window->ShouldClose()) {
@@ -48,4 +50,5 @@ void JackedEngine::mainLoop() {
 	}
 
 	renderer->Reset();
+	
 }

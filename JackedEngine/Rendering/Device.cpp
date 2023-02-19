@@ -157,10 +157,9 @@ void Device::pickPhysicalDevice() {
 	swapChainSupport = findSwapChainSupport(physicalDevice);
 	queueFamilyIndices = findQueueFamilies(physicalDevice);
 
-	VkPhysicalDeviceProperties deviceProperties;
-	vkGetPhysicalDeviceProperties(physicalDevice, &deviceProperties);
+	vkGetPhysicalDeviceProperties(physicalDevice, &properties);
 	std::cout << "Using the following Graphics card\n";
-	std::cout << deviceProperties.deviceName;
+	std::cout << properties.deviceName;
 	std::cout << '\n';
 }
 
@@ -168,7 +167,14 @@ bool Device::isDeviceSuitable(VkPhysicalDevice device) {
 	QueueFamilyIndices indices = findQueueFamilies(device);
 	SwapChainSupportDetails swapChainSupport = findSwapChainSupport(device);
 
-	return indices.isValid() && swapChainSupport.isValid() && checkDeviceExtensionSupport(device);
+	VkPhysicalDeviceFeatures supportedFeatures;
+	vkGetPhysicalDeviceFeatures(device, &supportedFeatures);
+
+	return 
+		indices.isValid() && 
+		swapChainSupport.isValid() && 
+		checkDeviceExtensionSupport(device) && 
+		supportedFeatures.samplerAnisotropy;
 }
 
 Device::QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device) {
@@ -248,6 +254,7 @@ void Device::createLogicalDevice() {
 	}
 
 	VkPhysicalDeviceFeatures deviceFeatures{};
+	deviceFeatures.samplerAnisotropy = VK_TRUE;
 	VkDeviceCreateInfo createInfo{};
 	createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 	createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
@@ -495,6 +502,10 @@ const VkRenderPass& Device::GetRenderPass() const {
 
 const VkCommandPool& Device::GetCommandPool() const {
 	return commandPool;
+}
+
+const VkPhysicalDeviceProperties& Device::GetDeviceProperties() const {
+	return properties;
 }
 
 void Device::RecreateSwapChain() {

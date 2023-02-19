@@ -27,6 +27,7 @@
     <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
+    <ClCompile Include="Rendering\Buffers\ImageBuffer.cpp" />
     <ClCompile Include="Rendering\CommandBuffer.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="Logic\Vertex.h" />
     <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h" />
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
+    <ClInclude Include="Rendering\Buffers\ImageBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffer.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
@@ -140,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -160,7 +162,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -182,7 +184,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -206,7 +208,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>

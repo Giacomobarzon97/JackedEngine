@@ -7,6 +7,7 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
+#include "Rendering/Buffers/ImageBuffer.h"
 #include "Rendering/CommandBuffer.h"
 #include "Rendering/Descriptors/DescriptorPools/Base3DDescriptorPool.h"
 #include "Rendering/Descriptors/DescriptorSets/Base3DDescriptorSet.h"

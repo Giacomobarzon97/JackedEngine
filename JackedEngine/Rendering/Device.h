@@ -25,6 +25,7 @@ public:
 	const VkFramebuffer& GetSwapChainFramebuffer(const uint32_t i) const;
 	const VkRenderPass& GetRenderPass() const;
 	const VkCommandPool& GetCommandPool() const;
+	const VkPhysicalDeviceProperties& GetDeviceProperties() const;
 
 	void RecreateSwapChain();
 
@@ -79,6 +80,7 @@ private:
 	VkRenderPass renderPass;
 	std::vector<VkFramebuffer> swapChainFramebuffers;
 	VkCommandPool commandPool;
+	VkPhysicalDeviceProperties properties;
 
 	void createInstance();
 	bool checkValidationLayerSupport();
