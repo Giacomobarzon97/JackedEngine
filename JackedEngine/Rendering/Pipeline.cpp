@@ -24,7 +24,7 @@ Pipeline::Pipeline(const Device& device, const BaseDescriptorPool& descriptorPoo
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
 	VkVertexInputBindingDescription  bindingDescription = Vertex::getBindingDescription();
-	std::array<VkVertexInputAttributeDescription, 2> attributeDescriptions = Vertex::getAttributeDescriptions();
+	auto attributeDescriptions = Vertex::getAttributeDescriptions();
 	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
 	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
 	vertexInputInfo.vertexBindingDescriptionCount = 1;

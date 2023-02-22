@@ -1,6 +1,6 @@
 #include "Base3DDescriptorSet.h"
 
-Base3DDescriptorSet::Base3DDescriptorSet(const Device& device, const Base3DDescriptorPool& descriptorPool) :
+Base3DDescriptorSet::Base3DDescriptorSet(const Device& device, const Base3DDescriptorPool& descriptorPool, const ImageBuffer& imageBuffer) :
 	BaseDescriptorSet(device),
 	mvpUniform(device, sizeof(UniformBufferObject))
 {
@@ -17,17 +17,31 @@ Base3DDescriptorSet::Base3DDescriptorSet(const Device& device, const Base3DDescr
 	bufferInfo.buffer = mvpUniform.GetUniformBuffer();
 	bufferInfo.offset = 0;
 	bufferInfo.range = sizeof(UniformBufferObject);
-	VkWriteDescriptorSet descriptorWrite{};
-	descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-	descriptorWrite.dstSet = descriptorSet;
-	descriptorWrite.dstBinding = 0;
-	descriptorWrite.dstArrayElement = 0;
-	descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-	descriptorWrite.descriptorCount = 1;
-	descriptorWrite.pBufferInfo = &bufferInfo;
-	descriptorWrite.pImageInfo = nullptr; // Optional
-	descriptorWrite.pTexelBufferView = nullptr; // Optional
-	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
+
+	VkDescriptorImageInfo imageInfo{};
+	imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+	imageInfo.imageView = imageBuffer.GetImageView();
+	imageInfo.sampler = imageBuffer.GetSampler();
+
+	std::array<VkWriteDescriptorSet, 2> descriptorWrites{};
+
+	descriptorWrites[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+	descriptorWrites[0].dstSet = descriptorSet;
+	descriptorWrites[0].dstBinding = 0;
+	descriptorWrites[0].dstArrayElement = 0;
+	descriptorWrites[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+	descriptorWrites[0].descriptorCount = 1;
+	descriptorWrites[0].pBufferInfo = &bufferInfo;
+
+	descriptorWrites[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+	descriptorWrites[1].dstSet = descriptorSet;
+	descriptorWrites[1].dstBinding = 1;
+	descriptorWrites[1].dstArrayElement = 0;
+	descriptorWrites[1].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+	descriptorWrites[1].descriptorCount = 1;
+	descriptorWrites[1].pImageInfo = &imageInfo;
+
+	vkUpdateDescriptorSets(device.GetLogicalDevice(), static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
 }
 
 Base3DDescriptorSet::~Base3DDescriptorSet(){}

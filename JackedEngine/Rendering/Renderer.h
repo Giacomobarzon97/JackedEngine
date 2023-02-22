@@ -28,6 +28,7 @@ public:
 private:
 	int maxFramesInFlight = 2;
 
+	ImageBuffer* imageBuffer;
 	const BaseCameraObject& camera;
 	Device device;
 	const Base3DDescriptorPool descriptorPool;

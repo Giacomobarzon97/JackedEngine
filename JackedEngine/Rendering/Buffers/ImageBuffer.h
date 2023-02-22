@@ -8,11 +8,15 @@ public:
 	virtual ~ImageBuffer() override;
 
 	ImageBuffer &operator=(ImageBuffer &) = delete;
+
+	const VkImageView& GetImageView() const;
+	const VkSampler& GetSampler() const;
+
 private:
-	VkImage textureImage;
-	VkDeviceMemory textureImageMemory;
-	VkImageView textureImageView;
-	VkSampler textureSampler;
+	VkImage image;
+	VkDeviceMemory imageMemory;
+	VkImageView imageView;
+	VkSampler sampler;
 
 	void createImage(uint32_t width, uint32_t height, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory);
 	void transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);

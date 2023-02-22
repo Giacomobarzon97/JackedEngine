@@ -19,16 +19,16 @@ ImageBuffer::ImageBuffer(const Device& device, const char* filePath) :
 	memcpy(data, pixels, static_cast<size_t>(imageSize));
 	vkUnmapMemory(device.GetLogicalDevice(), stagingBufferMemory);
 	stbi_image_free(pixels);
-	createImage(texWidth, texHeight, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, textureImage, textureImageMemory);
-	transitionImageLayout(textureImage, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-	copyBufferToImage(stagingBuffer, textureImage, static_cast<uint32_t>(texWidth), static_cast<uint32_t>(texHeight));
-	transitionImageLayout(textureImage, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+	createImage(texWidth, texHeight, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, image, imageMemory);
+	transitionImageLayout(image, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+	copyBufferToImage(stagingBuffer, image, static_cast<uint32_t>(texWidth), static_cast<uint32_t>(texHeight));
+	transitionImageLayout(image, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 	vkDestroyBuffer(device.GetLogicalDevice(), stagingBuffer, nullptr);
 	vkFreeMemory(device.GetLogicalDevice(), stagingBufferMemory, nullptr);
 
 	VkImageViewCreateInfo viewInfo{};
 	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
-	viewInfo.image = textureImage;
+	viewInfo.image = image;
 	viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
 	viewInfo.format = VK_FORMAT_R8G8B8A8_SRGB;
 	viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
@@ -36,7 +36,7 @@ ImageBuffer::ImageBuffer(const Device& device, const char* filePath) :
 	viewInfo.subresourceRange.levelCount = 1;
 	viewInfo.subresourceRange.baseArrayLayer = 0;
 	viewInfo.subresourceRange.layerCount = 1;
-	if (vkCreateImageView(device.GetLogicalDevice(), &viewInfo, nullptr, &textureImageView) != VK_SUCCESS) {
+	if (vkCreateImageView(device.GetLogicalDevice(), &viewInfo, nullptr, &imageView) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create texture image view!");
 	}
 
@@ -57,16 +57,16 @@ ImageBuffer::ImageBuffer(const Device& device, const char* filePath) :
 	samplerInfo.mipLodBias = 0.0f;
 	samplerInfo.minLod = 0.0f;
 	samplerInfo.maxLod = 0.0f;
-	if (vkCreateSampler(device.GetLogicalDevice(), &samplerInfo, nullptr, &textureSampler) != VK_SUCCESS) {
+	if (vkCreateSampler(device.GetLogicalDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create texture sampler!");
 	}
 }
 
 ImageBuffer::~ImageBuffer() {
-	vkDestroySampler(device.GetLogicalDevice(), textureSampler, nullptr);
-	vkDestroyImageView(device.GetLogicalDevice(), textureImageView, nullptr);
-	vkDestroyImage(device.GetLogicalDevice(), textureImage, nullptr);
-	vkFreeMemory(device.GetLogicalDevice(), textureImageMemory, nullptr);
+	vkDestroySampler(device.GetLogicalDevice(), sampler, nullptr);
+	vkDestroyImageView(device.GetLogicalDevice(), imageView, nullptr);
+	vkDestroyImage(device.GetLogicalDevice(), image, nullptr);
+	vkFreeMemory(device.GetLogicalDevice(), imageMemory, nullptr);
 }
 
 void ImageBuffer::createImage(uint32_t width, uint32_t height, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory) {
@@ -85,23 +85,23 @@ void ImageBuffer::createImage(uint32_t width, uint32_t height, VkFormat format, 
 	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 	imageInfo.samples = VK_SAMPLE_COUNT_1_BIT;
 	imageInfo.flags = 0;
-	if (vkCreateImage(device.GetLogicalDevice(), &imageInfo, nullptr, &textureImage) != VK_SUCCESS) {
+	if (vkCreateImage(device.GetLogicalDevice(), &imageInfo, nullptr, &this->image) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create image!");
 	}
 
 	VkMemoryRequirements memRequirements;
-	vkGetImageMemoryRequirements(device.GetLogicalDevice(), textureImage, &memRequirements);
+	vkGetImageMemoryRequirements(device.GetLogicalDevice(), this->image, &memRequirements);
 
 	VkMemoryAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
 	allocInfo.allocationSize = memRequirements.size;
 	allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-	if (vkAllocateMemory(device.GetLogicalDevice(), &allocInfo, nullptr, &textureImageMemory) != VK_SUCCESS) {
+	if (vkAllocateMemory(device.GetLogicalDevice(), &allocInfo, nullptr, &this->imageMemory) != VK_SUCCESS) {
 		throw std::runtime_error("failed to allocate image memory!");
 	}
 
-	vkBindImageMemory(device.GetLogicalDevice(), textureImage, textureImageMemory, 0);
+	vkBindImageMemory(device.GetLogicalDevice(), this->image, this->imageMemory, 0);
 }
 
 void ImageBuffer::transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout) {
@@ -177,4 +177,13 @@ void ImageBuffer::copyBufferToImage(VkBuffer buffer, VkImage image, uint32_t wid
 		&region
 	);
 	endSingleTimeCommands(commandBuffer);
+}
+
+
+const VkImageView& ImageBuffer::GetImageView() const {
+	return imageView;
+}
+
+const VkSampler& ImageBuffer::GetSampler() const {
+	return sampler;
 }

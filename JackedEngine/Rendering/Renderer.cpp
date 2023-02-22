@@ -6,19 +6,19 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	descriptorPool(device, maxFramesInFlight),
 	pipeline(device, descriptorPool)
 {
-	ImageBuffer * imageBuffer = new ImageBuffer(device, "../Assets/Textures/statue.jpg");
+	imageBuffer = new ImageBuffer(device, "../Assets/Textures/statue.jpg");
 	commandBuffers.resize(maxFramesInFlight);
 	descriptorSets.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers[i] = new CommandBuffer(device);
-		descriptorSets[i] = new Base3DDescriptorSet(device,descriptorPool);
+		descriptorSets[i] = new Base3DDescriptorSet(device,descriptorPool, *imageBuffer);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
-	delete imageBuffer;
 }
 
 Renderer::~Renderer() {
+	delete imageBuffer;
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
 		delete descriptorSets[i];

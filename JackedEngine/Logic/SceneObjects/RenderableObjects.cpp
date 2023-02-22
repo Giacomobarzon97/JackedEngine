@@ -64,3 +64,11 @@ const glm::mat4 RenderableObject::GetModelMatrix() const {
 const Model& RenderableObject::GetModel() const {
 	return model;
 }
+
+void RenderableObject::SetTexture(const std::string texturePath) {
+	this->texturePath = texturePath;
+}
+
+const std::optional<std::string> RenderableObject::GetTexture() const {
+	return texturePath;
+}

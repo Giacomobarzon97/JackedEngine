@@ -2,10 +2,11 @@
 #include "Rendering/Descriptors/DescriptorSets/BaseDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorPools/Base3DDescriptorPool.h"
 #include "Rendering/Buffers/UniformBuffer.h"
+#include "Rendering/Buffers/ImageBuffer.h"
 
 class Base3DDescriptorSet : public BaseDescriptorSet{
 public:
-	Base3DDescriptorSet(const Device& device, const Base3DDescriptorPool& descriptorPool);
+	Base3DDescriptorSet(const Device& device, const Base3DDescriptorPool& descriptorPool, const ImageBuffer& imageBuffer);
 	Base3DDescriptorSet(Base3DDescriptorSet&) = delete;
 	virtual ~Base3DDescriptorSet() override;
 
