@@ -6,11 +6,12 @@
 #include "Utils/FileIOr.h"
 #include "Logic/Vertex.h"
 #include "Rendering/Device.h"
-#include "Rendering/Descriptors/DescriptorPools/BaseDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorPools/ImageDescriptorPool.h"
 
 class Pipeline {
 public:
-	Pipeline(const Device& device, const BaseDescriptorPool& descriptorPool, const std::string shaderName = "default");
+	Pipeline(const Device& device, const UBODescriptorPool& uboDescriptorPool, const ImageDescriptorPool& imageDescriptorPool, const std::string shaderName = "default");
 	Pipeline(Pipeline &) = delete;
 	~Pipeline();
 	Pipeline &operator=(Pipeline &) = delete;

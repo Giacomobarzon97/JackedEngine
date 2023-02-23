@@ -29,9 +29,11 @@
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\Buffers\ImageBuffer.cpp" />
     <ClCompile Include="Rendering\CommandBuffer.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
     <ClCompile Include="Rendering\Pipeline.cpp" />
@@ -53,9 +55,11 @@
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\Buffers\ImageBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffer.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
     <ClInclude Include="Rendering\Pipeline.h" />

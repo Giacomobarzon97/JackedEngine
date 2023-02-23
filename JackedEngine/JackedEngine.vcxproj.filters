@@ -82,10 +82,10 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp">
@@ -108,6 +108,12 @@
     </ClCompile>
     <ClCompile Include="Rendering\Buffers\ImageBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,10 +156,10 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\Base3DDescriptorSet.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\Base3DDescriptorPool.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h">
@@ -176,6 +182,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Buffers\ImageBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

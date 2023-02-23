@@ -3,25 +3,25 @@
 Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	camera(camera),
 	device(window),
-	descriptorPool(device, maxFramesInFlight),
-	pipeline(device, descriptorPool)
+	imageDescriptorPool(device, maxFramesInFlight),
+	uboDescriptorPool(device, maxFramesInFlight),
+	pipeline(device, uboDescriptorPool, imageDescriptorPool),
+	imageDescriptorSet(device,imageDescriptorPool,"../Assets/Textures/statue.jpg")
 {
-	imageBuffer = new ImageBuffer(device, "../Assets/Textures/statue.jpg");
 	commandBuffers.resize(maxFramesInFlight);
-	descriptorSets.resize(maxFramesInFlight);
+	uboDescriptorSets.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers[i] = new CommandBuffer(device);
-		descriptorSets[i] = new Base3DDescriptorSet(device,descriptorPool, *imageBuffer);
+		uboDescriptorSets[i] = new UBODescriptorSet(device,uboDescriptorPool);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
 
 Renderer::~Renderer() {
-	delete imageBuffer;
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
-		delete descriptorSets[i];
+		delete uboDescriptorSets[i];
 	}
 }
 
@@ -29,9 +29,9 @@ Renderer::~Renderer() {
 void Renderer::DrawObject(RenderableObject& object) {
 	VertexBuffer* vertexBuffer = new VertexBuffer(device,object.GetModel());
 
-	descriptorSets[currentFrame]->UpdateDescriptorSet(camera, object);
+	uboDescriptorSets[currentFrame]->UpdateDescriptorSet(camera, object);
 
-	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, *vertexBuffer, *descriptorSets[currentFrame]);
+	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, *vertexBuffer, *uboDescriptorSets[currentFrame], imageDescriptorSet);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;
 		device.RecreateSwapChain();

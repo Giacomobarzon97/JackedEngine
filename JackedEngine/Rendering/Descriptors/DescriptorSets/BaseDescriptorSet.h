@@ -10,8 +10,6 @@ public:
 
 	const VkDescriptorSet& GetDescriptorSet() const;
 
-	virtual void UpdateDescriptorSet(const BaseCameraObject& camera, const RenderableObject& object) const = 0;
-
 protected:
 	const Device& device;
 	VkDescriptorSet descriptorSet;

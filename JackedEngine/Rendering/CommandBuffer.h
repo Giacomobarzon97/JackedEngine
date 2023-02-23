@@ -3,7 +3,8 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
-#include "Rendering/Descriptors/DescriptorSets/BaseDescriptorSet.h"
+#include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
+#include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
 
 class CommandBuffer {
 public:
@@ -13,7 +14,7 @@ public:
 
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
-	const VkResult PresentCommand(const Pipeline& pipeline, const VertexBuffer& vertexBuffer, const BaseDescriptorSet& descriptorSet) const;
+	const VkResult PresentCommand(const Pipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const;
 
 private:
 	const Device& device;

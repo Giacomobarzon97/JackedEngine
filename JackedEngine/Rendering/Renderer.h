@@ -7,10 +7,11 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
-#include "Rendering/Buffers/ImageBuffer.h"
 #include "Rendering/CommandBuffer.h"
-#include "Rendering/Descriptors/DescriptorPools/Base3DDescriptorPool.h"
-#include "Rendering/Descriptors/DescriptorSets/Base3DDescriptorSet.h"
+#include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
+#include "Rendering/Descriptors/DescriptorPools/ImageDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
 
 class Renderer {
 public:
@@ -28,14 +29,15 @@ public:
 private:
 	int maxFramesInFlight = 2;
 
-	ImageBuffer* imageBuffer;
 	const BaseCameraObject& camera;
 	Device device;
-	const Base3DDescriptorPool descriptorPool;
+	const UBODescriptorPool uboDescriptorPool;
+	const ImageDescriptorPool imageDescriptorPool;
 	const Pipeline pipeline;
 
 	std::vector<CommandBuffer* > commandBuffers;
-	std::vector<Base3DDescriptorSet* > descriptorSets;
+	std::vector<UBODescriptorSet* > uboDescriptorSets;
+	ImageDescriptorSet imageDescriptorSet;
  
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;
