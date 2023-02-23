@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Rendering/Device.h"
-#include "Rendering/Pipeline.h"
+#include "Rendering/Pipelines/BasePipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
 #include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
@@ -14,7 +14,7 @@ public:
 
 	CommandBuffer &operator=(CommandBuffer &) = delete;
 
-	const VkResult PresentCommand(const Pipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const;
+	const VkResult PresentCommand(const BasePipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const;
 
 private:
 	const Device& device;

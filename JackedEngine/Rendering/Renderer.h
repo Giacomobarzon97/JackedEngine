@@ -5,7 +5,7 @@
 #include "Logic/SceneObjects/RenderableObject.h"
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
-#include "Rendering/Pipeline.h"
+#include "Rendering/Pipelines/Base3DPipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
 #include "Rendering/CommandBuffer.h"
 #include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
@@ -33,7 +33,7 @@ private:
 	Device device;
 	const UBODescriptorPool uboDescriptorPool;
 	const ImageDescriptorPool imageDescriptorPool;
-	const Pipeline pipeline;
+	const Base3DPipeline pipeline;
 
 	std::vector<CommandBuffer* > commandBuffers;
 	std::vector<UBODescriptorSet* > uboDescriptorSets;

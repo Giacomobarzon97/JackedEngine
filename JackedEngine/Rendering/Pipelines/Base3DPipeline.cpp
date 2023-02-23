@@ -1,13 +1,10 @@
-#include "Pipeline.h"
+#include "Base3DPipeline.h"
 
-Pipeline::Pipeline(const Device& device, const UBODescriptorPool& uboDescriptorPool, const ImageDescriptorPool& imageDescriptorPool, const std::string shaderName) :
-	device(device)
+Base3DPipeline::Base3DPipeline(const Device& device, const UBODescriptorPool& uboDescriptorPool, const ImageDescriptorPool& imageDescriptorPool, const std::string shaderName) :
+	BasePipeline(device)
 {
-	auto vertShaderCode = FileIO::readFile("Rendering/Shaders/"+ shaderName +".vert.spv");
-	auto fragShaderCode = FileIO::readFile("Rendering/Shaders/" + shaderName + ".frag.spv");
-
-	VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
-	VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
+	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/default.vert.spv");
+	VkShaderModule fragShaderModule = createShaderModule("Rendering/Shaders/default.frag.spv");
 
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo{};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -87,7 +84,7 @@ Pipeline::Pipeline(const Device& device, const UBODescriptorPool& uboDescriptorP
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-	pipelineLayoutInfo.setLayoutCount = descriptorLayouts.size();
+	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
 	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
 	pipelineLayoutInfo.pushConstantRangeCount = 0;
 
@@ -119,24 +116,7 @@ Pipeline::Pipeline(const Device& device, const UBODescriptorPool& uboDescriptorP
 	vkDestroyShaderModule(device.GetLogicalDevice(), vertShaderModule, nullptr);
 }
 
-Pipeline::~Pipeline() {
-	vkDestroyPipeline(device.GetLogicalDevice(), graphicsPipeline, nullptr);
-	vkDestroyPipelineLayout(device.GetLogicalDevice(), pipelineLayout, nullptr);
-}
-
-VkShaderModule Pipeline::createShaderModule(const std::vector<char>& code) {
-	VkShaderModuleCreateInfo createInfo{};
-	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	createInfo.codeSize = code.size();
-	createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
-	VkShaderModule shaderModule;
-	if (vkCreateShaderModule(device.GetLogicalDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create shader module!");
-	}
-	return shaderModule;
-}
-
-void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
+void Base3DPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
 	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
 	
 	viewport = {};
@@ -151,11 +131,3 @@ void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
 	scissor.offset = { 0, 0 };
 	scissor.extent = swapChainExtent;
 }
-
- const VkPipelineLayout& Pipeline::GetPipelineLayout() const {
-	 return pipelineLayout;
- }
-
- const VkPipeline& Pipeline::GetGraphicsPipeline() const {
-	 return graphicsPipeline;
- }

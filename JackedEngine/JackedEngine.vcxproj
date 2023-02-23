@@ -36,7 +36,8 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
-    <ClCompile Include="Rendering\Pipeline.cpp" />
+    <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
+    <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp" />
     <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp" />
@@ -62,7 +63,8 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
-    <ClInclude Include="Rendering\Pipeline.h" />
+    <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
+    <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\Buffers\BaseBuffer.h" />
     <ClInclude Include="Rendering\Buffers\VertexBuffer.h" />
