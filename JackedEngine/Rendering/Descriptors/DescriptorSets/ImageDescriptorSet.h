@@ -12,8 +12,5 @@ public:
 	ImageDescriptorSet& operator=(ImageDescriptorSet&) = delete;
 
 private:
-	struct UniformBufferObject {
-		glm::mat4 mvp;
-	};
 	const ImageBuffer imageBuffer;
 };

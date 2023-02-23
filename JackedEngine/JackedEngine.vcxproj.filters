@@ -41,6 +41,9 @@
     <Filter Include="Source Files\Rendering\Pipelines">
       <UniqueIdentifier>{86ccc4a2-6d83-4c47-89ef-273319c4758c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\CommandBuffers">
+      <UniqueIdentifier>{cbd73bf2-8fc9-46db-b219-cfec4d0b5294}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -63,9 +66,6 @@
     </ClCompile>
     <ClCompile Include="Utils\FileIO.cpp">
       <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\CommandBuffer.cpp">
-      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Logic\Vertex.cpp">
       <Filter>Source Files\Logic</Filter>
@@ -121,6 +121,12 @@
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.cpp">
+      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp">
+      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -140,9 +146,6 @@
     </ClInclude>
     <ClInclude Include="Utils\FileIOr.h">
       <Filter>Source Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\CommandBuffer.h">
-      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Logic\Vertex.h">
       <Filter>Source Files\Logic</Filter>
@@ -197,6 +200,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h">
       <Filter>Source Files\Rendering\Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h">
+      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h">
+      <Filter>Source Files\Rendering\CommandBuffers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

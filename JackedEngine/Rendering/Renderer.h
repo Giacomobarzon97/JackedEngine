@@ -7,7 +7,7 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/Base3DPipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"
-#include "Rendering/CommandBuffer.h"
+#include "Rendering/CommandBuffers/Graphical3DCommandBuffer.h"
 #include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
 #include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorPools/ImageDescriptorPool.h"
@@ -35,7 +35,7 @@ private:
 	const ImageDescriptorPool imageDescriptorPool;
 	const Base3DPipeline pipeline;
 
-	std::vector<CommandBuffer* > commandBuffers;
+	std::vector<Graphical3DCommandBuffer* > commandBuffers;
 	std::vector<UBODescriptorSet* > uboDescriptorSets;
 	ImageDescriptorSet imageDescriptorSet;
  

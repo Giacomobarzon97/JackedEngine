@@ -1,17 +1,8 @@
-#include "CommandBuffer.h"
+#include "Graphical3DCommandBuffer.h"
 
-CommandBuffer::CommandBuffer(const Device& device) :
-	device(device)
+Graphical3DCommandBuffer::Graphical3DCommandBuffer(const Device& device) :
+	BaseCommandBuffer(device)
 {
-	VkCommandBufferAllocateInfo allocInfo{};
-	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-	allocInfo.commandPool = device.GetCommandPool();
-	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-	allocInfo.commandBufferCount = 1;
-	if (vkAllocateCommandBuffers(device.GetLogicalDevice(), &allocInfo, &commandBuffer) != VK_SUCCESS) {
-		throw std::runtime_error("failed to allocate command buffers!");
-	}
-
 	VkSemaphoreCreateInfo semaphoreInfo{};
 	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 	VkFenceCreateInfo fenceInfo{};
@@ -27,13 +18,13 @@ CommandBuffer::CommandBuffer(const Device& device) :
 
 }
 
-CommandBuffer::~CommandBuffer() {
+Graphical3DCommandBuffer::~Graphical3DCommandBuffer() {
 	vkDestroySemaphore(device.GetLogicalDevice(), renderFinishedSemaphore, nullptr);
 	vkDestroySemaphore(device.GetLogicalDevice(), imageAvailableSemaphore, nullptr);
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult CommandBuffer::PresentCommand(const BasePipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
+const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;

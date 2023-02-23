@@ -5,10 +5,7 @@
 class BasePipeline {
 public:
 	BasePipeline(const Device& device);
-	BasePipeline(BasePipeline&) = delete;
 	virtual ~BasePipeline();
-	BasePipeline& operator=(BasePipeline&) = delete;
-
 
 	const VkPipelineLayout& GetPipelineLayout() const;
 	const VkPipeline& GetGraphicsPipeline() const;

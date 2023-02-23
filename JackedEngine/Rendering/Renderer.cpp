@@ -12,7 +12,7 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	uboDescriptorSets.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
-		commandBuffers[i] = new CommandBuffer(device);
+		commandBuffers[i] = new Graphical3DCommandBuffer(device);
 		uboDescriptorSets[i] = new UBODescriptorSet(device,uboDescriptorPool);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
@@ -29,7 +29,7 @@ Renderer::~Renderer() {
 void Renderer::DrawObject(RenderableObject& object) {
 	VertexBuffer* vertexBuffer = new VertexBuffer(device,object.GetModel());
 
-	uboDescriptorSets[currentFrame]->UpdateDescriptorSet(camera, object);
+	uboDescriptorSets[currentFrame]->UpdateDescriptorSet(camera.GetViewProjectionMatrix() * object.GetModelMatrix());
 
 	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, *vertexBuffer, *uboDescriptorSets[currentFrame], imageDescriptorSet);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {

@@ -33,8 +33,8 @@ UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool
 
 UBODescriptorSet::~UBODescriptorSet(){}
 
-void UBODescriptorSet::UpdateDescriptorSet(const BaseCameraObject& camera, const RenderableObject& object) const {
+void UBODescriptorSet::UpdateDescriptorSet(glm::mat4 mvpMatrix) const {
 	UniformBufferObject ubo{};
-	ubo.mvp = camera.GetViewProjectionMatrix() * object.GetModelMatrix();
+	ubo.mvp = mvpMatrix;
 	mvpUniform.UpdateUniformBuffer(&ubo);
 }

@@ -12,7 +12,7 @@ public:
 
 	UBODescriptorSet&operator=(UBODescriptorSet&) = delete;
 
-	virtual void UpdateDescriptorSet(const BaseCameraObject& camera, const RenderableObject& object) const;
+	virtual void UpdateDescriptorSet(const glm::mat4 mvpMatrix) const;
 
 private:
 	struct UniformBufferObject {
