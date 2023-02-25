@@ -57,7 +57,6 @@ Base3DPipeline::Base3DPipeline(const Device& device, const UBODescriptorPool& ub
 	VkPipelineColorBlendAttachmentState colorBlendAttachment{};
 	colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
 	colorBlendAttachment.blendEnable = VK_FALSE;
-
 	VkPipelineColorBlendStateCreateInfo colorBlending{};
 	colorBlending.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
 	colorBlending.logicOpEnable = VK_FALSE;
@@ -68,6 +67,18 @@ Base3DPipeline::Base3DPipeline(const Device& device, const UBODescriptorPool& ub
 	colorBlending.blendConstants[1] = 0.0f;
 	colorBlending.blendConstants[2] = 0.0f;
 	colorBlending.blendConstants[3] = 0.0f;
+
+	VkPipelineDepthStencilStateCreateInfo depthStencil{};
+	depthStencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
+	depthStencil.depthTestEnable = VK_TRUE;
+	depthStencil.depthWriteEnable = VK_TRUE;
+	depthStencil.depthCompareOp = VK_COMPARE_OP_LESS;
+	depthStencil.depthBoundsTestEnable = VK_FALSE;
+	depthStencil.minDepthBounds = 0.0f;
+	depthStencil.maxDepthBounds = 1.0f;
+	depthStencil.stencilTestEnable = VK_FALSE;
+	depthStencil.front = {};
+	depthStencil.back = {};
 
 	std::vector<VkDynamicState> dynamicStates = {
 		VK_DYNAMIC_STATE_VIEWPORT,
@@ -102,6 +113,7 @@ Base3DPipeline::Base3DPipeline(const Device& device, const UBODescriptorPool& ub
 	pipelineInfo.pRasterizationState = &rasterizer;
 	pipelineInfo.pMultisampleState = &multisampling;
 	pipelineInfo.pColorBlendState = &colorBlending;
+	pipelineInfo.pDepthStencilState = &depthStencil;
 	pipelineInfo.pDynamicState = &dynamicState;
 	pipelineInfo.layout = pipelineLayout;
 	pipelineInfo.renderPass = device.GetRenderPass();

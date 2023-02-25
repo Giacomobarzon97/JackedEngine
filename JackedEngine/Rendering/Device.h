@@ -4,6 +4,7 @@
 #include <optional>
 #include <algorithm>
 #include <set>
+#include <array>
 #include <vector>
 #include <iostream>
 #include <vulkan/vulkan.h>
@@ -26,6 +27,8 @@ public:
 	const VkRenderPass& GetRenderPass() const;
 	const VkCommandPool& GetCommandPool() const;
 	const VkPhysicalDeviceProperties& GetDeviceProperties() const;
+	const uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties) const;
+	const std::vector<VkClearValue> GetClearValues() const;
 
 	void RecreateSwapChain();
 
@@ -81,31 +84,30 @@ private:
 	std::vector<VkFramebuffer> swapChainFramebuffers;
 	VkCommandPool commandPool;
 	VkPhysicalDeviceProperties properties;
+	VkPhysicalDeviceMemoryProperties memProperties;
+	VkImage depthImage;
+	VkDeviceMemory depthImageMemory;
+	VkImageView depthImageView;
 
 	void createInstance();
 	bool checkValidationLayerSupport();
 	void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
-
 	void setupDebugMessenger();
-
 	void pickPhysicalDevice();
 	bool isDeviceSuitable(VkPhysicalDevice device);
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 	SwapChainSupportDetails findSwapChainSupport(VkPhysicalDevice device);
 	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 	void createLogicalDevice();
-
 	void createSwapChain();
 	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
-
 	void createImageViews();
 	void createRenderPass();
 	void createFrameBuffers();
-
-	void createCommandPool();
-
 	void cleanupSwapChain();
-
+	void createCommandPool();
+	void createDepthResources();
+	VkFormat findSupportedFormat(const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
 };

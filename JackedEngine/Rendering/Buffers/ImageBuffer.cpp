@@ -73,36 +73,37 @@ void ImageBuffer::createImage(uint32_t width, uint32_t height, VkFormat format, 
 	VkImageCreateInfo imageInfo{};
 	imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
 	imageInfo.imageType = VK_IMAGE_TYPE_2D;
-	imageInfo.extent.width = static_cast<uint32_t>(width);
-	imageInfo.extent.height = static_cast<uint32_t>(height);
+	imageInfo.extent.width = width;
+	imageInfo.extent.height = height;
 	imageInfo.extent.depth = 1;
 	imageInfo.mipLevels = 1;
 	imageInfo.arrayLayers = 1;
-	imageInfo.format = VK_FORMAT_R8G8B8A8_SRGB;
-	imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+	imageInfo.format = format;
+	imageInfo.tiling = tiling;
 	imageInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-	imageInfo.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+	imageInfo.usage = usage;
 	imageInfo.samples = VK_SAMPLE_COUNT_1_BIT;
-	imageInfo.flags = 0;
-	if (vkCreateImage(device.GetLogicalDevice(), &imageInfo, nullptr, &this->image) != VK_SUCCESS) {
+	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+
+	if (vkCreateImage(device.GetLogicalDevice(), &imageInfo, nullptr, &image) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create image!");
 	}
 
 	VkMemoryRequirements memRequirements;
-	vkGetImageMemoryRequirements(device.GetLogicalDevice(), this->image, &memRequirements);
+	vkGetImageMemoryRequirements(device.GetLogicalDevice(), image, &memRequirements);
 
 	VkMemoryAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
 	allocInfo.allocationSize = memRequirements.size;
-	allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	allocInfo.memoryTypeIndex = device.FindMemoryType(memRequirements.memoryTypeBits, properties);
 
-	if (vkAllocateMemory(device.GetLogicalDevice(), &allocInfo, nullptr, &this->imageMemory) != VK_SUCCESS) {
+	if (vkAllocateMemory(device.GetLogicalDevice(), &allocInfo, nullptr, &imageMemory) != VK_SUCCESS) {
 		throw std::runtime_error("failed to allocate image memory!");
 	}
 
-	vkBindImageMemory(device.GetLogicalDevice(), this->image, this->imageMemory, 0);
+	vkBindImageMemory(device.GetLogicalDevice(), image, imageMemory, 0);
 }
+
 
 void ImageBuffer::transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout) {
 	VkCommandBuffer commandBuffer = beginSingleTimeCommands();

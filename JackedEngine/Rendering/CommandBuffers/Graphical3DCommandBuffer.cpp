@@ -54,9 +54,9 @@ const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipe
 	renderPassInfo.framebuffer = device.GetSwapChainFramebuffer(imageIndex);
 	renderPassInfo.renderArea.offset = { 0, 0 };
 	renderPassInfo.renderArea.extent = swapChainExtent;
-	VkClearValue clearColor = { {{0.0f, 0.0f, 0.0f, 1.0f}} };
-	renderPassInfo.clearValueCount = 1;
-	renderPassInfo.pClearValues = &clearColor;
+	std::vector<VkClearValue> clearValues = device.GetClearValues();
+	renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
+	renderPassInfo.pClearValues = clearValues.data();
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
 

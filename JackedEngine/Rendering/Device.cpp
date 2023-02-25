@@ -28,6 +28,7 @@ window(window)
 	createSwapChain();
 	createImageViews();
 	createRenderPass();
+	createDepthResources();
 	createFrameBuffers();
 	createCommandPool();
 }
@@ -161,6 +162,8 @@ void Device::pickPhysicalDevice() {
 	std::cout << "Using the following Graphics card\n";
 	std::cout << properties.deviceName;
 	std::cout << '\n';
+
+	vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProperties);
 }
 
 bool Device::isDeviceSuitable(VkPhysicalDevice device) {
@@ -391,10 +394,11 @@ void Device::createRenderPass() {
 	VkSubpassDependency dependency{};
 	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
 	dependency.dstSubpass = 0;
-	dependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
 	dependency.srcAccessMask = 0;
-	dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-	dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+	dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
+	dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
+
 	VkAttachmentDescription colorAttachment{};
 	colorAttachment.format = swapChainImageFormat;
 	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -407,14 +411,38 @@ void Device::createRenderPass() {
 	VkAttachmentReference colorAttachmentRef{};
 	colorAttachmentRef.attachment = 0;
 	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+
+
+	VkFormat depthFormat = findSupportedFormat(
+		{ VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT },
+		VK_IMAGE_TILING_OPTIMAL,
+		VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT
+	);
+	VkAttachmentDescription depthAttachment{};
+	depthAttachment.format = depthFormat;
+	depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	depthAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+	depthAttachment.storeOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	depthAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	depthAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	depthAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	depthAttachment.finalLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+	VkAttachmentReference depthAttachmentRef{};
+	depthAttachmentRef.attachment = 1;
+	depthAttachmentRef.layout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+
 	VkSubpassDescription subpass{};
 	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
 	subpass.colorAttachmentCount = 1;
 	subpass.pColorAttachments = &colorAttachmentRef;
+	subpass.pDepthStencilAttachment = &depthAttachmentRef;
+
+	std::array<VkAttachmentDescription, 2> attachments = { colorAttachment, depthAttachment };
 	VkRenderPassCreateInfo renderPassInfo{};
 	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-	renderPassInfo.attachmentCount = 1;
-	renderPassInfo.pAttachments = &colorAttachment;
+	renderPassInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
+	renderPassInfo.pAttachments = attachments.data();
 	renderPassInfo.subpassCount = 1;
 	renderPassInfo.pSubpasses = &subpass;
 	renderPassInfo.dependencyCount = 1;
@@ -428,15 +456,16 @@ void Device::createRenderPass() {
 void Device::createFrameBuffers() {
 	swapChainFramebuffers.resize(swapChainImageViews.size());
 	for (size_t i = 0; i < swapChainImageViews.size(); i++) {
-		VkImageView attachments[] = {
-			swapChainImageViews[i]
+		std::array<VkImageView, 2> attachments = {
+			swapChainImageViews[i],
+			depthImageView
 		};
 
 		VkFramebufferCreateInfo framebufferInfo{};
 		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
 		framebufferInfo.renderPass = renderPass;
-		framebufferInfo.attachmentCount = 1;
-		framebufferInfo.pAttachments = attachments;
+		framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
+		framebufferInfo.pAttachments = attachments.data();
 		framebufferInfo.width = swapChainExtent.width;
 		framebufferInfo.height = swapChainExtent.height;
 		framebufferInfo.layers = 1;
@@ -458,6 +487,9 @@ void Device::createCommandPool() {
 }
 
 void Device::cleanupSwapChain() {
+	vkDestroyImageView(logicalDevice, depthImageView, nullptr);
+	vkDestroyImage(logicalDevice, depthImage, nullptr);
+	vkFreeMemory(logicalDevice, depthImageMemory, nullptr);
 	for (auto framebuffer : swapChainFramebuffers) {
 		vkDestroyFramebuffer(logicalDevice, framebuffer, nullptr);
 	}
@@ -467,6 +499,80 @@ void Device::cleanupSwapChain() {
 	vkDestroySwapchainKHR(logicalDevice, swapChain, nullptr);
 }
 
+VkFormat Device::findSupportedFormat(const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features) {
+	for (VkFormat format : candidates) {
+		VkFormatProperties props;
+		vkGetPhysicalDeviceFormatProperties(physicalDevice, format, &props);
+		if (tiling == VK_IMAGE_TILING_LINEAR && (props.linearTilingFeatures & features) == features) {
+			return format;
+		}
+		else if (tiling == VK_IMAGE_TILING_OPTIMAL && (props.optimalTilingFeatures & features) == features) {
+			return format;
+		}
+	}
+	throw std::runtime_error("failed to find supported format!");
+}
+
+const uint32_t Device::FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties) const {
+
+	for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++) {
+		if ((typeFilter & (1 << i)) && (memProperties.memoryTypes[i].propertyFlags & properties) == properties) {
+			return i;
+		}
+	}
+	throw std::runtime_error("failed to find suitable memory type!");
+}
+
+void Device::createDepthResources() {
+	VkFormat depthFormat = findSupportedFormat(
+		{ VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT },
+		VK_IMAGE_TILING_OPTIMAL,
+		VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT
+	);
+	VkImageCreateInfo imageInfo{};
+	imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+	imageInfo.imageType = VK_IMAGE_TYPE_2D;
+	imageInfo.extent.width = static_cast<uint32_t>(swapChainExtent.width);
+	imageInfo.extent.height = static_cast<uint32_t>(swapChainExtent.height);
+	imageInfo.extent.depth = 1;
+	imageInfo.mipLevels = 1;
+	imageInfo.arrayLayers = 1;
+	imageInfo.format = depthFormat;
+	imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+	imageInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	imageInfo.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+	imageInfo.samples = VK_SAMPLE_COUNT_1_BIT;
+	imageInfo.flags = 0;
+	if (vkCreateImage(logicalDevice, &imageInfo, nullptr, &depthImage) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create image!");
+	}
+	VkMemoryRequirements memRequirements;
+	vkGetImageMemoryRequirements(logicalDevice, depthImage, &memRequirements);
+	VkMemoryAllocateInfo allocInfo{};
+	allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+	allocInfo.allocationSize = memRequirements.size;
+	allocInfo.memoryTypeIndex = FindMemoryType(memRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	if (vkAllocateMemory(logicalDevice, &allocInfo, nullptr, &depthImageMemory) != VK_SUCCESS) {
+		throw std::runtime_error("failed to allocate image memory!");
+	}
+	vkBindImageMemory(logicalDevice, depthImage, depthImageMemory, 0);
+
+	VkImageViewCreateInfo viewInfo{};
+	viewInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+	viewInfo.image = depthImage;
+	viewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+	viewInfo.format = depthFormat;
+	viewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+	viewInfo.subresourceRange.baseMipLevel = 0;
+	viewInfo.subresourceRange.levelCount = 1;
+	viewInfo.subresourceRange.baseArrayLayer = 0;
+	viewInfo.subresourceRange.layerCount = 1;
+	if (vkCreateImageView(logicalDevice, &viewInfo, nullptr, &depthImageView) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create texture image view!");
+	}
+
+}
 
 const VkDevice& Device::GetLogicalDevice() const {
 	return logicalDevice;
@@ -508,6 +614,14 @@ const VkPhysicalDeviceProperties& Device::GetDeviceProperties() const {
 	return properties;
 }
 
+const std::vector<VkClearValue> Device::GetClearValues() const {
+	std::vector<VkClearValue> clearValues;
+	clearValues.resize(2);
+	clearValues[0].color = { {0.0f, 0.0f, 0.0f, 1.0f} };
+	clearValues[1].depthStencil = { 1.0f, 0 };
+	return clearValues;
+}
+
 void Device::RecreateSwapChain() {
 	window.WaitWhileMinimized();
 	vkDeviceWaitIdle(logicalDevice);
@@ -518,6 +632,7 @@ void Device::RecreateSwapChain() {
 
 	createSwapChain();
 	createImageViews();
+	createDepthResources();
 	createFrameBuffers();
 }
 

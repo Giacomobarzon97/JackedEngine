@@ -1,5 +1,6 @@
 #pragma once
 #define _USE_MATH_DEFINES
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <cmath>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
