@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Logic\Model.cpp" />
+    <ClCompile Include="Rendering\Data\Model.cpp" />
     <ClCompile Include="Logic\SceneObjects\Cameras\BaseCameraObject.cpp" />
     <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp" />
-    <ClCompile Include="Logic\Vertex.cpp" />
+    <ClCompile Include="Rendering\Data\Vertex.cpp" />
     <ClCompile Include="Logic\SceneObjects\BaseSceneObject.cpp" />
     <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -49,10 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
-    <ClInclude Include="Logic\Model.h" />
+    <ClInclude Include="Rendering\Data\Model.h" />
     <ClInclude Include="Logic\SceneObjects\Cameras\BaseCameraObject.h" />
     <ClInclude Include="Logic\SceneObjects\RenderableObject.h" />
-    <ClInclude Include="Logic\Vertex.h" />
+    <ClInclude Include="Rendering\Data\Vertex.h" />
     <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h" />
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\Buffers\ImageBuffer.h" />
@@ -154,7 +154,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -174,7 +174,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -196,7 +196,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -220,7 +220,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>

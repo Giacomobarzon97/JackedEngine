@@ -44,6 +44,9 @@
     <Filter Include="Source Files\Rendering\CommandBuffers">
       <UniqueIdentifier>{cbd73bf2-8fc9-46db-b219-cfec4d0b5294}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Data">
+      <UniqueIdentifier>{dd431e7d-f433-4814-abc6-4116678ba207}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -66,9 +69,6 @@
     </ClCompile>
     <ClCompile Include="Utils\FileIO.cpp">
       <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Logic\Vertex.cpp">
-      <Filter>Source Files\Logic</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
@@ -103,9 +103,6 @@
     <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp">
       <Filter>Source Files\Logic\SceneObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\Model.cpp">
-      <Filter>Source Files\Logic</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Buffers\ImageBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
@@ -127,6 +124,12 @@
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp">
       <Filter>Source Files\Rendering\CommandBuffers</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Data\Vertex.cpp">
+      <Filter>Source Files\Rendering\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Data\Model.cpp">
+      <Filter>Source Files\Rendering\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -146,9 +149,6 @@
     </ClInclude>
     <ClInclude Include="Utils\FileIOr.h">
       <Filter>Source Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Logic\Vertex.h">
-      <Filter>Source Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Buffers\BaseBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
@@ -183,9 +183,6 @@
     <ClInclude Include="Logic\SceneObjects\RenderableObject.h">
       <Filter>Source Files\Logic\SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\Model.h">
-      <Filter>Source Files\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Buffers\ImageBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
@@ -206,6 +203,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h">
       <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Data\Vertex.h">
+      <Filter>Source Files\Rendering\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Data\Model.h">
+      <Filter>Source Files\Rendering\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

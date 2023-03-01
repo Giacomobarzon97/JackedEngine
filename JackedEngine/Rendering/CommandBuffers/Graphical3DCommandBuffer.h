@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Rendering/Data/Vertex.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/BasePipeline.h"
 #include "Rendering/Buffers/VertexBuffer.h"

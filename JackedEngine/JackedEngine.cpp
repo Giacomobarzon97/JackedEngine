@@ -1,8 +1,7 @@
 #include "JackedEngine.h"
 #include "Logic/SceneObjects/Cameras/PerspectiveCamera.h"
-#include "Windows/GLFWWindow.h"
-#include "Logic/Model.h"
 #include "Logic/SceneObjects/RenderableObject.h"
+#include "Windows/GLFWWindow.h"
 #include <chrono>
 
 const std::string JackedEngine::APP_NAME = "JackedEngine";
@@ -26,25 +25,11 @@ JackedEngine::~JackedEngine() {
 
 
 void JackedEngine::mainLoop() {
-	Model model = Model(
-		{
-			{{-0.5f, -0.5f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.0f}},
-			{{0.5f, -0.5f, 0.0f, 1.0f}, {0.0f, 1.0f, 0.0f, 1.0f}, {0.0f, 0.0f}},
-			{{0.5f, 0.5f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}, {0.0f, 1.0f}},
-			{{-0.5f, 0.5f, 0.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}},
-
-			{{-0.5f, -0.5f, -0.5f, 1.0f}, {1.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f}},
-			{{0.5f, -0.5f, -0.5f, 1.0f}, {0.0f, 1.0f, 0.0f, 1.0f}, {1.0f, 0.0f}},
-			{{0.5f, 0.5f, -0.5f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}, {1.0f, 1.0f}},
-			{{-0.5f, 0.5f, -0.5f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}}
-		},
-		{
-			0, 1, 2, 2, 3, 0,
-			4, 5, 6, 6, 7, 4
-		}
-	);
 	
-	RenderableObject object = RenderableObject(model);
+	RenderableObject object = RenderableObject(
+		"../Assets/Models/viking_room.obj",
+		"../Assets/Textures/viking_room.png"
+	);
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 	while (!window->ShouldClose()) {
 		std::chrono::steady_clock::time_point currentTime = std::chrono::high_resolution_clock::now();

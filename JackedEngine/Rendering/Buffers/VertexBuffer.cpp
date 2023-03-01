@@ -1,9 +1,9 @@
 #include "VertexBuffer.h"
 
-VertexBuffer::VertexBuffer(const Device& device, const Model& model) :
-	BaseBuffer(device),
-	model(model)
+VertexBuffer::VertexBuffer(const Device& device, const std::string objFilePath) :
+	BaseBuffer(device)
 {
+	Model model(objFilePath);
 	VkBuffer stagingBuffer;
 	VkDeviceMemory stagingBufferMemory;
 	VkDeviceSize bufferSize = model.GetVertexSize() * model.GetNumberOfVertices();
@@ -36,6 +36,8 @@ VertexBuffer::VertexBuffer(const Device& device, const Model& model) :
 
 	vkDestroyBuffer(device.GetLogicalDevice(), stagingBuffer, nullptr);
 	vkFreeMemory(device.GetLogicalDevice(), stagingBufferMemory, nullptr);
+
+	nVertices = static_cast<uint32_t>(model.GetNumberOfIndices());
 }
 
 VertexBuffer::~VertexBuffer() {
@@ -54,5 +56,5 @@ const VkBuffer& VertexBuffer::GetIndexBuffer() const {
 }
 
 const uint32_t VertexBuffer::GetIndicesNumber() const {
-	return static_cast<uint32_t>(model.GetNumberOfIndices());
+	return nVertices;
 }

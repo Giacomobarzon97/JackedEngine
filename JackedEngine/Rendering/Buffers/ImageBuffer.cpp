@@ -2,11 +2,11 @@
 #include <stb_image.h>
 #include "ImageBuffer.h"
 
-ImageBuffer::ImageBuffer(const Device& device, const char* filePath) : 
+ImageBuffer::ImageBuffer(const Device& device, std::string filePath) : 
 	BaseBuffer(device)
 {
 	int texWidth, texHeight, texChannels;
-	stbi_uc* pixels = stbi_load(filePath, &texWidth, &texHeight, &texChannels, STBI_rgb_alpha);
+	stbi_uc* pixels = stbi_load(filePath.c_str(), &texWidth, &texHeight, &texChannels, STBI_rgb_alpha);
 	VkDeviceSize imageSize = texWidth * texHeight * 4;
 	if (!pixels) {
 		throw std::runtime_error("failed to load texture image!");

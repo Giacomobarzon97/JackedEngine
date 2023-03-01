@@ -1,6 +1,6 @@
 #include "ImageDescriptorSet.h"
 
-ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescriptorPool& descriptorPool, const char* imagePath) :
+ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescriptorPool& descriptorPool, std::string imagePath) :
 	BaseDescriptorSet(device),
 	imageBuffer(device, imagePath)
 {

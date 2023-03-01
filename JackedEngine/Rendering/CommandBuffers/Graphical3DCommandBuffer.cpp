@@ -63,7 +63,7 @@ const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipe
 	VkBuffer vertexBuffers[] = { vertexBuffer.GetVertexBuffer() };
 	VkDeviceSize offsets[] = { 0 };
 	vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
-	vkCmdBindIndexBuffer(commandBuffer,vertexBuffer.GetIndexBuffer(), 0, VK_INDEX_TYPE_UINT16);
+	vkCmdBindIndexBuffer(commandBuffer,vertexBuffer.GetIndexBuffer(), 0, Model::GetIndexType());
 
 
 	VkViewport viewport;

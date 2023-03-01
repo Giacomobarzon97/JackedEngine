@@ -5,7 +5,7 @@
 
 class ImageDescriptorSet : public BaseDescriptorSet{
 public:
-	ImageDescriptorSet(const Device& device, const ImageDescriptorPool& descriptorPool, const char* imagePath );
+	ImageDescriptorSet(const Device& device, const ImageDescriptorPool& descriptorPool, std::string imagePath );
 	ImageDescriptorSet(ImageDescriptorSet&) = delete;
 	virtual ~ImageDescriptorSet() override;
 

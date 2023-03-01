@@ -3,7 +3,7 @@
 
 class ImageBuffer : public BaseBuffer {
 public:
-	ImageBuffer(const Device& device, const char* filePath);
+	ImageBuffer(const Device& device, std::string filePath);
 	ImageBuffer(ImageBuffer&) = delete;
 	virtual ~ImageBuffer() override;
 

@@ -3,11 +3,11 @@
 #include<vector>
 #include "Rendering/Buffers/BaseBuffer.h"
 #include "Rendering/Device.h"
-#include "Logic/Model.h"
+#include "Rendering/Data/Model.h"
 
 class VertexBuffer : public BaseBuffer{
 public:
-	VertexBuffer(const Device& device, const Model& model);
+	VertexBuffer(const Device& device, const std::string objFilePath);
 	VertexBuffer(VertexBuffer&) = delete;
 	virtual ~VertexBuffer() override;
 
@@ -18,7 +18,7 @@ public:
 	const uint32_t GetIndicesNumber() const;
 
 private:
-	const Model& model;
+	uint32_t nVertices;
 	VkBuffer vertexBuffer;
 	VkDeviceMemory vertexBufferMemory;
 	VkBuffer indexBuffer;

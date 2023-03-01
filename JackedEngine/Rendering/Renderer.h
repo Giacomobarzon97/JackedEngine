@@ -37,8 +37,11 @@ private:
 
 	std::vector<Graphical3DCommandBuffer* > commandBuffers;
 	std::vector<UBODescriptorSet* > uboDescriptorSets;
+
+
+	VertexBuffer vertexBuffer;
 	ImageDescriptorSet imageDescriptorSet;
- 
+
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;
 };

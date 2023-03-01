@@ -1,7 +1,8 @@
 #include "RenderableObject.h"
 
-RenderableObject::RenderableObject(const Model& model) :
-	model(model)
+RenderableObject::RenderableObject(const std::string modelPath, const std::string texturePath) :
+	modelPath(modelPath),
+	texturePath(texturePath)
 {}
 
 void RenderableObject::Rotate(const double x, const double y, const double z) {
@@ -61,14 +62,10 @@ const glm::mat4 RenderableObject::GetModelMatrix() const {
 	return modelMatrix;
 }
 
-const Model& RenderableObject::GetModel() const {
-	return model;
+const std::string RenderableObject::GetModelPath() const {
+	return modelPath;
 }
 
-void RenderableObject::SetTexture(const std::string texturePath) {
-	this->texturePath = texturePath;
-}
-
-const std::optional<std::string> RenderableObject::GetTexture() const {
+const std::string RenderableObject::GetTexturePath() const {
 	return texturePath;
 }
