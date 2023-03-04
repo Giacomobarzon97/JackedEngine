@@ -27,11 +27,10 @@ const char** GLFWWindow::GetRequiredExtensions(uint32_t& extensionCount) const {
 	return glfwGetRequiredInstanceExtensions(&extensionCount);
 }
 
-void GLFWWindow::InitiWindowSurface(VkInstance& instance, VkSurfaceKHR& windowSurface) const {
-	if (glfwCreateWindowSurface(instance, window, nullptr, &windowSurface) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create window surface!");
-	}
+const HWND GLFWWindow::GetWindowHandle() const {
+	return glfwGetWin32Window(window);
 }
+
 
 void GLFWWindow::GetFrameBufferSize(int* width, int* height) const {
 	glfwGetFramebufferSize(window, width, height);

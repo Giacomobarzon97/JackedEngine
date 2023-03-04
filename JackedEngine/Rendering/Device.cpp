@@ -22,7 +22,15 @@ window(window)
 {
 	createInstance();
 	setupDebugMessenger();
-	window.InitiWindowSurface(instance, surface);
+
+	VkWin32SurfaceCreateInfoKHR createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+	createInfo.hwnd = window.GetWindowHandle();
+	createInfo.hinstance = GetModuleHandle(nullptr);
+	if (vkCreateWin32SurfaceKHR(instance, &createInfo, nullptr, &surface) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create window surface!");
+	}
+
 	pickPhysicalDevice();
 	createLogicalDevice();
 	createSwapChain();

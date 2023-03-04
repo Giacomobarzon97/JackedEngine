@@ -1,7 +1,5 @@
 #pragma once
 
-#define GLFW_INCLUDE_VULKAN
-#define VK_USE_PLATFORM_WIN32_KHR
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
@@ -17,7 +15,7 @@ public:
 	virtual ~GLFWWindow() override;
 	GLFWWindow &operator=(GLFWWindow &) = delete;
 
-	virtual void InitiWindowSurface(VkInstance& instance, VkSurfaceKHR& windowSurface) const override;
+	virtual const HWND GetWindowHandle() const override;
 	virtual const bool ShouldClose() const override;
 	virtual void PollEvents() const override;
 	virtual const char** GetRequiredExtensions(uint32_t& extensionCount) const override;
