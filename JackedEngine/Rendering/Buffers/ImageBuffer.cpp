@@ -1,6 +1,6 @@
+#include "ImageBuffer.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include "ImageBuffer.h"
 
 ImageBuffer::ImageBuffer(const Device& device, std::string filePath) : 
 	BaseBuffer(device)

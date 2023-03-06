@@ -1,6 +1,6 @@
+#include "Model.h"
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
-#include "Model.h"
 
 Model::Model(const std::string objPath){
     tinyobj::attrib_t attrib;
