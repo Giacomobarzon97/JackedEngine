@@ -19,6 +19,7 @@ public:
 
 	const VkDevice& GetLogicalDevice() const;
 	const VkPhysicalDevice& GetPhysicalDevice() const;
+	const VkInstance& GetInstance() const;
 	const VkQueue& GetGraphicsQueue() const;
 	const VkQueue& GetPresentQueue() const;
 	const VkSwapchainKHR& GetSwapChain() const;
@@ -93,6 +94,7 @@ private:
 	bool checkValidationLayerSupport();
 	void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
 	void setupDebugMessenger();
+	void createWindowSurface();
 	void pickPhysicalDevice();
 	bool isDeviceSuitable(VkPhysicalDevice device);
 	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);

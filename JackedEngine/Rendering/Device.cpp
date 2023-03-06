@@ -22,15 +22,7 @@ window(window)
 {
 	createInstance();
 	setupDebugMessenger();
-
-	VkWin32SurfaceCreateInfoKHR createInfo{};
-	createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
-	createInfo.hwnd = window.GetWindowHandle();
-	createInfo.hinstance = GetModuleHandle(nullptr);
-	if (vkCreateWin32SurfaceKHR(instance, &createInfo, nullptr, &surface) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create window surface!");
-	}
-
+	createWindowSurface();
 	pickPhysicalDevice();
 	createLogicalDevice();
 	createSwapChain();
@@ -140,6 +132,16 @@ void Device::setupDebugMessenger() {
 
 	if (CreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS) {
 		throw std::runtime_error("failed to set up debug messenger!");
+	}
+}
+
+void Device::createWindowSurface() {
+	VkWin32SurfaceCreateInfoKHR createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+	createInfo.hwnd = window.GetWindowHandle();
+	createInfo.hinstance = GetModuleHandle(nullptr);
+	if (vkCreateWin32SurfaceKHR(instance, &createInfo, nullptr, &surface) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create window surface!");
 	}
 }
 
@@ -589,6 +591,11 @@ const VkDevice& Device::GetLogicalDevice() const {
 const VkPhysicalDevice& Device::GetPhysicalDevice() const {
 	return physicalDevice;
 }
+
+const VkInstance& Device::GetInstance() const {
+	return instance;
+}
+
 
 const VkQueue& Device::GetGraphicsQueue() const {
 	return graphicsQueue;
