@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -37,6 +37,10 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
+    <ClCompile Include="Rendering\Memory\Allocations\BaseAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\Allocations\VMAAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp" />
+    <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp" />
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
     <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
@@ -65,6 +69,10 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
+    <ClInclude Include="Rendering\Memory\Allocations\BaseAllocation.h" />
+    <ClInclude Include="Rendering\Memory\Allocations\VMAAllocation.h" />
+    <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h" />
+    <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h" />
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
     <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
@@ -154,7 +162,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -174,7 +182,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -196,7 +204,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -220,7 +228,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>

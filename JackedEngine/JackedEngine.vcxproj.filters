@@ -47,6 +47,15 @@
     <Filter Include="Source Files\Rendering\Data">
       <UniqueIdentifier>{dd431e7d-f433-4814-abc6-4116678ba207}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Memory">
+      <UniqueIdentifier>{4be60cd8-3901-4228-ae7f-2ed30f71d273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Memory\Allocators">
+      <UniqueIdentifier>{576081ea-91f9-4612-8d41-27d075bb2e99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Memory\Allocations">
+      <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -130,6 +139,18 @@
     <ClCompile Include="Rendering\Data\Model.cpp">
       <Filter>Source Files\Rendering\Data</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\Allocations\BaseAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\Allocations\VMAAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -209,6 +230,18 @@
     </ClInclude>
     <ClInclude Include="Rendering\Data\Model.h">
       <Filter>Source Files\Rendering\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h">
+      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h">
+      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\Allocations\BaseAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\Allocations\VMAAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
