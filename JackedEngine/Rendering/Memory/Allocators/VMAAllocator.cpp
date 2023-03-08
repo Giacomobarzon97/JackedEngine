@@ -38,3 +38,13 @@ void VMAAllocator::MapMemory(VmaAllocation& allocation, const void* data, const 
 void VMAAllocator::DestroyBuffer(VkBuffer& buffer, VmaAllocation allocation) const {
 	vmaDestroyBuffer(allocator, buffer, allocation);
 }
+
+const VkDeviceSize VMAAllocator::GetAvailableMemory() const {
+	VmaBudget budgetInfo;
+	vmaGetHeapBudgets(allocator, &budgetInfo);
+	return budgetInfo.budget;
+}
+
+const VkDeviceSize VMAAllocator::GetAllocationOffset(const VmaAllocation allocation) const {
+	return allocation->GetOffset();
+}

@@ -16,6 +16,6 @@ VMAAllocation::~VMAAllocation() {
 	allocator.DestroyBuffer(buffer, allocation);
 }
 
-const uint32_t VMAAllocation::GetOffset() const {
-	return 0;
+const VkDeviceSize VMAAllocation::GetOffset() const {
+	return allocator.GetAllocationOffset(allocation);
 }

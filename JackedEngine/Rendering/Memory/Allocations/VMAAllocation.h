@@ -7,7 +7,7 @@ public:
 	VMAAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize);
 	~VMAAllocation();
 
-	virtual const uint32_t GetOffset() const override;
+	virtual const VkDeviceSize GetOffset() const override;
 
 private:
 	const VMAAllocator& allocator;

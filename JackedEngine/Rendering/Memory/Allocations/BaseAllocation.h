@@ -5,11 +5,8 @@ class BaseAllocation {
 public:
 	virtual ~BaseAllocation();
 	const VkBuffer GetBuffer() const;
-	virtual const uint32_t GetOffset() const = 0;
+	virtual const VkDeviceSize GetOffset() const = 0;
 
 protected:
 	VkBuffer buffer;
-
-private:
-
 };
