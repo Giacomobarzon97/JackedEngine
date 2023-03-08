@@ -56,6 +56,9 @@
     <Filter Include="Source Files\Rendering\Memory\BufferAllocations">
       <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Memory\AllocationFactories">
+      <UniqueIdentifier>{3cd59e14-548b-4fb7-9e60-4578989ecb3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -151,6 +154,12 @@
     <ClCompile Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.cpp">
       <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp">
+      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp">
+      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -242,6 +251,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.h">
       <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h">
+      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h">
+      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
