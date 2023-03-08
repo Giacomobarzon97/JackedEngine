@@ -53,7 +53,7 @@
     <Filter Include="Source Files\Rendering\Memory\Allocators">
       <UniqueIdentifier>{576081ea-91f9-4612-8d41-27d075bb2e99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\Allocations">
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations">
       <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -145,11 +145,11 @@
     <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\BaseAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\VMAAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,11 +237,11 @@
     <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\BaseAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\VMAAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations</Filter>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

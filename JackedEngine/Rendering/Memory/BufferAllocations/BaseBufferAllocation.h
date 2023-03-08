@@ -1,9 +1,9 @@
 #pragma once
 #include <vulkan/vulkan.h>
 
-class BaseAllocation {
+class BaseBufferAllocation {
 public:
-	virtual ~BaseAllocation();
+	virtual ~BaseBufferAllocation();
 	const VkBuffer GetBuffer() const;
 	virtual const VkDeviceSize GetOffset() const = 0;
 

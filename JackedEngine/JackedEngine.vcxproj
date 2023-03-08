@@ -37,8 +37,8 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
-    <ClCompile Include="Rendering\Memory\Allocations\BaseAllocation.cpp" />
-    <ClCompile Include="Rendering\Memory\Allocations\VMAAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp" />
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
@@ -69,8 +69,8 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
-    <ClInclude Include="Rendering\Memory\Allocations\BaseAllocation.h" />
-    <ClInclude Include="Rendering\Memory\Allocations\VMAAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h" />
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
