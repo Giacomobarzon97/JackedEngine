@@ -19,10 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Rendering\Data\Model.cpp" />
     <ClCompile Include="Logic\SceneObjects\Cameras\BaseCameraObject.cpp" />
     <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp" />
-    <ClCompile Include="Rendering\Data\Vertex.cpp" />
     <ClCompile Include="Logic\SceneObjects\BaseSceneObject.cpp" />
     <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -50,8 +48,9 @@
     <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp" />
-    <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Rendering\Buffers\UniformBuffer.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
@@ -59,10 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
-    <ClInclude Include="Rendering\Data\Model.h" />
     <ClInclude Include="Logic\SceneObjects\Cameras\BaseCameraObject.h" />
     <ClInclude Include="Logic\SceneObjects\RenderableObject.h" />
-    <ClInclude Include="Rendering\Data\Vertex.h" />
     <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h" />
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\Buffers\ImageBuffer.h" />
@@ -88,8 +85,9 @@
     <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\Buffers\BaseBuffer.h" />
-    <ClInclude Include="Rendering\Buffers\VertexBuffer.h" />
     <ClInclude Include="Rendering\Buffers\UniformBuffer.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />

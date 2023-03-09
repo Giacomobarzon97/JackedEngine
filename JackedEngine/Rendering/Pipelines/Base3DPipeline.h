@@ -4,7 +4,7 @@
 #include <vector>
 #include <vulkan/vulkan.h>
 #include "Utils/FileIOr.h"
-#include "Rendering/Data/Vertex.h"
+#include "Rendering/Resources/CPUResources/CPUVertex.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/BasePipeline.h"
 #include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"

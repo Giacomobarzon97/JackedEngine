@@ -1,8 +1,8 @@
-#include "Model.h"
+#include "CPUModel.h"
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-Model::Model(const std::string objPath){
+CPUModel::CPUModel(const std::string objPath){
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
@@ -12,7 +12,7 @@ Model::Model(const std::string objPath){
     }
     for (const auto& shape : shapes) {
         for (const auto& index : shape.mesh.indices) {
-            Vertex vertex = Vertex(
+            CPUVertex vertex = CPUVertex(
                 {
                     attrib.vertices[3 * index.vertex_index + 0],
                     attrib.vertices[3 * index.vertex_index + 1],
@@ -31,30 +31,30 @@ Model::Model(const std::string objPath){
     }
 }
 
-const size_t Model::GetVertexSize() const {
-	return sizeof(Vertex);
+const size_t CPUModel::GetVertexSize() const {
+	return sizeof(CPUVertex);
 }
 
-const size_t Model::GetIndexSize() const {
+const size_t CPUModel::GetIndexSize() const {
 	return sizeof(uint32_t);
 }
 
-const uint32_t Model::GetNumberOfVertices() const {
+const uint32_t CPUModel::GetNumberOfVertices() const {
 	return static_cast<uint32_t>(vertices.size());
 }
 
-const uint32_t Model::GetNumberOfIndices() const {
+const uint32_t CPUModel::GetNumberOfIndices() const {
     return static_cast<uint32_t>(indices.size());
 }
 
-const void* Model::GetVertexData() const {
+const void* CPUModel::GetVertexData() const {
 	return vertices.data();
 }
 
-const void* Model::GetIndexData() const {
+const void* CPUModel::GetIndexData() const {
 	return indices.data();
 }
 
-const VkIndexType Model::GetIndexType() {
+const VkIndexType CPUModel::GetIndexType() {
     return VK_INDEX_TYPE_UINT32;
 }

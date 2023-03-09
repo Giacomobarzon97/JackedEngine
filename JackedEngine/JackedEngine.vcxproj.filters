@@ -44,9 +44,6 @@
     <Filter Include="Source Files\Rendering\CommandBuffers">
       <UniqueIdentifier>{cbd73bf2-8fc9-46db-b219-cfec4d0b5294}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Data">
-      <UniqueIdentifier>{dd431e7d-f433-4814-abc6-4116678ba207}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Rendering\Memory">
       <UniqueIdentifier>{4be60cd8-3901-4228-ae7f-2ed30f71d273}</UniqueIdentifier>
     </Filter>
@@ -70,6 +67,9 @@
     </Filter>
     <Filter Include="Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations">
       <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Resources\CPUResources">
+      <UniqueIdentifier>{cb3ecdc5-1851-4977-8a2a-261c76cef7d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +95,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp">
-      <Filter>Source Files\Rendering\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Buffers\UniformBuffer.cpp">
@@ -148,12 +145,6 @@
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp">
       <Filter>Source Files\Rendering\CommandBuffers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Data\Vertex.cpp">
-      <Filter>Source Files\Rendering\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Data\Model.cpp">
-      <Filter>Source Files\Rendering\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClCompile>
@@ -184,6 +175,12 @@
     <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp">
       <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -205,9 +202,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Buffers\BaseBuffer.h">
-      <Filter>Source Files\Rendering\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Buffers\VertexBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Buffers\UniformBuffer.h">
@@ -258,12 +252,6 @@
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h">
       <Filter>Source Files\Rendering\CommandBuffers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Data\Vertex.h">
-      <Filter>Source Files\Rendering\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Data\Model.h">
-      <Filter>Source Files\Rendering\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClInclude>
@@ -293,6 +281,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h">
       <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

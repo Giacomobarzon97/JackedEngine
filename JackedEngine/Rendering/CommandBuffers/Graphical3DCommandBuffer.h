@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Rendering/Data/Vertex.h"
+#include "Rendering/Resources/CPUResources/CPUModel.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/BasePipeline.h"
 #include "Rendering/Resources/GPUResources/GPUModel.h"

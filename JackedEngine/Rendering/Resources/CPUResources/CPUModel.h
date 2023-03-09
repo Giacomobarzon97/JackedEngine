@@ -1,11 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Rendering/Data/Vertex.h"
+#include "Rendering/Resources/CPUResources/CPUVertex.h"
 
-class Model {
+class CPUModel {
 public:
-	Model(const std::string objPath);
+	CPUModel(const std::string objPath);
 
 	const size_t GetVertexSize() const;
 	const size_t GetIndexSize() const;
@@ -16,6 +16,6 @@ public:
 	static const VkIndexType GetIndexType();
 
 private:
-	std::vector<Vertex> vertices;
+	std::vector<CPUVertex> vertices;
 	std::vector<uint32_t> indices;
 };

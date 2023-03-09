@@ -1,7 +1,7 @@
 #include "GPUModel.h"
 
 GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::string objFilePath) {
-	Model model(objFilePath);
+	CPUModel model(objFilePath);
 	
 	vertexBufferAllocation = allocationFactory.CreateVertexBufferAllocation(
 		model.GetVertexData(),

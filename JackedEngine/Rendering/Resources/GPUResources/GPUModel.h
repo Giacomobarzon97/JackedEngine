@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Rendering/Data/Model.h"
+#include "Rendering/Resources/CPUResources/CPUModel.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 
 class GPUModel {

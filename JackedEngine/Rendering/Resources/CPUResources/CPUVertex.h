@@ -4,9 +4,9 @@
 #include <vulkan/vulkan.h>
 #include <array>
 
-class Vertex {
+class CPUVertex {
 public:
-	Vertex(const glm::vec4 position, const glm::vec4 color, const glm::vec2 textCoord);
+	CPUVertex(const glm::vec4 position, const glm::vec4 color, const glm::vec2 textCoord);
 
 	static VkVertexInputBindingDescription getBindingDescription();
 	static std::array<VkVertexInputAttributeDescription, 3> getAttributeDescriptions();
