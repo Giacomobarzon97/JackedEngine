@@ -6,7 +6,8 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	imageDescriptorPool(device, maxFramesInFlight),
 	uboDescriptorPool(device, maxFramesInFlight),
 	pipeline(device, uboDescriptorPool, imageDescriptorPool),
-	vertexBuffer(device, "../Assets/Models/viking_room.obj"),
+	allocationFactory(device),
+	model(allocationFactory, "../Assets/Models/viking_room.obj"),
 	imageDescriptorSet(device, imageDescriptorPool, "../Assets/Textures/viking_room.png")
 {
 	commandBuffers.resize(maxFramesInFlight);
@@ -30,7 +31,7 @@ Renderer::~Renderer() {
 void Renderer::DrawObject(RenderableObject& object) {
 	uboDescriptorSets[currentFrame]->UpdateDescriptorSet(camera.GetViewProjectionMatrix() * object.GetModelMatrix());
 
-	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, vertexBuffer, *uboDescriptorSets[currentFrame], imageDescriptorSet);
+	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, model, *uboDescriptorSets[currentFrame], imageDescriptorSet);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;
 		device.RecreateSwapChain();

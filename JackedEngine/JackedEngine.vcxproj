@@ -40,7 +40,10 @@
     <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp" />
     <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp" />
-    <ClCompile Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\BaseVertexBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\VMAVertexBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp" />
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
@@ -49,6 +52,7 @@
     <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp" />
     <ClCompile Include="Rendering\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Rendering\Buffers\UniformBuffer.cpp" />
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
@@ -74,7 +78,10 @@
     <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h" />
     <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h" />
-    <ClInclude Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\BaseVertexBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\VMAVertexBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h" />
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
@@ -83,6 +90,7 @@
     <ClInclude Include="Rendering\Buffers\BaseBuffer.h" />
     <ClInclude Include="Rendering\Buffers\VertexBuffer.h" />
     <ClInclude Include="Rendering\Buffers\UniformBuffer.h" />
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />

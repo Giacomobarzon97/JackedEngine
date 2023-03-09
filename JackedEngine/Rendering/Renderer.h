@@ -6,12 +6,13 @@
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/Base3DPipeline.h"
-#include "Rendering/Buffers/VertexBuffer.h"
 #include "Rendering/CommandBuffers/Graphical3DCommandBuffer.h"
 #include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
 #include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorPools/ImageDescriptorPool.h"
 #include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
+#include "Rendering/Memory/AllocationFactories/VMAAllocationFactory.h"
+#include "Rendering/Resources/GPUResources/GPUModel.h"
 
 class Renderer {
 public:
@@ -38,8 +39,9 @@ private:
 	std::vector<Graphical3DCommandBuffer* > commandBuffers;
 	std::vector<UBODescriptorSet* > uboDescriptorSets;
 
+	VMAAllocationFactory allocationFactory;
+	GPUModel model;
 
-	VertexBuffer vertexBuffer;
 	ImageDescriptorSet imageDescriptorSet;
 
 	bool framebufferResized = false;

@@ -11,12 +11,12 @@ public:
 
 	GPUModel& operator=(GPUModel&) = delete;
 
-	const BaseBufferAllocation& GetVertexBufferAllocation() const;
-	const BaseBufferAllocation& GetIndexBufferAllocation() const;
+	const BaseVertexBufferAllocation& GetVertexBufferAllocation() const;
+	const BaseIndexBufferAllocation& GetIndexBufferAllocation() const;
 	const uint32_t GetNumberOfIndices() const;
 
 private:
 	uint32_t nVertices;
-	const BaseBufferAllocation* vertexBufferAllocation;
-	const BaseBufferAllocation* indexBufferAllocation;
+	const BaseVertexBufferAllocation* vertexBufferAllocation;
+	const BaseIndexBufferAllocation* indexBufferAllocation;
 };

@@ -53,11 +53,23 @@
     <Filter Include="Source Files\Rendering\Memory\Allocators">
       <UniqueIdentifier>{576081ea-91f9-4612-8d41-27d075bb2e99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations">
-      <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Rendering\Memory\AllocationFactories">
       <UniqueIdentifier>{3cd59e14-548b-4fb7-9e60-4578989ecb3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Resources">
+      <UniqueIdentifier>{36d89b47-3d66-4d60-926e-be0c6e2cdc4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Resources\GPUResources">
+      <UniqueIdentifier>{f4e6ebe6-d758-4a3d-9e71-9ec706119391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations">
+      <UniqueIdentifier>{219fb08c-f797-4595-ac1a-f97f8b887bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations">
+      <UniqueIdentifier>{bd9d38ee-ff1d-4348-8120-b9bc15ad34b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations">
+      <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,17 +160,29 @@
     <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\BaseVertexBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\VMAVertexBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,17 +270,29 @@
     <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\BaseVertexBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\VMABufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\VMAVertexBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

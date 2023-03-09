@@ -1,6 +1,6 @@
 #include "BaseBufferAllocation.h"
 
-BaseBufferAllocation::~BaseBufferAllocation(){}
+BaseBufferAllocation::~BaseBufferAllocation() {}
 
 const VkBuffer BaseBufferAllocation::GetBuffer() const {
 	return buffer;

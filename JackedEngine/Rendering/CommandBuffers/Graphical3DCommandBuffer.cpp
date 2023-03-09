@@ -24,7 +24,7 @@ Graphical3DCommandBuffer::~Graphical3DCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
+const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const const GPUModel& model, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;
@@ -60,10 +60,10 @@ const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipe
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
 
-	VkBuffer vertexBuffers[] = { vertexBuffer.GetVertexBuffer() };
+	VkBuffer vertexBuffers[] = { model.GetVertexBufferAllocation().GetBuffer()};
 	VkDeviceSize offsets[] = { 0 };
 	vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
-	vkCmdBindIndexBuffer(commandBuffer,vertexBuffer.GetIndexBuffer(), 0, Model::GetIndexType());
+	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, Model::GetIndexType());
 
 
 	VkViewport viewport;
@@ -81,7 +81,7 @@ const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipe
 	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 0, 1, &uboDescriptorSet.GetDescriptorSet(), 0, nullptr);
 	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 1, 1, &imageDescriptorSet.GetDescriptorSet(), 0, nullptr);
 
-	vkCmdDrawIndexed(commandBuffer, vertexBuffer.GetIndicesNumber(), 1, 0, 0, 0);
+	vkCmdDrawIndexed(commandBuffer, model.GetNumberOfIndices(), 1, 0, 0, 0);
 
 	vkCmdEndRenderPass(commandBuffer);
 

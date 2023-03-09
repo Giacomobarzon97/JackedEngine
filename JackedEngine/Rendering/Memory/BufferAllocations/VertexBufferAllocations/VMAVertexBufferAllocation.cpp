@@ -1,6 +1,6 @@
-#include "VMABufferAllocation.h"
+#include "VMAVertexBufferAllocation.h"
 
-VMABufferAllocation::VMABufferAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize) :
+VMAVertexBufferAllocation::VMAVertexBufferAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize) :
 	allocator(allocator)
 {
 	VkBuffer stagingBuffer;
@@ -12,10 +12,10 @@ VMABufferAllocation::VMABufferAllocation(const VMAAllocator& allocator, const vo
 	allocator.DestroyBuffer(stagingBuffer, stagingAllocation);
 }
 
-VMABufferAllocation::~VMABufferAllocation() {
+VMAVertexBufferAllocation::~VMAVertexBufferAllocation() {
 	allocator.DestroyBuffer(buffer, allocation);
 }
 
-const VkDeviceSize VMABufferAllocation::GetOffset() const {
+const VkDeviceSize VMAVertexBufferAllocation::GetOffset() const {
 	return allocator.GetAllocationOffset(allocation);
 }

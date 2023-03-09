@@ -3,12 +3,12 @@
 GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::string objFilePath) {
 	Model model(objFilePath);
 	
-	vertexBufferAllocation = allocationFactory.CreateBufferAllocation(
+	vertexBufferAllocation = allocationFactory.CreateVertexBufferAllocation(
 		model.GetVertexData(),
 		model.GetVertexSize() * model.GetNumberOfVertices()
 	);
 	
-	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
+	indexBufferAllocation = allocationFactory.CreateIndexBufferAllocation(
 		model.GetIndexData(),
 		model.GetIndexSize() * model.GetNumberOfIndices()
 	);
@@ -21,11 +21,11 @@ GPUModel::~GPUModel() {
 	delete indexBufferAllocation;
 }
 
-const BaseBufferAllocation& GPUModel::GetVertexBufferAllocation() const {
+const BaseVertexBufferAllocation& GPUModel::GetVertexBufferAllocation() const {
 	return *vertexBufferAllocation;
 }
 
-const BaseBufferAllocation& GPUModel::GetIndexBufferAllocation() const {
+const BaseIndexBufferAllocation& GPUModel::GetIndexBufferAllocation() const {
 	return *indexBufferAllocation;
 }
 

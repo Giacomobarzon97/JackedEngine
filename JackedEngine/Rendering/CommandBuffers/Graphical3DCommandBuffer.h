@@ -3,7 +3,7 @@
 #include "Rendering/Data/Vertex.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/BasePipeline.h"
-#include "Rendering/Buffers/VertexBuffer.h"
+#include "Rendering/Resources/GPUResources/GPUModel.h"
 #include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
 #include "Rendering/CommandBuffers/BaseCommandBuffer.h"
@@ -16,7 +16,7 @@ public:
 
 	Graphical3DCommandBuffer&operator=(Graphical3DCommandBuffer&) = delete;
 
-	const VkResult PresentCommand(const BasePipeline& pipeline, const VertexBuffer& vertexBuffer, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const;
+	const VkResult PresentCommand(const BasePipeline& pipeline, const GPUModel& model, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const;
 
 private:
 	VkSemaphore imageAvailableSemaphore;
