@@ -15,7 +15,3 @@ VMAIndexBufferAllocation::VMAIndexBufferAllocation(const VMAAllocator& allocator
 VMAIndexBufferAllocation::~VMAIndexBufferAllocation() {
 	allocator.DestroyBuffer(buffer, allocation);
 }
-
-const VkDeviceSize VMAIndexBufferAllocation::GetOffset() const {
-	return allocator.GetAllocationOffset(allocation);
-}

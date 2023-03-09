@@ -44,7 +44,3 @@ const VkDeviceSize VMAAllocator::GetAvailableMemory() const {
 	vmaGetHeapBudgets(allocator, &budgetInfo);
 	return budgetInfo.budget;
 }
-
-const VkDeviceSize VMAAllocator::GetAllocationOffset(const VmaAllocation allocation) const {
-	return allocation->GetOffset();
-}

@@ -10,7 +10,6 @@ public:
 	VMAAllocator& operator=(VMAAllocator&) = delete;
 
 	virtual const VkDeviceSize GetAvailableMemory() const override;
-	const VkDeviceSize GetAllocationOffset(const VmaAllocation allocation) const;
 
 	void CreateBuffer(VkBuffer& buffer, VmaAllocation& allocation, const VkDeviceSize bufferSize, const VkBufferUsageFlags usage, const VkMemoryPropertyFlags properties) const;
 	void MapMemory(VmaAllocation& allocation, const void* data, const VkDeviceSize dataSize) const;

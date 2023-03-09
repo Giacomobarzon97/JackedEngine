@@ -24,7 +24,7 @@ Graphical3DCommandBuffer::~Graphical3DCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const const GPUModel& model, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
+const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const GPUModel& model, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;

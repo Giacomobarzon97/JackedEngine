@@ -15,7 +15,3 @@ VMAVertexBufferAllocation::VMAVertexBufferAllocation(const VMAAllocator& allocat
 VMAVertexBufferAllocation::~VMAVertexBufferAllocation() {
 	allocator.DestroyBuffer(buffer, allocation);
 }
-
-const VkDeviceSize VMAVertexBufferAllocation::GetOffset() const {
-	return allocator.GetAllocationOffset(allocation);
-}

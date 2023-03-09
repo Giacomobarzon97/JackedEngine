@@ -9,8 +9,6 @@ public:
 	~VMAVertexBufferAllocation();
 	VMAVertexBufferAllocation& operator=(VMAVertexBufferAllocation&) = delete;
 
-	virtual const VkDeviceSize GetOffset() const override;
-
 private:
 	const VMAAllocator& allocator;
 	VmaAllocation allocation;
