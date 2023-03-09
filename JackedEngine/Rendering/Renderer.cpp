@@ -15,7 +15,7 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers[i] = new Graphical3DCommandBuffer(device);
-		uboDescriptorSets[i] = new UBODescriptorSet(device,uboDescriptorPool);
+		uboDescriptorSets[i] = new UBODescriptorSet(device, uboDescriptorPool, allocationFactory);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }

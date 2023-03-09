@@ -5,8 +5,12 @@ VMAVertexBufferAllocation::VMAVertexBufferAllocation(const VMAAllocator& allocat
 {
 	VkBuffer stagingBuffer;
 	VmaAllocation stagingAllocation;
+	void* stagingMemLoc;
+
 	allocator.CreateBuffer(stagingBuffer, stagingAllocation, dataSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-	allocator.MapMemory(stagingAllocation,data,dataSize);
+	allocator.MapMemory(stagingAllocation, stagingMemLoc);
+	memcpy(stagingMemLoc, data, dataSize);
+	allocator.UnMapMemory(stagingAllocation);
 	allocator.CreateBuffer(buffer, allocation, dataSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 	allocator.copyBuffer(stagingBuffer, buffer, dataSize);
 	allocator.DestroyBuffer(stagingBuffer, stagingAllocation);

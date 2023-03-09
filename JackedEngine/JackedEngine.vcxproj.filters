@@ -71,6 +71,9 @@
     <Filter Include="Source Files\Rendering\Resources\CPUResources">
       <UniqueIdentifier>{cb3ecdc5-1851-4977-8a2a-261c76cef7d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations">
+      <UniqueIdentifier>{501f4a96-5f05-4a3d-bb6a-1d558fcc8a6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -95,9 +98,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp">
-      <Filter>Source Files\Rendering\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Buffers\UniformBuffer.cpp">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
@@ -181,6 +181,12 @@
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\VMAUniformBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -202,9 +208,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Buffers\BaseBuffer.h">
-      <Filter>Source Files\Rendering\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Buffers\UniformBuffer.h">
       <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h">
@@ -287,6 +290,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\VMAUniformBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

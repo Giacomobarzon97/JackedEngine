@@ -12,7 +12,9 @@ public:
 	virtual const VkDeviceSize GetAvailableMemory() const override;
 
 	void CreateBuffer(VkBuffer& buffer, VmaAllocation& allocation, const VkDeviceSize bufferSize, const VkBufferUsageFlags usage, const VkMemoryPropertyFlags properties) const;
-	void MapMemory(VmaAllocation& allocation, const void* data, const VkDeviceSize dataSize) const;
+	void MapMemory(VmaAllocation& allocation, void*& memLoc) const;
+	void UnMapMemory(VmaAllocation& allocation) const;
+
 	void DestroyBuffer(VkBuffer& buffer, VmaAllocation allocation) const;
 	
 

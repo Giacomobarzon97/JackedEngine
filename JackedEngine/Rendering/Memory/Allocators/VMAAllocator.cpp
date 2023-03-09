@@ -28,10 +28,11 @@ void VMAAllocator::CreateBuffer(VkBuffer& buffer, VmaAllocation& allocation, con
 	vmaCreateBuffer(allocator, &bufferInfo, &vmaallocInfo, &buffer, &allocation, nullptr);
 }
 
-void VMAAllocator::MapMemory(VmaAllocation& allocation, const void* data, const VkDeviceSize dataSize) const{
-	void* memLoc;
+void VMAAllocator::MapMemory(VmaAllocation& allocation, void*& memLoc) const {
 	vmaMapMemory(allocator, allocation, &memLoc);
-	memcpy(memLoc, data, dataSize);
+}
+
+void VMAAllocator::UnMapMemory(VmaAllocation& allocation) const {
 	vmaUnmapMemory(allocator, allocation);
 }
 

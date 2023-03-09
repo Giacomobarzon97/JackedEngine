@@ -13,3 +13,7 @@ const VMAVertexBufferAllocation* VMAAllocationFactory::CreateVertexBufferAllocat
 const VMAIndexBufferAllocation* VMAAllocationFactory::CreateIndexBufferAllocation(const void* data, const size_t dataSize) const {
 	return new VMAIndexBufferAllocation(allocator, data, dataSize);
 }
+
+const VMAUniformBufferAllocation* VMAAllocationFactory::CreateUniformBufferAllocation(const size_t bufferSize) const {
+	return new VMAUniformBufferAllocation(allocator, bufferSize);
+}

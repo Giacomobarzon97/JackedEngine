@@ -1,8 +1,8 @@
 #include "UBODescriptorSet.h"
 
-UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool& descriptorPool) :
+UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
 	BaseDescriptorSet(device),
-	mvpUniform(device, sizeof(UniformBufferObject))
+	mvpUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
 {
 	VkDescriptorSetAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -14,7 +14,7 @@ UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool
 	}
 
 	VkDescriptorBufferInfo bufferInfo{};
-	bufferInfo.buffer = mvpUniform.GetUniformBuffer();
+	bufferInfo.buffer = mvpUniform->GetBuffer();
 	bufferInfo.offset = 0;
 	bufferInfo.range = sizeof(UniformBufferObject);
 
@@ -31,10 +31,12 @@ UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool
 	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
-UBODescriptorSet::~UBODescriptorSet(){}
+UBODescriptorSet::~UBODescriptorSet(){
+	delete mvpUniform;
+}
 
 void UBODescriptorSet::UpdateDescriptorSet(glm::mat4 mvpMatrix) const {
 	UniformBufferObject ubo{};
 	ubo.mvp = mvpMatrix;
-	mvpUniform.UpdateUniformBuffer(&ubo);
+	mvpUniform->UpdateBuffer(&ubo);
 }
