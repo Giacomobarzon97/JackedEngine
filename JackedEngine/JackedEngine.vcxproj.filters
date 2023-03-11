@@ -166,9 +166,6 @@
     <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp">
       <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
     </ClCompile>
@@ -281,9 +278,6 @@
     </ClInclude>
     <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.h">
       <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>

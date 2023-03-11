@@ -1,6 +1,11 @@
 #pragma once
-#include "Rendering/Memory/BufferAllocations/BaseBufferAllocation.h"
+#include <vulkan/vulkan.h>
 
-class BaseIndexBufferAllocation : public BaseBufferAllocation {
+class BaseIndexBufferAllocation{
+public:
+	virtual ~BaseIndexBufferAllocation() = 0;
+	const VkBuffer GetBuffer() const;
 
+protected:
+	VkBuffer buffer;
 };

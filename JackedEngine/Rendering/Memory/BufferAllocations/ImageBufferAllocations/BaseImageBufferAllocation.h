@@ -1,8 +1,9 @@
 #pragma once
-#include "Rendering/Memory/BufferAllocations/BaseBufferAllocation.h"
+#include <vulkan/vulkan.h>
 
-class BaseImageBufferAllocation : public BaseBufferAllocation {
+class BaseImageBufferAllocation {
 public:
+	virtual ~BaseImageBufferAllocation() = 0;
 	const VkImageView& GetImageView() const;
 
 protected:

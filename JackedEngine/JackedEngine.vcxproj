@@ -36,7 +36,6 @@
     <ClCompile Include="Rendering\Device.cpp" />
     <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp" />
     <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp" />
-    <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp" />
@@ -76,7 +75,6 @@
     <ClInclude Include="Rendering\Device.h" />
     <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h" />
     <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h" />
-    <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.h" />

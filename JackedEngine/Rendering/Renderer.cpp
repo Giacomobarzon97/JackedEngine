@@ -41,8 +41,6 @@ void Renderer::DrawObject(RenderableObject& object) {
 		throw std::runtime_error("failed to present swap chain image!");
 	}
 	currentFrame = (currentFrame + 1) % maxFramesInFlight;
-	vkDeviceWaitIdle(device.GetLogicalDevice());
-
 }
 
 void Renderer::Reset() const {
