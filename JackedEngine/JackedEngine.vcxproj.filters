@@ -20,9 +20,6 @@
     <Filter Include="Source Files\Logic">
       <UniqueIdentifier>{c276a586-96c9-4a5e-b52e-c9a09e33f27d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Buffers">
-      <UniqueIdentifier>{59bf4c4e-23f5-43d1-a31d-5986533506ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Rendering\Descriptors">
       <UniqueIdentifier>{94e984da-c05f-4a86-b832-c3ce29dd3887}</UniqueIdentifier>
     </Filter>
@@ -74,6 +71,9 @@
     <Filter Include="Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations">
       <UniqueIdentifier>{501f4a96-5f05-4a3d-bb6a-1d558fcc8a6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations">
+      <UniqueIdentifier>{ae64a349-6b0a-4211-b0ac-5015c9e772af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -96,9 +96,6 @@
     </ClCompile>
     <ClCompile Include="Utils\FileIO.cpp">
       <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp">
-      <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
@@ -123,9 +120,6 @@
     </ClCompile>
     <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp">
       <Filter>Source Files\Logic\SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Buffers\ImageBuffer.cpp">
-      <Filter>Source Files\Rendering\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
@@ -187,6 +181,18 @@
     <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\VMAUniformBufferAllocation.cpp">
       <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUImage.cpp">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -206,9 +212,6 @@
     </ClInclude>
     <ClInclude Include="Utils\FileIOr.h">
       <Filter>Source Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Buffers\BaseBuffer.h">
-      <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
@@ -233,9 +236,6 @@
     </ClInclude>
     <ClInclude Include="Logic\SceneObjects\RenderableObject.h">
       <Filter>Source Files\Logic\SceneObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Buffers\ImageBuffer.h">
-      <Filter>Source Files\Rendering\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
@@ -296,6 +296,18 @@
     </ClInclude>
     <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\VMAUniformBufferAllocation.h">
       <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUImage.h">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

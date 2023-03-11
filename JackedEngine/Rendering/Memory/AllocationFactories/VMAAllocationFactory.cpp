@@ -17,3 +17,7 @@ const VMAIndexBufferAllocation* VMAAllocationFactory::CreateIndexBufferAllocatio
 const VMAUniformBufferAllocation* VMAAllocationFactory::CreateUniformBufferAllocation(const size_t bufferSize) const {
 	return new VMAUniformBufferAllocation(allocator, bufferSize);
 }
+
+const VMAImageBufferAllocation* VMAAllocationFactory::CreateImageBufferAllocation(const void* data, const int width, const int height) const {
+	return new VMAImageBufferAllocation(allocator, data, width, height);
+}

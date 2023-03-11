@@ -39,3 +39,7 @@ void BaseAllocator::endSingleTimeCommands(VkCommandBuffer commandBuffer) const {
 	vkQueueWaitIdle(device.GetGraphicsQueue());
 	vkFreeCommandBuffers(device.GetLogicalDevice(), device.GetCommandPool(), 1, &commandBuffer);
 }
+
+const Device& BaseAllocator::GetDevice() const{
+	return device;
+}

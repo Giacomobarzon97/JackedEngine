@@ -13,6 +13,7 @@
 #include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
 #include "Rendering/Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Rendering/Resources/GPUResources/GPUModel.h"
+#include "Rendering/Resources/GPUResources/GPUImage.h"
 
 class Renderer {
 public:
@@ -41,6 +42,7 @@ private:
 
 	VMAAllocationFactory allocationFactory;
 	GPUModel model;
+	GPUImage image;
 
 	ImageDescriptorSet imageDescriptorSet;
 

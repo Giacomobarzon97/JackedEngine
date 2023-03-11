@@ -14,9 +14,9 @@ public:
 	void CreateBuffer(VkBuffer& buffer, VmaAllocation& allocation, const VkDeviceSize bufferSize, const VkBufferUsageFlags usage, const VkMemoryPropertyFlags properties) const;
 	void MapMemory(VmaAllocation& allocation, void*& memLoc) const;
 	void UnMapMemory(VmaAllocation& allocation) const;
-
 	void DestroyBuffer(VkBuffer& buffer, VmaAllocation allocation) const;
-	
+	void CreateImage(VkImage& image, VmaAllocation& allocation, const uint32_t width, const uint32_t height, const VkFormat format, const VkImageTiling tiling, const VkImageUsageFlags usage, const VkMemoryPropertyFlags properties) const;
+	void DestroyImage(VkImage& image, VmaAllocation& allocation) const;
 
 private:
 	VmaAllocator allocator;

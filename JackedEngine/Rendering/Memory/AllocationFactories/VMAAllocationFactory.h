@@ -4,6 +4,7 @@
 #include "Rendering/Memory/BufferAllocations/VertexBufferAllocations/VMAVertexBufferAllocation.h"
 #include "Rendering/Memory/BufferAllocations/IndexBufferAllocations/VMAIndexBufferAllocation.h"
 #include "Rendering/Memory/BufferAllocations/UniformBufferAllocations/VMAUniformBufferAllocation.h"
+#include "Rendering/Memory/BufferAllocations/ImageBufferAllocations/VMAImageBufferAllocation.h"
 
 class VMAAllocationFactory : public BaseAllocationFactory {
 public:
@@ -16,6 +17,7 @@ public:
 	virtual const VMAVertexBufferAllocation* CreateVertexBufferAllocation(const void* data, const size_t dataSize) const override;
 	virtual const VMAIndexBufferAllocation* CreateIndexBufferAllocation(const void* data, const size_t dataSize) const override;
 	virtual const VMAUniformBufferAllocation* CreateUniformBufferAllocation(const size_t dataSize) const override;
+	virtual const VMAImageBufferAllocation* CreateImageBufferAllocation(const void* data, const int width, const int height) const override;
 
 private:
 	VMAAllocator allocator;

@@ -1,11 +1,10 @@
 #pragma once
-#include <string>
 #include "Rendering/Resources/CPUResources/CPUModel.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 
 class GPUModel {
 public:
-	GPUModel(const BaseAllocationFactory& allocationFactory, const std::string objFilePath);
+	GPUModel(const BaseAllocationFactory& allocationFactory, const CPUModel& model);
 	GPUModel(GPUModel&) = delete;
 	~GPUModel();
 

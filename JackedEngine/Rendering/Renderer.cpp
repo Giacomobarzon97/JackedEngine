@@ -7,8 +7,9 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	uboDescriptorPool(device, maxFramesInFlight),
 	pipeline(device, uboDescriptorPool, imageDescriptorPool),
 	allocationFactory(device),
-	model(allocationFactory, "../Assets/Models/viking_room.obj"),
-	imageDescriptorSet(device, imageDescriptorPool, "../Assets/Textures/viking_room.png")
+	model(allocationFactory, CPUModel("../Assets/Models/viking_room.obj")),
+	image(allocationFactory, CPUImage("../Assets/Textures/viking_room.png")),
+	imageDescriptorSet(device, imageDescriptorPool, image)
 {
 	commandBuffers.resize(maxFramesInFlight);
 	uboDescriptorSets.resize(maxFramesInFlight);

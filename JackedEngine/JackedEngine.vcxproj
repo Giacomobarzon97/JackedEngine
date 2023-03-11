@@ -25,7 +25,6 @@
     <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
-    <ClCompile Include="Rendering\Buffers\ImageBuffer.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
@@ -38,6 +37,8 @@
     <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp" />
     <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.cpp" />
@@ -49,9 +50,10 @@
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
     <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
-    <ClCompile Include="Rendering\Buffers\BaseBuffer.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp" />
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUImage.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
@@ -63,7 +65,6 @@
     <ClInclude Include="Logic\SceneObjects\RenderableObject.h" />
     <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h" />
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
-    <ClInclude Include="Rendering\Buffers\ImageBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
@@ -76,6 +77,8 @@
     <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h" />
     <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\BaseBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.h" />
@@ -87,9 +90,10 @@
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
     <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
-    <ClInclude Include="Rendering\Buffers\BaseBuffer.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h" />
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUImage.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />

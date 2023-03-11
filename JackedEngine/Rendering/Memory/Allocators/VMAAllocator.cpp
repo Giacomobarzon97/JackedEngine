@@ -9,7 +9,10 @@ VMAAllocator::VMAAllocator(const Device& device) :
 	allocatorInfo.physicalDevice = device.GetPhysicalDevice();
 	allocatorInfo.device = device.GetLogicalDevice();
 	allocatorInfo.instance = device.GetInstance();
-	vmaCreateAllocator(&allocatorInfo, &allocator);
+
+	if (vmaCreateAllocator(&allocatorInfo, &allocator) != VK_SUCCESS) {
+		throw std::runtime_error("failed to vma allocator!");
+	}
 }
 
 VMAAllocator::~VMAAllocator() {
@@ -25,7 +28,9 @@ void VMAAllocator::CreateBuffer(VkBuffer& buffer, VmaAllocation& allocation, con
 	VmaAllocationCreateInfo vmaallocInfo = {};
 	vmaallocInfo.requiredFlags = properties;
 
-	vmaCreateBuffer(allocator, &bufferInfo, &vmaallocInfo, &buffer, &allocation, nullptr);
+	if (vmaCreateBuffer(allocator, &bufferInfo, &vmaallocInfo, &buffer, &allocation, nullptr)!= VK_SUCCESS) {
+		throw std::runtime_error("failed to create texture buffer!");
+	}
 }
 
 void VMAAllocator::MapMemory(VmaAllocation& allocation, void*& memLoc) const {
@@ -44,4 +49,32 @@ const VkDeviceSize VMAAllocator::GetAvailableMemory() const {
 	VmaBudget budgetInfo;
 	vmaGetHeapBudgets(allocator, &budgetInfo);
 	return budgetInfo.budget;
+}
+
+void VMAAllocator::CreateImage(VkImage& image, VmaAllocation& allocation, const uint32_t width, const uint32_t height, const VkFormat format, const VkImageTiling tiling, const VkImageUsageFlags usage, const VkMemoryPropertyFlags properties) const {
+	VkImageCreateInfo imageInfo{};
+	imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+	imageInfo.imageType = VK_IMAGE_TYPE_2D;
+	imageInfo.extent.width = width;
+	imageInfo.extent.height = height;
+	imageInfo.extent.depth = 1;
+	imageInfo.mipLevels = 1;
+	imageInfo.arrayLayers = 1;
+	imageInfo.format = format;
+	imageInfo.tiling = tiling;
+	imageInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	imageInfo.usage = usage;
+	imageInfo.samples = VK_SAMPLE_COUNT_1_BIT;
+	imageInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+
+	VmaAllocationCreateInfo allocInfo{};
+	allocInfo.requiredFlags = properties;
+
+	if (vmaCreateImage(allocator, &imageInfo, &allocInfo, &image, &allocation, nullptr) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create texture image!");
+	}
+}
+
+void VMAAllocator::DestroyImage(VkImage& image, VmaAllocation& allocation) const {
+	vmaDestroyImage(allocator, image, allocation);
 }

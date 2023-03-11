@@ -2,7 +2,6 @@
 #include "Rendering/Descriptors/DescriptorSets/BaseDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
-#include "Rendering/Buffers/ImageBuffer.h"
 
 class UBODescriptorSet : public BaseDescriptorSet{
 public:
