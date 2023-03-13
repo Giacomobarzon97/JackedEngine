@@ -2,7 +2,7 @@
 
 FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
 	BaseDescriptorSet(device),
-	mvpUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
+	projectionViewUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
 {
 	VkDescriptorSetAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -14,7 +14,7 @@ FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescript
 	}
 
 	VkDescriptorBufferInfo bufferInfo{};
-	bufferInfo.buffer = mvpUniform->GetBuffer();
+	bufferInfo.buffer = projectionViewUniform->GetBuffer();
 	bufferInfo.offset = 0;
 	bufferInfo.range = sizeof(UniformBufferObject);
 
@@ -32,11 +32,11 @@ FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescript
 }
 
 FrameDescriptorSet::~FrameDescriptorSet(){
-	delete mvpUniform;
+	delete projectionViewUniform;
 }
 
-void FrameDescriptorSet::UpdateDescriptorSet(glm::mat4 mvpMatrix) const {
+void FrameDescriptorSet::UpdateProjectionViewMatrix(glm::mat4 projectionView) const {
 	UniformBufferObject ubo{};
-	ubo.mvp = mvpMatrix;
-	mvpUniform->UpdateBuffer(&ubo);
+	ubo.projectionView = projectionView;
+	projectionViewUniform->UpdateBuffer(&ubo);
 }

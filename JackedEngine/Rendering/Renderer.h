@@ -39,12 +39,11 @@ private:
 
 	std::vector<Graphical3DCommandBuffer* > commandBuffers;
 	std::vector<FrameDescriptorSet* > frameDescriptorSets;
+	std::vector<ObjectDescriptorSet* > objectDescriptorSets;
 
 	VMAAllocationFactory allocationFactory;
 	GPUModel model;
 	GPUImage image;
-
-	ObjectDescriptorSet objectDescriptorSet;
 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;
