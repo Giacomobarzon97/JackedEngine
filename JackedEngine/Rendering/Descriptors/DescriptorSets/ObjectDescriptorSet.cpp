@@ -1,6 +1,6 @@
-#include "ImageDescriptorSet.h"
+#include "ObjectDescriptorSet.h"
 
-ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescriptorPool& descriptorPool, const GPUImage& image) :
+ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescriptorPool& descriptorPool, const GPUImage& image) :
 	BaseDescriptorSet(device),
 	image(image)
 {
@@ -52,6 +52,6 @@ ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescript
 	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
-ImageDescriptorSet::~ImageDescriptorSet() {
+ObjectDescriptorSet::~ObjectDescriptorSet() {
 	vkDestroySampler(device.GetLogicalDevice(), sampler, nullptr);
 }

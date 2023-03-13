@@ -7,10 +7,10 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/Base3DPipeline.h"
 #include "Rendering/CommandBuffers/Graphical3DCommandBuffer.h"
-#include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
-#include "Rendering/Descriptors/DescriptorSets/UBODescriptorSet.h"
-#include "Rendering/Descriptors/DescriptorPools/ImageDescriptorPool.h"
-#include "Rendering/Descriptors/DescriptorSets/ImageDescriptorSet.h"
+#include "Rendering/Descriptors/DescriptorPools/FrameDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorSets/FrameDescriptorSet.h"
+#include "Rendering/Descriptors/DescriptorPools/ObjectDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorSets/ObjectDescriptorSet.h"
 #include "Rendering/Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Rendering/Resources/GPUResources/GPUModel.h"
 #include "Rendering/Resources/GPUResources/GPUImage.h"
@@ -33,18 +33,18 @@ private:
 
 	const BaseCameraObject& camera;
 	Device device;
-	const UBODescriptorPool uboDescriptorPool;
-	const ImageDescriptorPool imageDescriptorPool;
+	const FrameDescriptorPool frameDescriptorPool;
+	const ObjectDescriptorPool objectDescriptorPool;
 	const Base3DPipeline pipeline;
 
 	std::vector<Graphical3DCommandBuffer* > commandBuffers;
-	std::vector<UBODescriptorSet* > uboDescriptorSets;
+	std::vector<FrameDescriptorSet* > frameDescriptorSets;
 
 	VMAAllocationFactory allocationFactory;
 	GPUModel model;
 	GPUImage image;
 
-	ImageDescriptorSet imageDescriptorSet;
+	ObjectDescriptorSet objectDescriptorSet;
 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;

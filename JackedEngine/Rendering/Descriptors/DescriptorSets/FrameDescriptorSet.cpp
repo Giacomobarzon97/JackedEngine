@@ -1,6 +1,6 @@
-#include "UBODescriptorSet.h"
+#include "FrameDescriptorSet.h"
 
-UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
+FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
 	BaseDescriptorSet(device),
 	mvpUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
 {
@@ -31,11 +31,11 @@ UBODescriptorSet::UBODescriptorSet(const Device& device, const UBODescriptorPool
 	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
-UBODescriptorSet::~UBODescriptorSet(){
+FrameDescriptorSet::~FrameDescriptorSet(){
 	delete mvpUniform;
 }
 
-void UBODescriptorSet::UpdateDescriptorSet(glm::mat4 mvpMatrix) const {
+void FrameDescriptorSet::UpdateDescriptorSet(glm::mat4 mvpMatrix) const {
 	UniformBufferObject ubo{};
 	ubo.mvp = mvpMatrix;
 	mvpUniform->UpdateBuffer(&ubo);

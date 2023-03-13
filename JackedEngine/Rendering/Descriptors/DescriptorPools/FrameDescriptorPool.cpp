@@ -1,6 +1,6 @@
-#include "UBODescriptorPool.h"
+#include "FrameDescriptorPool.h"
 
-UBODescriptorPool::UBODescriptorPool(const Device& device, int maxSets) :
+FrameDescriptorPool::FrameDescriptorPool(const Device& device, int maxSets) :
 	BaseDescriptorPool(device)
 {
 	VkDescriptorSetLayoutBinding uboLayoutBinding{};
@@ -34,4 +34,4 @@ UBODescriptorPool::UBODescriptorPool(const Device& device, int maxSets) :
 }
 
 
-UBODescriptorPool::~UBODescriptorPool(){}
+FrameDescriptorPool::~FrameDescriptorPool(){}

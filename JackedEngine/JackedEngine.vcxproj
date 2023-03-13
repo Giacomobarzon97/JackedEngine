@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -27,11 +27,11 @@
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
     <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp" />
@@ -66,11 +66,11 @@
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
     <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h" />

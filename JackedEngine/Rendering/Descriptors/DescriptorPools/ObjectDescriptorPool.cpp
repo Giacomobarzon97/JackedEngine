@@ -1,6 +1,6 @@
-#include "ImageDescriptorPool.h"
+#include "ObjectDescriptorPool.h"
 
-ImageDescriptorPool::ImageDescriptorPool(const Device& device, int maxSets) :
+ObjectDescriptorPool::ObjectDescriptorPool(const Device& device, int maxSets) :
 	BaseDescriptorPool(device)
 {
 
@@ -35,4 +35,4 @@ ImageDescriptorPool::ImageDescriptorPool(const Device& device, int maxSets) :
 }
 
 
-ImageDescriptorPool::~ImageDescriptorPool() {}
+ObjectDescriptorPool::~ObjectDescriptorPool() {}

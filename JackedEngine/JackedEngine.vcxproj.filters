@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -100,10 +100,10 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp">
@@ -121,10 +121,10 @@
     <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp">
       <Filter>Source Files\Logic\SceneObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp">
@@ -213,10 +213,10 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\UBODescriptorSet.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\UBODescriptorPool.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h">
@@ -234,10 +234,10 @@
     <ClInclude Include="Logic\SceneObjects\RenderableObject.h">
       <Filter>Source Files\Logic\SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ImageDescriptorSet.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ImageDescriptorPool.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h">

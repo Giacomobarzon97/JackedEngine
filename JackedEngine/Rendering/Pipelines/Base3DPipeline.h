@@ -7,12 +7,12 @@
 #include "Rendering/Resources/CPUResources/CPUVertex.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/BasePipeline.h"
-#include "Rendering/Descriptors/DescriptorPools/UBODescriptorPool.h"
-#include "Rendering/Descriptors/DescriptorPools/ImageDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorPools/FrameDescriptorPool.h"
+#include "Rendering/Descriptors/DescriptorPools/ObjectDescriptorPool.h"
 
 class Base3DPipeline : public BasePipeline{
 public:
-	Base3DPipeline(const Device& device, const UBODescriptorPool& uboDescriptorPool, const ImageDescriptorPool& imageDescriptorPool, const std::string shaderName = "default");
+	Base3DPipeline(const Device& device, const FrameDescriptorPool& uboDescriptorPool, const ObjectDescriptorPool& imageDescriptorPool, const std::string shaderName = "default");
 	Base3DPipeline(Base3DPipeline&) = delete;
 
 	Base3DPipeline&operator=(Base3DPipeline&) = delete;

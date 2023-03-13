@@ -24,7 +24,7 @@ Graphical3DCommandBuffer::~Graphical3DCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const GPUModel& model, const UBODescriptorSet& uboDescriptorSet, const ImageDescriptorSet& imageDescriptorSet) const {
+const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;
@@ -75,11 +75,11 @@ const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipe
 	vkCmdSetScissor(commandBuffer, 0, 1, &scissor);
 
 	std::array<VkDescriptorSet, 2> descriptorSets{};
-	descriptorSets[0] = uboDescriptorSet.GetDescriptorSet();
-	descriptorSets[1] = imageDescriptorSet.GetDescriptorSet();
+	descriptorSets[0] = frameDescriptorSet.GetDescriptorSet();
+	descriptorSets[1] = objectDescriptorSet.GetDescriptorSet();
 
-	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 0, 1, &uboDescriptorSet.GetDescriptorSet(), 0, nullptr);
-	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 1, 1, &imageDescriptorSet.GetDescriptorSet(), 0, nullptr);
+	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 0, 1, &frameDescriptorSet.GetDescriptorSet(), 0, nullptr);
+	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 1, 1, &objectDescriptorSet.GetDescriptorSet(), 0, nullptr);
 
 	vkCmdDrawIndexed(commandBuffer, model.GetNumberOfIndices(), 1, 0, 0, 0);
 
