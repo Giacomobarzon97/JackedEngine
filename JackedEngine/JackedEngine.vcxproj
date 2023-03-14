@@ -27,6 +27,9 @@
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
@@ -66,6 +69,9 @@
     <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />

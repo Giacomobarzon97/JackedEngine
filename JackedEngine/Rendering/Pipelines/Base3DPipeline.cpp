@@ -1,6 +1,6 @@
 #include "Base3DPipeline.h"
 
-Base3DPipeline::Base3DPipeline(const Device& device, const FrameDescriptorPool& frameDescriptorPool, const ObjectDescriptorPool& objectDescriptorPool, const std::string shaderName) :
+Base3DPipeline::Base3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout, const std::string shaderName) :
 	BasePipeline(device)
 {
 	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/default.vert.spv");
@@ -90,8 +90,8 @@ Base3DPipeline::Base3DPipeline(const Device& device, const FrameDescriptorPool& 
 	dynamicState.pDynamicStates = dynamicStates.data();
 
 	std::array<VkDescriptorSetLayout, 2> descriptorLayouts{};
-	descriptorLayouts[0] = frameDescriptorPool.GetDescriptorSetLayout();
-	descriptorLayouts[1] = objectDescriptorPool.GetDescriptorSetLayout();
+	descriptorLayouts[0] = frameDescriptorLayout.GetDescriptorLayout();
+	descriptorLayouts[1] = objectDescriptorLayout.GetDescriptorLayout();
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;

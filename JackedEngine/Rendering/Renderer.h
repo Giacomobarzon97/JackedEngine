@@ -7,6 +7,8 @@
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/Base3DPipeline.h"
 #include "Rendering/CommandBuffers/Graphical3DCommandBuffer.h"
+#include "Rendering/Descriptors/DescriptorLayouts/FrameDescriptorLayout.h"
+#include "Rendering/Descriptors/DescriptorLayouts/ObjectDescriptorLayout.h"
 #include "Rendering/Descriptors/DescriptorPools/FrameDescriptorPool.h"
 #include "Rendering/Descriptors/DescriptorSets/FrameDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorPools/ObjectDescriptorPool.h"
@@ -33,6 +35,8 @@ private:
 
 	const BaseCameraObject& camera;
 	Device device;
+	const FrameDescriptorLayout frameDescriptorLayout;
+	const ObjectDescriptorLayout objectDescriptorLayout;
 	const FrameDescriptorPool frameDescriptorPool;
 	const ObjectDescriptorPool objectDescriptorPool;
 	const Base3DPipeline pipeline;

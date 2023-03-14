@@ -1,6 +1,6 @@
 #include "ObjectDescriptorSet.h"
 
-ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image) :
+ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescriptorLayout& descriptorLayout, const ObjectDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image) :
 	BaseDescriptorSet(device),
 	image(image),
 	modelUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
@@ -9,7 +9,7 @@ ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescr
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
 	allocInfo.descriptorPool = descriptorPool.GetDescriptorPool();
 	allocInfo.descriptorSetCount = 1;
-	allocInfo.pSetLayouts = &descriptorPool.GetDescriptorSetLayout();
+	allocInfo.pSetLayouts = &descriptorLayout.GetDescriptorLayout();
 	if (vkAllocateDescriptorSets(device.GetLogicalDevice(), &allocInfo, &descriptorSet) != VK_SUCCESS) {
 		throw std::runtime_error("failed to allocate descriptor sets!");
 	}

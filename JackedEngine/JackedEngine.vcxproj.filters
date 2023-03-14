@@ -74,6 +74,9 @@
     <Filter Include="Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations">
       <UniqueIdentifier>{ae64a349-6b0a-4211-b0ac-5015c9e772af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Descriptors\DescriptorLayouts">
+      <UniqueIdentifier>{555d9417-f4ff-4ae2-b42e-cd2fbfa99ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -190,6 +193,15 @@
     <ClCompile Include="Rendering\Resources\GPUResources\GPUImage.cpp">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -302,6 +314,15 @@
     </ClInclude>
     <ClInclude Include="Rendering\Resources\GPUResources\GPUImage.h">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

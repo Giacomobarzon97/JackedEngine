@@ -6,11 +6,6 @@ BaseDescriptorPool::BaseDescriptorPool(const Device& device) :
 
 BaseDescriptorPool::~BaseDescriptorPool() {
 	vkDestroyDescriptorPool(device.GetLogicalDevice(), descriptorPool, nullptr);
-	vkDestroyDescriptorSetLayout(device.GetLogicalDevice(), descriptorSetLayout, nullptr);
-}
-
-const VkDescriptorSetLayout& BaseDescriptorPool::GetDescriptorSetLayout() const {
-	return descriptorSetLayout;
 }
 
 const VkDescriptorPool& BaseDescriptorPool::GetDescriptorPool() const {

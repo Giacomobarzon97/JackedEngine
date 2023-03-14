@@ -1,6 +1,6 @@
 #include "FrameDescriptorSet.h"
 
-FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
+FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescriptorLayout& descriptorLayout, const FrameDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
 	BaseDescriptorSet(device),
 	projectionViewUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
 {
@@ -8,7 +8,7 @@ FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescript
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
 	allocInfo.descriptorPool = descriptorPool.GetDescriptorPool();
 	allocInfo.descriptorSetCount = 1;
-	allocInfo.pSetLayouts = &descriptorPool.GetDescriptorSetLayout();
+	allocInfo.pSetLayouts = &descriptorLayout.GetDescriptorLayout();
 	if (vkAllocateDescriptorSets(device.GetLogicalDevice(), &allocInfo, &descriptorSet) != VK_SUCCESS) {
 		throw std::runtime_error("failed to allocate descriptor sets!");
 	}
