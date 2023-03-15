@@ -1,8 +1,9 @@
 #include "ObjectDescriptorSet.h"
 
-ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescriptorLayout& descriptorLayout, const ObjectDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image) :
+ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescriptorLayout& descriptorLayout, const ObjectDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image, const BaseSampler& sampler) :
 	BaseDescriptorSet(device),
 	image(image),
+	sampler(sampler),
 	modelUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
 {
 	VkDescriptorSetAllocateInfo allocInfo{};
@@ -14,27 +15,6 @@ ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescr
 		throw std::runtime_error("failed to allocate descriptor sets!");
 	}
 
-	VkSamplerCreateInfo samplerInfo{};
-	samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
-	samplerInfo.magFilter = VK_FILTER_LINEAR;
-	samplerInfo.minFilter = VK_FILTER_LINEAR;
-	samplerInfo.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-	samplerInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-	samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-	samplerInfo.anisotropyEnable = VK_TRUE;
-	samplerInfo.maxAnisotropy = device.GetDeviceProperties().limits.maxSamplerAnisotropy;
-	samplerInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
-	samplerInfo.unnormalizedCoordinates = VK_FALSE;
-	samplerInfo.compareEnable = VK_FALSE;
-	samplerInfo.compareOp = VK_COMPARE_OP_ALWAYS;
-	samplerInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
-	samplerInfo.mipLodBias = 0.0f;
-	samplerInfo.minLod = 0.0f;
-	samplerInfo.maxLod = 0.0f;
-	if (vkCreateSampler(device.GetLogicalDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create texture sampler!");
-	}
-
 	VkDescriptorBufferInfo bufferInfo{};
 	bufferInfo.buffer = modelUniform->GetBuffer();
 	bufferInfo.offset = 0;
@@ -43,7 +23,7 @@ ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescr
 	VkDescriptorImageInfo imageInfo{};
 	imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 	imageInfo.imageView = image.GetImageView();
-	imageInfo.sampler = sampler;
+	imageInfo.sampler = sampler.GetSampler();
 
 	std::array<VkWriteDescriptorSet, 2> descriptorWrites{};
 
@@ -68,7 +48,6 @@ ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescr
 
 ObjectDescriptorSet::~ObjectDescriptorSet() {
 	delete modelUniform;
-	vkDestroySampler(device.GetLogicalDevice(), sampler, nullptr);
 }
 
 void ObjectDescriptorSet::UpdateModelMatrix(glm::mat4 modelMatrix) const {

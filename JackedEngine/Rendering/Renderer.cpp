@@ -4,7 +4,8 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	camera(camera),
 	device(window),
 	allocationFactory(device),
-	renderingManager(device, allocationFactory, maxFramesInFlight),
+	sampler(device),
+	renderingManager(device, allocationFactory, sampler, maxFramesInFlight),
 	pipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout())
 {
 	commandBuffers.resize(maxFramesInFlight);

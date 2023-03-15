@@ -77,6 +77,9 @@
     <Filter Include="Source Files\Rendering\Descriptors\DescriptorLayouts">
       <UniqueIdentifier>{555d9417-f4ff-4ae2-b42e-cd2fbfa99ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Samplers">
+      <UniqueIdentifier>{22f40832-cf76-4b04-9b55-08379a970f7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -205,6 +208,12 @@
     <ClCompile Include="Rendering\RenderingManager.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Samplers\BaseSampler.cpp">
+      <Filter>Source Files\Rendering\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp">
+      <Filter>Source Files\Rendering\Samplers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -329,6 +338,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\RenderingManager.h">
       <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Samplers\BaseSampler.h">
+      <Filter>Source Files\Rendering\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h">
+      <Filter>Source Files\Rendering\Samplers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

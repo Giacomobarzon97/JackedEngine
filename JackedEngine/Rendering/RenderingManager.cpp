@@ -1,8 +1,9 @@
 #include "RenderingManager.h"
 
-RenderingManager::RenderingManager(const Device& device, const BaseAllocationFactory& allocationFactory, const unsigned int nFrames) :
+RenderingManager::RenderingManager(const Device& device, const BaseAllocationFactory& allocationFactory, const BaseSampler& sampler, const unsigned int nFrames) :
 	device(device),
 	allocationFactory(allocationFactory),
+	sampler(sampler),
 	nFrames(nFrames),
 	objectDescriptorLayout(device),
 	frameDescriptorLayout(device),
@@ -60,7 +61,7 @@ const ObjectDescriptorSet& RenderingManager::CreateOrGetObjectDescriptor(const s
 		objectDescriptorSetsMap[objectId] = std::vector<const ObjectDescriptorSet*>();
 		objectDescriptorSetsMap[objectId].resize(nFrames);
 		for (unsigned int i = 0; i < nFrames; i++) {
-			objectDescriptorSetsMap[objectId][i] = new ObjectDescriptorSet(device, objectDescriptorLayout, *objectDescriptorPoolMap[objectId], allocationFactory, *image);
+			objectDescriptorSetsMap[objectId][i] = new ObjectDescriptorSet(device, objectDescriptorLayout, *objectDescriptorPoolMap[objectId], allocationFactory, *image, sampler);
 		}
 	} 
 	return *objectDescriptorSetsMap[objectId][frameNumber];

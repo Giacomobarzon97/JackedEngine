@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Rendering\Samplers\BaseSampler.cpp" />
+    <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp" />
     <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp" />
     <ClCompile Include="Scene\SceneObjects\RenderableObjects.cpp" />
     <ClCompile Include="Scene\SceneObjects\BaseSceneObject.cpp" />
@@ -64,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
+    <ClInclude Include="Rendering\Samplers\BaseSampler.h" />
+    <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h" />
     <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h" />
     <ClInclude Include="Scene\SceneObjects\RenderableObject.h" />
     <ClInclude Include="Scene\SceneObjects\BaseSceneObject.h" />

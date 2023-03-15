@@ -1,4 +1,5 @@
 #pragma once
+#include "Rendering/Samplers/BaseSampler.h"
 #include "Rendering/Descriptors/DescriptorSets/BaseDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorPools/ObjectDescriptorPool.h"
 #include "Rendering/Descriptors/DescriptorLayouts/ObjectDescriptorLayout.h"
@@ -6,7 +7,7 @@
 
 class ObjectDescriptorSet : public BaseDescriptorSet{
 public:
-	ObjectDescriptorSet(const Device& device, const ObjectDescriptorLayout& descriptorLayout,const ObjectDescriptorPool& descriptorPool,const BaseAllocationFactory& allocationFactory, const GPUImage& imageBuffer);
+	ObjectDescriptorSet(const Device& device, const ObjectDescriptorLayout& descriptorLayout,const ObjectDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& imageBuffer, const BaseSampler& sampler);
 	ObjectDescriptorSet(ObjectDescriptorSet&) = delete;
 	virtual ~ObjectDescriptorSet() override;
 
@@ -20,6 +21,6 @@ private:
 	};
 
 	const GPUImage& image;
-	VkSampler sampler;
+	const BaseSampler& sampler;
 	const BaseUniformBufferAllocation* const modelUniform;
 };

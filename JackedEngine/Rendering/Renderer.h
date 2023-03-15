@@ -9,6 +9,7 @@
 #include "Rendering/CommandBuffers/Graphical3DCommandBuffer.h"
 #include "Rendering/Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Rendering/RenderingManager.h"
+#include "Rendering/Samplers/LinearRepeatSampler.h"
 
 class Renderer {
 public:
@@ -29,6 +30,7 @@ private:
 	const BaseCameraObject& camera;
 	Device device;
 	VMAAllocationFactory allocationFactory;
+	LinearRepeatSampler sampler;
 	RenderingManager renderingManager;
 	const Base3DPipeline pipeline;
 	std::vector<Graphical3DCommandBuffer* > commandBuffers;

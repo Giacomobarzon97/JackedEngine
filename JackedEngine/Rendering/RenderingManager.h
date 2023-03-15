@@ -7,7 +7,7 @@
 
 class RenderingManager {
 public:
-	RenderingManager(const Device& device, const BaseAllocationFactory& allocationFactory, const unsigned int nFrames);
+	RenderingManager(const Device& device, const BaseAllocationFactory& allocationFactory, const BaseSampler& sampler, const unsigned int nFrames);
 	RenderingManager(RenderingManager&) = delete;
 	~RenderingManager();
 
@@ -23,6 +23,7 @@ public:
 private:
 	const Device& device;
 	const BaseAllocationFactory& allocationFactory;
+	const BaseSampler& sampler;
 	const unsigned int nFrames;
 
 	ObjectDescriptorLayout objectDescriptorLayout;
