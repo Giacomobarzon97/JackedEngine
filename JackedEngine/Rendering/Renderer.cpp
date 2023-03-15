@@ -3,23 +3,14 @@
 Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	camera(camera),
 	device(window),
-	frameDescriptorLayout(device),
-	objectDescriptorLayout(device),
-	objectDescriptorPool(device, maxFramesInFlight),
-	frameDescriptorPool(device, maxFramesInFlight),
-	pipeline(device, frameDescriptorLayout, objectDescriptorLayout),
 	allocationFactory(device),
-	model(allocationFactory, CPUModel("../Assets/Models/viking_room.obj")),
-	image(allocationFactory, CPUImage("../Assets/Textures/viking_room.png"))
+	renderingManager(device, allocationFactory, maxFramesInFlight),
+	pipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout())
 {
 	commandBuffers.resize(maxFramesInFlight);
-	frameDescriptorSets.resize(maxFramesInFlight);
-	objectDescriptorSets.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers[i] = new Graphical3DCommandBuffer(device);
-		frameDescriptorSets[i] = new FrameDescriptorSet(device, frameDescriptorLayout, frameDescriptorPool, allocationFactory);
-		objectDescriptorSets[i] = new ObjectDescriptorSet(device, objectDescriptorLayout, objectDescriptorPool, allocationFactory, image);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -27,17 +18,23 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 Renderer::~Renderer() {
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
-		delete frameDescriptorSets[i];
-		delete objectDescriptorSets[i];
 	}
 }
 
 
 void Renderer::DrawObject(RenderableObject& object) {
-	frameDescriptorSets[currentFrame]->UpdateProjectionViewMatrix(camera.GetViewProjectionMatrix());
-	objectDescriptorSets[currentFrame]->UpdateModelMatrix(object.GetModelMatrix());
+	const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
+	const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 
-	VkResult result = commandBuffers[currentFrame]->PresentCommand(pipeline, model, *frameDescriptorSets[currentFrame], *objectDescriptorSets[currentFrame]);
+	frameDescriptorSet.UpdateProjectionViewMatrix(camera.GetViewProjectionMatrix());
+	objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
+
+	VkResult result = commandBuffers[currentFrame]->PresentCommand(
+		pipeline,
+		renderingManager.CreateOrGetModel(object.GetModelPath()),
+		frameDescriptorSet,
+		objectDescriptorSet
+	);
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;
 		device.RecreateSwapChain();

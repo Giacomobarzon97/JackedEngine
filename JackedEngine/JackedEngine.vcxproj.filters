@@ -202,6 +202,9 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\RenderingManager.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -323,6 +326,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderingManager.h">
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

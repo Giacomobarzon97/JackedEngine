@@ -52,6 +52,7 @@
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
     <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
+    <ClCompile Include="Rendering\RenderingManager.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
     <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
+    <ClInclude Include="Rendering\RenderingManager.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h" />
