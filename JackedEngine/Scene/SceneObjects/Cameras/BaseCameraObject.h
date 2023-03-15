@@ -1,5 +1,5 @@
 #pragma once
-#include "Logic/SceneObjects/BaseSceneObject.h"
+#include "Scene/SceneObjects/BaseSceneObject.h"
 
 class BaseCameraObject : public BaseSceneObject{
 public:

@@ -22,27 +22,30 @@ Renderer::~Renderer() {
 }
 
 
-void Renderer::DrawObject(RenderableObject& object) {
-	const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
-	const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
+void Renderer::DrawObject(std::vector<RenderableObject> objects) {
+	for (RenderableObject object : objects) {
+		const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
+		const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 
-	frameDescriptorSet.UpdateProjectionViewMatrix(camera.GetViewProjectionMatrix());
-	objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
+		frameDescriptorSet.UpdateProjectionViewMatrix(camera.GetViewProjectionMatrix());
+		objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
 
-	VkResult result = commandBuffers[currentFrame]->PresentCommand(
-		pipeline,
-		renderingManager.CreateOrGetModel(object.GetModelPath()),
-		frameDescriptorSet,
-		objectDescriptorSet
-	);
-	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
-		framebufferResized = false;
-		device.RecreateSwapChain();
+		VkResult result = commandBuffers[currentFrame]->PresentCommand(
+			pipeline,
+			renderingManager.CreateOrGetModel(object.GetModelPath()),
+			frameDescriptorSet,
+			objectDescriptorSet
+		);
+
+		if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
+			framebufferResized = false;
+			device.RecreateSwapChain();
+		}
+		else if (result != VK_SUCCESS) {
+			throw std::runtime_error("failed to present swap chain image!");
+		}
+		currentFrame = (currentFrame + 1) % maxFramesInFlight;
 	}
-	else if (result != VK_SUCCESS) {
-		throw std::runtime_error("failed to present swap chain image!");
-	}
-	currentFrame = (currentFrame + 1) % maxFramesInFlight;
 }
 
 void Renderer::Reset() const {

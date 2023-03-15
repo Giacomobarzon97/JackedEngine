@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Logic\SceneObjects\Cameras\BaseCameraObject.h"
+#include "Scene\SceneObjects\Cameras\BaseCameraObject.h"
 #include "Windows\BaseWindow.h"
 #include "Rendering\Renderer.h"
 

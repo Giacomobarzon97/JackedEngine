@@ -4,7 +4,7 @@
 #include <cmath>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
+#include "Scene/SceneObjects/Cameras/BaseCameraObject.h"
 #include "Windows/BaseWindow.h"
 
 class PerspectiveCamera : public BaseCameraObject

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
-#include "Logic/SceneObjects/RenderableObject.h"
+#include "Scene/SceneObjects/Cameras/BaseCameraObject.h"
+#include "Scene/SceneObjects/RenderableObject.h"
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/Base3DPipeline.h"
@@ -18,7 +18,7 @@ public:
 
 	Renderer &operator=(Renderer &) = delete;
 
-	void DrawObject(RenderableObject& object);
+	void DrawObject(std::vector<RenderableObject> objects);
 	void Reset() const;
 
 	static void FramebufferResizeCallback(void * buffer);

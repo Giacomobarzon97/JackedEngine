@@ -1,6 +1,6 @@
 #include "JackedEngine.h"
-#include "Logic/SceneObjects/Cameras/PerspectiveCamera.h"
-#include "Logic/SceneObjects/RenderableObject.h"
+#include "Scene/SceneObjects/Cameras/PerspectiveCamera.h"
+#include "Scene/SceneObjects/RenderableObject.h"
 #include "Windows/GLFWWindow.h"
 #include <chrono>
 
@@ -25,20 +25,20 @@ JackedEngine::~JackedEngine() {
 
 
 void JackedEngine::mainLoop() {
-	
-	RenderableObject object = RenderableObject(
-		"Viking Room",
-		"../Assets/Models/viking_room.obj",
-		"../Assets/Textures/viking_room.png"
-	);
+	std::vector<RenderableObject> objects;
+	objects.push_back(RenderableObject(
+			"Viking Room",
+			"../Assets/Models/viking_room.obj",
+			"../Assets/Textures/viking_room.png"
+	));
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 	while (!window->ShouldClose()) {
 		std::chrono::steady_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
 		float delta = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - prevFrameTime).count();
 		prevFrameTime = currentTime;
-		object.Rotate(0, 0, delta * 90);
+		objects[0].Rotate(0, 0, delta * 90);
 		window->PollEvents();
-		renderer->DrawObject(object);
+		renderer->DrawObject(objects);
 	}
 
 	renderer->Reset();

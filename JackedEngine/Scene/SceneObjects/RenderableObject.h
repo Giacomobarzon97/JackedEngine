@@ -2,7 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <string>
-#include "Logic/SceneObjects/BaseSceneObject.h"
+#include "Scene/SceneObjects/BaseSceneObject.h"
 
 class RenderableObject : public BaseSceneObject	{
 public:

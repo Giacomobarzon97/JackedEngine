@@ -17,7 +17,7 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{467c5a11-134e-456f-9d74-97b881e34b3e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Logic">
+    <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{c276a586-96c9-4a5e-b52e-c9a09e33f27d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Rendering\Descriptors">
@@ -29,10 +29,10 @@
     <Filter Include="Source Files\Rendering\Descriptors\DescriptorSets">
       <UniqueIdentifier>{002162fc-4554-454a-949d-7f2b53ffcc10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Logic\SceneObjects">
+    <Filter Include="Source Files\Scene\SceneObjects">
       <UniqueIdentifier>{b8162b91-e7c9-4e38-92f3-564e68556b74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Logic\SceneObjects\Cameras">
+    <Filter Include="Source Files\Scene\SceneObjects\Cameras">
       <UniqueIdentifier>{a75bb13d-2302-4e88-a124-eee13bd49f73}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Rendering\Pipelines">
@@ -112,17 +112,17 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\SceneObjects\BaseSceneObject.cpp">
-      <Filter>Source Files\Logic\SceneObjects</Filter>
+    <ClCompile Include="Scene\SceneObjects\BaseSceneObject.cpp">
+      <Filter>Source Files\Scene\SceneObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\SceneObjects\Cameras\BaseCameraObject.cpp">
-      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp">
+      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp">
-      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    <ClCompile Include="Scene\SceneObjects\Cameras\PerspectiveCamera.cpp">
+      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
     </ClCompile>
-    <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp">
-      <Filter>Source Files\Logic\SceneObjects</Filter>
+    <ClCompile Include="Scene\SceneObjects\RenderableObjects.cpp">
+      <Filter>Source Files\Scene\SceneObjects</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
@@ -237,17 +237,17 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h">
-      <Filter>Source Files\Logic\SceneObjects</Filter>
+    <ClInclude Include="Scene\SceneObjects\BaseSceneObject.h">
+      <Filter>Source Files\Scene\SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\SceneObjects\Cameras\BaseCameraObject.h">
-      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h">
+      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h">
-      <Filter>Source Files\Logic\SceneObjects\Cameras</Filter>
+    <ClInclude Include="Scene\SceneObjects\Cameras\PerspectiveCamera.h">
+      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="Logic\SceneObjects\RenderableObject.h">
-      <Filter>Source Files\Logic\SceneObjects</Filter>
+    <ClInclude Include="Scene\SceneObjects\RenderableObject.h">
+      <Filter>Source Files\Scene\SceneObjects</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>

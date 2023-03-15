@@ -1,7 +1,6 @@
 #pragma once
+#include <glm/glm.hpp>
 #include "Rendering/Device.h"
-#include "Logic/SceneObjects/Cameras/BaseCameraObject.h"
-#include "Logic/SceneObjects/RenderableObject.h"
 
 class BaseDescriptorSet {
 public:

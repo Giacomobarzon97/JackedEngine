@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Logic\SceneObjects\Cameras\BaseCameraObject.cpp" />
-    <ClCompile Include="Logic\SceneObjects\RenderableObjects.cpp" />
-    <ClCompile Include="Logic\SceneObjects\BaseSceneObject.cpp" />
-    <ClCompile Include="Logic\SceneObjects\Cameras\PerspectiveCamera.cpp" />
+    <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp" />
+    <ClCompile Include="Scene\SceneObjects\RenderableObjects.cpp" />
+    <ClCompile Include="Scene\SceneObjects\BaseSceneObject.cpp" />
+    <ClCompile Include="Scene\SceneObjects\Cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp" />
@@ -64,10 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
-    <ClInclude Include="Logic\SceneObjects\Cameras\BaseCameraObject.h" />
-    <ClInclude Include="Logic\SceneObjects\RenderableObject.h" />
-    <ClInclude Include="Logic\SceneObjects\BaseSceneObject.h" />
-    <ClInclude Include="Logic\SceneObjects\Cameras\PerspectiveCamera.h" />
+    <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h" />
+    <ClInclude Include="Scene\SceneObjects\RenderableObject.h" />
+    <ClInclude Include="Scene\SceneObjects\BaseSceneObject.h" />
+    <ClInclude Include="Scene\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h" />
     <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h" />
