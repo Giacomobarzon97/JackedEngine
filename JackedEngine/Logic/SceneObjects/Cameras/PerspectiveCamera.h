@@ -10,7 +10,7 @@
 class PerspectiveCamera : public BaseCameraObject
 {
 public:
-	PerspectiveCamera(const BaseWindow& window, const glm::vec3 position, const glm::vec3 direction);
+	PerspectiveCamera(const std::string name, const BaseWindow& window, const glm::vec3 position, const glm::vec3 direction);
 
 	virtual void Rotate(const double x, const double y, const double z) override;
 	virtual void Translate(const double x, const double y, const double z) override;

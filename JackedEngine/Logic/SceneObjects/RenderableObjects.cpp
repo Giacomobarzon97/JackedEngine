@@ -1,6 +1,7 @@
 #include "RenderableObject.h"
 
-RenderableObject::RenderableObject(const std::string modelPath, const std::string texturePath) :
+RenderableObject::RenderableObject(const std::string name, const std::string modelPath, const std::string texturePath) :
+	BaseSceneObject(name),
 	modelPath(modelPath),
 	texturePath(texturePath)
 {}

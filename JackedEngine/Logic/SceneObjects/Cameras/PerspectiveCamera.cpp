@@ -1,7 +1,8 @@
 #include "PerspectiveCamera.h"
 
 
-PerspectiveCamera::PerspectiveCamera(const BaseWindow& window, const glm::vec3 position, const glm::vec3 direction) :
+PerspectiveCamera::PerspectiveCamera(const std::string name, const BaseWindow& window, const glm::vec3 position, const glm::vec3 direction) :
+	BaseCameraObject(name),
 	window(window)
 {
 	eye = position;

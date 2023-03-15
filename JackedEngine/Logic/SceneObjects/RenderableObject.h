@@ -6,7 +6,7 @@
 
 class RenderableObject : public BaseSceneObject	{
 public:
-	RenderableObject(const std::string modelPath, const std::string texturePath);
+	RenderableObject(const std::string name, const std::string modelPath, const std::string texturePath);
 
 	virtual void Rotate(const double x, const double y, const double z) override;
 	virtual void Translate(const double x, const double y, const double z) override;

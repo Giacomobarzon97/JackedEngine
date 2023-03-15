@@ -10,7 +10,7 @@ JackedEngine::JackedEngine()
 {
 	window = new GLFWWindow(WINDOW_WIDTH, WINDOW_HEIGHT, APP_NAME);
 
-	camera = new PerspectiveCamera(*window, {2,2,2}, {-2,-2,-2});
+	camera = new PerspectiveCamera("Camera", *window, {2,2,2}, {-2,-2,-2});
 
 	renderer = new Renderer(*window, *camera);
 
@@ -27,6 +27,7 @@ JackedEngine::~JackedEngine() {
 void JackedEngine::mainLoop() {
 	
 	RenderableObject object = RenderableObject(
+		"Viking Room",
 		"../Assets/Models/viking_room.obj",
 		"../Assets/Textures/viking_room.png"
 	);
