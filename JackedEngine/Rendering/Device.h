@@ -30,6 +30,7 @@ public:
 	const VkPhysicalDeviceProperties& GetDeviceProperties() const;
 	const uint32_t FindMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties) const;
 	const std::vector<VkClearValue> GetClearValues() const;
+	const VkSampleCountFlagBits GetNumberOfMSAASamples() const;
 
 	void RecreateSwapChain();
 
@@ -89,6 +90,10 @@ private:
 	VkImage depthImage;
 	VkDeviceMemory depthImageMemory;
 	VkImageView depthImageView;
+	VkSampleCountFlagBits msaaSamples;
+	VkImage colorImage;
+	VkDeviceMemory colorImageMemory;
+	VkImageView colorImageView;
 
 	void createInstance();
 	bool checkValidationLayerSupport();
@@ -111,5 +116,7 @@ private:
 	void cleanupSwapChain();
 	void createCommandPool();
 	void createDepthResources();
+	void createColorResources();
 	VkFormat findSupportedFormat(const std::vector<VkFormat>& candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
+	VkSampleCountFlagBits getMaxUsableSampleCount();
 };
