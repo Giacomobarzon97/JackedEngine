@@ -30,7 +30,7 @@ VMAImageBufferAllocation::VMAImageBufferAllocation(const VMAAllocator& allocator
 	viewInfo.subresourceRange.baseArrayLayer = 0;
 	viewInfo.subresourceRange.layerCount = 1;
 	if (vkCreateImageView(allocator.GetDevice().GetLogicalDevice(), &viewInfo, nullptr, &imageView) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create texture image view!");
+		throw std::runtime_error("failed to create image view!");
 	}
 }
 

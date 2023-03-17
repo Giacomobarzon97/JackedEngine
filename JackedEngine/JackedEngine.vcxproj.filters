@@ -133,13 +133,13 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp">
+    <ClCompile Include="Rendering\Pipelines\Object3DPipeline.cpp">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.cpp">
+    <ClCompile Include="Rendering\CommandBuffers\GraphicalCommandBuffer.cpp">
       <Filter>Source Files\Rendering\CommandBuffers</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp">
@@ -264,13 +264,13 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h">
+    <ClInclude Include="Rendering\Pipelines\Object3DPipeline.h">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h">
+    <ClInclude Include="Rendering\CommandBuffers\GraphicalCommandBuffer.h">
       <Filter>Source Files\Rendering\CommandBuffers</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h">
@@ -347,10 +347,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Rendering\Shaders\default.frag">
+    <None Include="Rendering\Shaders\object.frag">
       <Filter>Source Files\Rendering\Shaders</Filter>
     </None>
-    <None Include="Rendering\Shaders\default.vert">
+    <None Include="Rendering\Shaders\object.vert">
       <Filter>Source Files\Rendering\Shaders</Filter>
     </None>
   </ItemGroup>

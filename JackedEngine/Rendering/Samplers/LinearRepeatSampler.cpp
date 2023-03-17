@@ -21,7 +21,7 @@ LinearRepeatSampler::LinearRepeatSampler(const Device& device) :
 	samplerInfo.minLod = 0.0f;
 	samplerInfo.maxLod = 0.0f;
 	if (vkCreateSampler(device.GetLogicalDevice(), &samplerInfo, nullptr, &sampler) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create texture sampler!");
+		throw std::runtime_error("failed to create sampler!");
 	}
 }
 

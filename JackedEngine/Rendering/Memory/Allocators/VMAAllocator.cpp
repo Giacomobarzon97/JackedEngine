@@ -29,7 +29,7 @@ void VMAAllocator::CreateBuffer(VkBuffer& buffer, VmaAllocation& allocation, con
 	vmaallocInfo.requiredFlags = properties;
 
 	if (vmaCreateBuffer(allocator, &bufferInfo, &vmaallocInfo, &buffer, &allocation, nullptr)!= VK_SUCCESS) {
-		throw std::runtime_error("failed to create texture buffer!");
+		throw std::runtime_error("failed to create image buffer!");
 	}
 }
 
@@ -71,7 +71,7 @@ void VMAAllocator::CreateImage(VkImage& image, VmaAllocation& allocation, const 
 	allocInfo.requiredFlags = properties;
 
 	if (vmaCreateImage(allocator, &imageInfo, &allocInfo, &image, &allocation, nullptr) != VK_SUCCESS) {
-		throw std::runtime_error("failed to create texture image!");
+		throw std::runtime_error("failed to create image!");
 	}
 }
 

@@ -1,10 +1,10 @@
-#include "Base3DPipeline.h"
+#include "Object3DPipeline.h"
 
-Base3DPipeline::Base3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout, const std::string shaderName) :
+Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout, const std::string shaderName) :
 	BasePipeline(device)
 {
-	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/default.vert.spv");
-	VkShaderModule fragShaderModule = createShaderModule("Rendering/Shaders/default.frag.spv");
+	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/object.vert.spv");
+	VkShaderModule fragShaderModule = createShaderModule("Rendering/Shaders/object.frag.spv");
 
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo{};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -128,7 +128,7 @@ Base3DPipeline::Base3DPipeline(const Device& device, const FrameDescriptorLayout
 	vkDestroyShaderModule(device.GetLogicalDevice(), vertShaderModule, nullptr);
 }
 
-void Base3DPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
+void Object3DPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
 	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
 	
 	viewport = {};

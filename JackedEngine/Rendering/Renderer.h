@@ -5,8 +5,8 @@
 #include "Scene/SceneObjects/RenderableObject.h"
 #include "Windows/BaseWindow.h"
 #include "Rendering/Device.h"
-#include "Rendering/Pipelines/Base3DPipeline.h"
-#include "Rendering/CommandBuffers/Graphical3DCommandBuffer.h"
+#include "Rendering/Pipelines/Object3DPipeline.h"
+#include "Rendering/CommandBuffers/GraphicalCommandBuffer.h"
 #include "Rendering/Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Rendering/RenderingManager.h"
 #include "Rendering/Samplers/LinearRepeatSampler.h"
@@ -32,8 +32,8 @@ private:
 	VMAAllocationFactory allocationFactory;
 	LinearRepeatSampler sampler;
 	RenderingManager renderingManager;
-	const Base3DPipeline pipeline;
-	std::vector<Graphical3DCommandBuffer* > commandBuffers;
+	const Object3DPipeline pipeline;
+	std::vector<GraphicalCommandBuffer* > commandBuffers;
 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;

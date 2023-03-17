@@ -1,6 +1,6 @@
-#include "Graphical3DCommandBuffer.h"
+#include "GraphicalCommandBuffer.h"
 
-Graphical3DCommandBuffer::Graphical3DCommandBuffer(const Device& device) :
+GraphicalCommandBuffer::GraphicalCommandBuffer(const Device& device) :
 	BaseCommandBuffer(device)
 {
 	VkSemaphoreCreateInfo semaphoreInfo{};
@@ -18,13 +18,13 @@ Graphical3DCommandBuffer::Graphical3DCommandBuffer(const Device& device) :
 
 }
 
-Graphical3DCommandBuffer::~Graphical3DCommandBuffer() {
+GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 	vkDestroySemaphore(device.GetLogicalDevice(), renderFinishedSemaphore, nullptr);
 	vkDestroySemaphore(device.GetLogicalDevice(), imageAvailableSemaphore, nullptr);
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult Graphical3DCommandBuffer::PresentCommand(const BasePipeline& pipeline, const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
+const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeline, const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;

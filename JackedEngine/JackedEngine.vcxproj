@@ -28,7 +28,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp" />
-    <ClCompile Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.cpp" />
+    <ClCompile Include="Rendering\CommandBuffers\GraphicalCommandBuffer.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.cpp" />
@@ -52,7 +52,7 @@
     <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp" />
     <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp" />
-    <ClCompile Include="Rendering\Pipelines\Base3DPipeline.cpp" />
+    <ClCompile Include="Rendering\Pipelines\Object3DPipeline.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\RenderingManager.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp" />
@@ -73,7 +73,7 @@
     <ClInclude Include="Scene\SceneObjects\BaseSceneObject.h" />
     <ClInclude Include="Scene\SceneObjects\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h" />
-    <ClInclude Include="Rendering\CommandBuffers\Graphical3DCommandBuffer.h" />
+    <ClInclude Include="Rendering\CommandBuffers\GraphicalCommandBuffer.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.h" />
@@ -97,7 +97,7 @@
     <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h" />
     <ClInclude Include="Rendering\Pipelines\BasePipeline.h" />
-    <ClInclude Include="Rendering\Pipelines\Base3DPipeline.h" />
+    <ClInclude Include="Rendering\Pipelines\Object3DPipeline.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RenderingManager.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h" />
@@ -110,8 +110,8 @@
     <ClInclude Include="Windows\GLFWWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Rendering\Shaders\default.frag" />
-    <None Include="Rendering\Shaders\default.vert" />
+    <None Include="Rendering\Shaders\object.frag" />
+    <None Include="Rendering\Shaders\object.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
