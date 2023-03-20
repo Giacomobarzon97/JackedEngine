@@ -3,8 +3,8 @@
 Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout, const std::string shaderName) :
 	BasePipeline(device)
 {
-	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/object.vert.spv");
-	VkShaderModule fragShaderModule = createShaderModule("Rendering/Shaders/object.frag.spv");
+	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/CompiledShaders/object.vert.spv");
+	VkShaderModule fragShaderModule = createShaderModule("Rendering/Shaders/CompiledShaders/object.frag.spv");
 
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo{};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;

@@ -1,4 +1,11 @@
 echo "Compiling Shaders"
 
-%~dp0/Libraries/vulkan/Bin/glslc.exe %~dp0/JackedEngine/Rendering/Shaders/object.vert -o %~dp0/JackedEngine/Rendering/Shaders/object.vert.spv
-%~dp0/Libraries/vulkan/Bin/glslc.exe %~dp0/JackedEngine/Rendering/Shaders/object.frag -o %~dp0/JackedEngine/Rendering/Shaders/object.frag.spv
+set pathToShaders=%~dp0JackedEngine\Rendering\Shaders
+set pathToCompiler=%~dp0Libraries\vulkan\Bin\glslc.exe
+
+mkdir %pathToShaders%\CompiledShaders
+
+for %%i in (%pathToShaders%\*) do  %pathToCompiler% %pathToShaders%\%%~nxi -o %pathToShaders%\CompiledShaders\%%~nxi.spv
+
+echo %pathToShaders%
+echo %pathToCompiler%
