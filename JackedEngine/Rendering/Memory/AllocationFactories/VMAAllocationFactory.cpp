@@ -21,3 +21,7 @@ const VMAUniformBufferAllocation* VMAAllocationFactory::CreateUniformBufferAlloc
 const VMAImageBufferAllocation* VMAAllocationFactory::CreateImageBufferAllocation(const void* data, const int width, const int height) const {
 	return new VMAImageBufferAllocation(allocator, data, width, height);
 }
+
+const VMACubemapBufferAllocation* VMAAllocationFactory::CreateCubemapBufferAllocation(const void* frontFaceData, const void* backFaceData, const void* upFaceData, const void* downFaceData, const void* rightFaceData, const void* leftFaceData, const int width, const int height) const {
+	return new VMACubemapBufferAllocation(allocator, frontFaceData, backFaceData, upFaceData, downFaceData, rightFaceData, leftFaceData, width, height);
+}

@@ -12,7 +12,6 @@ public:
 
 	const VkImageView& GetImageView() const;
 
-
 private:
 	const BaseImageBufferAllocation* imageBufferAllocation;
 

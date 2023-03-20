@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp" />
     <ClCompile Include="Rendering\Samplers\BaseSampler.cpp" />
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp" />
     <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp" />
@@ -66,6 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.h" />
+    <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.h" />
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h" />
     <ClInclude Include="Rendering\Samplers\BaseSampler.h" />
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h" />
     <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h" />

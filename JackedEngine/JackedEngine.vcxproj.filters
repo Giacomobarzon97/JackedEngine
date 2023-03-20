@@ -80,6 +80,9 @@
     <Filter Include="Source Files\Rendering\Samplers">
       <UniqueIdentifier>{22f40832-cf76-4b04-9b55-08379a970f7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations">
+      <UniqueIdentifier>{9d45c66c-a710-45d9-95fb-3b3bdd4864fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -214,6 +217,15 @@
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp">
       <Filter>Source Files\Rendering\Samplers</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -344,6 +356,15 @@
     </ClInclude>
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h">
       <Filter>Source Files\Rendering\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
