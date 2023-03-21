@@ -12,11 +12,12 @@ public:
 
 	FrameDescriptorSet&operator=(FrameDescriptorSet&) = delete;
 
-	virtual void UpdateProjectionViewMatrix(const glm::mat4 projectionView) const;
+	virtual void UpdateUBO(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) const;
 
 private:
 	struct UniformBufferObject {
-		glm::mat4 projectionView;
+		alignas(16) glm::mat4 viewMatrix;
+		alignas(16) glm::mat4 projectionMatrix;
 	};
 	const BaseUniformBufferAllocation* const projectionViewUniform;
 };

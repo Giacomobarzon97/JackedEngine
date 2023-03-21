@@ -17,7 +17,8 @@ public:
 	virtual void SetPosition(const double x, const double y, const double z) override;
 	virtual void SetRotation(const double x, const double y, const double z) override;
 
-	virtual const glm::mat4 GetViewProjectionMatrix() const override;
+	virtual const glm::mat4 GetViewMatrix() const override;
+	virtual const glm::mat4 GetProjectionMatrix() const override;
 
 private:
 	const BaseWindow& window;

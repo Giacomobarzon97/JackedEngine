@@ -28,7 +28,7 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 		const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
 		const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 
-		frameDescriptorSet.UpdateProjectionViewMatrix(camera.GetViewProjectionMatrix());
+		frameDescriptorSet.UpdateUBO(camera.GetViewMatrix(), camera.GetProjectionMatrix());
 		objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
 
 		VkResult result = commandBuffers[currentFrame]->DrawObject(

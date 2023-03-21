@@ -72,11 +72,14 @@ void PerspectiveCamera::SetRotation(const double x, const double y, const double
 	currentZangle = zRad;
 }
 
-const glm::mat4 PerspectiveCamera::GetViewProjectionMatrix() const{
-	glm::mat4 view = glm::lookAt(eye, center, upVector);
+const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
+	return glm::lookAt(eye, center, upVector);
+}
+
+const glm::mat4 PerspectiveCamera::GetProjectionMatrix() const{
 	int width, height;
 	window.GetFrameBufferSize(&width, &height);
 	glm::mat4 proj = glm::perspective(glm::radians(45.0f), width / (float)height, 0.1f, 10.0f);
 	proj[1][1] *= -1;
-	return proj*view;
+	return proj;
 }

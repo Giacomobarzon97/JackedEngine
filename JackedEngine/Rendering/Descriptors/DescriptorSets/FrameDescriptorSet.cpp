@@ -35,8 +35,9 @@ FrameDescriptorSet::~FrameDescriptorSet(){
 	delete projectionViewUniform;
 }
 
-void FrameDescriptorSet::UpdateProjectionViewMatrix(glm::mat4 projectionView) const {
+void FrameDescriptorSet::UpdateUBO(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) const {
 	UniformBufferObject ubo{};
-	ubo.projectionView = projectionView;
+	ubo.viewMatrix = viewMatrix;
+	ubo.projectionMatrix = projectionMatrix;
 	projectionViewUniform->UpdateBuffer(&ubo);
 }
