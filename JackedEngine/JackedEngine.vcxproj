@@ -23,8 +23,7 @@
     <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp" />
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUBaseModel.cpp" />
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUTexturedModel.cpp" />
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
     <ClCompile Include="Rendering\Samplers\BaseSampler.cpp" />
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp" />
     <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp" />
@@ -75,8 +74,7 @@
     <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h" />
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUBaseModel.h" />
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUTexturedModel.h" />
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h" />
     <ClInclude Include="Rendering\Samplers\BaseSampler.h" />
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h" />
     <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h" />

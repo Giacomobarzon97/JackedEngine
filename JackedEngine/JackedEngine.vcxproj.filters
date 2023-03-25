@@ -229,10 +229,7 @@
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUBaseModel.cpp">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUTexturedModel.cpp">
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -375,10 +372,7 @@
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUBaseModel.h">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUTexturedModel.h">
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
   </ItemGroup>
