@@ -1,7 +1,8 @@
 #include "GraphicalCommandBuffer.h"
 
-GraphicalCommandBuffer::GraphicalCommandBuffer(const Device& device) :
-	BaseCommandBuffer(device)
+GraphicalCommandBuffer::GraphicalCommandBuffer(const Device& device, const Object3DPipeline& object3DPipeline) :
+	BaseCommandBuffer(device),
+	object3DPipeline(object3DPipeline)
 {
 	VkSemaphoreCreateInfo semaphoreInfo{};
 	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
@@ -24,7 +25,7 @@ GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeline, const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
+const VkResult GraphicalCommandBuffer::Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;
@@ -58,7 +59,7 @@ const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeli
 	renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
 	renderPassInfo.pClearValues = clearValues.data();
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
+	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, object3DPipeline.GetGraphicsPipeline());
 
 	VkBuffer vertexBuffers[] = { 
 		model.GetPositionsBufferAllocation().GetBuffer(),
@@ -72,7 +73,7 @@ const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeli
 	VkViewport viewport;
 	VkRect2D scissor;
 
-	pipeline.GetScreenData(viewport, scissor);
+	object3DPipeline.GetScreenData(viewport, scissor);
 
 	vkCmdSetViewport(commandBuffer, 0, 1, &viewport);
 	vkCmdSetScissor(commandBuffer, 0, 1, &scissor);
@@ -81,8 +82,16 @@ const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeli
 	descriptorSets[0] = frameDescriptorSet.GetDescriptorSet();
 	descriptorSets[1] = objectDescriptorSet.GetDescriptorSet();
 
-	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 0, 1, &frameDescriptorSet.GetDescriptorSet(), 0, nullptr);
-	vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetPipelineLayout(), 1, 1, &objectDescriptorSet.GetDescriptorSet(), 0, nullptr);
+	vkCmdBindDescriptorSets(
+		commandBuffer, 
+		VK_PIPELINE_BIND_POINT_GRAPHICS, 
+		object3DPipeline.GetPipelineLayout(),
+		0, 
+		static_cast<uint32_t>(descriptorSets.size()),
+		descriptorSets.data(), 
+		0, 
+		nullptr
+	);
 
 	vkCmdDrawIndexed(commandBuffer, model.GetNumberOfIndices(), 1, 0, 0, 0);
 

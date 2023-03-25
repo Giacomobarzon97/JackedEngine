@@ -6,12 +6,12 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	allocationFactory(device),
 	sampler(device),
 	renderingManager(device, allocationFactory, sampler, maxFramesInFlight),
-	pipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout())
+	object3DPipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout())
 {
 	commandBuffers.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
-		commandBuffers[i] = new GraphicalCommandBuffer(device);
+		commandBuffers[i] = new GraphicalCommandBuffer(device, object3DPipeline);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -31,8 +31,7 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 		frameDescriptorSet.UpdateUBO(camera.GetViewMatrix(), camera.GetProjectionMatrix());
 		objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
 
-		VkResult result = commandBuffers[currentFrame]->DrawObject(
-			pipeline,
+		VkResult result = commandBuffers[currentFrame]->Draw(
 			renderingManager.CreateOrGetModel(object.GetModelPath()),
 			frameDescriptorSet,
 			objectDescriptorSet

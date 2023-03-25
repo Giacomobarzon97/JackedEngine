@@ -13,7 +13,7 @@
 
 class Object3DPipeline : public BasePipeline{
 public:
-	Object3DPipeline(const Device& device, const FrameDescriptorLayout& uboDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout, const std::string shaderName = "default");
+	Object3DPipeline(const Device& device, const FrameDescriptorLayout& uboDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout);
 	Object3DPipeline(Object3DPipeline&) = delete;
 
 	Object3DPipeline&operator=(Object3DPipeline&) = delete;

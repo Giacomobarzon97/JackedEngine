@@ -32,7 +32,7 @@ private:
 	VMAAllocationFactory allocationFactory;
 	LinearRepeatSampler sampler;
 	RenderingManager renderingManager;
-	const Object3DPipeline pipeline;
+	const Object3DPipeline object3DPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
 
 	bool framebufferResized = false;

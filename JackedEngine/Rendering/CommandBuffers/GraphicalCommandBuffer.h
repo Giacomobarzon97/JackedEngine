@@ -10,15 +10,17 @@
 
 class GraphicalCommandBuffer : public BaseCommandBuffer{
 public:
-	GraphicalCommandBuffer(const Device& device);
+	GraphicalCommandBuffer(const Device& device, const Object3DPipeline& object3DPipeline);
 	GraphicalCommandBuffer(GraphicalCommandBuffer&) = delete;
 	~GraphicalCommandBuffer();
 
 	GraphicalCommandBuffer&operator=(GraphicalCommandBuffer&) = delete;
 
-	const VkResult DrawObject(const Object3DPipeline& pipeline, const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
+	const VkResult Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
 
 private:
+	const Object3DPipeline& object3DPipeline;
+
 	VkSemaphore imageAvailableSemaphore;
 	VkSemaphore renderFinishedSemaphore;
 	VkFence inFlightFence;
