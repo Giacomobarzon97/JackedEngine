@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
-#include "Rendering/Resources/GPUResources/GPUModel.h"
+#include "Rendering/Resources/GPUResources/GPUTexturedModel.h"
 #include "Rendering/Descriptors/DescriptorSets/ObjectDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorSets/FrameDescriptorSet.h"
 
@@ -13,7 +13,7 @@ public:
 
 	RenderingManager& operator=(RenderingManager&) = delete;
 
-	const GPUModel& CreateOrGetModel(const std::string modelPath);
+	const GPUTexturedModel& CreateOrGetModel(const std::string modelPath);
 	const ObjectDescriptorSet& CreateOrGetObjectDescriptor(const std::string objectId, const std::string imagePath, const unsigned int frameNumber);
 	const FrameDescriptorSet& GetFrameDescriptor(const unsigned int frameNumber) const;
 
@@ -31,7 +31,7 @@ private:
 	FrameDescriptorPool frameDescriptorPool;
 	std::vector<const FrameDescriptorSet*> frameDescriptorSets;
 
-	std::unordered_map <std::string, const GPUModel*> modelMap;
+	std::unordered_map <std::string, const GPUTexturedModel*> modelMap;
 	std::unordered_map <std::string, const GPUImage*> imageMap;
 	std::unordered_map <std::string, const ObjectDescriptorPool*> objectDescriptorPoolMap;
 	std::unordered_map <std::string, std::vector<const ObjectDescriptorSet*>> objectDescriptorSetsMap;

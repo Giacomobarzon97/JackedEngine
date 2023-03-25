@@ -4,7 +4,7 @@
 
 class VMAVertexBufferAllocation : public BaseVertexBufferAllocation {
 public:
-	VMAVertexBufferAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize);
+	VMAVertexBufferAllocation(const VMAAllocator& allocator, const void* data, const uint32_t dataSize);
 	VMAVertexBufferAllocation(VMAVertexBufferAllocation&) = delete;
 	~VMAVertexBufferAllocation();
 	VMAVertexBufferAllocation& operator=(VMAVertexBufferAllocation&) = delete;

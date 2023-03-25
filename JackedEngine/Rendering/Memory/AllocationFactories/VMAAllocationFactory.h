@@ -15,9 +15,9 @@ public:
 
 	VMAAllocationFactory& operator=(VMAAllocationFactory&) = delete;
 
-	virtual const VMAVertexBufferAllocation* CreateVertexBufferAllocation(const void* data, const size_t dataSize) const override;
-	virtual const VMAIndexBufferAllocation* CreateIndexBufferAllocation(const void* data, const size_t dataSize) const override;
-	virtual const VMAUniformBufferAllocation* CreateUniformBufferAllocation(const size_t dataSize) const override;
+	virtual const VMAVertexBufferAllocation* CreateVertexBufferAllocation(const void* data, const uint32_t dataSize) const override;
+	virtual const VMAIndexBufferAllocation* CreateIndexBufferAllocation(const void* data, const uint32_t dataSize) const override;
+	virtual const VMAUniformBufferAllocation* CreateUniformBufferAllocation(const uint32_t dataSize) const override;
 	virtual const VMAImageBufferAllocation* CreateImageBufferAllocation(const void* data, const int width, const int height) const override;
 	virtual const VMACubemapBufferAllocation* CreateCubemapBufferAllocation(const void* frontFaceData, const void* backFaceData, const void* upFaceData, const void* downFaceData, const void* rightFaceData, const void* leftFaceData, const int width, const int height) const override;
 

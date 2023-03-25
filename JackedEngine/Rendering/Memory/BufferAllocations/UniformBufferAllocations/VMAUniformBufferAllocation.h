@@ -4,7 +4,7 @@
 
 class VMAUniformBufferAllocation : public BaseUniformBufferAllocation {
 public:
-	VMAUniformBufferAllocation(const VMAAllocator& allocator, const size_t dataSize);
+	VMAUniformBufferAllocation(const VMAAllocator& allocator, const uint32_t dataSize);
 	VMAUniformBufferAllocation(VMAUniformBufferAllocation&) = delete;
 	~VMAUniformBufferAllocation();
 	VMAUniformBufferAllocation& operator=(VMAUniformBufferAllocation&) = delete;

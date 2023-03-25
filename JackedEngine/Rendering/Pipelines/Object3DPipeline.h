@@ -4,7 +4,8 @@
 #include <vector>
 #include <vulkan/vulkan.h>
 #include "Utils/FileIOr.h"
-#include "Rendering/Resources/CPUResources/CPUVertex.h"
+#include "Rendering/Resources/CPUResources/CPUVertices/CPUPositionVertex.h"
+#include "Rendering/Resources/CPUResources/CPUVertices/CPUTextureVertex.h"
 #include "Rendering/Device.h"
 #include "Rendering/Pipelines/BasePipeline.h"
 #include "Rendering/Descriptors/DescriptorLayouts/FrameDescriptorLayout.h"

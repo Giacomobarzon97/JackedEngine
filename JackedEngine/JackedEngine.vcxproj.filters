@@ -83,6 +83,9 @@
     <Filter Include="Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations">
       <UniqueIdentifier>{9d45c66c-a710-45d9-95fb-3b3bdd4864fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Resources\CPUResources\CPUVertices">
+      <UniqueIdentifier>{ea09c04d-c3fe-4066-a8ec-4f6d8cd21102}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -166,9 +169,6 @@
     <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp">
       <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
     </ClCompile>
@@ -176,9 +176,6 @@
       <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.cpp">
@@ -224,6 +221,18 @@
       <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUBaseModel.cpp">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUTexturedModel.cpp">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -306,9 +315,6 @@
     <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.h">
       <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
     </ClInclude>
@@ -316,9 +322,6 @@
       <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.h">
@@ -364,6 +367,18 @@
       <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUBaseModel.h">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUTexturedModel.h">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
   </ItemGroup>

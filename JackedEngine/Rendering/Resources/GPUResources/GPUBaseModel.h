@@ -2,20 +2,20 @@
 #include "Rendering/Resources/CPUResources/CPUModel.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 
-class GPUModel {
+class GPUBaseModel {
 public:
-	GPUModel(const BaseAllocationFactory& allocationFactory, const CPUModel& model);
-	GPUModel(GPUModel&) = delete;
-	~GPUModel();
+	GPUBaseModel(const BaseAllocationFactory& allocationFactory, const CPUModel& model);
+	GPUBaseModel(GPUBaseModel&) = delete;
+	~GPUBaseModel();
 
-	GPUModel& operator=(GPUModel&) = delete;
+	GPUBaseModel& operator=(GPUBaseModel&) = delete;
 
-	const BaseVertexBufferAllocation& GetVertexBufferAllocation() const;
+	const BaseVertexBufferAllocation& GetPositionsBufferAllocation() const;
 	const BaseIndexBufferAllocation& GetIndexBufferAllocation() const;
 	const uint32_t GetNumberOfIndices() const;
 
 private:
 	uint32_t nVertices;
-	const BaseVertexBufferAllocation* vertexBufferAllocation;
+	const BaseVertexBufferAllocation* positionsBufferAllocation;
 	const BaseIndexBufferAllocation* indexBufferAllocation;
 };

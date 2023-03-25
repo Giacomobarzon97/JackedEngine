@@ -24,7 +24,7 @@ GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeline, const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
+const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeline, const GPUTexturedModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
 	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
 
 	uint32_t imageIndex;
@@ -60,9 +60,12 @@ const VkResult GraphicalCommandBuffer::DrawObject(const Object3DPipeline& pipeli
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
 
-	VkBuffer vertexBuffers[] = { model.GetVertexBufferAllocation().GetBuffer()};
-	VkDeviceSize offsets[] = { 0 };
-	vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
+	VkBuffer vertexBuffers[] = { 
+		model.GetPositionsBufferAllocation().GetBuffer(),
+		model.GetTextureBufferAllocation().GetBuffer()
+	};
+	VkDeviceSize offsets[] = { 0 , 0};
+	vkCmdBindVertexBuffers(commandBuffer, 0, 2, vertexBuffers, offsets);
 	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, CPUModel::GetIndexType());
 
 

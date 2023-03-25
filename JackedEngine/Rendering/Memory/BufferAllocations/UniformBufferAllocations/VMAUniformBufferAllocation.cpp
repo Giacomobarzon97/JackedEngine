@@ -1,6 +1,6 @@
 #include "VMAUniformBufferAllocation.h"
 
-VMAUniformBufferAllocation::VMAUniformBufferAllocation(const VMAAllocator& allocator, const size_t bufferSize) :
+VMAUniformBufferAllocation::VMAUniformBufferAllocation(const VMAAllocator& allocator, const uint32_t bufferSize) :
 	allocator(allocator),
 	bufferSize(bufferSize)
 {

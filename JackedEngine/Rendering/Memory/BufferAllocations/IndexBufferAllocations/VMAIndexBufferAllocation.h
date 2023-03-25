@@ -4,7 +4,7 @@
 
 class VMAIndexBufferAllocation : public BaseIndexBufferAllocation {
 public:
-	VMAIndexBufferAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize);
+	VMAIndexBufferAllocation(const VMAAllocator& allocator, const void* data, const uint32_t dataSize);
 	VMAIndexBufferAllocation(VMAIndexBufferAllocation&) = delete;
 	~VMAIndexBufferAllocation();
 	VMAIndexBufferAllocation& operator=(VMAIndexBufferAllocation&) = delete;

@@ -20,13 +20,29 @@ Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLa
 
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
-	VkVertexInputBindingDescription  bindingDescription = CPUVertex::getBindingDescription();
-	auto attributeDescriptions = CPUVertex::getAttributeDescriptions();
+	std::array<VkVertexInputBindingDescription, 2>  bindingDescriptions{};
+	bindingDescriptions[0].binding = 0;
+	bindingDescriptions[0].stride = sizeof(CPUPositionVertex);
+	bindingDescriptions[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	bindingDescriptions[1].binding = 1;
+	bindingDescriptions[1].stride = sizeof(CPUTextureVertex);
+	bindingDescriptions[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+
+	std::array<VkVertexInputAttributeDescription, 2> attributeDescriptions{};
+	attributeDescriptions[0].binding = 0;
+	attributeDescriptions[0].location = 0;
+	attributeDescriptions[0].format = CPUPositionVertex::GetPositionCoordFormat();
+	attributeDescriptions[0].offset = 0;
+	attributeDescriptions[1].binding = 1;
+	attributeDescriptions[1].location = 1;
+	attributeDescriptions[1].format = CPUTextureVertex::GetTexCoordFormat();
+	attributeDescriptions[1].offset = 0;
+
 	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
 	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInputInfo.vertexBindingDescriptionCount = 1;
+	vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(bindingDescriptions.size());
 	vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
-	vertexInputInfo.pVertexBindingDescriptions = &bindingDescription;
+	vertexInputInfo.pVertexBindingDescriptions = bindingDescriptions.data();
 	vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
 
 	VkPipelineInputAssemblyStateCreateInfo inputAssembly{};

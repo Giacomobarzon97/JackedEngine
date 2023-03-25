@@ -1,6 +1,6 @@
 #include "VMAVertexBufferAllocation.h"
 
-VMAVertexBufferAllocation::VMAVertexBufferAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize) :
+VMAVertexBufferAllocation::VMAVertexBufferAllocation(const VMAAllocator& allocator, const void* data, const uint32_t dataSize) :
 	allocator(allocator)
 {
 	VkBuffer stagingBuffer;

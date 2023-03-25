@@ -21,7 +21,10 @@
   <ItemGroup>
     <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.cpp" />
     <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp" />
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUBaseModel.cpp" />
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUTexturedModel.cpp" />
     <ClCompile Include="Rendering\Samplers\BaseSampler.cpp" />
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp" />
     <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp" />
@@ -60,9 +63,8 @@
     <ClCompile Include="Rendering\RenderingManager.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp" />
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertex.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUImage.cpp" />
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
@@ -71,7 +73,10 @@
     <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.h" />
     <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h" />
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUBaseModel.h" />
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUTexturedModel.h" />
     <ClInclude Include="Rendering\Samplers\BaseSampler.h" />
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h" />
     <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h" />
@@ -108,9 +113,8 @@
     <ClInclude Include="Rendering\RenderingManager.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h" />
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertex.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUImage.h" />
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />

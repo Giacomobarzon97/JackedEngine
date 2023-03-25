@@ -1,6 +1,6 @@
 #include "VMAIndexBufferAllocation.h"
 
-VMAIndexBufferAllocation::VMAIndexBufferAllocation(const VMAAllocator& allocator, const void* data, const size_t dataSize) :
+VMAIndexBufferAllocation::VMAIndexBufferAllocation(const VMAAllocator& allocator, const void* data, const uint32_t dataSize) :
 	allocator(allocator)
 {
 	VkBuffer stagingBuffer;

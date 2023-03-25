@@ -39,9 +39,9 @@ RenderingManager::~RenderingManager() {
 	}
 }
 
-const GPUModel& RenderingManager::CreateOrGetModel(const std::string modelPath) {
+const GPUTexturedModel& RenderingManager::CreateOrGetModel(const std::string modelPath) {
 	if (modelMap.find(modelPath) == modelMap.end()) {
-		modelMap[modelPath] = new GPUModel(allocationFactory, CPUModel(modelPath));
+		modelMap[modelPath] = new GPUTexturedModel(allocationFactory, CPUModel(modelPath));
 	} 
 	return *modelMap[modelPath];
 }
