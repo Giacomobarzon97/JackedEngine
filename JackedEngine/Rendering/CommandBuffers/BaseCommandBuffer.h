@@ -10,6 +10,5 @@ public:
 	BaseCommandBuffer& operator=(BaseCommandBuffer&) = delete;
 
 protected:
-	const Device& device;
 	VkCommandBuffer commandBuffer;
 };

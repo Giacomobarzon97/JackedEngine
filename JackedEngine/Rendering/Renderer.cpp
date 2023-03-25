@@ -24,28 +24,32 @@ Renderer::~Renderer() {
 
 
 void Renderer::DrawObject(std::vector<RenderableObject> objects) {
+
+	commandBuffers[currentFrame]->BeginRenderPass();
 	for (RenderableObject object : objects) {
 		const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
 		const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 
-		frameDescriptorSet.UpdateUBO(camera.GetViewMatrix(), camera.GetProjectionMatrix());
+		VkExtent2D swapChainExtent = device.GetSwapChainExtent();
+
+		frameDescriptorSet.UpdateUBO(camera.GetViewMatrix(), camera.GetProjectionMatrix(swapChainExtent.width, swapChainExtent.height));
 		objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
 
-		VkResult result = commandBuffers[currentFrame]->Draw(
+		commandBuffers[currentFrame]->Draw(
 			renderingManager.CreateOrGetModel(object.GetModelPath()),
 			frameDescriptorSet,
 			objectDescriptorSet
 		);
-
-		if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
-			framebufferResized = false;
-			device.RecreateSwapChain();
-		}
-		else if (result != VK_SUCCESS) {
-			throw std::runtime_error("failed to present swap chain image!");
-		}
-		currentFrame = (currentFrame + 1) % maxFramesInFlight;
 	}
+	VkResult result = commandBuffers[currentFrame]->EndRenderPass();
+	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
+		framebufferResized = false;
+		device.RecreateSwapChain();
+	}
+	else if (result != VK_SUCCESS) {
+		throw std::runtime_error("failed to present swap chain image!");
+	}
+	currentFrame = (currentFrame + 1) % maxFramesInFlight;
 }
 
 void Renderer::Reset() const {

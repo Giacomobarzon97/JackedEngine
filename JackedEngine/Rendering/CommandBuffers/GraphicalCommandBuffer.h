@@ -10,18 +10,25 @@
 
 class GraphicalCommandBuffer : public BaseCommandBuffer{
 public:
-	GraphicalCommandBuffer(const Device& device, const Object3DPipeline& object3DPipeline);
+	GraphicalCommandBuffer(Device& device, const Object3DPipeline& object3DPipeline);
 	GraphicalCommandBuffer(GraphicalCommandBuffer&) = delete;
 	~GraphicalCommandBuffer();
 
 	GraphicalCommandBuffer&operator=(GraphicalCommandBuffer&) = delete;
 
-	const VkResult Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
+	void BeginRenderPass();
+	const VkResult EndRenderPass();
+	void Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
 
 private:
+	enum class CommandBufferState {Idle, Recording};
+
 	const Object3DPipeline& object3DPipeline;
+	Device& device;
 
 	VkSemaphore imageAvailableSemaphore;
 	VkSemaphore renderFinishedSemaphore;
 	VkFence inFlightFence;
+	uint32_t imageIndex;
+	CommandBufferState currentState = CommandBufferState::Idle;
 };

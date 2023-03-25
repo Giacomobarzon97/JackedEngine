@@ -1,9 +1,8 @@
 #include "PerspectiveCamera.h"
 
 
-PerspectiveCamera::PerspectiveCamera(const std::string name, const BaseWindow& window, const glm::vec3 position, const glm::vec3 direction) :
-	BaseCameraObject(name),
-	window(window)
+PerspectiveCamera::PerspectiveCamera(const std::string name, const glm::vec3 position, const glm::vec3 direction) :
+	BaseCameraObject(name)
 {
 	eye = position;
 	center = position + (direction/glm::length(direction));
@@ -76,9 +75,7 @@ const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
 	return glm::lookAt(eye, center, upVector);
 }
 
-const glm::mat4 PerspectiveCamera::GetProjectionMatrix() const{
-	int width, height;
-	window.GetFrameBufferSize(&width, &height);
+const glm::mat4 PerspectiveCamera::GetProjectionMatrix(const uint32_t width, const uint32_t height) const {
 	glm::mat4 proj = glm::perspective(glm::radians(45.0f), width / (float)height, 0.1f, 10.0f);
 	proj[1][1] *= -1;
 	return proj;

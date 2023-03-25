@@ -666,7 +666,6 @@ void Device::createColorResources() {
 	viewInfo.subresourceRange.baseArrayLayer = 0;
 	viewInfo.subresourceRange.layerCount = 1;
 
-	VkImageView imageView;
 	if (vkCreateImageView(logicalDevice, &viewInfo, nullptr, &colorImageView) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create texture image view!");
 	}

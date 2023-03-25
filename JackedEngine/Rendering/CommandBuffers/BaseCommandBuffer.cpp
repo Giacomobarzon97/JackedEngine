@@ -1,8 +1,6 @@
 #include "BaseCommandBuffer.h"
 
-BaseCommandBuffer::BaseCommandBuffer(const Device& device) :
-	device(device)
-{
+BaseCommandBuffer::BaseCommandBuffer(const Device& device) {
 	VkCommandBufferAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
 	allocInfo.commandPool = device.GetCommandPool();

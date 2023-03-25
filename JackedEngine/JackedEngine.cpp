@@ -10,7 +10,7 @@ JackedEngine::JackedEngine()
 {
 	window = new GLFWWindow(WINDOW_WIDTH, WINDOW_HEIGHT, APP_NAME);
 
-	camera = new PerspectiveCamera("Camera", *window, {2,2,2}, {-2,-2,-2});
+	camera = new PerspectiveCamera("Camera", {2,2,2}, {-2,-2,-2});
 
 	renderer = new Renderer(*window, *camera);
 

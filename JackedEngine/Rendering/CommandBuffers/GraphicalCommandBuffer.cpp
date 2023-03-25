@@ -1,7 +1,8 @@
 #include "GraphicalCommandBuffer.h"
 
-GraphicalCommandBuffer::GraphicalCommandBuffer(const Device& device, const Object3DPipeline& object3DPipeline) :
+GraphicalCommandBuffer::GraphicalCommandBuffer(Device& device, const Object3DPipeline& object3DPipeline) :
 	BaseCommandBuffer(device),
+	device(device),
 	object3DPipeline(object3DPipeline)
 {
 	VkSemaphoreCreateInfo semaphoreInfo{};
@@ -25,40 +26,7 @@ GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-const VkResult GraphicalCommandBuffer::Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
-	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
-
-	uint32_t imageIndex;
-	VkResult result = vkAcquireNextImageKHR(device.GetLogicalDevice(), device.GetSwapChain(), UINT64_MAX, imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
-	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-		return result;
-	}
-	else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
-		throw std::runtime_error("failed to acquire swap chain image!");
-	}
-
-	vkResetFences(device.GetLogicalDevice(), 1, &inFlightFence);
-	vkResetCommandBuffer(commandBuffer, 0);
-
-	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
-
-	VkCommandBufferBeginInfo beginInfo{};
-	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-	beginInfo.flags = 0; // Optional
-	beginInfo.pInheritanceInfo = nullptr; // Optional
-	if (vkBeginCommandBuffer(commandBuffer, &beginInfo) != VK_SUCCESS) {
-		throw std::runtime_error("failed to begin recording command buffer!");
-	}
-	VkRenderPassBeginInfo renderPassInfo{};
-	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-	renderPassInfo.renderPass = device.GetRenderPass();
-	renderPassInfo.framebuffer = device.GetSwapChainFramebuffer(imageIndex);
-	renderPassInfo.renderArea.offset = { 0, 0 };
-	renderPassInfo.renderArea.extent = swapChainExtent;
-	std::vector<VkClearValue> clearValues = device.GetClearValues();
-	renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
-	renderPassInfo.pClearValues = clearValues.data();
-	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+void GraphicalCommandBuffer::Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
 	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, object3DPipeline.GetGraphicsPipeline());
 
 	VkBuffer vertexBuffers[] = { 
@@ -94,6 +62,54 @@ const VkResult GraphicalCommandBuffer::Draw(const GPUModel& model, const FrameDe
 	);
 
 	vkCmdDrawIndexed(commandBuffer, model.GetNumberOfIndices(), 1, 0, 0, 0);
+}
+
+void GraphicalCommandBuffer::BeginRenderPass() {
+	if (currentState == CommandBufferState::Recording) {
+		throw std::runtime_error("another renderpass is currently running");
+	}
+	currentState = CommandBufferState::Recording;
+
+	vkWaitForFences(device.GetLogicalDevice(), 1, &inFlightFence, VK_TRUE, UINT64_MAX);
+
+	VkResult result = vkAcquireNextImageKHR(device.GetLogicalDevice(), device.GetSwapChain(), UINT64_MAX, imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex);
+	if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+		device.RecreateSwapChain();
+		return;
+	}
+	else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
+		throw std::runtime_error("failed to acquire swap chain image!");
+	}
+
+	vkResetFences(device.GetLogicalDevice(), 1, &inFlightFence);
+	vkResetCommandBuffer(commandBuffer, 0);
+
+	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
+
+	VkCommandBufferBeginInfo beginInfo{};
+	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+	beginInfo.flags = 0; // Optional
+	beginInfo.pInheritanceInfo = nullptr; // Optional
+	if (vkBeginCommandBuffer(commandBuffer, &beginInfo) != VK_SUCCESS) {
+		throw std::runtime_error("failed to begin recording command buffer!");
+	}
+	VkRenderPassBeginInfo renderPassInfo{};
+	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+	renderPassInfo.renderPass = device.GetRenderPass();
+	renderPassInfo.framebuffer = device.GetSwapChainFramebuffer(imageIndex);
+	renderPassInfo.renderArea.offset = { 0, 0 };
+	renderPassInfo.renderArea.extent = swapChainExtent;
+	std::vector<VkClearValue> clearValues = device.GetClearValues();
+	renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
+	renderPassInfo.pClearValues = clearValues.data();
+	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+}
+
+const VkResult GraphicalCommandBuffer::EndRenderPass() {
+	if (currentState == CommandBufferState::Idle) {
+		throw std::runtime_error("no renderpass has been started");
+	}
+	currentState = CommandBufferState::Idle;
 
 	vkCmdEndRenderPass(commandBuffer);
 
