@@ -232,6 +232,18 @@
     <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.cpp">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp">
+      <Filter>Source Files\Rendering\Pipelines</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Device.h">
@@ -375,12 +387,30 @@
     <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.h">
+      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h">
+      <Filter>Source Files\Rendering\Pipelines</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Rendering\Shaders\object.frag">
       <Filter>Source Files\Rendering\Shaders</Filter>
     </None>
     <None Include="Rendering\Shaders\object.vert">
+      <Filter>Source Files\Rendering\Shaders</Filter>
+    </None>
+    <None Include="Rendering\Shaders\skybox.frag">
+      <Filter>Source Files\Rendering\Shaders</Filter>
+    </None>
+    <None Include="Rendering\Shaders\skybox.vert">
       <Filter>Source Files\Rendering\Shaders</Filter>
     </None>
   </ItemGroup>

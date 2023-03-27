@@ -1,5 +1,7 @@
 #pragma once
-#include<stdexcept>
+#include <stdexcept>
+#include <array>
+#include "Rendering/Resources/CPUResources/CPUVertices/CPUPositionVertex.h"
 #include "Rendering/Resources/CPUResources/CPUImage.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 #include "Rendering/Memory/BufferAllocations/CubemapBufferAllocations/BaseCubemapBufferAllocation.h"
@@ -13,7 +15,12 @@ public:
 	GPUCubemap& operator=(GPUCubemap&) = delete;
 
 	const VkImageView& GetImageView() const;
+	const BaseVertexBufferAllocation& GetPositionsBufferAllocation() const;
+	const BaseIndexBufferAllocation& GetIndexBufferAllocation() const;
+	const uint32_t GetNumberOfIndices() const;
 
 private:
 	const BaseCubemapBufferAllocation* cubemapBuffer;
+	const BaseVertexBufferAllocation* positionsBufferAllocation;
+	const BaseIndexBufferAllocation* indexBufferAllocation;
 };

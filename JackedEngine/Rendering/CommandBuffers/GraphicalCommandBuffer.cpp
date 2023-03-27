@@ -1,9 +1,10 @@
 #include "GraphicalCommandBuffer.h"
 
-GraphicalCommandBuffer::GraphicalCommandBuffer(Device& device, const Object3DPipeline& object3DPipeline) :
+GraphicalCommandBuffer::GraphicalCommandBuffer(Device& device, const Object3DPipeline& object3DPipeline, const SkyboxPipeline& skyboxPipeline) :
 	BaseCommandBuffer(device),
 	device(device),
-	object3DPipeline(object3DPipeline)
+	object3DPipeline(object3DPipeline),
+	skyboxPipeline(skyboxPipeline)
 {
 	VkSemaphoreCreateInfo semaphoreInfo{};
 	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
@@ -63,6 +64,44 @@ void GraphicalCommandBuffer::Draw(const GPUModel& model, const FrameDescriptorSe
 
 	vkCmdDrawIndexed(commandBuffer, model.GetNumberOfIndices(), 1, 0, 0, 0);
 }
+
+void GraphicalCommandBuffer::DrawSkybox(const GPUCubemap& cubemap, const FrameDescriptorSet& frameDescriptorSet, const SkyboxDescriptorSet& objectDescriptorSet) {
+	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, skyboxPipeline.GetGraphicsPipeline());
+
+	VkBuffer vertexBuffers[] = {
+		cubemap.GetPositionsBufferAllocation().GetBuffer()
+	};
+	VkDeviceSize offsets[] = { 0 };
+	vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
+	vkCmdBindIndexBuffer(commandBuffer, cubemap.GetIndexBufferAllocation().GetBuffer(), 0, CPUModel::GetIndexType());
+
+
+	VkViewport viewport;
+	VkRect2D scissor;
+
+	skyboxPipeline.GetScreenData(viewport, scissor);
+
+	vkCmdSetViewport(commandBuffer, 0, 1, &viewport);
+	vkCmdSetScissor(commandBuffer, 0, 1, &scissor);
+
+	std::array<VkDescriptorSet, 2> descriptorSets{};
+	descriptorSets[0] = frameDescriptorSet.GetDescriptorSet();
+	descriptorSets[1] = objectDescriptorSet.GetDescriptorSet();
+
+	vkCmdBindDescriptorSets(
+		commandBuffer,
+		VK_PIPELINE_BIND_POINT_GRAPHICS,
+		skyboxPipeline.GetPipelineLayout(),
+		0,
+		static_cast<uint32_t>(descriptorSets.size()),
+		descriptorSets.data(),
+		0,
+		nullptr
+	);
+
+	vkCmdDrawIndexed(commandBuffer, cubemap.GetNumberOfIndices(), 1, 0, 0, 0);
+}
+
 
 void GraphicalCommandBuffer::BeginRenderPass() {
 	if (currentState == CommandBufferState::Recording) {
