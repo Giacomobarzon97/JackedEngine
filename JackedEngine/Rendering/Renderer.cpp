@@ -6,12 +6,25 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	allocationFactory(device),
 	sampler(device),
 	renderingManager(device, allocationFactory, sampler, maxFramesInFlight),
-	object3DPipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout())
+	object3DPipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout()),
+	cubemap(
+		allocationFactory,
+		CPUImage("../Assets/Textures/Skybox/front.png"),
+		CPUImage("../Assets/Textures/Skybox/back.png"),
+		CPUImage("../Assets/Textures/Skybox/top.png"),
+		CPUImage("../Assets/Textures/Skybox/bottom.png"),
+		CPUImage("../Assets/Textures/Skybox/right.png"),
+		CPUImage("../Assets/Textures/Skybox/left.png")
+	),
+	skyboxDescriptorPool(device,1),
+	skyboxDescriptorLayout(device),
+	skyboxDescriptorSet(device, skyboxDescriptorLayout, skyboxDescriptorPool, allocationFactory, cubemap, sampler),
+	skyboxPipeline(device, renderingManager.GetFrameDescriptorLayout(), skyboxDescriptorLayout)
 {
 	commandBuffers.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
-		commandBuffers[i] = new GraphicalCommandBuffer(device, object3DPipeline);
+		commandBuffers[i] = new GraphicalCommandBuffer(device, object3DPipeline, skyboxPipeline);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -26,8 +39,9 @@ Renderer::~Renderer() {
 void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 
 	commandBuffers[currentFrame]->BeginRenderPass();
+	const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
+
 	for (RenderableObject object : objects) {
-		const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
 		const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 
 		VkExtent2D swapChainExtent = device.GetSwapChainExtent();
@@ -41,6 +55,7 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 			objectDescriptorSet
 		);
 	}
+
 	VkResult result = commandBuffers[currentFrame]->EndRenderPass();
 	if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || framebufferResized) {
 		framebufferResized = false;

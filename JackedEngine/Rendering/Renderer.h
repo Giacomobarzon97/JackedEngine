@@ -11,6 +11,8 @@
 #include "Rendering/RenderingManager.h"
 #include "Rendering/Samplers/LinearRepeatSampler.h"
 
+#include "Rendering/Pipelines/SkyboxPipeline.h"
+
 class Renderer {
 public:
 	Renderer(const BaseWindow& window, const BaseCameraObject& camera);
@@ -34,6 +36,12 @@ private:
 	RenderingManager renderingManager;
 	const Object3DPipeline object3DPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
+
+	GPUCubemap cubemap;
+	SkyboxDescriptorPool skyboxDescriptorPool;
+	SkyboxDescriptorLayout skyboxDescriptorLayout;
+	SkyboxDescriptorSet skyboxDescriptorSet;
+	SkyboxPipeline skyboxPipeline;
 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;

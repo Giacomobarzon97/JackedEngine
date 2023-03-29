@@ -12,5 +12,4 @@ layout(location = 0) out vec3 fragTexCoord;
 void main() {
     gl_Position = frameUniform.projectionMatrix * mat4(mat3(frameUniform.viewMatrix)) * inPosition;
     fragTexCoord = vec3(inPosition.xy, -inPosition.z);
-    fragTexCoord.xy *= -1.0;
 }
