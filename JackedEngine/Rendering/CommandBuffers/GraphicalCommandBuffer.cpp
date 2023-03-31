@@ -144,6 +144,10 @@ void GraphicalCommandBuffer::BeginRenderPass() {
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 }
 
+void GraphicalCommandBuffer::NextSubpass() {
+	vkCmdNextSubpass(commandBuffer, VK_SUBPASS_CONTENTS_INLINE);
+}
+
 const VkResult GraphicalCommandBuffer::EndRenderPass() {
 	if (currentState == CommandBufferState::Idle) {
 		throw std::runtime_error("no renderpass has been started");

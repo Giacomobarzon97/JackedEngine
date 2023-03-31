@@ -41,6 +41,10 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 	commandBuffers[currentFrame]->BeginRenderPass();
 	const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
 
+	commandBuffers[currentFrame]->DrawSkybox(cubemap, frameDescriptorSet, skyboxDescriptorSet);
+
+	commandBuffers[currentFrame]->NextSubpass();
+	
 	for (RenderableObject object : objects) {
 		const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 

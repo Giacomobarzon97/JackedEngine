@@ -133,7 +133,7 @@ Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLa
 	pipelineInfo.pDynamicState = &dynamicState;
 	pipelineInfo.layout = pipelineLayout;
 	pipelineInfo.renderPass = device.GetRenderPass();
-	pipelineInfo.subpass = 0;
+	pipelineInfo.subpass = 1;
 	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
 	if (vkCreateGraphicsPipelines(device.GetLogicalDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline) != VK_SUCCESS) {

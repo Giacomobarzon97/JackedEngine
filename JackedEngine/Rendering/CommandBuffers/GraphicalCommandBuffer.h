@@ -21,6 +21,7 @@ public:
 
 	void BeginRenderPass();
 	const VkResult EndRenderPass();
+	void NextSubpass();
 	void Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
 	void DrawSkybox(const GPUCubemap& cubemap, const FrameDescriptorSet& frameDescriptorSet, const SkyboxDescriptorSet& objectDescriptorSet);
 
