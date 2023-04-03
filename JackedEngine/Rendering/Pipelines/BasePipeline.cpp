@@ -4,12 +4,10 @@ BasePipeline::BasePipeline(const Device& device) :
 	device(device)
 {}
 
-
 BasePipeline::~BasePipeline() {
 	vkDestroyPipeline(device.GetLogicalDevice(), graphicsPipeline, nullptr);
 	vkDestroyPipelineLayout(device.GetLogicalDevice(), pipelineLayout, nullptr);
 }
-
 
 VkShaderModule BasePipeline::createShaderModule(const std::string shaderPath) {
 	std::vector<char> shaderCode = FileIO::readFile(shaderPath);
@@ -23,7 +21,6 @@ VkShaderModule BasePipeline::createShaderModule(const std::string shaderPath) {
 	}
 	return shaderModule;
 }
-
 
 const VkPipelineLayout& BasePipeline::GetPipelineLayout() const {
 	return pipelineLayout;

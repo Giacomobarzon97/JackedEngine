@@ -24,7 +24,7 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	commandBuffers.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
-		commandBuffers[i] = new GraphicalCommandBuffer(device, object3DPipeline, skyboxPipeline);
+		commandBuffers[i] = new GraphicalCommandBuffer(device, skyboxPipeline);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -51,10 +51,13 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 		VkExtent2D swapChainExtent = device.GetSwapChainExtent();
 
 		frameDescriptorSet.UpdateUBO(camera.GetViewMatrix(), camera.GetProjectionMatrix(swapChainExtent.width, swapChainExtent.height));
-		objectDescriptorSet.UpdateModelMatrix(object.GetModelMatrix());
+
+		glm::mat4 modelMat = object.GetModelMatrix();
 
 		commandBuffers[currentFrame]->Draw(
+			object3DPipeline,
 			renderingManager.CreateOrGetModel(object.GetModelPath()),
+			&modelMat,
 			frameDescriptorSet,
 			objectDescriptorSet
 		);

@@ -2,8 +2,8 @@
 
 #include "Rendering/Resources/CPUResources/CPUModel.h"
 #include "Rendering/Device.h"
-#include "Rendering/Pipelines/Object3DPipeline.h"
 #include "Rendering/Resources/GPUResources/GPUModel.h"
+#include "Rendering/Pipelines/BasePipeline.h"
 #include "Rendering/Descriptors/DescriptorSets/FrameDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorSets/ObjectDescriptorSet.h"
 #include "Rendering/CommandBuffers/BaseCommandBuffer.h"
@@ -13,7 +13,7 @@
 
 class GraphicalCommandBuffer : public BaseCommandBuffer{
 public:
-	GraphicalCommandBuffer(Device& device, const Object3DPipeline& object3DPipeline, const SkyboxPipeline& skyboxPipeline);
+	GraphicalCommandBuffer(Device& device, const SkyboxPipeline& skyboxPipeline);
 	GraphicalCommandBuffer(GraphicalCommandBuffer&) = delete;
 	~GraphicalCommandBuffer();
 
@@ -22,13 +22,12 @@ public:
 	void BeginRenderPass();
 	const VkResult EndRenderPass();
 	void NextSubpass();
-	void Draw(const GPUModel& model, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
+	void Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
 	void DrawSkybox(const GPUCubemap& cubemap, const FrameDescriptorSet& frameDescriptorSet, const SkyboxDescriptorSet& objectDescriptorSet);
 
 private:
 	enum class CommandBufferState {Idle, Recording};
 
-	const Object3DPipeline& object3DPipeline;
 	const SkyboxPipeline& skyboxPipeline;
 	Device& device;
 

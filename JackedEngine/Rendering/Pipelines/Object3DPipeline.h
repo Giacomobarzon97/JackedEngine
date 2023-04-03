@@ -19,4 +19,5 @@ public:
 	Object3DPipeline&operator=(Object3DPipeline&) = delete;
 
 	virtual void GetScreenData(VkViewport& viewport, VkRect2D& scissor) const override;
+	virtual void GetPushConstantsData(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags) const override;
 };

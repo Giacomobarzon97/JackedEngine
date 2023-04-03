@@ -148,3 +148,13 @@ void SkyboxPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) cons
 	scissor.offset = { 0, 0 };
 	scissor.extent = swapChainExtent;
 }
+
+void SkyboxPipeline::GetPushConstantsData(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags) const {
+	offsets.resize(1);
+	sizes.resize(1);
+	stageFlags.resize(1);
+
+	offsets[0] = 0;
+	sizes[0] = 0;
+	stageFlags[0] = VK_SHADER_STAGE_VERTEX_BIT;
+}

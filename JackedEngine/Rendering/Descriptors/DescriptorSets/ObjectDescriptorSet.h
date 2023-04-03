@@ -13,14 +13,7 @@ public:
 
 	ObjectDescriptorSet& operator=(ObjectDescriptorSet&) = delete;
 
-	virtual void UpdateModelMatrix(const glm::mat4 modelMatrix) const;
-
 private:
-	struct UniformBufferObject {
-		glm::mat4 model;
-	};
-
 	const GPUImage& image;
 	const BaseSampler& sampler;
-	const BaseUniformBufferAllocation* const modelUniform;
 };

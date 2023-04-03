@@ -3,8 +3,7 @@
 ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescriptorLayout& descriptorLayout, const ObjectDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image, const BaseSampler& sampler) :
 	BaseDescriptorSet(device),
 	image(image),
-	sampler(sampler),
-	modelUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
+	sampler(sampler)
 {
 	VkDescriptorSetAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -15,43 +14,22 @@ ObjectDescriptorSet::ObjectDescriptorSet(const Device& device, const ObjectDescr
 		throw std::runtime_error("failed to allocate descriptor sets!");
 	}
 
-	VkDescriptorBufferInfo bufferInfo{};
-	bufferInfo.buffer = modelUniform->GetBuffer();
-	bufferInfo.offset = 0;
-	bufferInfo.range = sizeof(UniformBufferObject);
-
 	VkDescriptorImageInfo imageInfo{};
 	imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 	imageInfo.imageView = image.GetImageView();
 	imageInfo.sampler = sampler.GetSampler();
 
-	std::array<VkWriteDescriptorSet, 2> descriptorWrites{};
+	VkWriteDescriptorSet descriptorWrite{};
 
-	descriptorWrites[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-	descriptorWrites[0].dstSet = descriptorSet;
-	descriptorWrites[0].dstBinding = 0;
-	descriptorWrites[0].dstArrayElement = 0;
-	descriptorWrites[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-	descriptorWrites[0].descriptorCount = 1;
-	descriptorWrites[0].pBufferInfo = &bufferInfo;
+	descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+	descriptorWrite.dstSet = descriptorSet;
+	descriptorWrite.dstBinding = 0;
+	descriptorWrite.dstArrayElement = 0;
+	descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+	descriptorWrite.descriptorCount = 1;
+	descriptorWrite.pImageInfo = &imageInfo;
 
-	descriptorWrites[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-	descriptorWrites[1].dstSet = descriptorSet;
-	descriptorWrites[1].dstBinding = 1;
-	descriptorWrites[1].dstArrayElement = 0;
-	descriptorWrites[1].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-	descriptorWrites[1].descriptorCount = 1;
-	descriptorWrites[1].pImageInfo = &imageInfo;
-
-	vkUpdateDescriptorSets(device.GetLogicalDevice(), static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
+	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
-ObjectDescriptorSet::~ObjectDescriptorSet() {
-	delete modelUniform;
-}
-
-void ObjectDescriptorSet::UpdateModelMatrix(glm::mat4 modelMatrix) const {
-	UniformBufferObject ubo{};
-	ubo.model = modelMatrix;
-	modelUniform->UpdateBuffer(&ubo);
-}
+ObjectDescriptorSet::~ObjectDescriptorSet() {}
