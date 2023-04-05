@@ -12,7 +12,7 @@
 
 class GraphicalCommandBuffer : public BaseCommandBuffer{
 public:
-	GraphicalCommandBuffer(Device& device, const SkyboxPipeline& skyboxPipeline);
+	GraphicalCommandBuffer(Device& device);
 	GraphicalCommandBuffer(GraphicalCommandBuffer&) = delete;
 	~GraphicalCommandBuffer();
 
@@ -21,13 +21,11 @@ public:
 	void BeginRenderPass();
 	const VkResult EndRenderPass();
 	void NextSubpass();
-	void Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const;
-	void DrawSkybox(const GPUCubemap& cubemap, const FrameDescriptorSet& frameDescriptorSet, const SkyboxDescriptorSet& objectDescriptorSet);
+	void Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const BaseDescriptorSet& objectDescriptorSet) const;
 
 private:
 	enum class CommandBufferState {Idle, Recording};
 
-	const SkyboxPipeline& skyboxPipeline;
 	Device& device;
 
 	VkSemaphore imageAvailableSemaphore;

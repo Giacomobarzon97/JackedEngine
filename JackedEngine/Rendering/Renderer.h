@@ -37,6 +37,7 @@ private:
 	const Object3DPipeline object3DPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
 
+	GPUModel skyboxModel;
 	GPUCubemap cubemap;
 	SkyboxDescriptorPool skyboxDescriptorPool;
 	SkyboxDescriptorLayout skyboxDescriptorLayout;

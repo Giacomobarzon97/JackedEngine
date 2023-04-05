@@ -99,11 +99,17 @@ SkyboxPipeline::SkyboxPipeline(const Device& device, const FrameDescriptorLayout
 	std::array<VkDescriptorSetLayout, 2> descriptorLayouts{};
 	descriptorLayouts[0] = frameDescriptorLayout.GetDescriptorLayout();
 	descriptorLayouts[1] = skyboxDescriptorLayout.GetDescriptorLayout();
+
+	std::vector<VkPushConstantRange> push_constants = getPushConstants();
+
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
 	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
 	pipelineLayoutInfo.pushConstantRangeCount = 0;
+	pipelineLayoutInfo.pushConstantRangeCount = push_constants.size();
+	pipelineLayoutInfo.pPushConstantRanges = push_constants.data();
+
 	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
 	}
@@ -147,14 +153,4 @@ void SkyboxPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) cons
 	scissor = {};
 	scissor.offset = { 0, 0 };
 	scissor.extent = swapChainExtent;
-}
-
-void SkyboxPipeline::GetPushConstantsData(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags) const {
-	offsets.resize(1);
-	sizes.resize(1);
-	stageFlags.resize(1);
-
-	offsets[0] = 0;
-	sizes[0] = 0;
-	stageFlags[0] = VK_SHADER_STAGE_VERTEX_BIT;
 }

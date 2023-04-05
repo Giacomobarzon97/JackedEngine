@@ -109,17 +109,14 @@ Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLa
 	descriptorLayouts[0] = frameDescriptorLayout.GetDescriptorLayout();
 	descriptorLayouts[1] = objectDescriptorLayout.GetDescriptorLayout();
 
-	VkPushConstantRange push_constant;
-	push_constant.offset = 0;
-	push_constant.size = sizeof(PushConstants);
-	push_constant.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+	std::vector<VkPushConstantRange> push_constants = getPushConstants();
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
 	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
-	pipelineLayoutInfo.pushConstantRangeCount = 1;
-	pipelineLayoutInfo.pPushConstantRanges = &push_constant;
+	pipelineLayoutInfo.pushConstantRangeCount = push_constants.size();
+	pipelineLayoutInfo.pPushConstantRanges = push_constants.data();
 
 	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
@@ -164,15 +161,4 @@ void Object3DPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) co
 	scissor = {};
 	scissor.offset = { 0, 0 };
 	scissor.extent = swapChainExtent;
-}
-
-
-void Object3DPipeline::GetPushConstantsData(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags) const {
-	offsets.resize(1);
-	sizes.resize(1);
-	stageFlags.resize(1);
-
-	offsets[0] = 0;
-	sizes[0] = sizeof(PushConstants);
-	stageFlags[0] = VK_SHADER_STAGE_VERTEX_BIT;
 }

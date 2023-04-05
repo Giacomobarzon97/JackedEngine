@@ -5,6 +5,10 @@ layout(set = 0, binding = 0) uniform FrameBufferUniform {
     mat4 projectionMatrix;
 } frameUniform;
 
+layout(push_constant) uniform constants {
+    mat4 modelMatrix;
+} pushConstants;
+
 layout(location = 0) in vec4 inPosition;
 
 layout(location = 0) out vec3 fragTexCoord;

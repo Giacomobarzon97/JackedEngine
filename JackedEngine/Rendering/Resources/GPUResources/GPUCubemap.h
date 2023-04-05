@@ -15,12 +15,7 @@ public:
 	GPUCubemap& operator=(GPUCubemap&) = delete;
 
 	const VkImageView& GetImageView() const;
-	const BaseVertexBufferAllocation& GetPositionsBufferAllocation() const;
-	const BaseIndexBufferAllocation& GetIndexBufferAllocation() const;
-	const uint32_t GetNumberOfIndices() const;
 
 private:
 	const BaseCubemapBufferAllocation* cubemapBuffer;
-	const BaseVertexBufferAllocation* positionsBufferAllocation;
-	const BaseIndexBufferAllocation* indexBufferAllocation;
 };

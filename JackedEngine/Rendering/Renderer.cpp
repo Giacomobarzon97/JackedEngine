@@ -7,6 +7,27 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	sampler(device),
 	renderingManager(device, allocationFactory, sampler, maxFramesInFlight),
 	object3DPipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout()),
+	skyboxModel(
+		allocationFactory,
+		std::vector<uint32_t>{
+			0, 1, 3, 3, 1, 2,
+			1, 5, 2, 2, 5, 6,
+			5, 4, 6, 6, 4, 7,
+			4, 0, 7, 7, 0, 3,
+			3, 2, 7, 7, 2, 6,
+			4, 5, 0, 0, 5, 1
+		},
+		std::vector<CPUPositionVertex>{
+			CPUPositionVertex({ -1, -1, -1, 1 }),
+			CPUPositionVertex({ 1, -1, -1, 1 }),
+			CPUPositionVertex({ 1, 1, -1, 1 }),
+			CPUPositionVertex({ -1, 1, -1, 1 }),
+			CPUPositionVertex({ -1, -1, 1, 1 }),
+			CPUPositionVertex({ 1, -1, 1, 1 }),
+			CPUPositionVertex({ 1, 1, 1, 1 }),
+			CPUPositionVertex({ -1, 1, 1, 1 })
+		}
+	),
 	cubemap(
 		allocationFactory,
 		CPUImage("../Assets/Textures/Skybox/front.png"),
@@ -24,7 +45,7 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	commandBuffers.resize(maxFramesInFlight);
 
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
-		commandBuffers[i] = new GraphicalCommandBuffer(device, skyboxPipeline);
+		commandBuffers[i] = new GraphicalCommandBuffer(device);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
 }
@@ -41,7 +62,9 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 	commandBuffers[currentFrame]->BeginRenderPass();
 	const FrameDescriptorSet& frameDescriptorSet = renderingManager.GetFrameDescriptor(currentFrame);
 
-	commandBuffers[currentFrame]->DrawSkybox(cubemap, frameDescriptorSet, skyboxDescriptorSet);
+	glm::mat4 identity;
+
+	commandBuffers[currentFrame]->Draw(skyboxPipeline, skyboxModel, &identity, frameDescriptorSet, skyboxDescriptorSet);
 
 	commandBuffers[currentFrame]->NextSubpass();
 	

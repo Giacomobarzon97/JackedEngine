@@ -11,7 +11,7 @@ public:
 	const VkPipelineLayout& GetPipelineLayout() const;
 	const VkPipeline& GetGraphicsPipeline() const;
 	virtual void GetScreenData(VkViewport& viewport, VkRect2D& scissor) const = 0;
-	virtual void GetPushConstantsData(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags) const = 0;
+	static void GetPushConstantsConfig(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags);
 
 protected:
 	struct PushConstants {
@@ -23,4 +23,5 @@ protected:
 	VkPipeline graphicsPipeline;
 
 	VkShaderModule createShaderModule(const std::string shaderPath);
+	std::vector<VkPushConstantRange> getPushConstants();
 };
