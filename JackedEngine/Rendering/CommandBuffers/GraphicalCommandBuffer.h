@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Rendering/Resources/CPUResources/CPUModel.h"
 #include "Rendering/Device.h"
 #include "Rendering/Resources/GPUResources/GPUModel.h"
 #include "Rendering/Pipelines/BasePipeline.h"

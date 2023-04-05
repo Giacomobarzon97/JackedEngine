@@ -2,6 +2,6 @@
 
 BaseUniformBufferAllocation::~BaseUniformBufferAllocation() {}
 
-const VkBuffer BaseUniformBufferAllocation::GetBuffer() const {
+const VkBuffer& BaseUniformBufferAllocation::GetBuffer() const {
 	return buffer;
 }

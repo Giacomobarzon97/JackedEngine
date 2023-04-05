@@ -65,7 +65,6 @@
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\RenderingManager.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp" />
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUModel.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUImage.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
@@ -118,7 +117,6 @@
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RenderingManager.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h" />
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUModel.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUImage.h" />
     <ClInclude Include="Utils\FileIOr.h" />

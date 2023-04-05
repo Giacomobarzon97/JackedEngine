@@ -4,7 +4,7 @@
 class BaseVertexBufferAllocation {
 public:
 	virtual ~BaseVertexBufferAllocation() = 0;
-	const VkBuffer GetBuffer() const;
+	const VkBuffer& GetBuffer() const;
 
 protected:
 	VkBuffer buffer;

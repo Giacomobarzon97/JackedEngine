@@ -2,6 +2,6 @@
 
 BaseVertexBufferAllocation::~BaseVertexBufferAllocation() {}
 
-const VkBuffer BaseVertexBufferAllocation::GetBuffer() const {
+const VkBuffer& BaseVertexBufferAllocation::GetBuffer() const {
 	return buffer;
 }

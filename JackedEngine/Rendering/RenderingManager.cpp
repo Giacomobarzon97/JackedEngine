@@ -41,7 +41,7 @@ RenderingManager::~RenderingManager() {
 
 const GPUModel& RenderingManager::CreateOrGetModel(const std::string modelPath) {
 	if (modelMap.find(modelPath) == modelMap.end()) {
-		modelMap[modelPath] = new GPUModel(allocationFactory, CPUModel(modelPath));
+		modelMap[modelPath] = new GPUModel(allocationFactory, modelPath);
 	} 
 	return *modelMap[modelPath];
 }

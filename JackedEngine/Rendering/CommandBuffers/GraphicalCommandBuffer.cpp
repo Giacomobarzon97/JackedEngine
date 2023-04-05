@@ -29,14 +29,15 @@ GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 void GraphicalCommandBuffer::Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const ObjectDescriptorSet& objectDescriptorSet) const {
 	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
 
-	VkBuffer vertexBuffers[] = { 
-		model.GetPositionsBufferAllocation().GetBuffer(),
-		model.GetTextureBufferAllocation().GetBuffer()
-	};
-	VkDeviceSize vertexOffsets[] = { 0 , 0};
-	vkCmdBindVertexBuffers(commandBuffer, 0, 2, vertexBuffers, vertexOffsets);
-	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, CPUModel::GetIndexType());
+	std::vector<VkBuffer> vertexBuffers = model.GetBuffers();
+	std::vector<VkDeviceSize> vertexOffsets;
+	vertexOffsets.resize(vertexBuffers.size());
+	for (uint8_t i = 0; i < vertexBuffers.size(); i++) {
+		vertexOffsets[i] = 0;
+	}
 
+	vkCmdBindVertexBuffers(commandBuffer, 0, vertexBuffers.size(), vertexBuffers.data(), vertexOffsets.data());
+	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, GPUModel::GetIndexType());
 
 	VkViewport viewport;
 	VkRect2D scissor;
@@ -82,7 +83,7 @@ void GraphicalCommandBuffer::DrawSkybox(const GPUCubemap& cubemap, const FrameDe
 	};
 	VkDeviceSize offsets[] = { 0 };
 	vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
-	vkCmdBindIndexBuffer(commandBuffer, cubemap.GetIndexBufferAllocation().GetBuffer(), 0, CPUModel::GetIndexType());
+	vkCmdBindIndexBuffer(commandBuffer, cubemap.GetIndexBufferAllocation().GetBuffer(), 0, GPUModel ::GetIndexType());
 
 
 	VkViewport viewport;

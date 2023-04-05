@@ -3,6 +3,6 @@
 
 BaseIndexBufferAllocation::~BaseIndexBufferAllocation() {}
 
-const VkBuffer BaseIndexBufferAllocation::GetBuffer() const {
+const VkBuffer& BaseIndexBufferAllocation::GetBuffer() const {
 	return buffer;
 }
