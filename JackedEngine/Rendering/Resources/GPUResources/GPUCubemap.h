@@ -1,10 +1,10 @@
 #pragma once
 #include <stdexcept>
-#include <array>
+#include <vector>
 #include "Rendering/Resources/CPUResources/CPUVertices/CPUPositionVertex.h"
 #include "Rendering/Resources/CPUResources/CPUImage.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
-#include "Rendering/Memory/BufferAllocations/CubemapBufferAllocations/BaseCubemapBufferAllocation.h"
+#include "Rendering/Memory/Allocations/ImageAllocations/BaseImageAllocation.h"
 
 class GPUCubemap {
 public:
@@ -17,5 +17,5 @@ public:
 	const VkImageView& GetImageView() const;
 
 private:
-	const BaseCubemapBufferAllocation* cubemapBuffer;
+	const BaseImageAllocation* cubemapBuffer;
 };

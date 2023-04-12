@@ -56,22 +56,19 @@
     <Filter Include="Source Files\Rendering\Resources\GPUResources">
       <UniqueIdentifier>{f4e6ebe6-d758-4a3d-9e71-9ec706119391}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations">
+    <Filter Include="Source Files\Rendering\Memory\Allocations">
       <UniqueIdentifier>{219fb08c-f797-4595-ac1a-f97f8b887bf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations">
-      <UniqueIdentifier>{bd9d38ee-ff1d-4348-8120-b9bc15ad34b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations">
+    <Filter Include="Source Files\Rendering\Memory\Allocations\BufferAllocations">
       <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Rendering\Resources\CPUResources">
       <UniqueIdentifier>{cb3ecdc5-1851-4977-8a2a-261c76cef7d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations">
+    <Filter Include="Source Files\Rendering\Memory\Allocations\UniformAllocations">
       <UniqueIdentifier>{501f4a96-5f05-4a3d-bb6a-1d558fcc8a6e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations">
+    <Filter Include="Source Files\Rendering\Memory\Allocations\ImageAllocations">
       <UniqueIdentifier>{ae64a349-6b0a-4211-b0ac-5015c9e772af}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Rendering\Descriptors\DescriptorLayouts">
@@ -80,11 +77,11 @@
     <Filter Include="Source Files\Rendering\Samplers">
       <UniqueIdentifier>{22f40832-cf76-4b04-9b55-08379a970f7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations">
-      <UniqueIdentifier>{9d45c66c-a710-45d9-95fb-3b3bdd4864fc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Rendering\Resources\CPUResources\CPUVertices">
       <UniqueIdentifier>{ea09c04d-c3fe-4066-a8ec-4f6d8cd21102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\Geometry">
+      <UniqueIdentifier>{5628d333-3dc4-4df8-a570-a8103537a8de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,11 +154,11 @@
     <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\BaseVertexBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\Allocations\BufferAllocations\BaseBufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\VMAVertexBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\Allocations\BufferAllocations\VMABufferAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
@@ -169,23 +166,17 @@
     <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\Allocations\UniformAllocations\BaseUniformAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\Allocations\UniformAllocations\VMAUniformAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\Allocations\ImageAllocations\BaseImageAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\VMAUniformBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
+    <ClCompile Include="Rendering\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp">
+      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
@@ -211,12 +202,6 @@
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp">
       <Filter>Source Files\Rendering\Samplers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClCompile>
@@ -240,6 +225,12 @@
     </ClCompile>
     <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp">
       <Filter>Source Files\Rendering\Pipelines</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Geometry\BaseGeometry.cpp">
+      <Filter>Source Files\Rendering\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Geometry\CubeGeometry.cpp">
+      <Filter>Source Files\Rendering\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -309,11 +300,11 @@
     <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h">
       <Filter>Source Files\Rendering\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\BaseVertexBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\Allocations\BufferAllocations\BaseBufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\VertexBufferAllocations\VMAVertexBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\VertexBufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\Allocations\BufferAllocations\VMABufferAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
@@ -321,23 +312,17 @@
     <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h">
       <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\BaseIndexBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\Allocations\UniformAllocations\BaseUniformAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\IndexBufferAllocations\VMAIndexBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\IndexBufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\Allocations\UniformAllocations\VMAUniformAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\BaseUniformBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\Allocations\ImageAllocations\BaseImageAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\UniformBufferAllocations\VMAUniformBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\UniformBufferAllocations</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\BaseImageBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\ImageBufferAllocations\VMAImageBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\ImageBufferAllocations</Filter>
+    <ClInclude Include="Rendering\Memory\Allocations\ImageAllocations\VMAImageAllocation.h">
+      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h">
       <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
@@ -363,12 +348,6 @@
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h">
       <Filter>Source Files\Rendering\Samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\BaseCubemapBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Memory\BufferAllocations\CubemapBufferAllocations\VMACubemapBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\BufferAllocations\CubemapBufferAllocations</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
@@ -392,6 +371,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h">
       <Filter>Source Files\Rendering\Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Geometry\BaseGeometry.h">
+      <Filter>Source Files\Rendering\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Geometry\CubeGeometry.h">
+      <Filter>Source Files\Rendering\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

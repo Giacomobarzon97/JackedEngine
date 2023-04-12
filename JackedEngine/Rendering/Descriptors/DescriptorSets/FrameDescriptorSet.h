@@ -19,5 +19,5 @@ private:
 		alignas(16) glm::mat4 viewMatrix;
 		alignas(16) glm::mat4 projectionMatrix;
 	};
-	const BaseUniformBufferAllocation* const projectionViewUniform;
+	const BaseUniformAllocation* const projectionViewUniform;
 };

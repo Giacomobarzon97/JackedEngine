@@ -1,6 +1,6 @@
-#include "VMAUniformBufferAllocation.h"
+#include "VMAUniformAllocation.h"
 
-VMAUniformBufferAllocation::VMAUniformBufferAllocation(const VMAAllocator& allocator, const uint32_t bufferSize) :
+VMAUniformAllocation::VMAUniformAllocation(const VMAAllocator& allocator, const uint32_t bufferSize) :
 	allocator(allocator),
 	bufferSize(bufferSize)
 {
@@ -8,11 +8,11 @@ VMAUniformBufferAllocation::VMAUniformBufferAllocation(const VMAAllocator& alloc
 	allocator.MapMemory(allocation, memLoc);
 }
 
-VMAUniformBufferAllocation::~VMAUniformBufferAllocation() {
+VMAUniformAllocation::~VMAUniformAllocation() {
 	allocator.UnMapMemory(allocation);
 	allocator.DestroyBuffer(buffer, allocation);
 }
 
-void VMAUniformBufferAllocation::UpdateBuffer(const void* data) const {
+void VMAUniformAllocation::UpdateBuffer(const void* data) const {
 	memcpy(memLoc, data, bufferSize);
 }

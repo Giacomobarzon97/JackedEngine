@@ -1,9 +1,9 @@
 #pragma once
 #include <vulkan/vulkan.h>
 
-class BaseImageBufferAllocation {
+class BaseImageAllocation {
 public:
-	virtual ~BaseImageBufferAllocation() = 0;
+	virtual ~BaseImageAllocation() = 0;
 	const VkImageView& GetImageView() const;
 
 protected:

@@ -4,43 +4,50 @@
 
 GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUPositionVertex>& positions) {
 	bufferAllocations.resize(1);
-	bufferAllocations[0] = allocationFactory.CreateVertexBufferAllocation(
+	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
 		positions.data(),
-		sizeof(CPUPositionVertex) * positions.size()
+		sizeof(CPUPositionVertex) * positions.size(),
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
 	);
-	indexBufferAllocation = allocationFactory.CreateIndexBufferAllocation(
+	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
 		indices.data(),
-		sizeof(uint32_t) * indices.size()
+		sizeof(uint32_t) * indices.size(),
+		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
 	);
 	nVertices = static_cast<uint32_t>(indices.size());
 }
 
 GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUTextureVertex>& texCoords) {
 	bufferAllocations.resize(1);
-	bufferAllocations[0] = allocationFactory.CreateVertexBufferAllocation(
+	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
 		texCoords.data(),
-		sizeof(CPUTextureVertex) * texCoords.size()
+		sizeof(CPUTextureVertex) * texCoords.size(),
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
 	);
-	indexBufferAllocation = allocationFactory.CreateIndexBufferAllocation(
+	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
 		indices.data(),
-		sizeof(uint32_t) * indices.size()
+		sizeof(uint32_t) * indices.size(),
+		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
 	);
 	nVertices = static_cast<uint32_t>(indices.size());
 }
 
 GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUPositionVertex>& positions, const std::vector<CPUTextureVertex>& texCoords) {
 	bufferAllocations.resize(1);
-	bufferAllocations[0] = allocationFactory.CreateVertexBufferAllocation(
+	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
 		positions.data(),
-		sizeof(CPUPositionVertex) * positions.size()
+		sizeof(CPUPositionVertex) * positions.size(),
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
 	);
-	bufferAllocations[1] = allocationFactory.CreateVertexBufferAllocation(
+	bufferAllocations[1] = allocationFactory.CreateBufferAllocation(
 		texCoords.data(),
-		sizeof(CPUTextureVertex) * texCoords.size()
+		sizeof(CPUTextureVertex) * texCoords.size(),
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
 	);
-	indexBufferAllocation = allocationFactory.CreateIndexBufferAllocation(
+	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
 		indices.data(),
-		sizeof(uint32_t) * indices.size()
+		sizeof(uint32_t) * indices.size(),
+		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
 	);
 	nVertices = static_cast<uint32_t>(indices.size());
 }
@@ -81,17 +88,20 @@ GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::st
 
 	bufferAllocations.resize(2);
 
-	bufferAllocations[0] = allocationFactory.CreateVertexBufferAllocation(
+	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
 		positions.data(),
-		sizeof(CPUPositionVertex) * positions.size()
+		sizeof(CPUPositionVertex) * positions.size(),
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
 	);
-	bufferAllocations[1] = allocationFactory.CreateVertexBufferAllocation(
+	bufferAllocations[1] = allocationFactory.CreateBufferAllocation(
 		texCoords.data(),
-		sizeof(CPUTextureVertex) * texCoords.size()
+		sizeof(CPUTextureVertex) * texCoords.size(),
+		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
 	);
-	indexBufferAllocation = allocationFactory.CreateIndexBufferAllocation(
+	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
 		indices.data(),
-		sizeof(uint32_t) * indices.size()
+		sizeof(uint32_t) * indices.size(),
+		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
 	);
 
 	nVertices = static_cast<uint32_t>(indices.size());
@@ -114,7 +124,7 @@ const std::vector<VkBuffer> GPUModel::GetBuffers() const{
 	return buffers;
 }
 
-const BaseIndexBufferAllocation& GPUModel::GetIndexBufferAllocation() const {
+const BaseBufferAllocation& GPUModel::GetIndexBufferAllocation() const {
 	return *indexBufferAllocation;
 }
 

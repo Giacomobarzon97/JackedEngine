@@ -1,9 +1,9 @@
 #pragma once
 #include <vulkan/vulkan.h>
 
-class BaseVertexBufferAllocation {
+class BaseBufferAllocation {
 public:
-	virtual ~BaseVertexBufferAllocation() = 0;
+	virtual ~BaseBufferAllocation() = 0;
 	const VkBuffer& GetBuffer() const;
 
 protected:

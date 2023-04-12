@@ -18,12 +18,12 @@ public:
 	GPUModel& operator=(GPUModel&) = delete;
 
 	const std::vector<VkBuffer> GetBuffers() const;
-	const BaseIndexBufferAllocation& GetIndexBufferAllocation() const;
+	const BaseBufferAllocation& GetIndexBufferAllocation() const;
 	const uint32_t GetNumberOfIndices() const;
 	static const VkIndexType GetIndexType();
 
 private:
 	uint32_t nVertices;
-	std::vector<const BaseVertexBufferAllocation*> bufferAllocations;
-	const BaseIndexBufferAllocation* indexBufferAllocation;
+	std::vector<const BaseBufferAllocation*> bufferAllocations;
+	const BaseBufferAllocation* indexBufferAllocation;
 };

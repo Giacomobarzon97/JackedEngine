@@ -1,4 +1,5 @@
 #pragma once
+#include<vector>
 #include "Rendering/Resources/CPUResources/CPUImage.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 
@@ -13,6 +14,6 @@ public:
 	const VkImageView& GetImageView() const;
 
 private:
-	const BaseImageBufferAllocation* imageBufferAllocation;
+	const BaseImageAllocation* imageBufferAllocation;
 
 };

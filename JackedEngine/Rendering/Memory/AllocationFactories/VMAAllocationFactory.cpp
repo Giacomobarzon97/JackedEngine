@@ -6,22 +6,14 @@ VMAAllocationFactory::VMAAllocationFactory(const Device& device) :
 
 VMAAllocationFactory::~VMAAllocationFactory(){}
 
-const VMAVertexBufferAllocation* VMAAllocationFactory::CreateVertexBufferAllocation(const void* data, const uint32_t dataSize) const {
-	return new VMAVertexBufferAllocation(allocator, data, dataSize);
+const VMABufferAllocation* VMAAllocationFactory::CreateBufferAllocation(const void* data, const uint32_t dataSize, VkBufferUsageFlags usage) const {
+	return new VMABufferAllocation(allocator, data, dataSize, usage);
 }
 
-const VMAIndexBufferAllocation* VMAAllocationFactory::CreateIndexBufferAllocation(const void* data, const uint32_t dataSize) const {
-	return new VMAIndexBufferAllocation(allocator, data, dataSize);
+const VMAUniformAllocation* VMAAllocationFactory::CreateUniformAllocation(const uint32_t bufferSize) const {
+	return new VMAUniformAllocation(allocator, bufferSize);
 }
 
-const VMAUniformBufferAllocation* VMAAllocationFactory::CreateUniformBufferAllocation(const uint32_t bufferSize) const {
-	return new VMAUniformBufferAllocation(allocator, bufferSize);
-}
-
-const VMAImageBufferAllocation* VMAAllocationFactory::CreateImageBufferAllocation(const void* data, const int width, const int height) const {
-	return new VMAImageBufferAllocation(allocator, data, width, height);
-}
-
-const VMACubemapBufferAllocation* VMAAllocationFactory::CreateCubemapBufferAllocation(const void* frontFaceData, const void* backFaceData, const void* upFaceData, const void* downFaceData, const void* rightFaceData, const void* leftFaceData, const int width, const int height) const {
-	return new VMACubemapBufferAllocation(allocator, frontFaceData, backFaceData, upFaceData, downFaceData, rightFaceData, leftFaceData, width, height);
+const VMAImageAllocation* VMAAllocationFactory::CreateImageAllocation(const std::vector<const void*> data, const int width, const int height, VkImageViewType imageViewType, VkImageCreateFlags flags) const {
+	return new VMAImageAllocation(allocator, data, width, height, imageViewType, flags);
 }

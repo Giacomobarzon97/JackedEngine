@@ -2,7 +2,7 @@
 
 FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescriptorLayout& descriptorLayout, const FrameDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
 	BaseDescriptorSet(device),
-	projectionViewUniform(allocationFactory.CreateUniformBufferAllocation(sizeof(UniformBufferObject)))
+	projectionViewUniform(allocationFactory.CreateUniformAllocation(sizeof(UniformBufferObject)))
 {
 	VkDescriptorSetAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;

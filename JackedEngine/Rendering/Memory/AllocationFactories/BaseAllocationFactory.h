@@ -1,17 +1,14 @@
 #pragma once
-#include "Rendering/Memory/BufferAllocations/VertexBufferAllocations/BaseVertexBufferAllocation.h"
-#include "Rendering/Memory/BufferAllocations/IndexBufferAllocations/BaseIndexBufferAllocation.h"
-#include "Rendering/Memory/BufferAllocations/UniformBufferAllocations/BaseUniformBufferAllocation.h"
-#include "Rendering/Memory/BufferAllocations/ImageBufferAllocations/BaseImageBufferAllocation.h"
-#include "Rendering/Memory/BufferAllocations/CubemapBufferAllocations/BaseCubemapBufferAllocation.h"
+#include <vector>
+#include "Rendering/Memory/Allocations/BufferAllocations/BaseBufferAllocation.h"
+#include "Rendering/Memory/Allocations/UniformAllocations/BaseUniformAllocation.h"
+#include "Rendering/Memory/Allocations/ImageAllocations/BaseImageAllocation.h"
 
 class BaseAllocationFactory {
 public:
-	virtual const BaseVertexBufferAllocation* CreateVertexBufferAllocation(const void* data, const uint32_t dataSize) const = 0;
-	virtual const BaseIndexBufferAllocation* CreateIndexBufferAllocation(const void* data, const uint32_t dataSize) const = 0;
-	virtual const BaseUniformBufferAllocation* CreateUniformBufferAllocation(const uint32_t dataSize) const = 0;
-	virtual const BaseImageBufferAllocation* CreateImageBufferAllocation(const void* data, const int width, const int height) const = 0;
-	virtual const BaseCubemapBufferAllocation* CreateCubemapBufferAllocation(const void* frontFaceData, const void* backFaceData, const void* upFaceData, const void* downFaceData, const void* rightFaceData, const void* leftFaceData, const int width, const int height) const = 0;
+	virtual const BaseBufferAllocation* CreateBufferAllocation(const void* data, const uint32_t dataSize, VkBufferUsageFlags usage) const = 0;
+	virtual const BaseUniformAllocation* CreateUniformAllocation(const uint32_t dataSize) const = 0;
+	virtual const BaseImageAllocation* CreateImageAllocation(const std::vector<const void*> data, const int width, const int height, VkImageViewType imageViewType, VkImageCreateFlags flags) const = 0;
 
 	virtual ~BaseAllocationFactory();
 };
