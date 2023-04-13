@@ -477,9 +477,9 @@ void Device::createRenderPass() {
 	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
 	renderPassInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
 	renderPassInfo.pAttachments = attachments.data();
-	renderPassInfo.subpassCount = subpasses.size();
+	renderPassInfo.subpassCount = static_cast<uint32_t>(subpasses.size());
 	renderPassInfo.pSubpasses = subpasses.data();
-	renderPassInfo.dependencyCount = dependencies.size();
+	renderPassInfo.dependencyCount = static_cast<uint32_t>(dependencies.size());
 	renderPassInfo.pDependencies = dependencies.data();
 
 	if (vkCreateRenderPass(logicalDevice, &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS) {

@@ -2,16 +2,12 @@
 #include <vector>
 #include <string>
 #include <vulkan/vulkan.h>
-#include "Rendering/Resources/CPUResources/CPUVertices/CPUPositionVertex.h"
-#include "Rendering/Resources/CPUResources/CPUVertices/CPUTextureVertex.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
+#include "Rendering/Resources/CPUResources/CPUModels/CPUBaseModel.h"
 
 class GPUModel {
 public:
-	GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUPositionVertex>& positions);
-	GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUTextureVertex>& texCoords);
-	GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUPositionVertex>& positions, const std::vector<CPUTextureVertex>& texCoords);
-	GPUModel(const BaseAllocationFactory& allocationFactory, const std::string objPath);
+	GPUModel(const BaseAllocationFactory& allocationFactory, const CPUBaseModel& model);
 	GPUModel(GPUModel&) = delete;
 	~GPUModel();
 

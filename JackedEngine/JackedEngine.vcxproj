@@ -22,9 +22,10 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.cpp" />
-    <ClCompile Include="Rendering\Geometry\BaseGeometry.cpp" />
-    <ClCompile Include="Rendering\Geometry\CubeGeometry.cpp" />
     <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
@@ -74,8 +75,9 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.h" />
-    <ClInclude Include="Rendering\Geometry\BaseGeometry.h" />
-    <ClInclude Include="Rendering\Geometry\CubeGeometry.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h" />
     <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h" />

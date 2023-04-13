@@ -9,8 +9,7 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 	object3DPipeline(device, renderingManager.GetFrameDescriptorLayout(), renderingManager.GetObjectDescriptorLayout()),
 	skyboxModel(
 		allocationFactory,
-		CubeGeometry().GetIndexData(),
-		CubeGeometry().GetPositionData()
+		CPUCubeModel()
 	),
 	cubemap(
 		allocationFactory,

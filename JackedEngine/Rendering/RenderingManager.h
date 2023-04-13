@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 #include "Rendering/Resources/GPUResources/GPUModel.h"
+#include "Rendering/Resources/CPUResources/CPUModels/CPUGenericMesh.h"
 #include "Rendering/Descriptors/DescriptorSets/ObjectDescriptorSet.h"
 #include "Rendering/Descriptors/DescriptorSets/FrameDescriptorSet.h"
 

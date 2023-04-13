@@ -40,8 +40,10 @@ RenderingManager::~RenderingManager() {
 }
 
 const GPUModel& RenderingManager::CreateOrGetModel(const std::string modelPath) {
+	CPUGenericMesh mesh = CPUGenericMesh(modelPath, true, true);
 	if (modelMap.find(modelPath) == modelMap.end()) {
-		modelMap[modelPath] = new GPUModel(allocationFactory, modelPath);
+		mesh.LoadData();
+		modelMap[modelPath] = new GPUModel(allocationFactory, mesh);
 	} 
 	return *modelMap[modelPath];
 }

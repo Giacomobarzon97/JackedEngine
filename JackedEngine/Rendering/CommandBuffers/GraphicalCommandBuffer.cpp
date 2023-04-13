@@ -35,7 +35,7 @@ void GraphicalCommandBuffer::Draw(const BasePipeline& pipeline, const GPUModel& 
 		vertexOffsets[i] = 0;
 	}
 
-	vkCmdBindVertexBuffers(commandBuffer, 0, vertexBuffers.size(), vertexBuffers.data(), vertexOffsets.data());
+	vkCmdBindVertexBuffers(commandBuffer, 0, static_cast<uint32_t>(vertexBuffers.size()), vertexBuffers.data(), vertexOffsets.data());
 	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, GPUModel::GetIndexType());
 
 	VkViewport viewport;

@@ -80,8 +80,8 @@
     <Filter Include="Source Files\Rendering\Resources\CPUResources\CPUVertices">
       <UniqueIdentifier>{ea09c04d-c3fe-4066-a8ec-4f6d8cd21102}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering\Geometry">
-      <UniqueIdentifier>{5628d333-3dc4-4df8-a570-a8103537a8de}</UniqueIdentifier>
+    <Filter Include="Source Files\Rendering\Resources\CPUResources\CPUModels">
+      <UniqueIdentifier>{8765dbcc-300a-475c-9251-ddcc61285879}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,9 +211,6 @@
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
@@ -226,11 +223,17 @@
     <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Geometry\BaseGeometry.cpp">
-      <Filter>Source Files\Rendering\Geometry</Filter>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Geometry\CubeGeometry.cpp">
-      <Filter>Source Files\Rendering\Geometry</Filter>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,9 +360,6 @@
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
@@ -372,11 +372,17 @@
     <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h">
       <Filter>Source Files\Rendering\Pipelines</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Geometry\BaseGeometry.h">
-      <Filter>Source Files\Rendering\Geometry</Filter>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Geometry\CubeGeometry.h">
-      <Filter>Source Files\Rendering\Geometry</Filter>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
+      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

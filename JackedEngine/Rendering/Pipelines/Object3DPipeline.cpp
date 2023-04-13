@@ -115,7 +115,7 @@ Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLa
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
 	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
-	pipelineLayoutInfo.pushConstantRangeCount = push_constants.size();
+	pipelineLayoutInfo.pushConstantRangeCount = static_cast<uint32_t>(push_constants.size());
 	pipelineLayoutInfo.pPushConstantRanges = push_constants.data();
 
 	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {

@@ -1,110 +1,26 @@
 #include "GPUModel.h"
-#define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
 
-GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUPositionVertex>& positions) {
-	bufferAllocations.resize(1);
-	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
-		positions.data(),
-		sizeof(CPUPositionVertex) * positions.size(),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
-	);
-	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
-		indices.data(),
-		sizeof(uint32_t) * indices.size(),
-		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
-	);
-	nVertices = static_cast<uint32_t>(indices.size());
-}
-
-GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUTextureVertex>& texCoords) {
-	bufferAllocations.resize(1);
-	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
-		texCoords.data(),
-		sizeof(CPUTextureVertex) * texCoords.size(),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
-	);
-	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
-		indices.data(),
-		sizeof(uint32_t) * indices.size(),
-		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
-	);
-	nVertices = static_cast<uint32_t>(indices.size());
-}
-
-GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::vector<uint32_t>& indices, const std::vector<CPUPositionVertex>& positions, const std::vector<CPUTextureVertex>& texCoords) {
-	bufferAllocations.resize(1);
-	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
-		positions.data(),
-		sizeof(CPUPositionVertex) * positions.size(),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
-	);
-	bufferAllocations[1] = allocationFactory.CreateBufferAllocation(
-		texCoords.data(),
-		sizeof(CPUTextureVertex) * texCoords.size(),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
-	);
-	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
-		indices.data(),
-		sizeof(uint32_t) * indices.size(),
-		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
-	);
-	nVertices = static_cast<uint32_t>(indices.size());
-}
-
-GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const std::string objPath)
+GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const CPUBaseModel& model)
 {
-	std::vector<CPUPositionVertex> positions;
-	std::vector<CPUTextureVertex> texCoords;
-	std::vector<uint32_t> indices;
+	ModelData data = model.GetModelData();
 
-	tinyobj::attrib_t attrib;
-	std::vector<tinyobj::shape_t> shapes;
-	std::vector<tinyobj::material_t> materials;
-	std::string warn, err;
-	if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, objPath.c_str())) {
-		throw std::runtime_error(warn + err);
-	}
-	for (const auto& shape : shapes) {
-		for (const auto& index : shape.mesh.indices) {
-			positions.push_back(
-				CPUPositionVertex({
-						attrib.vertices[3 * index.vertex_index + 0],
-						attrib.vertices[3 * index.vertex_index + 1],
-						attrib.vertices[3 * index.vertex_index + 2],
-						1
-					})
-			);
-			texCoords.push_back(
-				CPUTextureVertex({
-					attrib.texcoords[2 * index.texcoord_index + 0],
-					1.0f - attrib.texcoords[2 * index.texcoord_index + 1]
-					})
-			);
+	bufferAllocations.resize(data.vertexData.size());
 
-			indices.push_back(static_cast<uint32_t>(indices.size()));
-		}
+	for (unsigned int i = 0; i < data.vertexData.size(); i++) {
+		bufferAllocations[i] = allocationFactory.CreateBufferAllocation(
+			data.vertexData[i].data,
+			data.vertexData[i].size,
+			VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
+		);
 	}
 
-	bufferAllocations.resize(2);
-
-	bufferAllocations[0] = allocationFactory.CreateBufferAllocation(
-		positions.data(),
-		sizeof(CPUPositionVertex) * positions.size(),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
-	);
-	bufferAllocations[1] = allocationFactory.CreateBufferAllocation(
-		texCoords.data(),
-		sizeof(CPUTextureVertex) * texCoords.size(),
-		VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
-	);
 	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
-		indices.data(),
-		sizeof(uint32_t) * indices.size(),
+		data.indexData.data,
+		data.indexData.size,
 		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
 	);
 
-	nVertices = static_cast<uint32_t>(indices.size());
+	nVertices = data.numberOfIndices;
 }
 
 GPUModel::~GPUModel() {
@@ -132,6 +48,10 @@ const uint32_t GPUModel::GetNumberOfIndices() const {
 	return nVertices;
 }
 
+/*
+	TODO: This could be fixed to dynamically detect the size of the indices at run time based on the CPUModel received in input
+	and return the correct VkIndexType
+*/
 const VkIndexType GPUModel::GetIndexType() {
 	return VK_INDEX_TYPE_UINT32;
 }

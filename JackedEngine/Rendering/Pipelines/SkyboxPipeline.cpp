@@ -107,7 +107,7 @@ SkyboxPipeline::SkyboxPipeline(const Device& device, const FrameDescriptorLayout
 	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
 	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
 	pipelineLayoutInfo.pushConstantRangeCount = 0;
-	pipelineLayoutInfo.pushConstantRangeCount = push_constants.size();
+	pipelineLayoutInfo.pushConstantRangeCount = static_cast<uint32_t>(push_constants.size());
 	pipelineLayoutInfo.pPushConstantRanges = push_constants.data();
 
 	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {

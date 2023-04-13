@@ -12,7 +12,7 @@
 #include "Rendering/Samplers/LinearRepeatSampler.h"
 
 #include "Rendering/Pipelines/SkyboxPipeline.h"
-#include "Rendering/Geometry/CubeGeometry.h"
+#include "Rendering/Resources/CPUResources/CPUModels/CPUCubeModel.h"
 
 class Renderer {
 public:
