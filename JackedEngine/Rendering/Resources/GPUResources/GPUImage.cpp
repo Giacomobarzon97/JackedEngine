@@ -1,15 +1,29 @@
 #include "GPUImage.h"
 
 GPUImage::GPUImage(const BaseAllocationFactory& allocationFactory, const CPUImage& image) {
-	std::vector<const void*> data(1);
-	data[0] = image.GetPixelData();
+
+	VkImageViewType imageViewType;
+	VkImageCreateFlags flags;
+
+	switch (image.GetImageType()) {
+	case IMAGE_2D:
+		imageViewType = VK_IMAGE_VIEW_TYPE_2D;
+		flags = 0;
+		break;
+	case CUBEMAP:
+		imageViewType = VK_IMAGE_VIEW_TYPE_CUBE;
+		flags = VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT;
+		break;
+	default:
+		throw std::runtime_error("Image type not supported");
+	}
 
 	imageBufferAllocation = allocationFactory.CreateImageAllocation(
-		data,
+		image.GetPixelData(),
 		image.GetWidth(),
 		image.GetHeight(),
-		VK_IMAGE_VIEW_TYPE_2D,
-		0
+		imageViewType,
+		flags
 	);
 }
 

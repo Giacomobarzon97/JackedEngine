@@ -1,6 +1,6 @@
 #include "Object3DPipeline.h"
 
-Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const ObjectDescriptorLayout& objectDescriptorLayout) :
+Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const MaterialDescriptorLayout& objectDescriptorLayout) :
 	BasePipeline(device)
 {
 	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/CompiledShaders/object.vert.spv");

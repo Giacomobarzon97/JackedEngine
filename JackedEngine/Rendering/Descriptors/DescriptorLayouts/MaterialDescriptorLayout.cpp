@@ -1,6 +1,6 @@
-#include"SkyboxDescriptorLayout.h"
+#include"MaterialDescriptorLayout.h"
 
-SkyboxDescriptorLayout::SkyboxDescriptorLayout(const Device& device) :
+MaterialDescriptorLayout::MaterialDescriptorLayout(const Device& device) :
 	BaseDescriptorLayout(device)
 {
 	VkDescriptorSetLayoutBinding samplerLayoutBinding{};

@@ -48,22 +48,24 @@ const GPUModel& RenderingManager::CreateOrGetModel(const std::string modelPath) 
 	return *modelMap[modelPath];
 }
 
-const ObjectDescriptorSet& RenderingManager::CreateOrGetObjectDescriptor(const std::string objectId, const std::string imagePath, const unsigned int frameNumber) {
+const MaterialDescriptorSet& RenderingManager::CreateOrGetObjectDescriptor(const std::string objectId, const std::string imagePath, const unsigned int frameNumber) {
 	if (objectDescriptorPoolMap.find(objectId) == objectDescriptorPoolMap.end()) {
 		const GPUImage* image;
 		if (imageMap.find(imagePath) == imageMap.end()) {
-			image = new GPUImage(allocationFactory, CPUImage(imagePath));
+			CPUImage cpuImage(imagePath);
+			cpuImage.LoadData();
+			image = new GPUImage(allocationFactory, cpuImage);
 			imageMap[imagePath] = image;
 		}
 		else {
 			image = imageMap[imagePath];
 		}
 
-		objectDescriptorPoolMap[objectId] = new ObjectDescriptorPool(device, nFrames);
-		objectDescriptorSetsMap[objectId] = std::vector<const ObjectDescriptorSet*>();
+		objectDescriptorPoolMap[objectId] = new MaterialDescriptorPool(device, nFrames);
+		objectDescriptorSetsMap[objectId] = std::vector<const MaterialDescriptorSet*>();
 		objectDescriptorSetsMap[objectId].resize(nFrames);
 		for (unsigned int i = 0; i < nFrames; i++) {
-			objectDescriptorSetsMap[objectId][i] = new ObjectDescriptorSet(device, objectDescriptorLayout, *objectDescriptorPoolMap[objectId], allocationFactory, *image, sampler);
+			objectDescriptorSetsMap[objectId][i] = new MaterialDescriptorSet(device, objectDescriptorLayout, *objectDescriptorPoolMap[objectId], allocationFactory, *image, sampler);
 		}
 	} 
 	return *objectDescriptorSetsMap[objectId][frameNumber];
@@ -78,6 +80,6 @@ const FrameDescriptorLayout& RenderingManager::GetFrameDescriptorLayout() const 
 	return frameDescriptorLayout;
 }
 
-const ObjectDescriptorLayout& RenderingManager::GetObjectDescriptorLayout() const {
+const MaterialDescriptorLayout& RenderingManager::GetObjectDescriptorLayout() const {
 	return objectDescriptorLayout;
 }

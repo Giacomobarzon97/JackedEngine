@@ -1,9 +1,9 @@
-#include "SkyboxDescriptorPool.h"
+#include "MaterialDescriptorPool.h"
 
-SkyboxDescriptorPool::SkyboxDescriptorPool(const Device& device, int maxSets) :
+MaterialDescriptorPool::MaterialDescriptorPool(const Device& device, int maxSets) :
 	BaseDescriptorPool(device)
 {
-	VkDescriptorPoolSize poolSize{};
+	VkDescriptorPoolSize poolSize;
 	poolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 	poolSize.descriptorCount = static_cast<uint32_t>(maxSets);
 
@@ -19,4 +19,4 @@ SkyboxDescriptorPool::SkyboxDescriptorPool(const Device& device, int maxSets) :
 }
 
 
-SkyboxDescriptorPool::~SkyboxDescriptorPool() {}
+MaterialDescriptorPool::~MaterialDescriptorPool() {}

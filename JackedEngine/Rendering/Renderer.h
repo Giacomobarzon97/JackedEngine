@@ -39,10 +39,10 @@ private:
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
 
 	GPUModel skyboxModel;
-	GPUCubemap cubemap;
-	SkyboxDescriptorPool skyboxDescriptorPool;
-	SkyboxDescriptorLayout skyboxDescriptorLayout;
-	SkyboxDescriptorSet skyboxDescriptorSet;
+	GPUImage* cubemap;
+	MaterialDescriptorPool skyboxDescriptorPool;
+	MaterialDescriptorLayout skyboxDescriptorLayout;
+	MaterialDescriptorSet* skyboxDescriptorSet;
 	SkyboxPipeline skyboxPipeline;
 
 	bool framebufferResized = false;

@@ -25,7 +25,7 @@ GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-void GraphicalCommandBuffer::Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const BaseDescriptorSet& objectDescriptorSet) const {
+void GraphicalCommandBuffer::Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const MaterialDescriptorSet& materialDescriptorSet) const {
 	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
 
 	std::vector<VkBuffer> vertexBuffers = model.GetBuffers();
@@ -48,7 +48,7 @@ void GraphicalCommandBuffer::Draw(const BasePipeline& pipeline, const GPUModel& 
 
 	std::array<VkDescriptorSet, 2> descriptorSets{};
 	descriptorSets[0] = frameDescriptorSet.GetDescriptorSet();
-	descriptorSets[1] = objectDescriptorSet.GetDescriptorSet();
+	descriptorSets[1] = materialDescriptorSet.GetDescriptorSet();
 
 	vkCmdBindDescriptorSets(
 		commandBuffer, 

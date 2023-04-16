@@ -130,10 +130,10 @@
     <ClCompile Include="Scene\SceneObjects\RenderableObjects.cpp">
       <Filter>Source Files\Scene\SceneObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\MaterialDescriptorSet.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\MaterialDescriptorPool.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Pipelines\Object3DPipeline.cpp">
@@ -187,7 +187,7 @@
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.cpp">
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.cpp">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp">
@@ -202,23 +202,11 @@
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp">
       <Filter>Source Files\Rendering\Samplers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp">
       <Filter>Source Files\Rendering\Pipelines</Filter>
@@ -229,11 +217,11 @@
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.cpp">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.cpp">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,10 +267,10 @@
     <ClInclude Include="Scene\SceneObjects\RenderableObject.h">
       <Filter>Source Files\Scene\SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\MaterialDescriptorSet.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\MaterialDescriptorPool.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Pipelines\Object3DPipeline.h">
@@ -336,7 +324,7 @@
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.h">
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.h">
       <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h">
@@ -351,23 +339,11 @@
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h">
       <Filter>Source Files\Rendering\Samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.h">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h">
       <Filter>Source Files\Rendering\Pipelines</Filter>
@@ -378,11 +354,11 @@
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.h">
       <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
       <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.h">
+      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include<vector>
+#include <stdexcept>
 #include "Rendering/Resources/CPUResources/CPUImage.h"
 #include "Rendering/Memory/AllocationFactories/BaseAllocationFactory.h"
 

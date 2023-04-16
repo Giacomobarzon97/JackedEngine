@@ -11,18 +11,8 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 		allocationFactory,
 		CPUCubeModel()
 	),
-	cubemap(
-		allocationFactory,
-		CPUImage("../Assets/Textures/Skybox/front.png"),
-		CPUImage("../Assets/Textures/Skybox/back.png"),
-		CPUImage("../Assets/Textures/Skybox/top.png"),
-		CPUImage("../Assets/Textures/Skybox/bottom.png"),
-		CPUImage("../Assets/Textures/Skybox/right.png"),
-		CPUImage("../Assets/Textures/Skybox/left.png")
-	),
 	skyboxDescriptorPool(device,1),
 	skyboxDescriptorLayout(device),
-	skyboxDescriptorSet(device, skyboxDescriptorLayout, skyboxDescriptorPool, allocationFactory, cubemap, sampler),
 	skyboxPipeline(device, renderingManager.GetFrameDescriptorLayout(), skyboxDescriptorLayout)
 {
 	commandBuffers.resize(maxFramesInFlight);
@@ -31,9 +21,28 @@ Renderer::Renderer(const BaseWindow& window, const BaseCameraObject& camera) :
 		commandBuffers[i] = new GraphicalCommandBuffer(device);
 	}
 	window.SetBufferResizeCallback(this, Renderer::FramebufferResizeCallback);
+
+	CPUImage cpuCubemap(
+		std::vector<std::string> {
+		"../Assets/Textures/Skybox/front.png",
+			"../Assets/Textures/Skybox/back.png",
+			"../Assets/Textures/Skybox/top.png",
+			"../Assets/Textures/Skybox/bottom.png",
+			"../Assets/Textures/Skybox/right.png",
+			"../Assets/Textures/Skybox/left.png"
+		},
+		CUBEMAP
+	);
+	cpuCubemap.LoadData();
+	cubemap = new GPUImage(allocationFactory, cpuCubemap);
+
+	skyboxDescriptorSet = new MaterialDescriptorSet(device, skyboxDescriptorLayout, skyboxDescriptorPool, allocationFactory, *cubemap, sampler);
 }
 
 Renderer::~Renderer() {
+	delete cubemap;
+	delete skyboxDescriptorSet;
+
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
 	}
@@ -47,12 +56,12 @@ void Renderer::DrawObject(std::vector<RenderableObject> objects) {
 
 	glm::mat4 identity;
 
-	commandBuffers[currentFrame]->Draw(skyboxPipeline, skyboxModel, &identity, frameDescriptorSet, skyboxDescriptorSet);
+	commandBuffers[currentFrame]->Draw(skyboxPipeline, skyboxModel, &identity, frameDescriptorSet, *skyboxDescriptorSet);
 
 	commandBuffers[currentFrame]->NextSubpass();
 	
 	for (RenderableObject object : objects) {
-		const ObjectDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
+		const MaterialDescriptorSet& objectDescriptorSet = renderingManager.CreateOrGetObjectDescriptor(object.GetName(), object.GetTexturePath(), currentFrame);
 
 		VkExtent2D swapChainExtent = device.GetSwapChainExtent();
 

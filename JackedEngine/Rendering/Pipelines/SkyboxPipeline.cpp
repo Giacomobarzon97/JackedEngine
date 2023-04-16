@@ -1,6 +1,6 @@
 #include "SkyboxPipeline.h"
 
-SkyboxPipeline::SkyboxPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const SkyboxDescriptorLayout& skyboxDescriptorLayout) :
+SkyboxPipeline::SkyboxPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const MaterialDescriptorLayout& skyboxDescriptorLayout) :
 	BasePipeline(device)
 {
 	VkShaderModule vertShaderModule = createShaderModule("Rendering/Shaders/CompiledShaders/skybox.vert.spv");

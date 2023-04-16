@@ -19,15 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.cpp" />
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.cpp" />
+    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.cpp" />
     <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp" />
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUCubemap.cpp" />
     <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp" />
     <ClCompile Include="Rendering\Samplers\BaseSampler.cpp" />
     <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp" />
@@ -41,11 +37,11 @@
     <ClCompile Include="Rendering\CommandBuffers\GraphicalCommandBuffer.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorPools\MaterialDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.cpp" />
+    <ClCompile Include="Rendering\Descriptors\DescriptorSets\MaterialDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Rendering\Device.cpp" />
@@ -72,15 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\SkyboxDescriptorLayout.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\SkyboxDescriptorPool.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\SkyboxDescriptorSet.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.h" />
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.h" />
+    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.h" />
     <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h" />
     <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h" />
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUCubemap.h" />
     <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h" />
     <ClInclude Include="Rendering\Samplers\BaseSampler.h" />
     <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h" />
@@ -92,11 +84,11 @@
     <ClInclude Include="Rendering\CommandBuffers\GraphicalCommandBuffer.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\ObjectDescriptorLayout.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\ObjectDescriptorPool.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorPools\MaterialDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\ObjectDescriptorSet.h" />
+    <ClInclude Include="Rendering\Descriptors\DescriptorSets\MaterialDescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.h" />
     <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Rendering\Device.h" />
