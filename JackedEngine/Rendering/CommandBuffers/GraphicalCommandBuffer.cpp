@@ -116,7 +116,7 @@ void GraphicalCommandBuffer::BeginRenderPass() {
 }
 
 void GraphicalCommandBuffer::NextSubpass() {
-	vkCmdNextSubpass(commandBuffer, VK_SUBPASS_CONTENTS_INLINE);
+	//vkCmdNextSubpass(commandBuffer, VK_SUBPASS_CONTENTS_INLINE);
 }
 
 const VkResult GraphicalCommandBuffer::EndRenderPass() {
