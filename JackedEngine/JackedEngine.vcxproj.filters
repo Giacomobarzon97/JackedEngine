@@ -1,378 +1,386 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Rendering">
-      <UniqueIdentifier>{46f09bba-1df0-4b80-9320-857f3c2631f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Windows">
-      <UniqueIdentifier>{61e78d4e-1b16-436a-b253-58bae7786b07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Shaders">
-      <UniqueIdentifier>{690fe339-2080-480c-95b4-f4c6201c5d23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{467c5a11-134e-456f-9d74-97b881e34b3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scene">
-      <UniqueIdentifier>{c276a586-96c9-4a5e-b52e-c9a09e33f27d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Descriptors">
-      <UniqueIdentifier>{94e984da-c05f-4a86-b832-c3ce29dd3887}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Descriptors\DescriptorPools">
-      <UniqueIdentifier>{c0e6de25-1024-49f7-85b0-f2a36e6e5006}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Descriptors\DescriptorSets">
-      <UniqueIdentifier>{002162fc-4554-454a-949d-7f2b53ffcc10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scene\SceneObjects">
-      <UniqueIdentifier>{b8162b91-e7c9-4e38-92f3-564e68556b74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scene\SceneObjects\Cameras">
-      <UniqueIdentifier>{a75bb13d-2302-4e88-a124-eee13bd49f73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Pipelines">
-      <UniqueIdentifier>{86ccc4a2-6d83-4c47-89ef-273319c4758c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\CommandBuffers">
-      <UniqueIdentifier>{cbd73bf2-8fc9-46db-b219-cfec4d0b5294}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory">
-      <UniqueIdentifier>{4be60cd8-3901-4228-ae7f-2ed30f71d273}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\Allocators">
-      <UniqueIdentifier>{576081ea-91f9-4612-8d41-27d075bb2e99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\AllocationFactories">
-      <UniqueIdentifier>{3cd59e14-548b-4fb7-9e60-4578989ecb3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Resources">
-      <UniqueIdentifier>{36d89b47-3d66-4d60-926e-be0c6e2cdc4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Resources\GPUResources">
-      <UniqueIdentifier>{f4e6ebe6-d758-4a3d-9e71-9ec706119391}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\Allocations">
-      <UniqueIdentifier>{219fb08c-f797-4595-ac1a-f97f8b887bf0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\Allocations\BufferAllocations">
-      <UniqueIdentifier>{8eb6c4d2-c4e9-48fd-a2ab-1d5218dad688}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Resources\CPUResources">
-      <UniqueIdentifier>{cb3ecdc5-1851-4977-8a2a-261c76cef7d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\Allocations\UniformAllocations">
-      <UniqueIdentifier>{501f4a96-5f05-4a3d-bb6a-1d558fcc8a6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Memory\Allocations\ImageAllocations">
-      <UniqueIdentifier>{ae64a349-6b0a-4211-b0ac-5015c9e772af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Descriptors\DescriptorLayouts">
-      <UniqueIdentifier>{555d9417-f4ff-4ae2-b42e-cd2fbfa99ad3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Samplers">
-      <UniqueIdentifier>{22f40832-cf76-4b04-9b55-08379a970f7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Resources\CPUResources\CPUVertices">
-      <UniqueIdentifier>{ea09c04d-c3fe-4066-a8ec-4f6d8cd21102}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rendering\Resources\CPUResources\CPUModels">
-      <UniqueIdentifier>{8765dbcc-300a-475c-9251-ddcc61285879}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Device.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Renderer.cpp">
-      <Filter>Source Files\Rendering</Filter>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="JackedEngine.cpp" />
+    <ClCompile Include="Windows\BaseWindow.cpp">
+      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="Windows\GLFWWindow.cpp">
-      <Filter>Source Files\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows\BaseWindow.cpp">
-      <Filter>Source Files\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="JackedEngine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="Utils\FileIO.cpp">
-      <Filter>Source Files\Utils</Filter>
+      <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    <ClCompile Include="Scene\Components\RenderableComponent.cpp">
+      <Filter>Scene\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    <ClCompile Include="Scene\Components\BaseComponent.cpp">
+      <Filter>Scene\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    <ClCompile Include="Scene\Components\SceneComponent.cpp">
+      <Filter>Scene\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    <ClCompile Include="Scene\Components\StaticMeshComponent.cpp">
+      <Filter>Scene\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SceneObjects\BaseSceneObject.cpp">
-      <Filter>Source Files\Scene\SceneObjects</Filter>
+    <ClCompile Include="Scene\Components\Cameras\BaseCameraComponent.cpp">
+      <Filter>Scene\Components\Cameras</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SceneObjects\Cameras\BaseCameraObject.cpp">
-      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
+    <ClCompile Include="Scene\Components\Cameras\PerspectiveCamera.cpp">
+      <Filter>Scene\Components\Cameras</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SceneObjects\Cameras\PerspectiveCamera.cpp">
-      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
+    <ClCompile Include="Backends\CPUResources\CPUImage.cpp">
+      <Filter>Backends\CPUResources</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SceneObjects\RenderableObjects.cpp">
-      <Filter>Source Files\Scene\SceneObjects</Filter>
+    <ClCompile Include="Backends\CPUResources\CPUModels\CPUBaseModel.cpp">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorSets\MaterialDescriptorSet.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    <ClCompile Include="Backends\CPUResources\CPUModels\CPUCubeModel.cpp">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorPools\MaterialDescriptorPool.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    <ClCompile Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.cpp">
+      <Filter>Backends\CPUResources\CPUVertices</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Pipelines\Object3DPipeline.cpp">
-      <Filter>Source Files\Rendering\Pipelines</Filter>
+    <ClCompile Include="Backends\CPUResources\CPUVertices\CPUTextureVertex.cpp">
+      <Filter>Backends\CPUResources\CPUVertices</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Pipelines\BasePipeline.cpp">
-      <Filter>Source Files\Rendering\Pipelines</Filter>
+    <ClCompile Include="Backends\CPUResources\CPUModels\CPUGenericMesh.cpp">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\CommandBuffers\GraphicalCommandBuffer.cpp">
-      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    <ClCompile Include="Backends\Vulkan\Device.cpp">
+      <Filter>Backends\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\CommandBuffers\BaseCommandBuffer.cpp">
-      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    <ClCompile Include="Backends\Vulkan\Samplers\BaseSampler.cpp">
+      <Filter>Backends\Vulkan\Samplers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocators\VMAAllocator.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    <ClCompile Include="Backends\Vulkan\Samplers\LinearRepeatSampler.cpp">
+      <Filter>Backends\Vulkan\Samplers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocators\BaseAllocator.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    <ClCompile Include="Backends\Vulkan\Pipelines\BasePipeline.cpp">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\BufferAllocations\BaseBufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
+    <ClCompile Include="Backends\Vulkan\Pipelines\Object3DPipeline.cpp">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\BufferAllocations\VMABufferAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
+    <ClCompile Include="Backends\Vulkan\Pipelines\SkyboxPipeline.cpp">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.cpp">
-      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImage.cpp">
+      <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.cpp">
-      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUModel.cpp">
+      <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\UniformAllocations\BaseUniformAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
+    <ClCompile Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.cpp">
+      <Filter>Backends\Vulkan\CommandBuffers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\UniformAllocations\VMAUniformAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
+    <ClCompile Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.cpp">
+      <Filter>Backends\Vulkan\CommandBuffers</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\ImageAllocations\BaseImageAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\AllocationFactories\BaseAllocationFactory.cpp">
+      <Filter>Backends\Vulkan\Memory\AllocationFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp">
-      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUImage.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\BaseBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUImage.cpp">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\BaseDescriptorPool.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\RenderingManager.cpp">
-      <Filter>Source Files\Rendering</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Samplers\BaseSampler.cpp">
-      <Filter>Source Files\Rendering\Samplers</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Samplers\LinearRepeatSampler.cpp">
-      <Filter>Source Files\Rendering\Samplers</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\FrameDescriptorPool.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\FrameDescriptorSet.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Pipelines\SkyboxPipeline.cpp">
-      <Filter>Source Files\Rendering\Pipelines</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\MaterialDescriptorPool.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\MaterialDescriptorSet.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\AllocationFactories\VMAAllocationFactory.cpp">
+      <Filter>Backends\Vulkan\Memory\AllocationFactories</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\GPUResources\GPUModel.cpp">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.cpp">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\BaseBackend.cpp">
+      <Filter>Backends</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\VulkanBackend.cpp">
+      <Filter>Backends\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\SkyboxComponent.cpp">
+      <Filter>Scene\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Rendering\Device.h">
-      <Filter>Source Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Renderer.h">
-      <Filter>Source Files\Rendering</Filter>
+    <ClInclude Include="JackedEngine.h" />
+    <ClInclude Include="Windows\BaseWindow.h">
+      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="Windows\GLFWWindow.h">
-      <Filter>Source Files\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\BaseWindow.h">
-      <Filter>Source Files\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="JackedEngine.h">
-      <Filter>Source Files</Filter>
+      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="Utils\FileIOr.h">
-      <Filter>Source Files\Utils</Filter>
+      <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\BaseDescriptorSet.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    <ClInclude Include="Scene\Components\RenderableComponent.h">
+      <Filter>Scene\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\FrameDescriptorSet.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    <ClInclude Include="Scene\Components\BaseComponent.h">
+      <Filter>Scene\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\FrameDescriptorPool.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    <ClInclude Include="Scene\Components\SceneComponent.h">
+      <Filter>Scene\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\BaseDescriptorPool.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    <ClInclude Include="Scene\Components\StaticMeshComponent.h">
+      <Filter>Scene\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SceneObjects\BaseSceneObject.h">
-      <Filter>Source Files\Scene\SceneObjects</Filter>
+    <ClInclude Include="Scene\Components\Cameras\BaseCameraComponent.h">
+      <Filter>Scene\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SceneObjects\Cameras\BaseCameraObject.h">
-      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
+    <ClInclude Include="Scene\Components\Cameras\PerspectiveCamera.h">
+      <Filter>Scene\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SceneObjects\Cameras\PerspectiveCamera.h">
-      <Filter>Source Files\Scene\SceneObjects\Cameras</Filter>
+    <ClInclude Include="Backends\CPUResources\CPUImage.h">
+      <Filter>Backends\CPUResources</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SceneObjects\RenderableObject.h">
-      <Filter>Source Files\Scene\SceneObjects</Filter>
+    <ClInclude Include="Backends\CPUResources\CPUModels\CPUBaseModel.h">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorSets\MaterialDescriptorSet.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorSets</Filter>
+    <ClInclude Include="Backends\CPUResources\CPUModels\CPUCubeModel.h">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorPools\MaterialDescriptorPool.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorPools</Filter>
+    <ClInclude Include="Backends\CPUResources\CPUModels\CPUGenericMesh.h">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Pipelines\Object3DPipeline.h">
-      <Filter>Source Files\Rendering\Pipelines</Filter>
+    <ClInclude Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.h">
+      <Filter>Backends\CPUResources\CPUVertices</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Pipelines\BasePipeline.h">
-      <Filter>Source Files\Rendering\Pipelines</Filter>
+    <ClInclude Include="Backends\CPUResources\CPUVertices\CPUTextureVertex.h">
+      <Filter>Backends\CPUResources\CPUVertices</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\CommandBuffers\GraphicalCommandBuffer.h">
-      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    <ClInclude Include="Backends\Vulkan\Device.h">
+      <Filter>Backends\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\CommandBuffers\BaseCommandBuffer.h">
-      <Filter>Source Files\Rendering\CommandBuffers</Filter>
+    <ClInclude Include="Backends\Vulkan\Samplers\BaseSampler.h">
+      <Filter>Backends\Vulkan\Samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocators\BaseAllocator.h">
-      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h">
+      <Filter>Backends\Vulkan\Samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocators\VMAAllocator.h">
-      <Filter>Source Files\Rendering\Memory\Allocators</Filter>
+    <ClInclude Include="Backends\Vulkan\Pipelines\BasePipeline.h">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\BufferAllocations\BaseBufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
+    <ClInclude Include="Backends\Vulkan\Pipelines\Object3DPipeline.h">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\BufferAllocations\VMABufferAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations\BufferAllocations</Filter>
+    <ClInclude Include="Backends\Vulkan\Pipelines\SkyboxPipeline.h">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\AllocationFactories\BaseAllocationFactory.h">
-      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImage.h">
+      <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\AllocationFactories\VMAAllocationFactory.h">
-      <Filter>Source Files\Rendering\Memory\AllocationFactories</Filter>
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUModel.h">
+      <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\UniformAllocations\BaseUniformAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
+    <ClInclude Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.h">
+      <Filter>Backends\Vulkan\CommandBuffers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\UniformAllocations\VMAUniformAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations\UniformAllocations</Filter>
+    <ClInclude Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.h">
+      <Filter>Backends\Vulkan\CommandBuffers</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\ImageAllocations\BaseImageAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\AllocationFactories\BaseAllocationFactory.h">
+      <Filter>Backends\Vulkan\Memory\AllocationFactories</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Memory\Allocations\ImageAllocations\VMAImageAllocation.h">
-      <Filter>Source Files\Rendering\Memory\Allocations\ImageAllocations</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h">
+      <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUImage.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\BaseBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUImage.h">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h">
-      <Filter>Source Files\Rendering\Descriptors\DescriptorLayouts</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\BaseDescriptorPool.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\RenderingManager.h">
-      <Filter>Source Files\Rendering</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Samplers\BaseSampler.h">
-      <Filter>Source Files\Rendering\Samplers</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Samplers\LinearRepeatSampler.h">
-      <Filter>Source Files\Rendering\Samplers</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\FrameDescriptorPool.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUPositionVertex.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\FrameDescriptorSet.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUVertices\CPUTextureVertex.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUVertices</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Pipelines\SkyboxPipeline.h">
-      <Filter>Source Files\Rendering\Pipelines</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\MaterialDescriptorPool.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUBaseModel.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\MaterialDescriptorSet.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUGenericMesh.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\AllocationFactories\VMAAllocationFactory.h">
+      <Filter>Backends\Vulkan\Memory\AllocationFactories</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\GPUResources\GPUModel.h">
-      <Filter>Source Files\Rendering\Resources\GPUResources</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h">
+      <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Resources\CPUResources\CPUModels\CPUCubeModel.h">
-      <Filter>Source Files\Rendering\Resources\CPUResources\CPUModels</Filter>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\BaseBackend.h">
+      <Filter>Backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\VulkanBackend.h">
+      <Filter>Backends\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\SkyboxComponent.h">
+      <Filter>Scene\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Rendering\Shaders\object.frag">
-      <Filter>Source Files\Rendering\Shaders</Filter>
+    <Filter Include="Backends">
+      <UniqueIdentifier>{37a3ae10-1768-4dd5-a616-b162524a89ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{7ef87e01-e31f-4384-a482-230c1f7a0ef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{c4b9a861-7a9f-4891-bc4a-bbd35597f5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{baf81fc6-ebea-42ea-b138-85738c2877cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan">
+      <UniqueIdentifier>{97a69dd3-904a-4d5a-95e7-873211b62218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Components">
+      <UniqueIdentifier>{3a457c8d-e3f2-485c-99cf-76336a2a6474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Components\Cameras">
+      <UniqueIdentifier>{24afbeac-8168-4fab-9790-7303b9bd9119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\CPUResources">
+      <UniqueIdentifier>{f2436188-0ec5-429f-82c1-0c602a4d0777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\CPUResources\CPUModels">
+      <UniqueIdentifier>{08590a2b-bf8c-4932-983e-ac13084a9a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\CPUResources\CPUVertices">
+      <UniqueIdentifier>{60ca21f0-ec54-451f-8629-221553ed318a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Samplers">
+      <UniqueIdentifier>{616066a9-6257-4234-8c17-d2a40a54d311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Pipelines">
+      <UniqueIdentifier>{b136be1d-c34d-4590-99b5-cb7890e7875d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory">
+      <UniqueIdentifier>{e9b060ce-0553-4f4e-9669-9e1cf8cdb5b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\GPUResources">
+      <UniqueIdentifier>{e92b4f14-e58d-4409-b5d3-f2f18474ad8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\CommandBuffers">
+      <UniqueIdentifier>{d04e32bf-25ba-4f8d-9e27-9dc8632f3647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\AllocationFactories">
+      <UniqueIdentifier>{918414a9-b364-4b5f-86ab-27b5cab59554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocators">
+      <UniqueIdentifier>{f526ac84-9998-4b75-b2fd-218ad06859bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations">
+      <UniqueIdentifier>{c2e57072-cb49-465a-9cf6-82b571967d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\BufferAllocations">
+      <UniqueIdentifier>{33e9abbb-3b7d-4559-8443-c3f01cf85f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\ImageAllocations">
+      <UniqueIdentifier>{72d591a4-53be-4150-bcf9-f9f858b86e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\UniformAllocations">
+      <UniqueIdentifier>{c9ac6712-fa73-4c27-b025-c61ec9587a00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Descriptors">
+      <UniqueIdentifier>{72fe5d1b-8c2e-42f6-a55c-9ebdcc7b6ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Descriptors\DescriptorLayouts">
+      <UniqueIdentifier>{16284f65-4da7-496b-8c74-eaf58208bd89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Descriptors\DescriptorPools">
+      <UniqueIdentifier>{197a0f54-2355-4543-8004-abe0436f5d9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Descriptors\DescriptorSets">
+      <UniqueIdentifier>{0240c649-cc43-4afd-811f-d3b9b15beb01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Shaders">
+      <UniqueIdentifier>{868c424e-eaa1-459b-914f-65f63f424877}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Backends\Shaders\object.frag">
+      <Filter>Backends\Shaders</Filter>
     </None>
-    <None Include="Rendering\Shaders\object.vert">
-      <Filter>Source Files\Rendering\Shaders</Filter>
+    <None Include="Backends\Shaders\object.vert">
+      <Filter>Backends\Shaders</Filter>
     </None>
-    <None Include="Rendering\Shaders\skybox.frag">
-      <Filter>Source Files\Rendering\Shaders</Filter>
+    <None Include="Backends\Shaders\skybox.frag">
+      <Filter>Backends\Shaders</Filter>
     </None>
-    <None Include="Rendering\Shaders\skybox.vert">
-      <Filter>Source Files\Rendering\Shaders</Filter>
+    <None Include="Backends\Shaders\skybox.vert">
+      <Filter>Backends\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 echo "Compiling Shaders"
 
-set pathToShaders=%~dp0JackedEngine\Rendering\Shaders
+set pathToShaders=%~dp0JackedEngine\Backends\Shaders
 set pathToCompiler=%~dp0Libraries\vulkan\Bin\glslc.exe
 
 mkdir %pathToShaders%\CompiledShaders
