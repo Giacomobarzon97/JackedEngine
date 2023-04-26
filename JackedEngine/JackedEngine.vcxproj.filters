@@ -144,6 +144,18 @@
     <ClCompile Include="Scene\Components\SkyboxComponent.cpp">
       <Filter>Scene\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\World.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Materials\BaseMaterial.cpp">
+      <Filter>Scene\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Materials\CubemapMaterial.cpp">
+      <Filter>Scene\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Materials\GenericMeshMaterial.cpp">
+      <Filter>Scene\Materials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="JackedEngine.h" />
@@ -288,6 +300,18 @@
     <ClInclude Include="Scene\Components\SkyboxComponent.h">
       <Filter>Scene\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\World.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Materials\BaseMaterial.h">
+      <Filter>Scene\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Materials\CubemapMaterial.h">
+      <Filter>Scene\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Materials\GenericMeshMaterial.h">
+      <Filter>Scene\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -367,6 +391,9 @@
     </Filter>
     <Filter Include="Backends\Shaders">
       <UniqueIdentifier>{868c424e-eaa1-459b-914f-65f63f424877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Materials">
+      <UniqueIdentifier>{5c75b464-8779-457e-9214-32562d41f287}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

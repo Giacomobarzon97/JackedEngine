@@ -65,6 +65,10 @@
     <ClCompile Include="Scene\Components\SceneComponent.cpp" />
     <ClCompile Include="Scene\Components\SkyboxComponent.cpp" />
     <ClCompile Include="Scene\Components\StaticMeshComponent.cpp" />
+    <ClCompile Include="Scene\Materials\BaseMaterial.cpp" />
+    <ClCompile Include="Scene\Materials\CubemapMaterial.cpp" />
+    <ClCompile Include="Scene\Materials\GenericMeshMaterial.cpp" />
+    <ClCompile Include="Scene\World.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
@@ -115,6 +119,10 @@
     <ClInclude Include="Scene\Components\SceneComponent.h" />
     <ClInclude Include="Scene\Components\SkyboxComponent.h" />
     <ClInclude Include="Scene\Components\StaticMeshComponent.h" />
+    <ClInclude Include="Scene\Materials\BaseMaterial.h" />
+    <ClInclude Include="Scene\Materials\CubemapMaterial.h" />
+    <ClInclude Include="Scene\Materials\GenericMeshMaterial.h" />
+    <ClInclude Include="Scene\World.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />
