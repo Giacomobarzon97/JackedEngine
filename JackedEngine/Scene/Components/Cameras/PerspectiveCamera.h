@@ -9,7 +9,7 @@
 class PerspectiveCamera : public BaseCameraComponent
 {
 public:
-	PerspectiveCamera(const std::string name, const glm::vec3 position, const glm::vec3 direction);
+	virtual void Init() override;
 
 	virtual void Rotate(const double x, const double y, const double z) override;
 	virtual void Translate(const double x, const double y, const double z) override;

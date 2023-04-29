@@ -1,7 +1,6 @@
 #include "VulkanBackend.h"
 
-VulkanBackend::VulkanBackend(const BaseWindow& window, const BaseCameraComponent& camera) :
-	camera(camera),
+VulkanBackend::VulkanBackend(const BaseWindow& window) :
 	device(window),
 	allocationFactory(device),
 	sampler(device),
@@ -73,7 +72,7 @@ ModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
 	return reference;
 }
 
-void VulkanBackend::BeginFrame() {
+void VulkanBackend::BeginFrame(const BaseCameraComponent& camera) {
 	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
 	commandBuffers[currentFrame]->BeginRenderPass();
 	frameDescriptorSets[currentFrame]->UpdateUBO(camera.GetViewMatrix(), camera.GetProjectionMatrix(swapChainExtent.width, swapChainExtent.height));

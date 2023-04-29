@@ -1,11 +1,13 @@
 #include "JackedEngine.h"
 #include "Scene\Components\StaticMeshComponent.h"
 #include "Scene\Components\SkyboxComponent.h"
+#include "Scene\Components\Cameras\PerspectiveCamera.h"
 
 int main() {
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
+
 	GenericMeshMaterial meshMaterial("../Assets/Textures/viking_room.png");
 	CubemapMaterial skyboxMaterial(
 		"../Assets/Textures/Skybox/front.png",
@@ -16,21 +18,16 @@ int main() {
 		"../Assets/Textures/Skybox/left.png"
 	);
 
-	std::vector<RenderableComponent*> objects;
-	objects.push_back(new StaticMeshComponent(
-		"Viking Room",
-		"../Assets/Models/viking_room.obj",
-		meshMaterial
-	));
-	
-	objects.push_back(new SkyboxComponent(
-		"Skybox",
-		skyboxMaterial
-	));
-	
-	JackedEngine::MainLoop(objects);
+	StaticMeshComponent& vkingRoom = JackedEngine::GetWorld().CreateComponent<StaticMeshComponent>();
+	vkingRoom.SetModelPath("../Assets/Models/viking_room.obj");
+	vkingRoom.SetMaterial(meshMaterial);
 
-	for (RenderableComponent* component : objects) {
-		delete component;
-	}
+	SkyboxComponent& skybox = JackedEngine::GetWorld().CreateComponent<SkyboxComponent>();
+	skybox.SetMaterial(skyboxMaterial);
+
+	PerspectiveCamera& camera = JackedEngine::GetWorld().CreateComponent<PerspectiveCamera>();
+	JackedEngine::SetActiveCamera(camera);
+
+	JackedEngine::MainLoop();
+
 }

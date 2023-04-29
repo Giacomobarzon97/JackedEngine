@@ -29,12 +29,12 @@
     <ClCompile Include="Backends\Vulkan\Samplers\BaseSampler.cpp" />
     <ClCompile Include="Backends\Vulkan\Samplers\LinearRepeatSampler.cpp" />
     <ClCompile Include="Backends\Vulkan\VulkanBackend.cpp" />
+    <ClCompile Include="JackedEngine.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene\Components\Cameras\BaseCameraComponent.cpp" />
     <ClCompile Include="Scene\Components\RenderableComponent.cpp" />
     <ClCompile Include="Scene\Components\BaseComponent.cpp" />
     <ClCompile Include="Scene\Components\Cameras\PerspectiveCamera.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.cpp" />
     <ClCompile Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp" />
@@ -76,7 +76,6 @@
   <ItemGroup>
     <ClInclude Include="Backends\BaseBackend.h" />
     <ClInclude Include="Backends\Vulkan\VulkanBackend.h" />
-    <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUBaseModel.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUCubeModel.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUGenericMesh.h" />
@@ -85,6 +84,7 @@
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUModel.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\BaseSampler.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h" />
+    <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Scene\Components\Cameras\BaseCameraComponent.h" />
     <ClInclude Include="Scene\Components\RenderableComponent.h" />
     <ClInclude Include="Scene\Components\BaseComponent.h" />

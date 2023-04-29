@@ -44,7 +44,7 @@ const std::string CPUImage::GetId() const {
 	return id;
 }
 
-const std::vector<const void* > const CPUImage::GetPixelData() const {
+const std::vector<const void* > CPUImage::GetPixelData() const {
 	return pixelData;
 }
 

@@ -7,13 +7,12 @@
 #include "Backends/Vulkan//Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Backends/Vulkan//Samplers/LinearRepeatSampler.h"
 
-#include "Scene/Components/Cameras/BaseCameraComponent.h"
 #include "Backends/Vulkan//Pipelines/Object3DPipeline.h"
 #include "Backends/Vulkan//Pipelines/SkyboxPipeline.h"
 
 class VulkanBackend : public BaseBackend {
 public:
-	VulkanBackend(const BaseWindow& window, const BaseCameraComponent& camera);
+	VulkanBackend(const BaseWindow& window);
 	VulkanBackend(VulkanBackend&) = delete;
 	virtual ~VulkanBackend();
 
@@ -23,7 +22,7 @@ public:
 	virtual TextureReference CreateTexture(CPUImage& image) override;
 	virtual ModelReference CreateModel(CPUBaseModel& model) override;
 
-	virtual void BeginFrame() override;
+	virtual void BeginFrame(const BaseCameraComponent& camera) override;
 	virtual void Draw(const ShaderType shaderType, const ModelReference modelReference, const TextureReference textureReference, const void * constData) override;
 	virtual void NextRenderPass() override;
 	virtual void EndFrame() override;
@@ -35,7 +34,6 @@ public:
 private:
 	unsigned int maxFramesInFlight = 2;
 
-	const BaseCameraComponent& camera;
 	Device device;
 	VMAAllocationFactory allocationFactory;
 	LinearRepeatSampler sampler;

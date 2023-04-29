@@ -1,6 +1,7 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <optional>
 #include <string>
 #include "Scene/Components/RenderableComponent.h"
 #include "Scene/Materials/CubemapMaterial.h"
@@ -8,7 +9,10 @@
 
 class SkyboxComponent : public RenderableComponent {
 public:
-	SkyboxComponent(const std::string name, const CubemapMaterial& material);
+	virtual void Init() override;
+	virtual void Draw() const override;
+
+	void SetMaterial(const CubemapMaterial& material);
 
 	virtual void Rotate(const double x, const double y, const double z) override;
 	virtual void Translate(const double x, const double y, const double z) override;
@@ -17,15 +21,11 @@ public:
 	virtual void SetRotation(const double x, const double y, const double z) override;
 	void SetScale(const double x, const double y, const double z) override;
 
-	virtual void Draw() override;
-
-	const glm::mat4 GetModelMatrix() const;
+	virtual const glm::mat4 GetModelMatrix() const override;
 
 private:
-	std::string modelPath;
-	std::string texturePath;
 	glm::mat4 modelMatrix = glm::mat4(1);
 
 	ModelReference modelRef;
-	const CubemapMaterial& material;
+	std::optional<const CubemapMaterial*> material;
 };

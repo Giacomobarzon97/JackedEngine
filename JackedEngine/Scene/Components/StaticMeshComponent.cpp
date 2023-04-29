@@ -1,15 +1,22 @@
 #include "StaticMeshComponent.h"
 
-StaticMeshComponent::StaticMeshComponent(const std::string name, const std::string modelPath, const GenericMeshMaterial& material) :
-	RenderableComponent(name),
-	material(material)
-{
-	CPUGenericMesh mesh(modelPath, true, true);
-	modelRef = JackedEngine::Renderer().CreateModel(mesh);
+void StaticMeshComponent::Init() {
+
 }
 
-void StaticMeshComponent::Draw() {
-	JackedEngine::Renderer().Draw(OBJECT3D, modelRef, material.GetDiffuseTexture(), &modelMatrix);
+void StaticMeshComponent::Draw() const {
+	if (modelRef.has_value() && material.has_value()) {
+		JackedEngine::GetRenderer().Draw(OBJECT3D, modelRef.value(), material.value()->GetDiffuseTexture(), &modelMatrix);
+	}
+}
+
+void StaticMeshComponent::SetModelPath(const std::string modelPath) {
+	CPUGenericMesh mesh(modelPath, true, true);
+	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
+}
+
+void StaticMeshComponent::SetMaterial(const GenericMeshMaterial& material) {
+	this->material = &material;
 }
 
 void StaticMeshComponent::Rotate(const double x, const double y, const double z) {

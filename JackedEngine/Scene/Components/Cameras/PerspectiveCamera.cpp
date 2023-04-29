@@ -1,11 +1,9 @@
 #include "PerspectiveCamera.h"
 
 
-PerspectiveCamera::PerspectiveCamera(const std::string name, const glm::vec3 position, const glm::vec3 direction) :
-	BaseCameraComponent(name)
-{
-	eye = position;
-	center = position + (direction/glm::length(direction));
+void PerspectiveCamera::Init() {
+	eye = {2,2,2};
+	center = glm::vec3({ 2,2,2 }) + (glm::vec3({-2,-2,-2}) / glm::length(glm::vec3({ -2,-2,-2 })));
 }
 
 void PerspectiveCamera::Rotate(const double x, const double y, const double z) {

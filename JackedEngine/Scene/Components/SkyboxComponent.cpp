@@ -1,17 +1,19 @@
 #include "SkyboxComponent.h"
 
-SkyboxComponent::SkyboxComponent(const std::string name, const CubemapMaterial& material) :
-	RenderableComponent(name),
-	modelPath(modelPath),
-	material(material)
-{
+void SkyboxComponent::Init() {
 	CPUCubeModel mesh;
-	modelRef = JackedEngine::Renderer().CreateModel(mesh);
+	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
 }
 
-void SkyboxComponent::Draw() {
-	glm::mat4 identity(1);
-	JackedEngine::Renderer().Draw(SKYBOX, modelRef, material.GetDiffuseTexture(), &identity);
+void SkyboxComponent::Draw() const {
+	if (material.has_value()) {
+		glm::mat4 identity(1);
+		JackedEngine::GetRenderer().Draw(SKYBOX, modelRef, material.value()->GetDiffuseTexture(), &identity);
+	}
+}
+
+void SkyboxComponent::SetMaterial(const CubemapMaterial& material) {
+	this->material = &material;
 }
 
 void SkyboxComponent::Rotate(const double x, const double y, const double z) {

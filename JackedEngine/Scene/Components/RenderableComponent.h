@@ -6,7 +6,6 @@
 
 class RenderableComponent : public SceneComponent {
 public:
-	RenderableComponent(const std::string name);
-
-	virtual void Draw() = 0;
+	virtual void Draw() const = 0;
+	virtual const glm::mat4 GetModelMatrix() const = 0;
 };
