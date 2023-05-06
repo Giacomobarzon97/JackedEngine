@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Windows\BaseWindow.cpp">
@@ -100,22 +100,13 @@
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp">
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\FrameDescriptorPool.cpp">
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\FrameDescriptorSet.cpp">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.cpp">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\MaterialDescriptorPool.cpp">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\MaterialDescriptorSet.cpp">
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\AllocationFactories\VMAAllocationFactory.cpp">
@@ -155,6 +146,18 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene\World.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\BackendTypes.cpp">
+      <Filter>Backends</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\UniformDescriptorLayout.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\UniformDescriptorPool.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\UniformDescriptorSet.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,22 +260,13 @@
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h">
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\FrameDescriptorPool.h">
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\FrameDescriptorSet.h">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.h">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\MaterialDescriptorPool.h">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\MaterialDescriptorSet.h">
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\AllocationFactories\VMAAllocationFactory.h">
@@ -311,6 +305,15 @@
     <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Scene\World.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\UniformDescriptorLayout.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\UniformDescriptorPool.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\UniformDescriptorSet.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

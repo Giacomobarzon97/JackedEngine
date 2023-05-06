@@ -25,55 +25,6 @@ GraphicalCommandBuffer::~GraphicalCommandBuffer() {
 	vkDestroyFence(device.GetLogicalDevice(), inFlightFence, nullptr);
 }
 
-void GraphicalCommandBuffer::Draw(const BasePipeline& pipeline, const GPUModel& model, const void* constantsData, const FrameDescriptorSet& frameDescriptorSet, const MaterialDescriptorSet& materialDescriptorSet) const {
-	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
-
-	std::vector<VkBuffer> vertexBuffers = model.GetBuffers();
-	std::vector<VkDeviceSize> vertexOffsets;
-	vertexOffsets.resize(vertexBuffers.size());
-	for (uint8_t i = 0; i < vertexBuffers.size(); i++) {
-		vertexOffsets[i] = 0;
-	}
-
-	vkCmdBindVertexBuffers(commandBuffer, 0, static_cast<uint32_t>(vertexBuffers.size()), vertexBuffers.data(), vertexOffsets.data());
-	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, GPUModel::GetIndexType());
-
-	VkViewport viewport;
-	VkRect2D scissor;
-
-	pipeline.GetScreenData(viewport, scissor);
-
-	vkCmdSetViewport(commandBuffer, 0, 1, &viewport);
-	vkCmdSetScissor(commandBuffer, 0, 1, &scissor);
-
-	std::array<VkDescriptorSet, 2> descriptorSets{};
-	descriptorSets[0] = frameDescriptorSet.GetDescriptorSet();
-	descriptorSets[1] = materialDescriptorSet.GetDescriptorSet();
-
-	vkCmdBindDescriptorSets(
-		commandBuffer, 
-		VK_PIPELINE_BIND_POINT_GRAPHICS, 
-		pipeline.GetPipelineLayout(),
-		0, 
-		static_cast<uint32_t>(descriptorSets.size()),
-		descriptorSets.data(), 
-		0, 
-		nullptr
-	);
-
-	std::vector<uint32_t> constantsOffsets;
-	std::vector<uint32_t> constantsSizes;
-	std::vector<VkShaderStageFlags> constantsStageFlags;
-
-	BasePipeline::GetPushConstantsConfig(constantsOffsets, constantsSizes, constantsStageFlags);
-	
-	for (int i = 0; i < constantsOffsets.size(); i++) {
-		vkCmdPushConstants(commandBuffer, pipeline.GetPipelineLayout(), constantsStageFlags[i], constantsOffsets[i], constantsSizes[i], constantsData);
-	}
-
-	vkCmdDrawIndexed(commandBuffer, model.GetNumberOfIndices(), 1, 0, 0, 0);
-}
-
 void GraphicalCommandBuffer::BeginRenderPass() {
 	if (currentState == CommandBufferState::Recording) {
 		throw std::runtime_error("another renderpass is currently running");
@@ -115,8 +66,73 @@ void GraphicalCommandBuffer::BeginRenderPass() {
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 }
 
-void GraphicalCommandBuffer::NextSubpass() {
-	//vkCmdNextSubpass(commandBuffer, VK_SUBPASS_CONTENTS_INLINE);
+void GraphicalCommandBuffer::BindPipeline(const BasePipeline& pipeline) {
+	if (currentState == CommandBufferState::Idle) {
+		throw std::runtime_error("Can't bind pipeline while in idle state");
+	}
+	vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.GetGraphicsPipeline());
+	bindedPipeline = &pipeline;
+}
+
+void GraphicalCommandBuffer::BindModel(const GPUModel& model) {
+	if (currentState == CommandBufferState::Idle) {
+		throw std::runtime_error("Can't bind model while in idle state");
+	}
+	if (!bindedPipeline.has_value()) {
+		throw std::runtime_error("No pipeline has been bound");
+	}
+	std::vector<VkBuffer> vertexBuffers = model.GetBuffers();
+	std::vector<VkDeviceSize> vertexOffsets;
+	vertexOffsets.resize(vertexBuffers.size());
+	for (uint8_t i = 0; i < vertexBuffers.size(); i++) {
+		vertexOffsets[i] = 0;
+	}
+
+	vkCmdBindVertexBuffers(commandBuffer, 0, static_cast<uint32_t>(vertexBuffers.size()), vertexBuffers.data(), vertexOffsets.data());
+	vkCmdBindIndexBuffer(commandBuffer, model.GetIndexBufferAllocation().GetBuffer(), 0, GPUModel::GetIndexType());
+	bindedModel = &model;
+}
+
+void GraphicalCommandBuffer::BindDescriptorSet(const BaseDescriptorSet& descriptorSet, const uint32_t location) {
+	if (currentState == CommandBufferState::Idle) {
+		throw std::runtime_error("Can't bind descriptor while in idle state");
+	}
+	if (!bindedPipeline.has_value()) {
+		throw std::runtime_error("No pipeline has been bound");
+	}
+
+	vkCmdBindDescriptorSets(
+		commandBuffer,
+		VK_PIPELINE_BIND_POINT_GRAPHICS,
+		bindedPipeline.value()->GetPipelineLayout(),
+		location,
+		1,
+		&descriptorSet.GetDescriptorSet(),
+		0,
+		nullptr
+	);
+}
+
+void GraphicalCommandBuffer::Draw() const {
+	if (currentState == CommandBufferState::Idle) {
+		throw std::runtime_error("Can't execute draw command while in idle state");
+	}
+	if (!bindedPipeline.has_value()) {
+		throw std::runtime_error("No pipeline has been bound");
+	}
+	if (!bindedModel.has_value()) {
+		throw std::runtime_error("No model has been bound");
+	}
+
+	VkViewport viewport;
+	VkRect2D scissor;
+
+	bindedPipeline.value()->GetScreenData(viewport, scissor);
+
+	vkCmdSetViewport(commandBuffer, 0, 1, &viewport);
+	vkCmdSetScissor(commandBuffer, 0, 1, &scissor);
+
+	vkCmdDrawIndexed(commandBuffer, bindedModel.value()->GetNumberOfIndices(), 1, 0, 0, 0);
 }
 
 const VkResult GraphicalCommandBuffer::EndRenderPass() {
@@ -156,6 +172,10 @@ const VkResult GraphicalCommandBuffer::EndRenderPass() {
 	presentInfo.pSwapchains = swapChains;
 	presentInfo.pImageIndices = &imageIndex;
 	presentInfo.pResults = nullptr; // Optional
+
+	bindedModel.reset();
+	bindedPipeline.reset();
+
 	return vkQueuePresentKHR(device.GetPresentQueue(), &presentInfo);
 }
 

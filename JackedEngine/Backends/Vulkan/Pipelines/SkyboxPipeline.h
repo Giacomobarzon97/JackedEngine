@@ -1,12 +1,12 @@
 #pragma once
 #include "Backends/Vulkan/Pipelines/BasePipeline.h"
-#include "Backends/Vulkan/Descriptors/DescriptorLayouts/FrameDescriptorLayout.h"
-#include "Backends/Vulkan/Descriptors/DescriptorLayouts/MaterialDescriptorLayout.h"
+#include "Backends/Vulkan/Descriptors/DescriptorLayouts/UniformDescriptorLayout.h"
+#include "Backends/Vulkan/Descriptors/DescriptorLayouts/ImageDescriptorLayout.h"
 #include "Backends/CPUResources/CPUVertices/CPUPositionVertex.h"
 
 class SkyboxPipeline : public BasePipeline {
 public:
-	SkyboxPipeline(const Device& device, const FrameDescriptorLayout& uboDescriptorLayout, const MaterialDescriptorLayout& objectDescriptorLayout);
+	SkyboxPipeline(const Device& device, const UniformDescriptorLayout& uniformDescriptorLayout, const ImageDescriptorLayout& imageDescriptorLayout);
 	SkyboxPipeline(SkyboxPipeline&) = delete;
 
 	SkyboxPipeline& operator=(SkyboxPipeline&) = delete;

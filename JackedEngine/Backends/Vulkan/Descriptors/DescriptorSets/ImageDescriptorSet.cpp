@@ -1,6 +1,6 @@
-#include "MaterialDescriptorSet.h"
+#include "ImageDescriptorSet.h"
 
-MaterialDescriptorSet::MaterialDescriptorSet(const Device& device, const MaterialDescriptorLayout& descriptorLayout, const MaterialDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image, const BaseSampler& sampler) :
+ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescriptorLayout& descriptorLayout, const ImageDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image, const BaseSampler& sampler) :
 	BaseDescriptorSet(device),
 	image(image),
 	sampler(sampler)
@@ -32,4 +32,4 @@ MaterialDescriptorSet::MaterialDescriptorSet(const Device& device, const Materia
 	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
-MaterialDescriptorSet::~MaterialDescriptorSet() {}
+ImageDescriptorSet::~ImageDescriptorSet() {}

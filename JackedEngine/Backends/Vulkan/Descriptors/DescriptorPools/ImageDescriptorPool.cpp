@@ -1,10 +1,10 @@
-#include "FrameDescriptorPool.h"
+#include "ImageDescriptorPool.h"
 
-FrameDescriptorPool::FrameDescriptorPool(const Device& device, int maxSets) :
+ImageDescriptorPool::ImageDescriptorPool(const Device& device, int maxSets) :
 	BaseDescriptorPool(device)
 {
 	VkDescriptorPoolSize poolSize;
-	poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+	poolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 	poolSize.descriptorCount = static_cast<uint32_t>(maxSets);
 
 	VkDescriptorPoolCreateInfo poolInfo{};
@@ -19,4 +19,4 @@ FrameDescriptorPool::FrameDescriptorPool(const Device& device, int maxSets) :
 }
 
 
-FrameDescriptorPool::~FrameDescriptorPool(){}
+ImageDescriptorPool::~ImageDescriptorPool() {}

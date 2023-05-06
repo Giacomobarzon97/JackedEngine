@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -38,13 +38,13 @@
     <ClCompile Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.cpp" />
     <ClCompile Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\FrameDescriptorLayout.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\MaterialDescriptorPool.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\FrameDescriptorPool.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\UniformDescriptorLayout.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\UniformDescriptorPool.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\MaterialDescriptorSet.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\FrameDescriptorSet.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\UniformDescriptorSet.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.cpp" />
     <ClCompile Include="Backends\Vulkan\Device.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\AllocationFactories\BaseAllocationFactory.cpp" />
@@ -92,13 +92,13 @@
     <ClInclude Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.h" />
     <ClInclude Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\FrameDescriptorLayout.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\MaterialDescriptorLayout.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\MaterialDescriptorPool.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\FrameDescriptorPool.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\UniformDescriptorLayout.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\UniformDescriptorPool.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\MaterialDescriptorSet.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\FrameDescriptorSet.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\UniformDescriptorSet.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.h" />
     <ClInclude Include="Backends\Vulkan\Device.h" />
     <ClInclude Include="Backends\Vulkan\Memory\AllocationFactories\BaseAllocationFactory.h" />
@@ -210,6 +210,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -230,6 +231,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -252,6 +254,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -276,6 +279,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\GLFW\include;$(SolutionDir)Libraries\glm\;$(SolutionDir)Libraries\vulkan\Include;$(SolutionDir)Libraries\stb;$(SolutionDir)Libraries\tinyobjloader;$(SolutionDir)Libraries\VulkanMemoryAllocator;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

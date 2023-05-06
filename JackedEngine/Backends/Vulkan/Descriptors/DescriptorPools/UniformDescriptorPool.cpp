@@ -1,10 +1,10 @@
-#include "MaterialDescriptorPool.h"
+#include "UniformDescriptorPool.h"
 
-MaterialDescriptorPool::MaterialDescriptorPool(const Device& device, int maxSets) :
+UniformDescriptorPool::UniformDescriptorPool(const Device& device, int maxSets) :
 	BaseDescriptorPool(device)
 {
 	VkDescriptorPoolSize poolSize;
-	poolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+	poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 	poolSize.descriptorCount = static_cast<uint32_t>(maxSets);
 
 	VkDescriptorPoolCreateInfo poolInfo{};
@@ -19,4 +19,4 @@ MaterialDescriptorPool::MaterialDescriptorPool(const Device& device, int maxSets
 }
 
 
-MaterialDescriptorPool::~MaterialDescriptorPool() {}
+UniformDescriptorPool::~UniformDescriptorPool(){}

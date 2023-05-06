@@ -1,6 +1,6 @@
-#include "FrameDescriptorLayout.h"
+#include "UniformDescriptorLayout.h"
 
-FrameDescriptorLayout::FrameDescriptorLayout(const Device& device) :
+UniformDescriptorLayout::UniformDescriptorLayout(const Device& device) :
 	BaseDescriptorLayout(device)
 {
 	VkDescriptorSetLayoutBinding uboLayoutBinding{};
@@ -8,7 +8,7 @@ FrameDescriptorLayout::FrameDescriptorLayout(const Device& device) :
 	uboLayoutBinding.descriptorCount = 1;
 	uboLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 	uboLayoutBinding.pImmutableSamplers = nullptr;
-	uboLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+	uboLayoutBinding.stageFlags = VK_SHADER_STAGE_ALL;
 
 	VkDescriptorSetLayoutCreateInfo layoutInfo{};
 	layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;

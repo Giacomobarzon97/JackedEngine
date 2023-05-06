@@ -1,8 +1,8 @@
-#include "FrameDescriptorSet.h"
+#include "UniformDescriptorSet.h"
 
-FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescriptorLayout& descriptorLayout, const FrameDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory) :
+UniformDescriptorSet::UniformDescriptorSet(const Device& device, const UniformDescriptorLayout& descriptorLayout, const UniformDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const uint32_t uniformSize) :
 	BaseDescriptorSet(device),
-	projectionViewUniform(allocationFactory.CreateUniformAllocation(sizeof(UniformBufferObject)))
+	uniformAllocation(allocationFactory.CreateUniformAllocation(uniformSize))
 {
 	VkDescriptorSetAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -14,9 +14,9 @@ FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescript
 	}
 
 	VkDescriptorBufferInfo bufferInfo{};
-	bufferInfo.buffer = projectionViewUniform->GetBuffer();
+	bufferInfo.buffer = uniformAllocation->GetBuffer();
 	bufferInfo.offset = 0;
-	bufferInfo.range = sizeof(UniformBufferObject);
+	bufferInfo.range = uniformSize;
 
 	VkWriteDescriptorSet descriptorWrite{};
 
@@ -31,13 +31,11 @@ FrameDescriptorSet::FrameDescriptorSet(const Device& device, const FrameDescript
 	vkUpdateDescriptorSets(device.GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 }
 
-FrameDescriptorSet::~FrameDescriptorSet(){
-	delete projectionViewUniform;
+UniformDescriptorSet::~UniformDescriptorSet(){
+	delete uniformAllocation;
 }
 
-void FrameDescriptorSet::UpdateUBO(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) const {
-	UniformBufferObject ubo{};
-	ubo.viewMatrix = viewMatrix;
-	ubo.projectionMatrix = projectionMatrix;
-	projectionViewUniform->UpdateBuffer(&ubo);
+void UniformDescriptorSet::UpdateUniform(const void* data) const {
+
+	uniformAllocation->UpdateBuffer(data);
 }

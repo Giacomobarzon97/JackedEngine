@@ -25,7 +25,6 @@ public:
 
 	virtual void BeginFrame(const BaseCameraComponent& camera) = 0;
 	virtual void Draw(const ShaderType shaderType, const ModelReference modelReference, const TextureReference textureReference, const void* constData) = 0;
-	virtual void NextRenderPass() = 0;
 	virtual void EndFrame() = 0;
 	virtual void Reset() = 0;
 

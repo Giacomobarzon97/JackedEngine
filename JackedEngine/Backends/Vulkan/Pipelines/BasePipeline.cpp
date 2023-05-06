@@ -29,21 +29,3 @@ const VkPipelineLayout& BasePipeline::GetPipelineLayout() const {
 const VkPipeline& BasePipeline::GetGraphicsPipeline() const {
 	return graphicsPipeline;
 }
-
-std::vector<VkPushConstantRange> BasePipeline::getPushConstants() {
-	std::vector<VkPushConstantRange> push_constants(1);
-	push_constants[0].offset = 0;
-	push_constants[0].size = sizeof(PushConstants);
-	push_constants[0].stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
-	return push_constants;
-}
-
-void BasePipeline::GetPushConstantsConfig(std::vector<uint32_t>& offsets, std::vector<uint32_t>& sizes, std::vector<VkShaderStageFlags>& stageFlags) {
-	offsets.resize(1);
-	sizes.resize(1);
-	stageFlags.resize(1);
-
-	offsets[0] = 0;
-	sizes[0] = sizeof(PushConstants);
-	stageFlags[0] = VK_SHADER_STAGE_VERTEX_BIT;
-}

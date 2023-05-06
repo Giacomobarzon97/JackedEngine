@@ -1,6 +1,6 @@
 #include "Object3DPipeline.h"
 
-Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLayout& frameDescriptorLayout, const MaterialDescriptorLayout& objectDescriptorLayout) :
+Object3DPipeline::Object3DPipeline(const Device& device, const UniformDescriptorLayout& uniformDescriptorLayout, const ImageDescriptorLayout& imageDescriptorLayout) :
 	BasePipeline(device)
 {
 	VkShaderModule vertShaderModule = createShaderModule("Backends/Shaders/CompiledShaders/object.vert.spv");
@@ -105,18 +105,15 @@ Object3DPipeline::Object3DPipeline(const Device& device, const FrameDescriptorLa
 	dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
 	dynamicState.pDynamicStates = dynamicStates.data();
 
-	std::array<VkDescriptorSetLayout, 2> descriptorLayouts{};
-	descriptorLayouts[0] = frameDescriptorLayout.GetDescriptorLayout();
-	descriptorLayouts[1] = objectDescriptorLayout.GetDescriptorLayout();
-
-	std::vector<VkPushConstantRange> push_constants = getPushConstants();
+	std::array<VkDescriptorSetLayout, 3> descriptorLayouts{};
+	descriptorLayouts[0] = uniformDescriptorLayout.GetDescriptorLayout();
+	descriptorLayouts[1] = uniformDescriptorLayout.GetDescriptorLayout();
+	descriptorLayouts[2] = imageDescriptorLayout.GetDescriptorLayout();
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
 	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
-	pipelineLayoutInfo.pushConstantRangeCount = static_cast<uint32_t>(push_constants.size());
-	pipelineLayoutInfo.pPushConstantRanges = push_constants.data();
 
 	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");

@@ -8,12 +8,12 @@
 #include "Backends/CPUResources/CPUVertices/CPUTextureVertex.h"
 #include "Backends/Vulkan/Device.h"
 #include "Backends/Vulkan/Pipelines/BasePipeline.h"
-#include "Backends/Vulkan/Descriptors/DescriptorLayouts/FrameDescriptorLayout.h"
-#include "Backends/Vulkan/Descriptors/DescriptorLayouts/MaterialDescriptorLayout.h"
+#include "Backends/Vulkan/Descriptors/DescriptorLayouts/ImageDescriptorLayout.h"
+#include "Backends/Vulkan/Descriptors/DescriptorLayouts/UniformDescriptorLayout.h"
 
 class Object3DPipeline : public BasePipeline{
 public:
-	Object3DPipeline(const Device& device, const FrameDescriptorLayout& uboDescriptorLayout, const MaterialDescriptorLayout& objectDescriptorLayout);
+	Object3DPipeline(const Device& device, const UniformDescriptorLayout& uniformDescriptorLayout, const ImageDescriptorLayout& imageDescriptorLayout);
 	Object3DPipeline(Object3DPipeline&) = delete;
 
 	Object3DPipeline&operator=(Object3DPipeline&) = delete;

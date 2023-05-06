@@ -5,9 +5,9 @@ layout(set = 0, binding = 0) uniform FrameBufferUniform {
     mat4 projectionMatrix;
 } frameUniform;
 
-layout(push_constant) uniform constants {
+layout(set = 1, binding = 0) uniform ObjectDataUniform {
     mat4 modelMatrix;
-} pushConstants;
+} objectData;
 
 layout(location = 0) in vec4 inPosition;
 

@@ -1,6 +1,6 @@
-#include"MaterialDescriptorLayout.h"
+#include"ImageDescriptorLayout.h"
 
-MaterialDescriptorLayout::MaterialDescriptorLayout(const Device& device) :
+ImageDescriptorLayout::ImageDescriptorLayout(const Device& device) :
 	BaseDescriptorLayout(device)
 {
 	VkDescriptorSetLayoutBinding samplerLayoutBinding{};
@@ -8,7 +8,7 @@ MaterialDescriptorLayout::MaterialDescriptorLayout(const Device& device) :
 	samplerLayoutBinding.descriptorCount = 1;
 	samplerLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
 	samplerLayoutBinding.pImmutableSamplers = nullptr;
-	samplerLayoutBinding.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
+	samplerLayoutBinding.stageFlags = VK_SHADER_STAGE_ALL;
 
 	VkDescriptorSetLayoutCreateInfo layoutInfo{};
 	layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;

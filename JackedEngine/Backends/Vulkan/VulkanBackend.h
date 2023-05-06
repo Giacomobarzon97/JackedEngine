@@ -24,7 +24,6 @@ public:
 
 	virtual void BeginFrame(const BaseCameraComponent& camera) override;
 	virtual void Draw(const ShaderType shaderType, const ModelReference modelReference, const TextureReference textureReference, const void * constData) override;
-	virtual void NextRenderPass() override;
 	virtual void EndFrame() override;
 
 	virtual void Reset() override;
@@ -32,22 +31,33 @@ public:
 	static void FramebufferResizeCallback(void* buffer);
 
 private:
+	struct FrameData {
+		glm::mat4 viewMatrix;
+		glm::mat4 projectionMatrix;
+	};
+
+	struct ModelData {
+		glm::mat4 modelMatrix;
+	};
+
 	unsigned int maxFramesInFlight = 2;
 
 	Device device;
 	VMAAllocationFactory allocationFactory;
 	LinearRepeatSampler sampler;
-	MaterialDescriptorLayout materialDescriptorLayout;
-	FrameDescriptorLayout frameDescriptorLayout;
+	ImageDescriptorLayout imageDescriptorLayout;
+	UniformDescriptorLayout uniformDescriptorLayout;
 	const Object3DPipeline object3DPipeline;
 	const SkyboxPipeline skyboxPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
 	std::unordered_map<std::string, const GPUImage*> imageMap;
 	std::unordered_map <std::string, const GPUModel*> modelMap;
-	FrameDescriptorPool frameDescriptorPool;
-	std::vector<const FrameDescriptorSet*> frameDescriptorSets;
-	std::unordered_map <std::string, const MaterialDescriptorPool*> materialDescriptorPoolMap;
-	std::unordered_map <std::string,const MaterialDescriptorSet*> materialDescriptorSetsMap;
+	UniformDescriptorPool frameDataDescriptorPool;
+	std::vector<const UniformDescriptorSet*> frameDataDescriptorSets;
+	UniformDescriptorPool modelDataDescriptorPool;
+	std::vector<const UniformDescriptorSet*> modelDataDescriptorSets;
+	std::unordered_map <std::string, const ImageDescriptorPool*> imageDescriptorPoolMap;
+	std::unordered_map <std::string,const ImageDescriptorSet*> imageDescriptorSetsMap;
 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;
