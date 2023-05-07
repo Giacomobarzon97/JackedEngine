@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Backends\BackendTypes.cpp" />
     <ClCompile Include="Backends\BaseBackend.cpp" />
     <ClCompile Include="Backends\Vulkan\Pipelines\SkyboxPipeline.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUBaseModel.cpp" />
@@ -74,6 +75,7 @@
     <ClCompile Include="Windows\GLFWWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Backends\BackendTypes.h" />
     <ClInclude Include="Backends\BaseBackend.h" />
     <ClInclude Include="Backends\Vulkan\VulkanBackend.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUBaseModel.h" />

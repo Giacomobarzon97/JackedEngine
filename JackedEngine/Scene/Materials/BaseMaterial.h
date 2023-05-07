@@ -1,9 +1,9 @@
 #pragma once
-#include "JackedEngine.h"
+#include "Backends/BackendTypes.h"
 
 class BaseMaterial {
 public:
 	virtual ~BaseMaterial();
 
-	virtual const TextureReference GetDiffuseTexture() const = 0;
+	virtual const ImageReference GetDiffuseTexture() const = 0;
 };

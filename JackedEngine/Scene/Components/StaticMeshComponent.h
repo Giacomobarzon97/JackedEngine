@@ -10,7 +10,6 @@
 class StaticMeshComponent : public RenderableComponent {
 public:
 	virtual void Init() override;
-	virtual void Draw() const override;
 
 	void SetModelPath(const std::string modelPath);
 	void SetMaterial(const GenericMeshMaterial& material);
@@ -22,7 +21,10 @@ public:
 	virtual void SetRotation(const double x, const double y, const double z) override;
 	void SetScale(const double x, const double y, const double z) override;
 
-	const glm::mat4 GetModelMatrix() const;
+	virtual const ShaderType GetShaderType() const override;
+	virtual const ModelReference GetModel() const override;
+	virtual const GenericMeshMaterial& GetMaterial() const override;
+	virtual const glm::mat4 GetModelMatrix() const override;
 
 private:
 	glm::mat4 modelMatrix = glm::mat4(1);

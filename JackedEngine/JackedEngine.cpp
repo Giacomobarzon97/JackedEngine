@@ -11,6 +11,10 @@ World JackedEngine::world;
 
 void JackedEngine::MainLoop() {
 
+	UniformReference frameUniform = renderer->CreateUniform("FrameData", sizeof(FrameData));
+	UniformReference modelUniform = renderer->CreateUniform("ModelData", sizeof(ModelData));
+
+
 	std::vector<SceneComponent*> components = world.GetComponents();
 	for (unsigned int i = 0; i < components.size(); i++) {
 		components[i]->Init();
@@ -19,17 +23,38 @@ void JackedEngine::MainLoop() {
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 
 	while (!window->ShouldClose()) {
+		renderer->BeginFrame();
+
 		if (camera.has_value()) {
 			components = world.GetComponents();
-			renderer->BeginFrame(*camera.value());
-			for (unsigned int i = 0; i < components.size(); i++) {
-				const RenderableComponent* renderableComponent = dynamic_cast<const RenderableComponent*>(components[i]);
-				if (renderableComponent != nullptr) {
-					renderableComponent->Draw();
+			int width, height;
+			window.get()->GetFrameBufferSize(&width, &height);
+
+			if (width > 0 && height > 0) {
+				FrameData frameData{};
+				frameData.projectionMatrix = camera.value()->GetProjectionMatrix(width, height);
+				frameData.viewMatrix = camera.value()->GetViewMatrix();
+				renderer->UpdateUniform(frameUniform, &frameData);
+
+				for (unsigned int i = 0; i < components.size(); i++) {
+					const RenderableComponent* renderableComponent = dynamic_cast<const RenderableComponent*>(components[i]);
+					if (renderableComponent != nullptr) {
+						ModelData modelData{};
+						modelData.modelMatrix = renderableComponent->GetModelMatrix();
+						renderer->UpdateUniform(modelUniform, &modelData);
+
+						renderer->BindPipeline(renderableComponent->GetShaderType());
+						renderer->BindModel(renderableComponent->GetModel());
+						renderer->BindUniform(0, frameUniform);
+						renderer->BindUniform(1, modelUniform);
+						renderer->BindImage(2, renderableComponent->GetMaterial().GetDiffuseTexture());
+						renderer->Draw();
+					}
 				}
 			}
-			renderer->EndFrame();
 		}
+
+		renderer->EndFrame();
 
 		window->PollEvents();
 

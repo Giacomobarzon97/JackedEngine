@@ -4,12 +4,6 @@ void StaticMeshComponent::Init() {
 
 }
 
-void StaticMeshComponent::Draw() const {
-	if (modelRef.has_value() && material.has_value()) {
-		JackedEngine::GetRenderer().Draw(OBJECT3D, modelRef.value(), material.value()->GetDiffuseTexture(), &modelMatrix);
-	}
-}
-
 void StaticMeshComponent::SetModelPath(const std::string modelPath) {
 	CPUGenericMesh mesh(modelPath, true, true);
 	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
@@ -70,6 +64,18 @@ void StaticMeshComponent::SetRotation(const double x, const double y, const doub
 
 void StaticMeshComponent::SetScale(const double x, const double y, const double z) {
 
+}
+
+const ShaderType StaticMeshComponent::GetShaderType() const {
+	return OBJECT3D;
+}
+
+const ModelReference StaticMeshComponent::GetModel() const {
+	return modelRef.value();
+}
+
+const GenericMeshMaterial& StaticMeshComponent::GetMaterial() const {
+	return *material.value();
 }
 
 const glm::mat4 StaticMeshComponent::GetModelMatrix() const {

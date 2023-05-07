@@ -18,12 +18,19 @@ public:
 
 	VulkanBackend& operator=(VulkanBackend&) = delete;
 
+	virtual const ModelReference CreateModel(CPUBaseModel& model) override;
+	virtual const ImageReference CreateImage(CPUImage& image) override;
+	virtual const UniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) override;
 
-	virtual TextureReference CreateTexture(CPUImage& image) override;
-	virtual ModelReference CreateModel(CPUBaseModel& model) override;
+	virtual void BindPipeline(const ShaderType shaderType) override;
+	virtual void BindModel(const ModelReference model) override;
+	virtual void BindImage(const uint32_t location, const ImageReference texture) override;
+	virtual void BindUniform(const uint32_t location, const UniformReference uniform) override;
 
-	virtual void BeginFrame(const BaseCameraComponent& camera) override;
-	virtual void Draw(const ShaderType shaderType, const ModelReference modelReference, const TextureReference textureReference, const void * constData) override;
+	virtual void UpdateUniform(const UniformReference uniform, const void* uniformData) override;
+
+	virtual void BeginFrame() override;
+	virtual void Draw() override;
 	virtual void EndFrame() override;
 
 	virtual void Reset() override;
@@ -50,14 +57,12 @@ private:
 	const Object3DPipeline object3DPipeline;
 	const SkyboxPipeline skyboxPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
-	std::unordered_map<std::string, const GPUImage*> imageMap;
+	std::unordered_map <std::string, const GPUImage*> imageMap;
 	std::unordered_map <std::string, const GPUModel*> modelMap;
-	UniformDescriptorPool frameDataDescriptorPool;
-	std::vector<const UniformDescriptorSet*> frameDataDescriptorSets;
-	UniformDescriptorPool modelDataDescriptorPool;
-	std::vector<const UniformDescriptorSet*> modelDataDescriptorSets;
 	std::unordered_map <std::string, const ImageDescriptorPool*> imageDescriptorPoolMap;
-	std::unordered_map <std::string,const ImageDescriptorSet*> imageDescriptorSetsMap;
+	std::unordered_map <std::string, const ImageDescriptorSet*> imageDescriptorSetsMap;
+	std::unordered_map <std::string, const UniformDescriptorPool*> uniformDescriptorPoolMap;
+	std::unordered_map <std::string, std::vector<const UniformDescriptorSet*>> uniformDescriptorSetsMap;
 
 	bool framebufferResized = false;
 	uint32_t currentFrame = 0;

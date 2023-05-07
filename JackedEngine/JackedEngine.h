@@ -21,6 +21,15 @@ public:
 	static void SetActiveCamera(BaseCameraComponent& camera);
 
 private:
+	struct FrameData {
+		glm::mat4 viewMatrix;
+		glm::mat4 projectionMatrix;
+	};
+
+	struct ModelData {
+		glm::mat4 modelMatrix;
+	};
+
 	static const std::string APP_NAME;
 	static const uint32_t  WINDOW_WIDTH = 800;
 	static const uint32_t  WINDOW_HEIGHT = 600;

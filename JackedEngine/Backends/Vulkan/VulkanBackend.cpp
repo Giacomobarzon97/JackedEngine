@@ -6,23 +6,12 @@ VulkanBackend::VulkanBackend(const BaseWindow& window) :
 	sampler(device),
 	uniformDescriptorLayout(device),
 	imageDescriptorLayout(device),
-	frameDataDescriptorPool(device, maxFramesInFlight),
-	modelDataDescriptorPool(device, maxFramesInFlight),
 	object3DPipeline(device, uniformDescriptorLayout, imageDescriptorLayout),
 	skyboxPipeline(device, uniformDescriptorLayout, imageDescriptorLayout)
 {
 	commandBuffers.resize(maxFramesInFlight);
-
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers[i] = new GraphicalCommandBuffer(device);
-	}
-	frameDataDescriptorSets.resize(maxFramesInFlight);
-	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
-		frameDataDescriptorSets[i] = new UniformDescriptorSet(device, uniformDescriptorLayout, frameDataDescriptorPool, allocationFactory, sizeof(FrameData));
-	}
-	modelDataDescriptorSets.resize(maxFramesInFlight);
-	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
-		modelDataDescriptorSets[i] = new UniformDescriptorSet(device, uniformDescriptorLayout, modelDataDescriptorPool, allocationFactory, sizeof(ModelData));
 	}
 	window.SetBufferResizeCallback(this, VulkanBackend::FramebufferResizeCallback);
 }
@@ -37,14 +26,6 @@ VulkanBackend::~VulkanBackend() {
 	}
 
 	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
-		delete frameDataDescriptorSets[i];
-	}
-
-	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
-		delete modelDataDescriptorSets[i];
-	}
-
-	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
 	}
 
@@ -55,9 +36,28 @@ VulkanBackend::~VulkanBackend() {
 	for (auto it = imageDescriptorPoolMap.begin(); it != imageDescriptorPoolMap.end(); it++) {
 		delete it->second;
 	}
+
+	for (auto it = uniformDescriptorSetsMap.begin(); it != uniformDescriptorSetsMap.end(); it++) {
+		for (unsigned int i = 0; i < it->second.size(); i++) {
+			delete it->second[i];
+		}
+	}
+
+	for (auto it = uniformDescriptorPoolMap.begin(); it != uniformDescriptorPoolMap.end(); it++) {
+		delete it->second;
+	}
 }
 
-TextureReference VulkanBackend::CreateTexture(CPUImage& cpuImage) {
+const ModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
+	if (modelMap.find(model.GetId()) == modelMap.end()) {
+		model.LoadData();
+		modelMap[model.GetId()] = new GPUModel(allocationFactory, model);
+	}
+	ModelReference reference(model.GetId());
+	return reference;
+}
+
+const ImageReference VulkanBackend::CreateImage(CPUImage& cpuImage) {
 	if (imageMap.find(cpuImage.GetId()) == imageMap.end()) {
 		cpuImage.LoadData();
 		imageMap[cpuImage.GetId()] = new GPUImage(allocationFactory, cpuImage);
@@ -66,54 +66,65 @@ TextureReference VulkanBackend::CreateTexture(CPUImage& cpuImage) {
 		imageDescriptorSetsMap[cpuImage.GetId()] = new ImageDescriptorSet(device, imageDescriptorLayout, *imageDescriptorPoolMap[cpuImage.GetId()], allocationFactory, *imageMap[cpuImage.GetId()], sampler);
 	}
 
-	TextureReference reference{};
-	reference.id = cpuImage.GetId();
+	ImageReference reference(cpuImage.GetId());
 	return reference;
 }
 
-ModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
-	if (modelMap.find(model.GetId()) == modelMap.end()) {
-		model.LoadData();
-		modelMap[model.GetId()] = new GPUModel(allocationFactory, model);
+const UniformReference VulkanBackend::CreateUniform(std::string uniformId, const uint32_t uniformSize) {
+	if (uniformDescriptorPoolMap.find(uniformId) != uniformDescriptorPoolMap.end()) {
+		throw std::runtime_error("Uniform already created with the same Id");
 	}
-	ModelReference reference{};
-	reference.id = model.GetId();
+
+	uniformDescriptorPoolMap[uniformId] = new UniformDescriptorPool(device, maxFramesInFlight);
+	uniformDescriptorSetsMap[uniformId] = std::vector<const UniformDescriptorSet*>(maxFramesInFlight);
+	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
+		uniformDescriptorSetsMap[uniformId][i] = new UniformDescriptorSet(device, uniformDescriptorLayout, *uniformDescriptorPoolMap[uniformId], allocationFactory, uniformSize);
+	}
+
+	UniformReference reference(uniformId);
 	return reference;
 }
 
-void VulkanBackend::BeginFrame(const BaseCameraComponent& camera) {
-	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
-	commandBuffers[currentFrame]->BeginRenderPass();
-	FrameData frameData{};
-	frameData.projectionMatrix = camera.GetProjectionMatrix(swapChainExtent.width, swapChainExtent.height);
-	frameData.viewMatrix = camera.GetViewMatrix();
-	frameDataDescriptorSets[currentFrame]->UpdateUniform(&frameData);
-}
-
-void VulkanBackend::Draw(const ShaderType shaderType, const ModelReference modelReference, const TextureReference textureReference, const void* constData) {
-	
+void VulkanBackend::BindPipeline(const ShaderType shaderType) {
 	const BasePipeline* pipeline;
 
+	//TODO: Substitute this switch with a map to find correct pipeline in costant time and improve performances
 	switch (shaderType)
 	{
-		case OBJECT3D:
-			pipeline = &object3DPipeline;
-			break;
-		case SKYBOX:
-			pipeline = &skyboxPipeline;
-			break;
-		default:
-			throw std::runtime_error("Shader type not supported");
+	case OBJECT3D:
+		pipeline = &object3DPipeline;
+		break;
+	case SKYBOX:
+		pipeline = &skyboxPipeline;
+		break;
+	default:
+		throw std::runtime_error("Shader type not supported");
 	}
 
-	modelDataDescriptorSets[currentFrame]->UpdateUniform(constData);
-
 	commandBuffers[currentFrame]->BindPipeline(*pipeline);
-	commandBuffers[currentFrame]->BindModel(*modelMap[modelReference.id]);
-	commandBuffers[currentFrame]->BindDescriptorSet(*frameDataDescriptorSets[currentFrame], 0);
-	commandBuffers[currentFrame]->BindDescriptorSet(*modelDataDescriptorSets[currentFrame], 1);
-	commandBuffers[currentFrame]->BindDescriptorSet(*imageDescriptorSetsMap[textureReference.id], 2);
+}
 
+void VulkanBackend::UpdateUniform(const UniformReference uniform, const void* uniformData) {
+	uniformDescriptorSetsMap[uniform.GetId()][currentFrame]->UpdateUniform(uniformData);
+}
+
+void VulkanBackend::BindModel(const ModelReference model) {
+	commandBuffers[currentFrame]->BindModel(*modelMap[model.GetId()]);
+}
+
+void VulkanBackend::BindImage(const uint32_t location, const ImageReference texture) {
+	commandBuffers[currentFrame]->BindDescriptorSet(*imageDescriptorSetsMap[texture.GetId()], location);
+}
+
+void VulkanBackend::BindUniform(const uint32_t location, const UniformReference uniform) {
+	commandBuffers[currentFrame]->BindDescriptorSet(*uniformDescriptorSetsMap[uniform.GetId()][currentFrame], location);
+}
+
+void VulkanBackend::BeginFrame() {
+	commandBuffers[currentFrame]->BeginRenderPass();
+}
+
+void VulkanBackend::Draw() {
 	commandBuffers[currentFrame]->Draw();
 }
 
