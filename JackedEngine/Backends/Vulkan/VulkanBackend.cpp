@@ -5,10 +5,45 @@ VulkanBackend::VulkanBackend(const BaseWindow& window) :
 	allocationFactory(device),
 	sampler(device),
 	uniformDescriptorLayout(device),
-	imageDescriptorLayout(device),
-	object3DPipeline(device, uniformDescriptorLayout, imageDescriptorLayout),
-	skyboxPipeline(device, uniformDescriptorLayout, imageDescriptorLayout)
+	imageDescriptorLayout(device)
 {
+	std::vector<BaseDescriptorLayout*> layouts(3);
+	layouts[0] = &uniformDescriptorLayout;
+	layouts[1] = &uniformDescriptorLayout;
+	layouts[2] = &imageDescriptorLayout;
+
+	std::vector<uint32_t> obj3DVertexSizes(2);
+	obj3DVertexSizes[0] = sizeof(CPUPositionVertex);
+	obj3DVertexSizes[1] = sizeof(CPUTextureVertex);
+
+	std::vector<VkFormat> obj3DFormats(2);
+	obj3DFormats[0] = VK_FORMAT_R32G32B32A32_SFLOAT;
+	obj3DFormats[1] = VK_FORMAT_R32G32_SFLOAT;
+
+	object3DPipeline = new Pipeline(
+		device,
+		"Backends/Shaders/CompiledShaders/object.vert.spv",
+		"Backends/Shaders/CompiledShaders/object.frag.spv",
+		layouts,
+		obj3DVertexSizes,
+		obj3DFormats
+	);
+
+	std::vector<uint32_t> skyboxVertexSizes(1);
+	skyboxVertexSizes[0] = sizeof(CPUPositionVertex);
+
+	std::vector<VkFormat> skyboxFormats(1);
+	skyboxFormats[0] = VK_FORMAT_R32G32B32A32_SFLOAT;
+
+	skyboxPipeline = new Pipeline(
+		device,
+		"Backends/Shaders/CompiledShaders/skybox.vert.spv",
+		"Backends/Shaders/CompiledShaders/skybox.frag.spv",
+		layouts,
+		skyboxVertexSizes,
+		skyboxFormats
+	);
+
 	commandBuffers.resize(maxFramesInFlight);
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
 		commandBuffers[i] = new GraphicalCommandBuffer(device);
@@ -46,6 +81,9 @@ VulkanBackend::~VulkanBackend() {
 	for (auto it = uniformDescriptorPoolMap.begin(); it != uniformDescriptorPoolMap.end(); it++) {
 		delete it->second;
 	}
+
+	delete skyboxPipeline;
+	delete object3DPipeline;
 }
 
 const ModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
@@ -86,16 +124,16 @@ const UniformReference VulkanBackend::CreateUniform(std::string uniformId, const
 }
 
 void VulkanBackend::BindPipeline(const ShaderType shaderType) {
-	const BasePipeline* pipeline;
+	const Pipeline* pipeline;
 
 	//TODO: Substitute this switch with a map to find correct pipeline in costant time and improve performances
 	switch (shaderType)
 	{
 	case OBJECT3D:
-		pipeline = &object3DPipeline;
+		pipeline = object3DPipeline;
 		break;
 	case SKYBOX:
-		pipeline = &skyboxPipeline;
+		pipeline = skyboxPipeline;
 		break;
 	default:
 		throw std::runtime_error("Shader type not supported");

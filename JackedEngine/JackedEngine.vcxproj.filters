@@ -55,15 +55,6 @@
     <ClCompile Include="Backends\Vulkan\Samplers\LinearRepeatSampler.cpp">
       <Filter>Backends\Vulkan\Samplers</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Pipelines\BasePipeline.cpp">
-      <Filter>Backends\Vulkan\Pipelines</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Pipelines\Object3DPipeline.cpp">
-      <Filter>Backends\Vulkan\Pipelines</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Pipelines\SkyboxPipeline.cpp">
-      <Filter>Backends\Vulkan\Pipelines</Filter>
-    </ClCompile>
     <ClCompile Include="Backends\Vulkan\GPUResources\GPUImage.cpp">
       <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClCompile>
@@ -159,6 +150,9 @@
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\UniformDescriptorSet.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Pipelines\Pipeline.cpp">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -214,15 +208,6 @@
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h">
       <Filter>Backends\Vulkan\Samplers</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Pipelines\BasePipeline.h">
-      <Filter>Backends\Vulkan\Pipelines</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Pipelines\Object3DPipeline.h">
-      <Filter>Backends\Vulkan\Pipelines</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Pipelines\SkyboxPipeline.h">
-      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUImage.h">
       <Filter>Backends\Vulkan\GPUResources</Filter>
@@ -314,6 +299,12 @@
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\UniformDescriptorSet.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\BackendTypes.h">
+      <Filter>Backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Pipelines\Pipeline.h">
+      <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 
 #include "Backends/Vulkan/Device.h"
 #include "Backends/Vulkan/GPUResources/GPUModel.h"
-#include "Backends/Vulkan/Pipelines/BasePipeline.h"
+#include "Backends/Vulkan/Pipelines/Pipeline.h"
 #include "Backends/Vulkan/Descriptors/DescriptorSets/UniformDescriptorSet.h"
 #include "Backends/Vulkan/Descriptors/DescriptorSets/ImageDescriptorSet.h"
 #include "Backends/Vulkan/CommandBuffers/BaseCommandBuffer.h"
@@ -16,7 +16,7 @@ public:
 	GraphicalCommandBuffer&operator=(GraphicalCommandBuffer&) = delete;
 
 	void BeginRenderPass();
-	void BindPipeline(const BasePipeline& pipeline);
+	void BindPipeline(const Pipeline& pipeline);
 	void BindModel(const GPUModel& model);
 	void BindDescriptorSet(const BaseDescriptorSet& descriptorSet, const uint32_t location);
 	void Draw() const;
@@ -32,6 +32,6 @@ private:
 	VkFence inFlightFence;
 	uint32_t imageIndex;
 	CommandBufferState currentState = CommandBufferState::Idle;
-	std::optional<const BasePipeline*> bindedPipeline;
+	std::optional<const Pipeline*> bindedPipeline;
 	std::optional<const GPUModel*> bindedModel;
 };

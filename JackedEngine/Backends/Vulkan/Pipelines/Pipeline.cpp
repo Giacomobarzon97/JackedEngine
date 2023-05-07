@@ -1,10 +1,10 @@
-#include "Object3DPipeline.h"
+#include "Pipeline.h"
 
-Object3DPipeline::Object3DPipeline(const Device& device, const UniformDescriptorLayout& uniformDescriptorLayout, const ImageDescriptorLayout& imageDescriptorLayout) :
-	BasePipeline(device)
+Pipeline::Pipeline(const Device& device, const std::string vertexShader, const std::string fragmentShader, const std::vector<BaseDescriptorLayout*> descriptorLayouts, const std::vector<uint32_t> vertexSizes, const std::vector<VkFormat> vertexFormats) :
+	device(device)
 {
-	VkShaderModule vertShaderModule = createShaderModule("Backends/Shaders/CompiledShaders/object.vert.spv");
-	VkShaderModule fragShaderModule = createShaderModule("Backends/Shaders/CompiledShaders/object.frag.spv");
+	VkShaderModule vertShaderModule = createShaderModule(vertexShader);
+	VkShaderModule fragShaderModule = createShaderModule(fragmentShader);
 
 	VkPipelineShaderStageCreateInfo vertShaderStageInfo{};
 	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -20,23 +20,18 @@ Object3DPipeline::Object3DPipeline(const Device& device, const UniformDescriptor
 
 	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
 
-	std::array<VkVertexInputBindingDescription, 2>  bindingDescriptions{};
-	bindingDescriptions[0].binding = 0;
-	bindingDescriptions[0].stride = sizeof(CPUPositionVertex);
-	bindingDescriptions[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-	bindingDescriptions[1].binding = 1;
-	bindingDescriptions[1].stride = sizeof(CPUTextureVertex);
-	bindingDescriptions[1].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	std::vector<VkVertexInputBindingDescription>  bindingDescriptions (vertexSizes.size());
+	std::vector<VkVertexInputAttributeDescription> attributeDescriptions (vertexSizes.size());
+	for (unsigned int i = 0; i < vertexSizes.size(); i++) {
+		bindingDescriptions[i].binding = i;
+		bindingDescriptions[i].stride = vertexSizes[i];
+		bindingDescriptions[i].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 
-	std::array<VkVertexInputAttributeDescription, 2> attributeDescriptions{};
-	attributeDescriptions[0].binding = 0;
-	attributeDescriptions[0].location = 0;
-	attributeDescriptions[0].format = CPUPositionVertex::GetPositionCoordFormat();
-	attributeDescriptions[0].offset = 0;
-	attributeDescriptions[1].binding = 1;
-	attributeDescriptions[1].location = 1;
-	attributeDescriptions[1].format = CPUTextureVertex::GetTexCoordFormat();
-	attributeDescriptions[1].offset = 0;
+		attributeDescriptions[i].binding = i;
+		attributeDescriptions[i].location = i;
+		attributeDescriptions[i].format = vertexFormats[i];
+		attributeDescriptions[i].offset = 0;
+	}
 
 	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
 	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
@@ -105,15 +100,15 @@ Object3DPipeline::Object3DPipeline(const Device& device, const UniformDescriptor
 	dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
 	dynamicState.pDynamicStates = dynamicStates.data();
 
-	std::array<VkDescriptorSetLayout, 3> descriptorLayouts{};
-	descriptorLayouts[0] = uniformDescriptorLayout.GetDescriptorLayout();
-	descriptorLayouts[1] = uniformDescriptorLayout.GetDescriptorLayout();
-	descriptorLayouts[2] = imageDescriptorLayout.GetDescriptorLayout();
+	std::vector<VkDescriptorSetLayout> descriptorLayoutsInfo(descriptorLayouts.size());
+	for (unsigned int i = 0; i < descriptorLayouts.size(); i++) {
+		descriptorLayoutsInfo[i] = descriptorLayouts[i]->GetDescriptorLayout();
+	}
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorLayouts.size());
-	pipelineLayoutInfo.pSetLayouts = descriptorLayouts.data();
+	pipelineLayoutInfo.pSetLayouts = descriptorLayoutsInfo.data();
 
 	if (vkCreatePipelineLayout(device.GetLogicalDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create pipeline layout!");
@@ -144,9 +139,14 @@ Object3DPipeline::Object3DPipeline(const Device& device, const UniformDescriptor
 	vkDestroyShaderModule(device.GetLogicalDevice(), vertShaderModule, nullptr);
 }
 
-void Object3DPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const{
+Pipeline::~Pipeline() {
+	vkDestroyPipeline(device.GetLogicalDevice(), graphicsPipeline, nullptr);
+	vkDestroyPipelineLayout(device.GetLogicalDevice(), pipelineLayout, nullptr);
+}
+
+void Pipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) const {
 	VkExtent2D swapChainExtent = device.GetSwapChainExtent();
-	
+
 	viewport = {};
 	viewport.x = 0.0f;
 	viewport.y = 0.0f;
@@ -158,4 +158,25 @@ void Object3DPipeline::GetScreenData(VkViewport& viewport, VkRect2D& scissor) co
 	scissor = {};
 	scissor.offset = { 0, 0 };
 	scissor.extent = swapChainExtent;
+}
+
+VkShaderModule Pipeline::createShaderModule(const std::string shaderPath) {
+	std::vector<char> shaderCode = FileIO::readFile(shaderPath);
+	VkShaderModuleCreateInfo createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo.codeSize = shaderCode.size();
+	createInfo.pCode = reinterpret_cast<const uint32_t*>(shaderCode.data());
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(device.GetLogicalDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create shader module!");
+	}
+	return shaderModule;
+}
+
+const VkPipelineLayout& Pipeline::GetPipelineLayout() const {
+	return pipelineLayout;
+}
+
+const VkPipeline& Pipeline::GetGraphicsPipeline() const {
+	return graphicsPipeline;
 }

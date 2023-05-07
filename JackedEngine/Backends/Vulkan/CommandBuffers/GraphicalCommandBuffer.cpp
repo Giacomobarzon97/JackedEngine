@@ -66,7 +66,7 @@ void GraphicalCommandBuffer::BeginRenderPass() {
 	vkCmdBeginRenderPass(commandBuffer, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 }
 
-void GraphicalCommandBuffer::BindPipeline(const BasePipeline& pipeline) {
+void GraphicalCommandBuffer::BindPipeline(const Pipeline& pipeline) {
 	if (currentState == CommandBufferState::Idle) {
 		throw std::runtime_error("Can't bind pipeline while in idle state");
 	}

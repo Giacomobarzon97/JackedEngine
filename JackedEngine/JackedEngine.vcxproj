@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Backends\BackendTypes.cpp" />
     <ClCompile Include="Backends\BaseBackend.cpp" />
-    <ClCompile Include="Backends\Vulkan\Pipelines\SkyboxPipeline.cpp" />
+    <ClCompile Include="Backends\Vulkan\Pipelines\Pipeline.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUBaseModel.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUCubeModel.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUGenericMesh.cpp" />
@@ -58,8 +58,6 @@
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp" />
-    <ClCompile Include="Backends\Vulkan\Pipelines\BasePipeline.cpp" />
-    <ClCompile Include="Backends\Vulkan\Pipelines\Object3DPipeline.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUImage.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.cpp" />
     <ClCompile Include="Backends\Vulkan\GPUResources\GPUImage.cpp" />
@@ -77,12 +75,12 @@
   <ItemGroup>
     <ClInclude Include="Backends\BackendTypes.h" />
     <ClInclude Include="Backends\BaseBackend.h" />
+    <ClInclude Include="Backends\Vulkan\Pipelines\Pipeline.h" />
     <ClInclude Include="Backends\Vulkan\VulkanBackend.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUBaseModel.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUCubeModel.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUGenericMesh.h" />
     <ClInclude Include="Backends\CPUResources\CPUVertices\CPUTextureVertex.h" />
-    <ClInclude Include="Backends\Vulkan\Pipelines\SkyboxPipeline.h" />
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUModel.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\BaseSampler.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h" />
@@ -113,8 +111,6 @@
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h" />
-    <ClInclude Include="Backends\Vulkan\Pipelines\BasePipeline.h" />
-    <ClInclude Include="Backends\Vulkan\Pipelines\Object3DPipeline.h" />
     <ClInclude Include="Backends\CPUResources\CPUImage.h" />
     <ClInclude Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.h" />
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUImage.h" />

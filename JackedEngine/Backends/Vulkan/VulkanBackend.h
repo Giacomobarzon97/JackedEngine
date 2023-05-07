@@ -6,9 +6,7 @@
 #include "Backends/Vulkan//CommandBuffers/GraphicalCommandBuffer.h"
 #include "Backends/Vulkan//Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Backends/Vulkan//Samplers/LinearRepeatSampler.h"
-
-#include "Backends/Vulkan//Pipelines/Object3DPipeline.h"
-#include "Backends/Vulkan//Pipelines/SkyboxPipeline.h"
+#include "Backends/Vulkan//Pipelines/Pipeline.h"
 
 class VulkanBackend : public BaseBackend {
 public:
@@ -54,8 +52,8 @@ private:
 	LinearRepeatSampler sampler;
 	ImageDescriptorLayout imageDescriptorLayout;
 	UniformDescriptorLayout uniformDescriptorLayout;
-	const Object3DPipeline object3DPipeline;
-	const SkyboxPipeline skyboxPipeline;
+	const Pipeline* object3DPipeline;
+	const Pipeline* skyboxPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
 	std::unordered_map <std::string, const GPUImage*> imageMap;
 	std::unordered_map <std::string, const GPUModel*> modelMap;
