@@ -66,18 +66,8 @@ void StaticMeshComponent::SetScale(const double x, const double y, const double 
 
 }
 
-const ShaderType StaticMeshComponent::GetShaderType() const {
-	return OBJECT3D;
-}
-
-const ModelReference StaticMeshComponent::GetModel() const {
-	return modelRef.value();
-}
-
-const GenericMeshMaterial& StaticMeshComponent::GetMaterial() const {
-	return *material.value();
-}
-
-const glm::mat4 StaticMeshComponent::GetModelMatrix() const {
-	return modelMatrix;
+void StaticMeshComponent::Draw() const {
+	if (material.has_value() && modelRef.has_value()) {
+		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), modelMatrix, OBJECT3D);
+	}
 }

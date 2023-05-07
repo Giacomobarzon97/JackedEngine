@@ -153,6 +153,9 @@
     <ClCompile Include="Backends\Vulkan\Pipelines\Pipeline.cpp">
       <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -306,6 +309,9 @@
     <ClInclude Include="Backends\Vulkan\Pipelines\Pipeline.h">
       <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -388,6 +394,9 @@
     </Filter>
     <Filter Include="Scene\Materials">
       <UniqueIdentifier>{5c75b464-8779-457e-9214-32562d41f287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{3025728b-b6b9-47ce-810f-a7eca64ef120}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

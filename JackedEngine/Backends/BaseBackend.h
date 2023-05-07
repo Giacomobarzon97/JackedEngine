@@ -22,7 +22,4 @@ public:
 	virtual void BeginFrame() = 0;
 	virtual void Draw() = 0;
 	virtual void EndFrame() = 0;
-	virtual void Reset() = 0;
-
-
 };

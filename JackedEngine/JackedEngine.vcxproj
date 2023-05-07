@@ -32,6 +32,7 @@
     <ClCompile Include="Backends\Vulkan\VulkanBackend.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Scene\Components\Cameras\BaseCameraComponent.cpp" />
     <ClCompile Include="Scene\Components\RenderableComponent.cpp" />
     <ClCompile Include="Scene\Components\BaseComponent.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="Backends\Vulkan\Samplers\BaseSampler.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h" />
     <ClInclude Include="JackedEngine.h" />
+    <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Scene\Components\Cameras\BaseCameraComponent.h" />
     <ClInclude Include="Scene\Components\RenderableComponent.h" />
     <ClInclude Include="Scene\Components\BaseComponent.h" />

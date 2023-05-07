@@ -52,6 +52,8 @@ VulkanBackend::VulkanBackend(const BaseWindow& window) :
 }
 
 VulkanBackend::~VulkanBackend() {
+	vkDeviceWaitIdle(device.GetLogicalDevice());
+
 	for (auto it = modelMap.begin(); it != modelMap.end(); it++) {
 		delete it->second;
 	}
@@ -181,8 +183,4 @@ void VulkanBackend::EndFrame() {
 void VulkanBackend::FramebufferResizeCallback(void* buffer) {
 	VulkanBackend* vulkanBackend = reinterpret_cast<VulkanBackend*>(buffer);
 	vulkanBackend->framebufferResized = true;
-}
-
-void VulkanBackend::Reset() {
-	vkDeviceWaitIdle(device.GetLogicalDevice());
 }

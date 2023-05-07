@@ -33,18 +33,8 @@ void SkyboxComponent::SetScale(const double x, const double y, const double z) {
 
 }
 
-const ModelReference SkyboxComponent::GetModel() const {
-	return modelRef;
-}
-
-const ShaderType SkyboxComponent::GetShaderType() const {
-	return SKYBOX;
-}
-
-const CubemapMaterial& SkyboxComponent::GetMaterial() const {
-	return *material.value();
-}
-
-const glm::mat4 SkyboxComponent::GetModelMatrix() const {
-	return modelMatrix;
+void SkyboxComponent::Draw() const {
+	if (material.has_value()) {
+		JackedEngine::GetRenderer().Draw(modelRef, material.value()->GetDiffuseTexture(), modelMatrix, SKYBOX);
+	}
 }

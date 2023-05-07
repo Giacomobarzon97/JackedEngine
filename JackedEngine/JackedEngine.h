@@ -6,6 +6,7 @@
 #include "Scene\World.h"
 #include "Windows\BaseWindow.h"
 #include "Backends\BaseBackend.h"
+#include "Rendering\Renderer.h"
 
 class JackedEngine {
 public:
@@ -16,20 +17,11 @@ public:
 
 	static void MainLoop();
 
-	static BaseBackend& GetRenderer();
+	static Renderer& GetRenderer();
 	static World& GetWorld();
 	static void SetActiveCamera(BaseCameraComponent& camera);
 
 private:
-	struct FrameData {
-		glm::mat4 viewMatrix;
-		glm::mat4 projectionMatrix;
-	};
-
-	struct ModelData {
-		glm::mat4 modelMatrix;
-	};
-
 	static const std::string APP_NAME;
 	static const uint32_t  WINDOW_WIDTH = 800;
 	static const uint32_t  WINDOW_HEIGHT = 600;
@@ -38,5 +30,6 @@ private:
 	static World world;
 	static std::optional<BaseCameraComponent*> camera;
 	static std::unique_ptr <BaseWindow> window;
-	static std::unique_ptr <BaseBackend> renderer;
+	static std::unique_ptr <BaseBackend> backend;
+	static Renderer renderer;
 };

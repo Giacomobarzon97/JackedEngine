@@ -31,8 +31,6 @@ public:
 	virtual void Draw() override;
 	virtual void EndFrame() override;
 
-	virtual void Reset() override;
-
 	static void FramebufferResizeCallback(void* buffer);
 
 private:
