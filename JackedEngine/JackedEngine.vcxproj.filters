@@ -156,6 +156,9 @@
     <ClCompile Include="Rendering\Renderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\RenderTypes.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -310,6 +313,9 @@
       <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderTypes.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>

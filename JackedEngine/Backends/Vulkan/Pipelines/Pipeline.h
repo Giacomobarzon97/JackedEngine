@@ -5,7 +5,7 @@
 
 class Pipeline {
 public:
-	Pipeline(const Device& device, const std::string vertexShader, const std::string fragmentShader, const std::vector<BaseDescriptorLayout*> descriptorLayouts, const std::vector<uint32_t> vertexSizes, const std::vector<VkFormat> vertexFormats);
+	Pipeline(const Device& device, const std::string vertexShader, const std::string fragmentShader, const std::vector<const BaseDescriptorLayout*> descriptorLayouts, const std::vector<uint32_t> vertexSizes, const std::vector<VkFormat> vertexFormats);
 	Pipeline(Pipeline&) = delete;
 	~Pipeline();
 

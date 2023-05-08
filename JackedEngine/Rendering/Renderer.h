@@ -1,6 +1,8 @@
 #pragma once
+#include <unordered_map>
 #include "Backends/BaseBackend.h"
 #include "Scene/Components/Cameras/BaseCameraComponent.h"
+#include "Rendering/RenderTypes.h"
 
 class Renderer {
 public:
@@ -25,6 +27,8 @@ private:
 	};
 
 	BaseBackend& backend;
+
+	std::unordered_map<ShaderType, PipelineReference> pipelineMap;
 
 	UniformReference frameUniform;
 	UniformReference modelUniform;

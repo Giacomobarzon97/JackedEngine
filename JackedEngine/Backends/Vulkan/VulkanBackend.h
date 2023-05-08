@@ -16,13 +16,14 @@ public:
 
 	VulkanBackend& operator=(VulkanBackend&) = delete;
 
+	virtual const PipelineReference CreatePipeline(PipelineCreateInfo createInfo) override;
 	virtual const ModelReference CreateModel(CPUBaseModel& model) override;
 	virtual const ImageReference CreateImage(CPUImage& image) override;
 	virtual const UniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) override;
 
-	virtual void BindPipeline(const ShaderType shaderType) override;
+	virtual void BindPipeline(const PipelineReference shader) override;
 	virtual void BindModel(const ModelReference model) override;
-	virtual void BindImage(const uint32_t location, const ImageReference texture) override;
+	virtual void BindImage(const uint32_t location, const ImageReference image) override;
 	virtual void BindUniform(const uint32_t location, const UniformReference uniform) override;
 
 	virtual void UpdateUniform(const UniformReference uniform, const void* uniformData) override;
@@ -34,25 +35,17 @@ public:
 	static void FramebufferResizeCallback(void* buffer);
 
 private:
-	struct FrameData {
-		glm::mat4 viewMatrix;
-		glm::mat4 projectionMatrix;
-	};
-
-	struct ModelData {
-		glm::mat4 modelMatrix;
-	};
-
 	unsigned int maxFramesInFlight = 2;
+
+	static const std::unordered_map<VertexType, std::unordered_map <uint8_t, VkFormat>> vertexFormatMap;
+	static const std::unordered_map<VertexType, std::unordered_map <uint8_t, uint32_t>> vertexSizeMap;
 
 	Device device;
 	VMAAllocationFactory allocationFactory;
 	LinearRepeatSampler sampler;
-	ImageDescriptorLayout imageDescriptorLayout;
-	UniformDescriptorLayout uniformDescriptorLayout;
-	const Pipeline* object3DPipeline;
-	const Pipeline* skyboxPipeline;
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
+	std::unordered_map<AttachmentType, const BaseDescriptorLayout*> descriptorLayoutMap;
+	std::unordered_map <std::string, const Pipeline*> pipelineMap;
 	std::unordered_map <std::string, const GPUImage*> imageMap;
 	std::unordered_map <std::string, const GPUModel*> modelMap;
 	std::unordered_map <std::string, const ImageDescriptorPool*> imageDescriptorPoolMap;

@@ -8,11 +8,11 @@ const std::string BaseResourceReference::GetId() const {
 	return id;
 }
 
-ImageReference::ImageReference() :
+PipelineReference::PipelineReference() :
 	BaseResourceReference("")
 {}
 
-ImageReference::ImageReference(const std::string id) :
+PipelineReference::PipelineReference(const std::string id) :
 	BaseResourceReference(id)
 {}
 
@@ -20,7 +20,15 @@ ModelReference::ModelReference() :
 	BaseResourceReference("")
 {}
 
-ModelReference::ModelReference(const std::string id) : 
+ModelReference::ModelReference(const std::string id) :
+	BaseResourceReference(id)
+{}
+
+ImageReference::ImageReference() :
+	BaseResourceReference("")
+{}
+
+ImageReference::ImageReference(const std::string id) :
 	BaseResourceReference(id)
 {}
 
