@@ -64,7 +64,8 @@ private:
 		"VK_LAYER_KHRONOS_validation"
 	};
 	const std::vector<const char*> deviceExtensions = {
-		VK_KHR_SWAPCHAIN_EXTENSION_NAME
+		VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+		VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME
 	};
 #ifdef _DEBUG
 	const bool enableValidationLayers = true;
