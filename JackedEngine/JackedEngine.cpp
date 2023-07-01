@@ -12,7 +12,6 @@ std::unique_ptr<BaseBackend> JackedEngine::backend = std::unique_ptr<BaseBackend
 Renderer JackedEngine::renderer = Renderer(*backend);
 
 void JackedEngine::MainLoop() {
-	world.Init();
 	std::vector<SceneComponent*> components = world.GetComponents();
 
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();

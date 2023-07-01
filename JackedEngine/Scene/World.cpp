@@ -6,13 +6,6 @@ World::~World() {
 	}
 }
 
-void World::Init() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		components[i]->Init();
-	}
-	currentWorldState = INIT;
-}
-
 const std::vector<SceneComponent*> World::GetComponents() const {
 	return components;
 }
