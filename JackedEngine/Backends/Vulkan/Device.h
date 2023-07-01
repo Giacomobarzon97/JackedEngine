@@ -34,8 +34,9 @@ public:
 
 	void RecreateSwapChain();
 
-
+#ifdef _DEBUG
 	static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData);
+#endif
 
 private:
 	struct QueueFamilyIndices {
@@ -60,18 +61,23 @@ private:
 	VkInstance instance;
 	VkSurfaceKHR surface;
 	VkDebugUtilsMessengerEXT debugMessenger;
+#ifdef _DEBUG
 	const std::vector<const char*> validationLayers = {
 		"VK_LAYER_KHRONOS_validation"
 	};
-	const std::vector<const char*> deviceExtensions = {
-		VK_KHR_SWAPCHAIN_EXTENSION_NAME,
-		VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME
-	};
-#ifdef _DEBUG
-	const bool enableValidationLayers = true;
-#else
-	const bool enableValidationLayers = false;
 #endif
+	const std::vector<const char*> deviceExtensions = {
+		VK_KHR_SWAPCHAIN_EXTENSION_NAME
+#ifdef _DEBUG
+		,VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME
+#endif
+	};
+	const std::vector<const char*> instanceExtensions = {
+#ifdef _DEBUG
+		VK_EXT_DEBUG_UTILS_EXTENSION_NAME
+#endif
+	};
+
 	VkPhysicalDevice physicalDevice;
 	VkDevice logicalDevice;
 	VkQueue graphicsQueue;
@@ -97,9 +103,11 @@ private:
 	VkImageView colorImageView;
 
 	void createInstance();
+#ifdef _DEBUG
 	bool checkValidationLayerSupport();
-	void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
 	void setupDebugMessenger();
+	void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
+#endif
 	void createWindowSurface();
 	void pickPhysicalDevice();
 	bool isDeviceSuitable(VkPhysicalDevice device);
