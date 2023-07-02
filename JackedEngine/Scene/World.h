@@ -1,17 +1,17 @@
 #pragma once
 #include <string>
-#include <unordered_map>
+#include <vector>
 #include <stdexcept>
 #include "Scene/Components/SceneComponent.h"
 
 class ComponentsIterator {
 public:
-	ComponentsIterator(std::unordered_map <std::string, SceneComponent*>& map);
+	ComponentsIterator(std::vector<SceneComponent*>& components);
 	SceneComponent* Next();
 	const bool HasNext() const;
 private:
-	std::unordered_map <std::string, SceneComponent*>::iterator iterator;
-	std::unordered_map <std::string, SceneComponent*>::iterator end;
+	std::vector<SceneComponent*>::iterator iterator;
+	std::vector<SceneComponent*>::iterator end;
 };
 
 class World {
@@ -23,17 +23,18 @@ public:
 	ComponentsIterator GetComponentIterator();
 
 private:
-	std::unordered_map<std::string, SceneComponent*> componentsMap;
+	std::vector<SceneComponent*> components;
 };
 
 template <typename ComponentType>
 ComponentType& World::CreateComponent(std::string name) {
-	if (componentsMap.find(name) != componentsMap.end()) {
-		throw std::runtime_error("An object already exists with the same name");
+	for (unsigned int i = 0; i < components.size(); i++) {
+		if (name == components[i]->GetName()) {
+			throw std::runtime_error("An object with this name already exists");
+		}
 	}
-
-	ComponentType* component = new ComponentType();
-	componentsMap[name] = component;
+	ComponentType* component = new ComponentType(name);
+	components.push_back(component);
 	component->Init();
 	return *component;
 }

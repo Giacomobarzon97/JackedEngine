@@ -1,5 +1,12 @@
 #include "SkyboxComponent.h"
 
+SkyboxComponent::SkyboxComponent(std::string name) :
+	RenderableComponent(name)
+{
+	uniformReference = JackedEngine::GetRenderer().CreateComponentUniform(name);
+	componentData.modelMatrix = glm::mat4(1);
+}
+
 void SkyboxComponent::Init() {
 	CPUCubeModel mesh;
 	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
@@ -35,6 +42,6 @@ void SkyboxComponent::SetScale(const double x, const double y, const double z) {
 
 void SkyboxComponent::Draw() const {
 	if (material.has_value()) {
-		JackedEngine::GetRenderer().Draw(modelRef, material.value()->GetDiffuseTexture(), modelMatrix, SKYBOX);
+		JackedEngine::GetRenderer().Draw(modelRef, material.value()->GetDiffuseTexture(), uniformReference, componentData, SKYBOX);
 	}
 }

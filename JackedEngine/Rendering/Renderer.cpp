@@ -4,7 +4,6 @@ Renderer::Renderer(BaseBackend& backend) :
 	backend(backend)
 {
 	frameUniform = backend.CreateUniform("FrameData", sizeof(FrameData));
-	modelUniform = backend.CreateUniform("ModelData", sizeof(ModelData));
 
 	PipelineCreateInfo pipelineCreateInfo{};
 
@@ -48,6 +47,10 @@ const ImageReference Renderer::CreateImage(CPUImage& image) {
 	return backend.CreateImage(image);
 }
 
+const UniformReference Renderer::CreateComponentUniform(std::string name) {
+	return backend.CreateUniform(name, sizeof(ComponentData));
+}
+
 void Renderer::BeginFrame() {
 	backend.BeginFrame();
 }
@@ -59,15 +62,12 @@ void Renderer::UpdateCamera(const glm::mat4 viewMatrix, const glm::mat4 projecti
 	backend.UpdateUniform(frameUniform, &frameData);
 }
 
-void Renderer::Draw(const ModelReference modelReference, const ImageReference imageReference, const glm::mat4 modelMatrix, const ShaderType shaderType) {
-	ModelData modelData{};
-	modelData.modelMatrix = modelMatrix;
-	backend.UpdateUniform(modelUniform, &modelData);
-
+void Renderer::Draw(const ModelReference modelReference, const ImageReference imageReference, UniformReference uniformReference, ComponentData componentData, const ShaderType shaderType) {
+	backend.UpdateUniform(uniformReference, &componentData);
 	backend.BindPipeline(pipelineMap[shaderType]);
 	backend.BindModel(modelReference);
 	backend.BindUniform(0, frameUniform);
-	backend.BindUniform(1, modelUniform);
+	backend.BindUniform(1, uniformReference);
 	backend.BindImage(2, imageReference);
 	backend.Draw();
 }

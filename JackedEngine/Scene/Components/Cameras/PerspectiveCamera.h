@@ -9,6 +9,8 @@
 class PerspectiveCamera : public BaseCameraComponent
 {
 public:
+	PerspectiveCamera(std::string name);
+
 	virtual void Init() override;
 
 	virtual void Rotate(const double x, const double y, const double z) override;

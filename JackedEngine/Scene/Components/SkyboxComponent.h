@@ -9,6 +9,8 @@
 
 class SkyboxComponent : public RenderableComponent {
 public:
+	SkyboxComponent(std::string name);
+
 	virtual void Init() override;
 
 	void SetMaterial(const CubemapMaterial& material);
@@ -23,7 +25,8 @@ public:
 	virtual void Draw() const override;
 
 private:
-	glm::mat4 modelMatrix = glm::mat4(1);
+	ComponentData componentData;
+	UniformReference uniformReference;
 	ModelReference modelRef;
 	std::optional<const CubemapMaterial*> material;
 };

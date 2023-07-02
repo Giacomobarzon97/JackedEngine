@@ -6,6 +6,8 @@
 
 class SceneComponent : public BaseComponent {
 public:
+	SceneComponent(std::string name);
+
 	virtual void Rotate(const double x, const double y, const double z) = 0;
 	virtual void Translate(const double x, const double y, const double z) = 0;
 	virtual void Scale(const double x, const double y, const double z) = 0;

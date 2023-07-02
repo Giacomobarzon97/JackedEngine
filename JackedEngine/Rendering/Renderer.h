@@ -10,10 +10,11 @@ public:
 
 	const ModelReference CreateModel(CPUBaseModel& model);
 	const ImageReference CreateImage(CPUImage& image);
+	const UniformReference CreateComponentUniform(std::string name);
 
 	void BeginFrame();
 	void UpdateCamera(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
-	void Draw(const ModelReference modelReference, const ImageReference imageReference, const glm::mat4 modelMatrix, const ShaderType shaderType);
+	void Draw(const ModelReference modelReference, const ImageReference imageReference, UniformReference uniformReference, ComponentData componentData, const ShaderType shaderType);
 	void EndFrame();
 
 private:
@@ -31,5 +32,4 @@ private:
 	std::unordered_map<ShaderType, PipelineReference> pipelineMap;
 
 	UniformReference frameUniform;
-	UniformReference modelUniform;
 };

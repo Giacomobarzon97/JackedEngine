@@ -1,5 +1,12 @@
 #include "StaticMeshComponent.h"
 
+StaticMeshComponent::StaticMeshComponent(std::string name) :
+	RenderableComponent(name)
+{
+	uniformReference = JackedEngine::GetRenderer().CreateComponentUniform(name);
+	componentData.modelMatrix = glm::mat4(1);
+}
+
 void StaticMeshComponent::Init() {
 
 }
@@ -22,7 +29,7 @@ void StaticMeshComponent::Rotate(const double x, const double y, const double z)
 			{0, sin(radAngle), cos(radAngle),0},
 			{0,0,0,1},
 		};
-		modelMatrix = modelMatrix * rotMat;
+		componentData.modelMatrix = componentData.modelMatrix * rotMat;
 	}
 	if (y != 0) {
 		double radAngle = y * M_PI / 180;
@@ -32,7 +39,7 @@ void StaticMeshComponent::Rotate(const double x, const double y, const double z)
 			{-sin(radAngle), 0, cos(radAngle),0},
 			{0,0,0,1}
 		};
-		modelMatrix = modelMatrix * rotMat;
+		componentData.modelMatrix = componentData.modelMatrix * rotMat;
 	}
 	if (z != 0) {
 		double radAngle = z * M_PI / 180;
@@ -42,7 +49,7 @@ void StaticMeshComponent::Rotate(const double x, const double y, const double z)
 			{0, 0, 1,0},
 			{0,0,0,1}
 		};
-		modelMatrix = modelMatrix * rotMat;
+		componentData.modelMatrix = componentData.modelMatrix * rotMat;
 	}
 }
 
@@ -68,6 +75,6 @@ void StaticMeshComponent::SetScale(const double x, const double y, const double 
 
 void StaticMeshComponent::Draw() const {
 	if (material.has_value() && modelRef.has_value()) {
-		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), modelMatrix, OBJECT3D);
+		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference, componentData, OBJECT3D);
 	}
 }

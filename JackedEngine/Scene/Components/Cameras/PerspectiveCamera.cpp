@@ -1,5 +1,8 @@
 #include "PerspectiveCamera.h"
 
+PerspectiveCamera::PerspectiveCamera(std::string name) :
+	BaseCameraComponent(name)
+{}
 
 void PerspectiveCamera::Init() {
 	eye = {2,2,2};

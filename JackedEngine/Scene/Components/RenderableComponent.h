@@ -7,5 +7,7 @@
 
 class RenderableComponent : public SceneComponent {
 public:
+	RenderableComponent(std::string name);
+
 	virtual void Draw() const = 0;
 };
