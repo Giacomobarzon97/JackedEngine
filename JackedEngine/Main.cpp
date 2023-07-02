@@ -18,15 +18,17 @@ int main() {
 		"../Assets/Textures/Skybox/left.png"
 	);
 
-	StaticMeshComponent& vkingRoom = JackedEngine::GetWorld().CreateComponent<StaticMeshComponent>();
+	SkyboxComponent& skybox = JackedEngine::GetWorld().CreateComponent<SkyboxComponent>("Skybox");
+	skybox.SetMaterial(skyboxMaterial);
+
+	StaticMeshComponent& vkingRoom = JackedEngine::GetWorld().CreateComponent<StaticMeshComponent>("Viking Room");
 	vkingRoom.SetModelPath("../Assets/Models/viking_room.obj");
 	vkingRoom.SetMaterial(meshMaterial);
 
-	SkyboxComponent& skybox = JackedEngine::GetWorld().CreateComponent<SkyboxComponent>();
-	skybox.SetMaterial(skyboxMaterial);
-
-	PerspectiveCamera& camera = JackedEngine::GetWorld().CreateComponent<PerspectiveCamera>();
+	PerspectiveCamera& camera = JackedEngine::GetWorld().CreateComponent<PerspectiveCamera>("Camera");
 	JackedEngine::SetActiveCamera(camera);
+
+	vkingRoom.Rotate(0, 10, 10);
 
 	JackedEngine::MainLoop();
 
