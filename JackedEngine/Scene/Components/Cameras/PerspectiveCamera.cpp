@@ -9,6 +9,8 @@ void PerspectiveCamera::Init() {
 	center = glm::vec3({ 2,2,2 }) + (glm::vec3({-2,-2,-2}) / glm::length(glm::vec3({ -2,-2,-2 })));
 }
 
+void PerspectiveCamera::Tick() {}
+
 void PerspectiveCamera::Rotate(const double x, const double y, const double z) {
 	currentXangle += x;
 	currentYangle += y;

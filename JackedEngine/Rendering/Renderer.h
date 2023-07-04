@@ -14,7 +14,8 @@ public:
 
 	void BeginFrame();
 	void UpdateCamera(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
-	void Draw(const ModelReference modelReference, const ImageReference imageReference, UniformReference uniformReference, ComponentData componentData, const ShaderType shaderType);
+	void UpdateComponentData(const UniformReference uniformReference, const ComponentData componentData);
+	void Draw(const ModelReference modelReference, const ImageReference imageReference, const UniformReference uniformReference, const ShaderType shaderType);
 	void EndFrame();
 
 private:

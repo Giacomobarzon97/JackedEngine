@@ -12,6 +12,7 @@ public:
 	PerspectiveCamera(std::string name);
 
 	virtual void Init() override;
+	virtual void Tick() override;
 
 	virtual void Rotate(const double x, const double y, const double z) override;
 	virtual void Translate(const double x, const double y, const double z) override;

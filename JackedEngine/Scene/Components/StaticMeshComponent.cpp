@@ -73,8 +73,9 @@ void StaticMeshComponent::SetScale(const double x, const double y, const double 
 
 }
 
-void StaticMeshComponent::Draw() const {
+void StaticMeshComponent::Tick() {
 	if (material.has_value() && modelRef.has_value()) {
-		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference, componentData, OBJECT3D);
+		JackedEngine::GetRenderer().UpdateComponentData(uniformReference, componentData);
+		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference, OBJECT3D);
 	}
 }

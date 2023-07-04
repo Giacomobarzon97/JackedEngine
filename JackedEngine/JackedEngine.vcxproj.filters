@@ -154,10 +154,10 @@
       <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Renderer.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\RenderTypes.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,10 +313,10 @@
       <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Renderer.h">
-      <Filter>Renderer</Filter>
+      <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\RenderTypes.h">
-      <Filter>Renderer</Filter>
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -401,7 +401,7 @@
     <Filter Include="Scene\Materials">
       <UniqueIdentifier>{5c75b464-8779-457e-9214-32562d41f287}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer">
+    <Filter Include="Rendering">
       <UniqueIdentifier>{3025728b-b6b9-47ce-810f-a7eca64ef120}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

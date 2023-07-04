@@ -12,6 +12,7 @@ public:
 	SkyboxComponent(std::string name);
 
 	virtual void Init() override;
+	virtual void Tick() override;
 
 	void SetMaterial(const CubemapMaterial& material);
 
@@ -21,8 +22,6 @@ public:
 	virtual void SetPosition(const double x, const double y, const double z) override;
 	virtual void SetRotation(const double x, const double y, const double z) override;
 	void SetScale(const double x, const double y, const double z) override;
-
-	virtual void Draw() const override;
 
 private:
 	ComponentData componentData;

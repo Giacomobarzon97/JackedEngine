@@ -30,10 +30,7 @@ void JackedEngine::MainLoop() {
 				);
 				while (componentsIterator.HasNext()) {
 					SceneComponent* currentComponent = componentsIterator.Next();
-					const RenderableComponent* renderableComponent = dynamic_cast<const RenderableComponent*>(currentComponent);
-					if (renderableComponent != nullptr) {
-						renderableComponent->Draw();
-					}
+					currentComponent->Tick();
 				}
 			}
 		}

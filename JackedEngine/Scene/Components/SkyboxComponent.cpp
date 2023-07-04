@@ -40,8 +40,9 @@ void SkyboxComponent::SetScale(const double x, const double y, const double z) {
 
 }
 
-void SkyboxComponent::Draw() const {
+void SkyboxComponent::Tick() {
 	if (material.has_value()) {
-		JackedEngine::GetRenderer().Draw(modelRef, material.value()->GetDiffuseTexture(), uniformReference, componentData, SKYBOX);
+		JackedEngine::GetRenderer().UpdateComponentData(uniformReference, componentData);
+		JackedEngine::GetRenderer().Draw(modelRef, material.value()->GetDiffuseTexture(), uniformReference, SKYBOX);
 	}
 }

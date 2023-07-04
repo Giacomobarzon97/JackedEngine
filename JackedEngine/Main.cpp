@@ -28,7 +28,7 @@ int main() {
 	PerspectiveCamera& camera = JackedEngine::GetWorld().CreateComponent<PerspectiveCamera>("Camera");
 	JackedEngine::SetActiveCamera(camera);
 
-	vkingRoom.Rotate(0, 10, 100);
+	vkingRoom.Rotate(0, 10, 10);
 
 	JackedEngine::MainLoop();
 

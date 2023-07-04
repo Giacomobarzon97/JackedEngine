@@ -12,6 +12,7 @@ public:
 	StaticMeshComponent(std::string name);
 
 	virtual void Init() override;
+	void Tick() override;
 
 	void SetModelPath(const std::string modelPath);
 	void SetMaterial(const GenericMeshMaterial& material);
@@ -22,8 +23,6 @@ public:
 	virtual void SetPosition(const double x, const double y, const double z) override;
 	virtual void SetRotation(const double x, const double y, const double z) override;
 	void SetScale(const double x, const double y, const double z) override;
-
-	void Draw() const override;
 
 private:
 	ComponentData componentData;

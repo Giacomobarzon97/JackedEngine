@@ -62,8 +62,11 @@ void Renderer::UpdateCamera(const glm::mat4 viewMatrix, const glm::mat4 projecti
 	backend.UpdateUniform(frameUniform, &frameData);
 }
 
-void Renderer::Draw(const ModelReference modelReference, const ImageReference imageReference, UniformReference uniformReference, ComponentData componentData, const ShaderType shaderType) {
+void Renderer::UpdateComponentData(const UniformReference uniformReference, const ComponentData componentData) {
 	backend.UpdateUniform(uniformReference, &componentData);
+}
+
+void Renderer::Draw(const ModelReference modelReference, const ImageReference imageReference, const UniformReference uniformReference, const ShaderType shaderType) {
 	backend.BindPipeline(pipelineMap[shaderType]);
 	backend.BindModel(modelReference);
 	backend.BindUniform(0, frameUniform);
