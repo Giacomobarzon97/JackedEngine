@@ -19,8 +19,8 @@ public:
 	void SetScale(const double x, const double y, const double z);
 
 protected:
-	uint32_t xTrans, yTrans, zTrans;
-	uint32_t xRot, yRot, zRot;
-	uint32_t xScale, yScale, zScale;
+	double xTrans, yTrans, zTrans;
+	double xRot, yRot, zRot;
+	double xScale, yScale, zScale;
 
 };
