@@ -10,24 +10,15 @@ public:
 
 	const ModelReference CreateModel(CPUBaseModel& model);
 	const ImageReference CreateImage(CPUImage& image);
-	const UniformReference CreateComponentUniform(std::string name);
+	const UniformReference CreateMeshUniform(std::string name);
 
 	void BeginFrame();
-	void UpdateCamera(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix);
-	void UpdateComponentData(const UniformReference uniformReference, const ComponentData componentData);
+	void UpdateFrameData(const FrameData& frameData);
+	void UpdateMeshUniformData(const UniformReference uniformReference, const MeshUniformData& meshUniformData);
 	void Draw(const ModelReference modelReference, const ImageReference imageReference, const UniformReference uniformReference, const ShaderType shaderType);
 	void EndFrame();
 
 private:
-	struct FrameData {
-		glm::mat4 viewMatrix;
-		glm::mat4 projectionMatrix;
-	};
-
-	struct ModelData {
-		glm::mat4 modelMatrix;
-	};
-
 	BaseBackend& backend;
 
 	std::unordered_map<ShaderType, PipelineReference> pipelineMap;

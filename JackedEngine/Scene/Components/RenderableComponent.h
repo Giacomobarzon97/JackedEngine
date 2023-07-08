@@ -3,9 +3,19 @@
 #include <cmath>
 #include <string>
 #include "Scene/Components/SceneComponent.h"
-#include "Scene/Materials/BaseMaterial.h"
 
 class RenderableComponent : public SceneComponent {
 public:
 	RenderableComponent(std::string name);
+
+	virtual void Init();
+	virtual void Tick();
+
+protected:
+	glm::mat4 modelMatrix;
+
+private:
+	void applyTranslation();
+	void applyRotation();
+	void applyScale();
 };

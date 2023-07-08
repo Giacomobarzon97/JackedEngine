@@ -47,23 +47,20 @@ const ImageReference Renderer::CreateImage(CPUImage& image) {
 	return backend.CreateImage(image);
 }
 
-const UniformReference Renderer::CreateComponentUniform(std::string name) {
-	return backend.CreateUniform(name, sizeof(ComponentData));
+const UniformReference Renderer::CreateMeshUniform(std::string name) {
+	return backend.CreateUniform(name, sizeof(MeshUniformData));
 }
 
 void Renderer::BeginFrame() {
 	backend.BeginFrame();
 }
 
-void Renderer::UpdateCamera(const glm::mat4 viewMatrix, const glm::mat4 projectionMatrix) {
-	FrameData frameData{};
-	frameData.viewMatrix = viewMatrix;
-	frameData.projectionMatrix = projectionMatrix;
+void Renderer::UpdateFrameData(const FrameData& frameData) {
 	backend.UpdateUniform(frameUniform, &frameData);
 }
 
-void Renderer::UpdateComponentData(const UniformReference uniformReference, const ComponentData componentData) {
-	backend.UpdateUniform(uniformReference, &componentData);
+void Renderer::UpdateMeshUniformData(const UniformReference uniformReference, const MeshUniformData& meshUniformData) {
+	backend.UpdateUniform(uniformReference, &meshUniformData);
 }
 
 void Renderer::Draw(const ModelReference modelReference, const ImageReference imageReference, const UniformReference uniformReference, const ShaderType shaderType) {

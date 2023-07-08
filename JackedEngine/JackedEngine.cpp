@@ -12,7 +12,7 @@ std::unique_ptr<BaseBackend> JackedEngine::backend = std::unique_ptr<BaseBackend
 Renderer JackedEngine::renderer = Renderer(*backend);
 
 void JackedEngine::MainLoop() {
-
+	FrameData frameData;
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 
 	while (!window->ShouldClose()) {
@@ -24,10 +24,11 @@ void JackedEngine::MainLoop() {
 			window.get()->GetFrameBufferSize(&width, &height);
 
 			if (width > 0 && height > 0) {
-				renderer.UpdateCamera(
-					camera.value()->GetViewMatrix(),
-					camera.value()->GetProjectionMatrix(width, height)
-				);
+				camera.value()->UpdateCameraStatus();
+				frameData.viewMatrix = camera.value()->GetViewMatrix();
+				frameData.projectionMatrix = camera.value()->GetProjectionMatrix(width, height);
+				renderer.UpdateFrameData(frameData);
+
 				while (componentsIterator.HasNext()) {
 					SceneComponent* currentComponent = componentsIterator.Next();
 					currentComponent->Tick();

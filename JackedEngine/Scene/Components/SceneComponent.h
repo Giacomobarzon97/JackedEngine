@@ -8,10 +8,19 @@ class SceneComponent : public BaseComponent {
 public:
 	SceneComponent(std::string name);
 
-	virtual void Rotate(const double x, const double y, const double z) = 0;
-	virtual void Translate(const double x, const double y, const double z) = 0;
-	virtual void Scale(const double x, const double y, const double z) = 0;
-	virtual void SetPosition(const double x, const double y, const double z) = 0;
-	virtual void SetRotation(const double x, const double y, const double z) = 0;
-	virtual void SetScale(const double x, const double y, const double z) = 0;
+	virtual void Init();
+	virtual void Tick();
+
+	void Translate(const double x, const double y, const double z);
+	void Rotate(const double x, const double y, const double z);
+	void Scale(const double x, const double y, const double z);
+	void SetPosition(const double x, const double y, const double z);
+	void SetRotation(const double x, const double y, const double z);
+	void SetScale(const double x, const double y, const double z);
+
+protected:
+	uint32_t xTrans, yTrans, zTrans;
+	uint32_t xRot, yRot, zRot;
+	uint32_t xScale, yScale, zScale;
+
 };

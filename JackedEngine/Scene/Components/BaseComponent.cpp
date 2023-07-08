@@ -9,3 +9,11 @@ BaseComponent::~BaseComponent() {}
 const std::string BaseComponent::GetName() {
 	return name;
 }
+
+void BaseComponent::Init() {
+
+}
+
+void BaseComponent::Tick() {
+
+}

@@ -7,8 +7,8 @@ public:
 	BaseComponent(std::string name);
 	virtual ~BaseComponent();
 	
-	virtual void Init() = 0;
-	virtual void Tick() = 0;
+	virtual void Init();
+	virtual void Tick();
 
 	const std::string GetName();
 

@@ -11,71 +11,12 @@ void PerspectiveCamera::Init() {
 
 void PerspectiveCamera::Tick() {}
 
-void PerspectiveCamera::Rotate(const double x, const double y, const double z) {
-	currentXangle += x;
-	currentYangle += y;
-	currentZangle += z;
+void PerspectiveCamera::UpdateCameraStatus() {
+	eye = { 2,2,2 };
+	center = glm::vec3({ 2,2,2 }) + (glm::vec3({ -2,-2,-2 }) / glm::length(glm::vec3({ -2,-2,-2 })));
 
-	if (x != 0) {
-		double radAngle = x * M_PI / 180;
-		center = center + eye;
-		glm::mat3 rotMat = {
-			{1,0,0},
-			{0, cos(radAngle), -sin(radAngle)},
-			{0, sin(radAngle), cos(radAngle)}
-		};
-		center = rotMat * center;
-		center = center - eye;
-	}
-	if (y != 0) {
-		double radAngle = y * M_PI / 180;
-		center = center + eye;
-		glm::mat3 rotMat = {
-			{cos(radAngle),0,sin(radAngle)},
-			{0, 1, 0},
-			{-sin(radAngle), 0, cos(radAngle)}
-		};
-		center = rotMat * center;
-		center = center - eye;
-	}
-	if (z != 0) {
-		double radAngle = z * M_PI / 180;
-		center = center + eye;
-		glm::mat3 rotMat = {
-			{cos(radAngle), -sin(radAngle), 0},
-			{sin(radAngle), cos(radAngle), 0},
-			{0, 0, 1}
-		};
-		center = rotMat * center;
-		center = center - eye;
-	}
-}
-
-void PerspectiveCamera::Translate(const double x, const double y, const double z) {
-	glm::vec3 transVec = { x, y, z };
-	eye = eye + transVec;
-	center = center + transVec;
-}
-
-void PerspectiveCamera::Scale(const double x, const double y, const double z) {
-
-}
-
-void PerspectiveCamera::SetPosition(const double x, const double y, const double z) {
-	glm::vec3 direction = center - eye;
-	direction = direction / glm::length(direction);
-	eye = { x,y,z };
-	center = eye + direction;
-}
-void PerspectiveCamera::SetRotation(const double x, const double y, const double z) {
-	double xRad = (x * M_PI / 180);
-	double yRad = (y * M_PI / 180);
-	double zRad = (z * M_PI / 180);
-
-	Rotate(x-currentXangle,y-currentYangle,z-currentZangle);
-	currentXangle = xRad;
-	currentYangle = yRad;
-	currentZangle = zRad;
+	updateTranslation();
+	updateRotation();
 }
 
 const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
@@ -88,6 +29,43 @@ const glm::mat4 PerspectiveCamera::GetProjectionMatrix(const uint32_t width, con
 	return proj;
 }
 
-void PerspectiveCamera::SetScale(const double x, const double y, const double z) {
+void PerspectiveCamera::updateTranslation() {
+	glm::vec3 transVec = { xTrans, yTrans, zTrans };
+	eye = eye + transVec;
+	center = center + transVec;
+}
 
+void PerspectiveCamera::updateRotation() {
+	double radAngle;
+	glm::mat3 rotMat;
+
+	radAngle = xRot * M_PI / 180;
+	center = center + eye;
+	rotMat = {
+		{1,0,0},
+		{0, cos(radAngle), -sin(radAngle)},
+		{0, sin(radAngle), cos(radAngle)}
+	};
+	center = rotMat * center;
+	center = center - eye;
+
+	radAngle = yRot * M_PI / 180;
+	center = center + eye;
+	rotMat = {
+		{cos(radAngle),0,sin(radAngle)},
+		{0, 1, 0},
+		{-sin(radAngle), 0, cos(radAngle)}
+	};
+	center = rotMat * center;
+	center = center - eye;
+
+	radAngle = zRot * M_PI / 180;
+	center = center + eye;
+	rotMat = {
+		{cos(radAngle), -sin(radAngle), 0},
+		{sin(radAngle), cos(radAngle), 0},
+		{0, 0, 1}
+	};
+	center = rotMat * center;
+	center = center - eye;
 }
