@@ -14,6 +14,6 @@ void BaseComponent::Init() {
 
 }
 
-void BaseComponent::Tick() {
+void BaseComponent::Tick(double deltaTime) {
 
 }

@@ -9,8 +9,8 @@ void RenderableComponent::Init() {
 	SceneComponent::Init();
 }
 
-void RenderableComponent::Tick() {
-	SceneComponent::Tick();
+void RenderableComponent::Tick(double deltaTime) {
+	SceneComponent::Tick(deltaTime);
 	
 	modelMatrix = glm::mat4(1);
 

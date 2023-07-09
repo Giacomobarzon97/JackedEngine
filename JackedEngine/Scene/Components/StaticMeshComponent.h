@@ -10,7 +10,7 @@ public:
 	StaticMeshComponent(std::string name);
 
 	virtual void Init() override;
-	void Tick() override;
+	void Tick(double deltaTime) override;
 
 	void SetModelPath(const std::string modelPath);
 	void SetMaterial(const GenericMeshMaterial& material);

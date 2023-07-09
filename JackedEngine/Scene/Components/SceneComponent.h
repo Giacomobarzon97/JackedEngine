@@ -9,7 +9,7 @@ public:
 	SceneComponent(std::string name);
 
 	virtual void Init();
-	virtual void Tick();
+	virtual void Tick(double deltaTime);
 
 	void Translate(const double x, const double y, const double z);
 	void Rotate(const double x, const double y, const double z);
@@ -19,6 +19,8 @@ public:
 	void SetScale(const double x, const double y, const double z);
 
 protected:
+	glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
 	double xTrans, yTrans, zTrans;
 	double xRot, yRot, zRot;
 	double xScale, yScale, zScale;

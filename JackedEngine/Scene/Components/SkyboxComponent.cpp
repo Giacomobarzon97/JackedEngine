@@ -18,8 +18,8 @@ void SkyboxComponent::SetMaterial(const CubemapMaterial& material) {
 	this->material = &material;
 }
 
-void SkyboxComponent::Tick() {
-	RenderableComponent::Tick();
+void SkyboxComponent::Tick(double deltaTime) {
+	RenderableComponent::Tick(deltaTime);
 
 	componentData.modelMatrix = modelMatrix;
 

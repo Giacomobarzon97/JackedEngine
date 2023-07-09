@@ -5,11 +5,14 @@ PerspectiveCamera::PerspectiveCamera(std::string name) :
 {}
 
 void PerspectiveCamera::Init() {
+	BaseCameraComponent::Init();
 	eye = {2,2,2};
 	center = glm::vec3({ 2,2,2 }) + (glm::vec3({-2,-2,-2}) / glm::length(glm::vec3({ -2,-2,-2 })));
 }
 
-void PerspectiveCamera::Tick() {}
+void PerspectiveCamera::Tick(double deltaTime) {
+	BaseCameraComponent::Tick(deltaTime);
+}
 
 void PerspectiveCamera::UpdateCameraStatus() {
 	eye = { 2,2,2 };

@@ -20,8 +20,8 @@ void StaticMeshComponent::SetMaterial(const GenericMeshMaterial& material) {
 	this->material = &material;
 }
 
-void StaticMeshComponent::Tick() {
-	RenderableComponent::Tick();
+void StaticMeshComponent::Tick(double deltaTime) {
+	RenderableComponent::Tick(deltaTime);
 
 	if (material.has_value() && modelRef.has_value()) {
 		componentData.modelMatrix = modelMatrix;

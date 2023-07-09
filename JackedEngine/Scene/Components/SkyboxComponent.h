@@ -10,7 +10,7 @@ public:
 	SkyboxComponent(std::string name);
 
 	virtual void Init() override;
-	virtual void Tick() override;
+	virtual void Tick(double deltaTime) override;
 
 	void SetMaterial(const CubemapMaterial& material);
 

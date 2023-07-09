@@ -16,6 +16,7 @@ void JackedEngine::MainLoop() {
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 
 	while (!window->ShouldClose()) {
+		double deltaTime = std::chrono::duration<float, std::chrono::milliseconds::period>(std::chrono::high_resolution_clock::now() - prevFrameTime).count();
 		ComponentsIterator componentsIterator = world.GetComponentIterator();
 		renderer.BeginFrame();
 
@@ -31,7 +32,7 @@ void JackedEngine::MainLoop() {
 
 				while (componentsIterator.HasNext()) {
 					SceneComponent* currentComponent = componentsIterator.Next();
-					currentComponent->Tick();
+					currentComponent->Tick(deltaTime);
 				}
 			}
 		}
@@ -39,10 +40,7 @@ void JackedEngine::MainLoop() {
 		renderer.EndFrame();
 
 		window->PollEvents();
-
-		std::chrono::steady_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
-		float delta = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - prevFrameTime).count();
-		prevFrameTime = currentTime;
+		prevFrameTime = std::chrono::high_resolution_clock::now();
 	}
 }
 

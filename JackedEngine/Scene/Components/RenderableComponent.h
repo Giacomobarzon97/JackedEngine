@@ -9,7 +9,7 @@ public:
 	RenderableComponent(std::string name);
 
 	virtual void Init();
-	virtual void Tick();
+	virtual void Tick(double deltaTime);
 
 protected:
 	glm::mat4 modelMatrix;

@@ -12,8 +12,8 @@ void SceneComponent::Init() {
 	BaseComponent::Init();
 }
 
-void SceneComponent::Tick() {
-	BaseComponent::Tick();
+void SceneComponent::Tick(double deltaTime) {
+	BaseComponent::Tick(deltaTime);
 }
 
 void SceneComponent::Translate(const double x, const double y, const double z) {
