@@ -20,6 +20,17 @@ void RenderableComponent::Tick(double deltaTime) {
 }
 
 void RenderableComponent::applyTranslation() {
+	glm::mat4 transMat{
+		{1, 0, 0, 0},
+		{0, 1, 0, 0},
+		{0, 0, 1, 0},
+		{xTrans, yTrans, zTrans, 1}
+	};
+
+	modelMatrix = modelMatrix * transMat;
+}
+
+void RenderableComponent::applyRotation() {
 	double radAngle;
 	glm::mat4 rotMat;
 
@@ -49,10 +60,6 @@ void RenderableComponent::applyTranslation() {
 		{0,0,0,1}
 	};
 	modelMatrix = modelMatrix * rotMat;
-}
-
-void RenderableComponent::applyRotation() {
-
 }
 
 void RenderableComponent::applyScale() {
