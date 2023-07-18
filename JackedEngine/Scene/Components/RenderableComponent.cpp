@@ -34,7 +34,7 @@ void RenderableComponent::applyRotation() {
 	double radAngle;
 	glm::mat4 rotMat;
 
-	radAngle = xRot * M_PI / 180;
+	radAngle = pitch * M_PI / 180;
 	rotMat = {
 		{1,0,0,0},
 		{0, cos(radAngle), -sin(radAngle),0},
@@ -43,7 +43,7 @@ void RenderableComponent::applyRotation() {
 	};
 	modelMatrix = modelMatrix * rotMat;
 
-	radAngle = yRot * M_PI / 180;
+	radAngle = yaw * M_PI / 180;
 	rotMat = {
 		{cos(radAngle),0,sin(radAngle),0},
 		{0, 1, 0,0},
@@ -52,7 +52,7 @@ void RenderableComponent::applyRotation() {
 	};
 	modelMatrix = modelMatrix * rotMat;
 
-	radAngle = zRot * M_PI / 180;
+	radAngle = roll * M_PI / 180;
 	rotMat = {
 		{cos(radAngle), -sin(radAngle), 0,0},
 		{sin(radAngle), cos(radAngle), 0,0},

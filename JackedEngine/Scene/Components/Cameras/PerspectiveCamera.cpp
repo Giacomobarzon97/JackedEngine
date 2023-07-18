@@ -42,7 +42,7 @@ void PerspectiveCamera::updateRotation() {
 	double radAngle;
 	glm::mat3 rotMat;
 
-	radAngle = xRot * M_PI / 180;
+	radAngle = pitch * M_PI / 180;
 	center = center + eye;
 	rotMat = {
 		{1,0,0},
@@ -52,7 +52,7 @@ void PerspectiveCamera::updateRotation() {
 	center = rotMat * center;
 	center = center - eye;
 
-	radAngle = yRot * M_PI / 180;
+	radAngle = yaw * M_PI / 180;
 	center = center + eye;
 	rotMat = {
 		{cos(radAngle),0,sin(radAngle)},
@@ -62,7 +62,7 @@ void PerspectiveCamera::updateRotation() {
 	center = rotMat * center;
 	center = center - eye;
 
-	radAngle = zRot * M_PI / 180;
+	radAngle = roll * M_PI / 180;
 	center = center + eye;
 	rotMat = {
 		{cos(radAngle), -sin(radAngle), 0},

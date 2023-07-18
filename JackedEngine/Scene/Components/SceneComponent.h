@@ -22,7 +22,7 @@ protected:
 	glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	double xTrans, yTrans, zTrans;
-	double xRot, yRot, zRot;
+	double pitch, yaw, roll;
 	double xScale, yScale, zScale;
 
 };
