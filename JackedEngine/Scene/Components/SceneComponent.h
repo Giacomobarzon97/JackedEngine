@@ -30,7 +30,7 @@ protected:
 	double xScale, yScale, zScale;
 
 private:
-	void applyTranslation();
-	void applyRotation();
-	void applyScale();
+	void applyTranslation(double x, double y, double z);
+	void applyRotation(double x, double y, double z);
+	void applyScale(double x, double y, double z);
 };

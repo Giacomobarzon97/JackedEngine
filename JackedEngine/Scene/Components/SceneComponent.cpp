@@ -1,7 +1,10 @@
 #include "SceneComponent.h"
 
 SceneComponent::SceneComponent(std::string name) :
-	BaseComponent(name)
+	BaseComponent(name),
+	translationMatrix(1),
+	rotationMatrix(1),
+	scaleMatrix(1)
 {
 	xTrans = yTrans = zTrans = 0;
 	pitch = yaw = roll = 0;
@@ -14,54 +17,66 @@ void SceneComponent::Init() {
 
 void SceneComponent::Tick(double deltaTime) {
 	BaseComponent::Tick(deltaTime);
-
-	translationMatrix = glm::mat4(1);
-	rotationMatrix = glm::mat4(1);
-	scaleMatrix = glm::mat4(1);
-
-	applyTranslation();
-	applyRotation();
-	applyScale();
 }
 
 void SceneComponent::Translate(const double x, const double y, const double z) {
 	xTrans += x;
 	yTrans += y;
 	zTrans += z;
+
+	applyTranslation(x, y, z);
 }
 
 void SceneComponent::Rotate(const double x, const double y, const double z) {
-	pitch += x;
-	yaw += y;
-	roll += z;
+	float xRad = glm::radians(x);
+	float yRad = glm::radians(y);
+	float zRad = glm::radians(z);
+
+	pitch += xRad;
+	yaw += yRad;
+	roll += zRad;
+
+	applyRotation(xRad, yRad, zRad);
 }
 
 void SceneComponent::Scale(const double x, const double y, const double z) {
 	xScale += x;
 	yScale += y;
 	zScale += z;
+
+	applyScale(x, y, z);
 }
 
 void SceneComponent::SetPosition(const double x, const double y, const double z) {
+	applyTranslation(x - xTrans, y - yTrans, z - zTrans);
+
 	xTrans = x;
 	yTrans = y;
 	zTrans = z;
 }
 
 void SceneComponent::SetRotation(const double x, const double y, const double z) {
-	pitch = x;
-	yaw = y;
-	roll = z;
+	float xRad = glm::radians(x);
+	float yRad = glm::radians(y);
+	float zRad = glm::radians(z);
+
+	applyRotation(xRad - pitch, yRad - yaw, zRad - roll);
+
+	pitch = xRad;
+	yaw = yRad;
+	roll = zRad;
 }
 
 void SceneComponent::SetScale(const double x, const double y, const double z) {
+	applyScale(x - xScale, y - yScale, z - zScale);
+
 	xScale = x;
 	yScale = y;
 	zScale = z;
 }
 
 
-void SceneComponent::applyTranslation() {
+void SceneComponent::applyTranslation(double x, double y, double z) {
 	glm::mat4 transMat{
 		{1, 0, 0, 0},
 		{0, 1, 0, 0},
@@ -72,38 +87,34 @@ void SceneComponent::applyTranslation() {
 	translationMatrix = translationMatrix * transMat;
 }
 
-void SceneComponent::applyRotation() {
-	double radAngle;
+void SceneComponent::applyRotation(double x, double y, double z) {
 	glm::mat4 rotMat;
 
-	radAngle = pitch * M_PI / 180;
 	rotMat = {
 		{1,0,0,0},
-		{0, cos(radAngle), -sin(radAngle),0},
-		{0, sin(radAngle), cos(radAngle),0},
+		{0, cos(pitch), -sin(pitch),0},
+		{0, sin(pitch), cos(pitch),0},
 		{0,0,0,1},
 	};
 	rotationMatrix = rotationMatrix * rotMat;
 
-	radAngle = yaw * M_PI / 180;
 	rotMat = {
-		{cos(radAngle),0,sin(radAngle),0},
+		{cos(yaw),0,sin(yaw),0},
 		{0, 1, 0,0},
-		{-sin(radAngle), 0, cos(radAngle),0},
+		{-sin(yaw), 0, cos(yaw),0},
 		{0,0,0,1}
 	};
 	rotationMatrix = rotationMatrix * rotMat;
 
-	radAngle = roll * M_PI / 180;
 	rotMat = {
-		{cos(radAngle), -sin(radAngle), 0,0},
-		{sin(radAngle), cos(radAngle), 0,0},
+		{cos(roll), -sin(roll), 0,0},
+		{sin(roll), cos(roll), 0,0},
 		{0, 0, 1,0},
 		{0,0,0,1}
 	};
 	rotationMatrix = rotationMatrix * rotMat;
 }
 
-void SceneComponent::applyScale() {
+void SceneComponent::applyScale(double x, double y, double z) {
 
 }
