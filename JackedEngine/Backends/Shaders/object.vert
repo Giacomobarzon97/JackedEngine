@@ -6,7 +6,9 @@ layout(set = 0, binding = 0) uniform FrameBufferUniform {
 } frameUniform;
 
 layout(set = 1, binding = 0) uniform ObjectDataUniform {
-    mat4 modelMatrix;
+    mat4 translationMatrix;
+    mat4 rotationMatrix;
+    mat4 scaleMatrix;
 } objectData;
 
 layout(location = 0) in vec4 inPosition;
@@ -15,6 +17,6 @@ layout(location = 1) in vec2 inTexCoord;
 layout(location = 0) out vec2 fragTexCoord;
 
 void main() {
-    gl_Position =  frameUniform.projectionMatrix * frameUniform.viewMatrix * objectData.modelMatrix * inPosition;
+    gl_Position =  frameUniform.projectionMatrix * frameUniform.viewMatrix * objectData.scaleMatrix * objectData.rotationMatrix * objectData.translationMatrix * inPosition;
     fragTexCoord = inTexCoord;
 }

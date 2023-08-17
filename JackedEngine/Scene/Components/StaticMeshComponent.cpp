@@ -4,7 +4,9 @@ StaticMeshComponent::StaticMeshComponent(std::string name) :
 	RenderableComponent(name)
 {
 	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(name);
-	componentData.modelMatrix = glm::mat4(1);
+	componentData.translationMatrix = translationMatrix;
+	componentData.rotationMatrix = rotationMatrix;
+	componentData.scaleMatrix = scaleMatrix;
 }
 
 void StaticMeshComponent::Init() {
@@ -22,9 +24,12 @@ void StaticMeshComponent::SetMaterial(const GenericMeshMaterial& material) {
 
 void StaticMeshComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
+	//Rotate(0, 10 * deltaTime, 0);
 
 	if (material.has_value() && modelRef.has_value()) {
-		componentData.modelMatrix = modelMatrix;
+		componentData.translationMatrix = translationMatrix;
+		componentData.rotationMatrix = rotationMatrix;
+		componentData.scaleMatrix = scaleMatrix;
 
 		JackedEngine::GetRenderer().UpdateMeshUniformData(uniformReference, componentData);
 		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference, OBJECT3D);

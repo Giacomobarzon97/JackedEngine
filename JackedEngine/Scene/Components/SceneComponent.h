@@ -21,8 +21,16 @@ public:
 protected:
 	glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	glm::mat4 translationMatrix;
+	glm::mat4 rotationMatrix;
+	glm::mat4 scaleMatrix;
+
 	double xTrans, yTrans, zTrans;
 	double pitch, yaw, roll;
 	double xScale, yScale, zScale;
 
+private:
+	void applyTranslation();
+	void applyRotation();
+	void applyScale();
 };

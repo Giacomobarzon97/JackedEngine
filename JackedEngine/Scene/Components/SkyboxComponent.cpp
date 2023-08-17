@@ -4,7 +4,9 @@ SkyboxComponent::SkyboxComponent(std::string name) :
 	RenderableComponent(name)
 {
 	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(name);
-	componentData.modelMatrix = glm::mat4(1);
+	componentData.translationMatrix = translationMatrix;
+	componentData.rotationMatrix = rotationMatrix;
+	componentData.scaleMatrix = scaleMatrix;
 }
 
 void SkyboxComponent::Init() {
@@ -21,7 +23,9 @@ void SkyboxComponent::SetMaterial(const CubemapMaterial& material) {
 void SkyboxComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
 
-	componentData.modelMatrix = modelMatrix;
+	componentData.translationMatrix = translationMatrix;
+	componentData.rotationMatrix = rotationMatrix;
+	componentData.scaleMatrix = scaleMatrix;
 
 	if (material.has_value()) {
 		JackedEngine::GetRenderer().UpdateMeshUniformData(uniformReference, componentData);

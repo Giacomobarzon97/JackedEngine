@@ -10,12 +10,4 @@ public:
 
 	virtual void Init();
 	virtual void Tick(double deltaTime);
-
-protected:
-	glm::mat4 modelMatrix;
-
-private:
-	void applyTranslation();
-	void applyRotation();
-	void applyScale();
 };

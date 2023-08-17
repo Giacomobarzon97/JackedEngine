@@ -25,7 +25,6 @@ void JackedEngine::MainLoop() {
 			window.get()->GetFrameBufferSize(&width, &height);
 
 			if (width > 0 && height > 0) {
-				camera.value()->UpdateCameraStatus();
 				frameData.viewMatrix = camera.value()->GetViewMatrix();
 				frameData.projectionMatrix = camera.value()->GetProjectionMatrix(width, height);
 				renderer.UpdateFrameData(frameData);
