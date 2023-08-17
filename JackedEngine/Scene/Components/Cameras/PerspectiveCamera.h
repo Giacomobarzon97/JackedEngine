@@ -19,4 +19,5 @@ public:
 
 private:
 	double drawDistance = 2;
+	static void rotAxes(glm::vec3& axis_a, glm::vec3& axis_b, double angle);
 };
