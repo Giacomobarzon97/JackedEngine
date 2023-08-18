@@ -13,17 +13,20 @@ void PerspectiveCamera::Tick(double deltaTime) {
 }
 
 const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
-	glm::vec3 eye{ xTrans, yTrans, zTrans };
-	glm::vec3 look{ xTrans + 1, yTrans, zTrans };
+	glm::vec3 eye = GetTranslation();
+	glm::vec3 look = eye;
+	look += glm::vec3({1, 0, 0});
 	glm::vec3 up = upVector;
 
 	glm::vec3 m_n = glm::normalize(eye - look);
 	glm::vec3 m_u = glm::normalize(glm::cross(up,m_n));
 	glm::vec3 m_v = glm::normalize(glm::cross(m_n,m_u));
 
-	rotAxes(m_u,m_v, - roll);
-	rotAxes(m_n, m_v, pitch);
-	rotAxes(m_u, m_n, yaw);
+	glm::vec3 rotation = GetRotation();
+
+	rotAxes(m_u,m_v, - rotation.x);
+	rotAxes(m_n, m_v, rotation.y);
+	rotAxes(m_u, m_n, rotation.z);
 
 	glm::mat4 view{
 		{m_u.x, m_v.x, m_n.x, 0},
@@ -36,8 +39,11 @@ const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
 }
 
 void PerspectiveCamera::rotAxes(glm::vec3& io_a, glm::vec3& io_b, double angle) {
-	double c = cos(angle);
-	double s = sin(angle);
+	double rad = glm::radians(angle);
+
+	double c = cos(rad);
+	double s = sin(rad);
+
 	glm::vec3 t{
 		c* io_a.x + s * io_b.x, 
 		c* io_a.y + s * io_b.y, 

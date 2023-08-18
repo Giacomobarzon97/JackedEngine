@@ -1,8 +1,7 @@
 #pragma once
-#define _USE_MATH_DEFINES
-#include <cmath>
 #include <string>
 #include "Scene/Components/BaseComponent.h"
+#include "Utils/Rotator.h"
 
 class SceneComponent : public BaseComponent {
 public:
@@ -12,11 +11,13 @@ public:
 	virtual void Tick(double deltaTime);
 
 	void Translate(const double x, const double y, const double z);
-	void Rotate(const double x, const double y, const double z);
+	void Rotate(glm::vec3 rotation);
 	void Scale(const double x, const double y, const double z);
 	void SetPosition(const double x, const double y, const double z);
-	void SetRotation(const double x, const double y, const double z);
+	void SetRotation(glm::vec3 rotation);
 	void SetScale(const double x, const double y, const double z);
+	glm::vec3 GetRotation() const;
+	glm::vec3 GetTranslation() const;
 
 protected:
 	glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -25,12 +26,11 @@ protected:
 	glm::mat4 rotationMatrix;
 	glm::mat4 scaleMatrix;
 
+private:
 	double xTrans, yTrans, zTrans;
-	double pitch, yaw, roll;
+	glm::vec3 currentRotation;
 	double xScale, yScale, zScale;
 
-private:
 	void applyTranslation(double x, double y, double z);
-	void applyRotation(double x, double y, double z);
 	void applyScale(double x, double y, double z);
 };
