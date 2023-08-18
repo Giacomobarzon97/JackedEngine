@@ -2,39 +2,32 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include "Scene/Components/SceneComponent.h"
-
-class ComponentsIterator {
-public:
-	ComponentsIterator(std::vector<SceneComponent*>& components);
-	SceneComponent* Next();
-	const bool HasNext() const;
-private:
-	std::vector<SceneComponent*>::iterator iterator;
-	std::vector<SceneComponent*>::iterator end;
-};
+#include "Scene/Actors/BaseActor.h"
 
 class World {
 public:
 	~World();
 
 	template <typename ComponentType> 
-	ComponentType& CreateComponent(std::string name);
-	ComponentsIterator GetComponentIterator();
+	ComponentType& CreateActor(std::string name);
+	std::vector<BaseActor*> GetActors();
 
 private:
-	std::vector<SceneComponent*> components;
+	std::vector<BaseActor*> actors;
 };
 
-template <typename ComponentType>
-ComponentType& World::CreateComponent(std::string name) {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		if (name == components[i]->GetName()) {
-			throw std::runtime_error("An object with this name already exists");
+template <typename ActorType>
+ActorType& World::CreateActor(std::string name) {
+	for (unsigned int i = 0; i < actors.size(); i++) {
+		if (name == actors[i]->GetName()) {
+			throw std::runtime_error("An actor with this name already exists");
 		}
 	}
-	ComponentType* component = new ComponentType(name);
-	components.push_back(component);
-	component->Init();
-	return *component;
+
+	ActorInitializer initializer;
+	initializer.name = name;
+	ActorType* actor = new ActorType(initializer);
+	actors.push_back(actor);
+	actor->Init();
+	return *actor;
 }

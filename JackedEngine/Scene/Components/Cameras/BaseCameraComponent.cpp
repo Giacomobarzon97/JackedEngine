@@ -1,7 +1,7 @@
 #include "BaseCameraComponent.h"
 
-BaseCameraComponent::BaseCameraComponent(std::string name) :
-	SceneComponent(name)
+BaseCameraComponent::BaseCameraComponent(ComponentInitializer initializer) :
+	SceneComponent(initializer)
 {}
 
 void BaseCameraComponent::Init() {

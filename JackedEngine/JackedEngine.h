@@ -2,7 +2,6 @@
 #include <memory>
 #include <optional>
 #include "Scene\Components\Cameras\BaseCameraComponent.h"
-#include "Scene\Components\RenderableComponent.h"
 #include "Scene\World.h"
 #include "Windows\BaseWindow.h"
 #include "Backends\BaseBackend.h"

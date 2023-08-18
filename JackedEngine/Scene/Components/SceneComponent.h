@@ -6,7 +6,7 @@
 
 class SceneComponent : public BaseComponent {
 public:
-	SceneComponent(std::string name);
+	SceneComponent(ComponentInitializer initializer);
 
 	virtual void Init();
 	virtual void Tick(double deltaTime);

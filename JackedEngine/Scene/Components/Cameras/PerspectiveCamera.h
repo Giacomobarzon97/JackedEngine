@@ -9,7 +9,7 @@
 class PerspectiveCamera : public BaseCameraComponent
 {
 public:
-	PerspectiveCamera(std::string name);
+	PerspectiveCamera(ComponentInitializer initializer);
 
 	virtual void Init() override;
 	virtual void Tick(double deltaTime) override;

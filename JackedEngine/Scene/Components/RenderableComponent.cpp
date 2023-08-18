@@ -1,7 +1,7 @@
 #include "RenderableComponent.h"
 
-RenderableComponent::RenderableComponent(std::string name) :
-	SceneComponent(name)
+RenderableComponent::RenderableComponent(ComponentInitializer initializer) :
+	SceneComponent(initializer)
 {}
 
 void RenderableComponent::Init() {

@@ -1,7 +1,7 @@
 #include "SceneComponent.h"
 
-SceneComponent::SceneComponent(std::string name) :
-	BaseComponent(name),
+SceneComponent::SceneComponent(ComponentInitializer initializer) :
+	BaseComponent(initializer),
 	translationMatrix(1),
 	rotationMatrix(1),
 	scaleMatrix(1)
@@ -28,9 +28,9 @@ void SceneComponent::Translate(const double x, const double y, const double z) {
 }
 
 void SceneComponent::Rotate(const double x, const double y, const double z) {
-	float xRad = glm::radians(x);
-	float yRad = glm::radians(y);
-	float zRad = glm::radians(z);
+	double xRad = glm::radians(x);
+	double yRad = glm::radians(y);
+	double zRad = glm::radians(z);
 
 	pitch += xRad;
 	yaw += yRad;
@@ -56,9 +56,9 @@ void SceneComponent::SetPosition(const double x, const double y, const double z)
 }
 
 void SceneComponent::SetRotation(const double x, const double y, const double z) {
-	float xRad = glm::radians(x);
-	float yRad = glm::radians(y);
-	float zRad = glm::radians(z);
+	double xRad = glm::radians(x);
+	double yRad = glm::radians(y);
+	double zRad = glm::radians(z);
 
 	applyRotation(xRad - pitch, yRad - yaw, zRad - roll);
 
@@ -81,7 +81,7 @@ void SceneComponent::applyTranslation(double x, double y, double z) {
 		{1, 0, 0, 0},
 		{0, 1, 0, 0},
 		{0, 0, 1, 0},
-		{xTrans, yTrans, zTrans, 1}
+		{x, y, z, 1}
 	};
 
 	translationMatrix = translationMatrix * transMat;
@@ -92,23 +92,23 @@ void SceneComponent::applyRotation(double x, double y, double z) {
 
 	rotMat = {
 		{1,0,0,0},
-		{0, cos(pitch), -sin(pitch),0},
-		{0, sin(pitch), cos(pitch),0},
+		{0, cos(x), -sin(x),0},
+		{0, sin(x), cos(x),0},
 		{0,0,0,1},
 	};
 	rotationMatrix = rotationMatrix * rotMat;
 
 	rotMat = {
-		{cos(yaw),0,sin(yaw),0},
+		{cos(y),0,sin(y),0},
 		{0, 1, 0,0},
-		{-sin(yaw), 0, cos(yaw),0},
+		{-sin(y), 0, cos(y),0},
 		{0,0,0,1}
 	};
 	rotationMatrix = rotationMatrix * rotMat;
 
 	rotMat = {
-		{cos(roll), -sin(roll), 0,0},
-		{sin(roll), cos(roll), 0,0},
+		{cos(z), -sin(z), 0,0},
+		{sin(z), cos(z), 0,0},
 		{0, 0, 1,0},
 		{0,0,0,1}
 	};

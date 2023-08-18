@@ -10,7 +10,7 @@
 
 class VulkanBackend : public BaseBackend {
 public:
-	VulkanBackend(const BaseWindow& window);
+	VulkanBackend(BaseWindow& window);
 	VulkanBackend(VulkanBackend&) = delete;
 	virtual ~VulkanBackend();
 

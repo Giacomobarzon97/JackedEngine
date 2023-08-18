@@ -17,7 +17,7 @@ void JackedEngine::MainLoop() {
 
 	while (!window->ShouldClose()) {
 		double deltaTime = std::chrono::duration<float, std::chrono::milliseconds::period>(std::chrono::high_resolution_clock::now() - prevFrameTime).count();
-		ComponentsIterator componentsIterator = world.GetComponentIterator();
+		std::vector<BaseActor*> actors = world.GetActors();
 		renderer.BeginFrame();
 
 		if (camera.has_value()) {
@@ -29,9 +29,8 @@ void JackedEngine::MainLoop() {
 				frameData.projectionMatrix = camera.value()->GetProjectionMatrix(width, height);
 				renderer.UpdateFrameData(frameData);
 
-				while (componentsIterator.HasNext()) {
-					SceneComponent* currentComponent = componentsIterator.Next();
-					currentComponent->Tick(deltaTime);
+				for (BaseActor* actor : actors) {
+					actor->Tick(deltaTime);
 				}
 			}
 		}

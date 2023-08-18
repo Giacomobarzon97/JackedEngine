@@ -4,10 +4,11 @@
 #include "Scene/Components/RenderableComponent.h"
 #include "Scene/Materials/GenericMeshMaterial.h"
 #include "Backends/CPUResources/CPUModels/CPUGenericMesh.h"
+#include "Scene/Actors/BaseActor.h"
 
 class StaticMeshComponent : public RenderableComponent {
 public:
-	StaticMeshComponent(std::string name);
+	StaticMeshComponent(ComponentInitializer initializer);
 
 	virtual void Init() override;
 	void Tick(double deltaTime) override;

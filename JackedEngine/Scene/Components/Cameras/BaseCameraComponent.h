@@ -3,7 +3,7 @@
 
 class BaseCameraComponent : public SceneComponent {
 public:
-	BaseCameraComponent(std::string name);
+	BaseCameraComponent(ComponentInitializer initializer);
 
 	virtual void Init() override;
 	virtual void Tick(double deltaTime) override;

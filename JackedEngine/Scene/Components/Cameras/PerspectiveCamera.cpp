@@ -1,17 +1,15 @@
 #include "PerspectiveCamera.h"
 
-PerspectiveCamera::PerspectiveCamera(std::string name) :
-	BaseCameraComponent(name)
+PerspectiveCamera::PerspectiveCamera(ComponentInitializer initializer) :
+	BaseCameraComponent(initializer)
 {}
 
 void PerspectiveCamera::Init() {
 	BaseCameraComponent::Init();
-	Translate(2, 2, 2);
 }
 
 void PerspectiveCamera::Tick(double deltaTime) {
 	BaseCameraComponent::Tick(deltaTime);
-	Rotate(0, 100 * deltaTime, 0);
 }
 
 const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
@@ -38,8 +36,8 @@ const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
 }
 
 void PerspectiveCamera::rotAxes(glm::vec3& io_a, glm::vec3& io_b, double angle) {
-	double c = cosf(angle);
-	double s = sinf(angle);
+	double c = cos(angle);
+	double s = sin(angle);
 	glm::vec3 t{
 		c* io_a.x + s * io_b.x, 
 		c* io_a.y + s * io_b.y, 

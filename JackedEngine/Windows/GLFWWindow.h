@@ -20,13 +20,17 @@ public:
 	virtual void PollEvents() const override;
 	virtual const char** GetRequiredExtensions(uint32_t& extensionCount) const override;
 	virtual void GetFrameBufferSize(int* width, int* height) const override;
-	virtual void SetBufferResizeCallback(void* buffer, void(*func)(void*)) const override;
+	virtual void SetBufferResizeCallback(void* buffer, void(*func)(void*)) override;
 	virtual void WaitWhileMinimized() const override;
 
-private: 
+private:
+	const static std::unordered_map<int, BindableKey> keyMap;
+
+	void* buffer = nullptr;
 	GLFWwindow *window;
 	static void (*bufferCallback)(void*);
 
 	static void BufferResizeCallback(GLFWwindow* window, int width, int height);
+	static void KeyPresseedCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 };
 

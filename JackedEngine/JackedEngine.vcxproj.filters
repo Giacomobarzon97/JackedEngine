@@ -159,6 +159,18 @@
     <ClCompile Include="Rendering\RenderTypes.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Actors\BaseActor.cpp">
+      <Filter>Scene\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Actors\VikingRoomActor.cpp">
+      <Filter>Scene\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Actors\DebugCameraActor.cpp">
+      <Filter>Scene\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Actors\SkyboxActor.cpp">
+      <Filter>Scene\Actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -318,6 +330,18 @@
     <ClInclude Include="Rendering\RenderTypes.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Actors\BaseActor.h">
+      <Filter>Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actors\VikingRoomActor.h">
+      <Filter>Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actors\DebugCameraActor.h">
+      <Filter>Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actors\SkyboxActor.h">
+      <Filter>Scene\Actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -403,6 +427,9 @@
     </Filter>
     <Filter Include="Rendering">
       <UniqueIdentifier>{3025728b-b6b9-47ce-810f-a7eca64ef120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Actors">
+      <UniqueIdentifier>{6e3ad04d-b376-4dd5-ae14-0d9000db3527}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

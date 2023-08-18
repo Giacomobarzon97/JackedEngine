@@ -6,7 +6,7 @@
 
 class RenderableComponent : public SceneComponent {
 public:
-	RenderableComponent(std::string name);
+	RenderableComponent(ComponentInitializer initializer);
 
 	virtual void Init();
 	virtual void Tick(double deltaTime);

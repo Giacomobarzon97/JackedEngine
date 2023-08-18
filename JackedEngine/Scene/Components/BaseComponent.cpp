@@ -1,13 +1,18 @@
 #include "BaseComponent.h"
 
-BaseComponent::BaseComponent(std::string name) :
-	name(name)
+BaseComponent::BaseComponent(ComponentInitializer initializer) :
+	name(initializer.name),
+	actorOwner(initializer.actorOwner)
 {}
 
 BaseComponent::~BaseComponent() {}
 
 const std::string BaseComponent::GetName() {
 	return name;
+}
+
+BaseActor& BaseComponent::GetActorOwner() {
+	return *actorOwner;
 }
 
 void BaseComponent::Init() {

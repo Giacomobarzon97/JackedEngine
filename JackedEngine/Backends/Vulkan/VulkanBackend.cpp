@@ -41,7 +41,7 @@ const std::unordered_map<VertexType, std::unordered_map <uint8_t, VkFormat>> Vul
 const std::unordered_map<VertexType, std::unordered_map <uint8_t, uint32_t>> VulkanBackend::vertexSizeMap = initVertexSizeMap();
 
 
-VulkanBackend::VulkanBackend(const BaseWindow& window) :
+VulkanBackend::VulkanBackend(BaseWindow& window) :
 	device(window),
 	allocationFactory(device),
 	sampler(device)

@@ -1,9 +1,10 @@
 #include "StaticMeshComponent.h"
 
-StaticMeshComponent::StaticMeshComponent(std::string name) :
-	RenderableComponent(name)
+StaticMeshComponent::StaticMeshComponent(ComponentInitializer initializer) :
+	RenderableComponent(initializer)
 {
-	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(name);
+	BaseActor& actorOwner = GetActorOwner();
+	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
 	componentData.translationMatrix = translationMatrix;
 	componentData.rotationMatrix = rotationMatrix;
 	componentData.scaleMatrix = scaleMatrix;
@@ -24,7 +25,6 @@ void StaticMeshComponent::SetMaterial(const GenericMeshMaterial& material) {
 
 void StaticMeshComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
-	//Rotate(0, 10 * deltaTime, 0);
 
 	if (material.has_value() && modelRef.has_value()) {
 		componentData.translationMatrix = translationMatrix;

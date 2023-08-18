@@ -1,9 +1,9 @@
 #include "SkyboxComponent.h"
 
-SkyboxComponent::SkyboxComponent(std::string name) :
-	RenderableComponent(name)
+SkyboxComponent::SkyboxComponent(ComponentInitializer initializer) :
+	RenderableComponent(initializer)
 {
-	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(name);
+	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
 	componentData.translationMatrix = translationMatrix;
 	componentData.rotationMatrix = rotationMatrix;
 	componentData.scaleMatrix = scaleMatrix;
