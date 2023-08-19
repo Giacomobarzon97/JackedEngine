@@ -5,9 +5,9 @@ SceneComponent::SceneComponent(ComponentInitializer initializer) :
 	translationMatrix(1),
 	rotationMatrix(1),
 	scaleMatrix(1),
+	currentPosition({0,0,0}),
 	currentRotation({0,0,0})
 {
-	xTrans = yTrans = zTrans = 0;
 	xScale = yScale = zScale = 0;
 }
 
@@ -19,12 +19,9 @@ void SceneComponent::Tick(double deltaTime) {
 	BaseComponent::Tick(deltaTime);
 }
 
-void SceneComponent::Translate(const double x, const double y, const double z) {
-	xTrans += x;
-	yTrans += y;
-	zTrans += z;
-
-	applyTranslation(x, y, z);
+void SceneComponent::Translate(glm::vec3 translation) {
+	currentPosition += translation;
+	applyTranslation(translation);
 }
 
 void SceneComponent::Rotate(glm::vec3 rotation) {
@@ -41,12 +38,9 @@ void SceneComponent::Scale(const double x, const double y, const double z) {
 	applyScale(x, y, z);
 }
 
-void SceneComponent::SetPosition(const double x, const double y, const double z) {
-	applyTranslation(x - xTrans, y - yTrans, z - zTrans);
-
-	xTrans = x;
-	yTrans = y;
-	zTrans = z;
+void SceneComponent::SetPosition(glm::vec3 translation) {
+	applyTranslation(translation - currentPosition);
+	currentPosition = translation;
 }
 
 void SceneComponent::SetRotation(glm::vec3 rotation) {
@@ -68,17 +62,17 @@ glm::vec3 SceneComponent::GetRotation() const {
 	return currentRotation;
 }
 
-glm::vec3 SceneComponent::GetTranslation() const {
-	return glm::vec3({ xTrans, yTrans, zTrans });
+glm::vec3 SceneComponent::GetPosition() const {
+	return currentPosition;
 }
 
 
-void SceneComponent::applyTranslation(double x, double y, double z) {
+void SceneComponent::applyTranslation(glm::vec3 translation) {
 	glm::mat4 transMat{
 		{1, 0, 0, 0},
 		{0, 1, 0, 0},
 		{0, 0, 1, 0},
-		{x, y, z, 1}
+		{translation.x, translation.y, translation.z, 1}
 	};
 
 	translationMatrix = translationMatrix * transMat;

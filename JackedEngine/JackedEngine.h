@@ -1,11 +1,11 @@
 #pragma once
 #include <memory>
 #include <optional>
-#include "Scene\Components\Cameras\BaseCameraComponent.h"
-#include "Scene\World.h"
-#include "Windows\BaseWindow.h"
-#include "Backends\BaseBackend.h"
-#include "Rendering\Renderer.h"
+#include "Scene/Components/Cameras/BaseCameraComponent.h"
+#include "Scene/World.h"
+#include "Windows/BaseWindow.h"
+#include "Backends/BaseBackend.h"
+#include "Rendering/Renderer.h"
 
 class JackedEngine {
 public:
@@ -17,6 +17,7 @@ public:
 	static void MainLoop();
 
 	static Renderer& GetRenderer();
+	static BaseWindow& GetWindow();
 	static World& GetWorld();
 	static void SetActiveCamera(BaseCameraComponent& camera);
 

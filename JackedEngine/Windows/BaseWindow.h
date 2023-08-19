@@ -5,10 +5,12 @@
 #include <functional>
 
 enum BindableKey {
-	KEY_W,
 	KEY_A,
+	KEY_D,
+	KEY_E,
+	KEY_Q,
 	KEY_S,
-	KEY_D
+	KEY_W,
 };
 
 class BaseWindow {

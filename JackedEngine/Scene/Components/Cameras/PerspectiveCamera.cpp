@@ -13,7 +13,7 @@ void PerspectiveCamera::Tick(double deltaTime) {
 }
 
 const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
-	glm::vec3 eye = GetTranslation();
+	glm::vec3 eye = GetPosition();
 	glm::vec3 look = eye;
 	look += glm::vec3({1, 0, 0});
 	glm::vec3 up = upVector;

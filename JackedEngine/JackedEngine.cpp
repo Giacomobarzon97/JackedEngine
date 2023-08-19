@@ -50,6 +50,10 @@ World& JackedEngine::GetWorld() {
 	return world;
 }
 
+BaseWindow& JackedEngine::GetWindow() {
+	return *window;
+}
+
 void JackedEngine::SetActiveCamera(BaseCameraComponent& camera) {
 	JackedEngine::camera = &camera;
 }

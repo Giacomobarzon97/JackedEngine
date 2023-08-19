@@ -2,10 +2,12 @@
 #include <iostream>
 
 const std::unordered_map<int, BindableKey> GLFWWindow::keyMap = {
-	{GLFW_KEY_W, KEY_W},
 	{GLFW_KEY_A, KEY_A},
+	{GLFW_KEY_D, KEY_D},
+	{GLFW_KEY_E, KEY_E},
+	{GLFW_KEY_Q, KEY_Q},
 	{GLFW_KEY_S, KEY_S},
-	{GLFW_KEY_D, KEY_D}
+	{GLFW_KEY_W, KEY_W},
 };
 
 void(*GLFWWindow::bufferCallback)(void*) = nullptr;
