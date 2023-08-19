@@ -1,13 +1,19 @@
 #include "GLFWWindow.h"
 #include <iostream>
 
-const std::unordered_map<int, BindableKey> GLFWWindow::keyMap = {
+const std::unordered_map<int, InputKey> GLFWWindow::keyMap = {
 	{GLFW_KEY_A, KEY_A},
 	{GLFW_KEY_D, KEY_D},
 	{GLFW_KEY_E, KEY_E},
 	{GLFW_KEY_Q, KEY_Q},
 	{GLFW_KEY_S, KEY_S},
 	{GLFW_KEY_W, KEY_W},
+};
+
+const std::unordered_map<int, InputEvent> GLFWWindow::eventMap = {
+	{GLFW_PRESS, START},
+	{GLFW_REPEAT, REPEAT},
+	{GLFW_RELEASE, END},
 };
 
 void(*GLFWWindow::bufferCallback)(void*) = nullptr;
@@ -70,14 +76,12 @@ void GLFWWindow::WaitWhileMinimized() const {
 }
 
 void GLFWWindow::KeyPresseedCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-	auto bindings = reinterpret_cast<GLFWWindow*>(glfwGetWindowUserPointer(window))->functionBindings;
-	auto pressedKey = keyMap.find(key);
-	if (pressedKey != keyMap.end()) {
-		auto functionList = bindings.find(pressedKey->second);
-		if (functionList != bindings.end()) {
-			for (auto binding : functionList->second) {
-				binding();
-			}
+	auto callbacks = reinterpret_cast<GLFWWindow*>(glfwGetWindowUserPointer(window))->callbacks;
+	auto actualKey = keyMap.find(key);
+	auto actualEvent = eventMap.find(action);
+	if (actualKey != keyMap.end() && actualEvent != eventMap.end()) {
+		for (auto callback : callbacks) {
+			callback(actualKey->second, actualEvent->second);
 		}
 	}
 }

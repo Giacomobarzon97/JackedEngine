@@ -1,19 +1,19 @@
 #include "Rotator.h"
 
 Rotator::Rotator() :
-	axis({0,0,0})
+	rotation({0,0,0})
 {}
 
-Rotator::Rotator(glm::vec3 axis) :
-	axis({glm::radians(axis.x), glm::radians(axis.y), glm::radians(axis.z)})
+Rotator::Rotator(glm::vec3 rotation) :
+	rotation({glm::radians(rotation.x), glm::radians(rotation.y), glm::radians(rotation.z)})
 {}
 
 glm::vec3 Rotator::GetRotation() const {
-	return axis;
+	return rotation;
 }
 
-void Rotator::SetRotation(glm::vec3 axis) {
-	this->axis = {glm::radians(axis.x), glm::radians(axis.y), glm::radians(axis.z)};
+void Rotator::SetRotation(glm::vec3 rotation) {
+	this->rotation = {glm::radians(rotation.x), glm::radians(rotation.y), glm::radians(rotation.z)};
 }
 
 glm::mat4 Rotator::GetRotationMatrix() {
@@ -22,23 +22,23 @@ glm::mat4 Rotator::GetRotationMatrix() {
 
 	tmpRotMat = {
 		{1,0,0,0},
-		{0, cos(axis.x), -sin(axis.x),0},
-		{0, sin(axis.x), cos(axis.x),0},
+		{0, cos(rotation.x), -sin(rotation.x),0},
+		{0, sin(rotation.x), cos(rotation.x),0},
 		{0,0,0,1},
 	};
 	rotMat = rotMat * tmpRotMat;
 
 	tmpRotMat = {
-		{cos(axis.y),0,sin(axis.y),0},
+		{cos(rotation.y),0,sin(rotation.y),0},
 		{0, 1, 0,0},
-		{-sin(axis.y), 0, cos(axis.y),0},
+		{-sin(rotation.y), 0, cos(rotation.y),0},
 		{0,0,0,1}
 	};
 	rotMat = rotMat * tmpRotMat;
 
 	tmpRotMat = {
-		{cos(axis.z), -sin(axis.z), 0,0},
-		{sin(axis.z), cos(axis.z), 0,0},
+		{cos(rotation.z), -sin(rotation.z), 0,0},
+		{sin(rotation.z), cos(rotation.z), 0,0},
 		{0, 0, 1,0},
 		{0,0,0,1}
 	};

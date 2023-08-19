@@ -12,9 +12,6 @@ const std::string BaseWindow::GetWindowName() const{
 	return windowName;
 }
 
-void BaseWindow::BindKey(BindableKey key, std::function<void()> binding) {
-	if (functionBindings.find(key) == functionBindings.end()) {
-		functionBindings[key] = std::vector<std::function<void()>>();
-	}
-	functionBindings[key].push_back(binding);
+void BaseWindow::BindCallback(std::function<void(InputKey, InputEvent)> binding) {
+	callbacks.push_back(binding);
 }

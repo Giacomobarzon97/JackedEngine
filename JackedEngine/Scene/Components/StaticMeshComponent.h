@@ -11,7 +11,7 @@ public:
 	StaticMeshComponent(ComponentInitializer initializer);
 
 	virtual void Init() override;
-	void Tick(double deltaTime) override;
+	virtual void Tick(double deltaTime) override;
 
 	void SetModelPath(const std::string modelPath);
 	void SetMaterial(const GenericMeshMaterial& material);

@@ -21,5 +21,5 @@ private:
 	PerspectiveCamera& camera;
 	InputComponent& inputComponent;
 	float deltaTime;
-	float movementSpeed = 50;
+	float movementSpeed = 1;
 };

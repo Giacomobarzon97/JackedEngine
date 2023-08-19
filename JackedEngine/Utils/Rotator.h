@@ -11,5 +11,5 @@ public:
 	glm::mat4 GetRotationMatrix();
 
 private:
-	glm::vec3 axis;
+	glm::vec3 rotation;
 };

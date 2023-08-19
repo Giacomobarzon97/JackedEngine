@@ -1,19 +1,19 @@
 #include "Translator.h"
 
 Translator::Translator() :
-	axis({0,0,0})
+	translation({0,0,0})
 {}
 
-Translator::Translator(glm::vec3 axis) :
-	axis({glm::radians(axis.x), glm::radians(axis.y), glm::radians(axis.z)})
+Translator::Translator(glm::vec3 translation) :
+	translation({glm::radians(translation.x), glm::radians(translation.y), glm::radians(translation.z)})
 {}
 
 glm::vec3 Translator::GetTranslation() const {
-	return axis;
+	return translation;
 }
 
-void Translator::SetTranslation(glm::vec3 axis) {
-	this->axis = {glm::radians(axis.x), glm::radians(axis.y), glm::radians(axis.z)};
+void Translator::SetTranslation(glm::vec3 translation) {
+	this->translation = {glm::radians(translation.x), glm::radians(translation.y), glm::radians(translation.z)};
 }
 
 glm::mat4 Translator::GetTranslationMatrix() {
@@ -21,7 +21,7 @@ glm::mat4 Translator::GetTranslationMatrix() {
 		{1, 0, 0, 0},
 		{0, 1, 0, 0},
 		{0, 0, 1, 0},
-		{axis.x, axis.y, axis.z, 1}
+		{translation.x, translation.y, translation.z, 1}
 	};
 
 	return transMat;

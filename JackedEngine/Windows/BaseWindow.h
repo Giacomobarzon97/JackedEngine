@@ -3,15 +3,7 @@
 #include <string>
 #include <Windows.h>
 #include <functional>
-
-enum BindableKey {
-	KEY_A,
-	KEY_D,
-	KEY_E,
-	KEY_Q,
-	KEY_S,
-	KEY_W,
-};
+#include "Windows/Input/InputConstants.h"
 
 class BaseWindow {
 public:
@@ -20,7 +12,7 @@ public:
 	BaseWindow &operator=(BaseWindow &) = delete;
 
 	const std::string GetWindowName() const;
-	void BindKey(BindableKey key, std::function<void()> binding);
+	void BindCallback(std::function<void(InputKey, InputEvent)> binding);
 
 	virtual ~BaseWindow() = 0;
 	virtual const bool ShouldClose() const = 0;
@@ -32,7 +24,7 @@ public:
 	virtual void WaitWhileMinimized() const = 0;
 
 protected:
-	std::unordered_map<BindableKey, std::vector<std::function<void()>>> functionBindings;
+	std::vector<std::function<void(InputKey, InputEvent)>> callbacks;
 
 	const uint32_t width;
 	const uint32_t height;

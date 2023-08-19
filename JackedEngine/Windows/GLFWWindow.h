@@ -24,7 +24,8 @@ public:
 	virtual void WaitWhileMinimized() const override;
 
 private:
-	const static std::unordered_map<int, BindableKey> keyMap;
+	const static std::unordered_map<int, InputKey> keyMap;
+	const static std::unordered_map<int, InputEvent> eventMap;
 
 	void* buffer = nullptr;
 	GLFWwindow *window;

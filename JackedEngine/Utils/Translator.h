@@ -11,5 +11,5 @@ public:
 	glm::mat4 GetTranslationMatrix();
 
 private:
-	glm::vec3 axis;
+	glm::vec3 translation;
 };

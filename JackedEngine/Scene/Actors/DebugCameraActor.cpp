@@ -7,12 +7,12 @@ DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 {
 	JackedEngine::SetActiveCamera(camera);
 	camera.Translate({ 2, 0, 0 });
-	inputComponent.BindKey(KEY_W, std::bind(&DebugCameraActor::moveForward, this));
-	inputComponent.BindKey(KEY_A, std::bind(&DebugCameraActor::moveLeft, this));
-	inputComponent.BindKey(KEY_S, std::bind(&DebugCameraActor::moveBack, this));
-	inputComponent.BindKey(KEY_D, std::bind(&DebugCameraActor::moveRight, this));
-	inputComponent.BindKey(KEY_Q, std::bind(&DebugCameraActor::moveUp, this));
-	inputComponent.BindKey(KEY_E, std::bind(&DebugCameraActor::moveDown, this));
+	inputComponent.BindAction(KEY_W, std::bind(&DebugCameraActor::moveForward, this));
+	inputComponent.BindAction(KEY_A, std::bind(&DebugCameraActor::moveLeft, this));
+	inputComponent.BindAction(KEY_S, std::bind(&DebugCameraActor::moveBack, this));
+	inputComponent.BindAction(KEY_D, std::bind(&DebugCameraActor::moveRight, this));
+	inputComponent.BindAction(KEY_Q, std::bind(&DebugCameraActor::moveUp, this));
+	inputComponent.BindAction(KEY_E, std::bind(&DebugCameraActor::moveDown, this));
 }
 
 void DebugCameraActor::Tick(float deltaTime) {
