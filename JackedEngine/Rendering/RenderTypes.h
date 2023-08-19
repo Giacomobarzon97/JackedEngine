@@ -6,9 +6,7 @@ enum ShaderType {
 };
 
 struct MeshUniformData {
-	glm::mat4 translationMatrix;
-	glm::mat4 rotationMatrix;
-	glm::mat4 scaleMatrix;
+	glm::mat4 modelMatrix;
 };
 
 struct FrameData {

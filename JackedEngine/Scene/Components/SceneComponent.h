@@ -2,6 +2,7 @@
 #include <string>
 #include "Scene/Components/BaseComponent.h"
 #include "Utils/Rotator.h"
+#include "Utils/Translator.h"
 
 class SceneComponent : public BaseComponent {
 public:
@@ -18,19 +19,12 @@ public:
 	void SetScale(const double x, const double y, const double z);
 	glm::vec3 GetRotation() const;
 	glm::vec3 GetPosition() const;
-
-protected:
-	glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
-
-	glm::mat4 translationMatrix;
-	glm::mat4 rotationMatrix;
-	glm::mat4 scaleMatrix;
+	glm::mat4 GetModelMatrix() const;
+	glm::vec3 GetUpVector() const;
 
 private:
 	glm::vec3 currentPosition;
 	glm::vec3 currentRotation;
-	double xScale, yScale, zScale;
-
-	void applyTranslation(glm::vec3 translation);
-	void applyScale(double x, double y, double z);
+	glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+	glm::mat4 modelMatrix;
 };

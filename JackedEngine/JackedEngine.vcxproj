@@ -77,6 +77,7 @@
     <ClCompile Include="Scene\World.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
     <ClCompile Include="Utils\Rotator.cpp" />
+    <ClCompile Include="Utils\Translator.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
   </ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Scene\World.h" />
     <ClInclude Include="Utils\FileIOr.h" />
     <ClInclude Include="Utils\Rotator.h" />
+    <ClInclude Include="Utils\Translator.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />
   </ItemGroup>

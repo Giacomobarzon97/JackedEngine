@@ -16,7 +16,7 @@ const glm::mat4 PerspectiveCamera::GetViewMatrix() const {
 	glm::vec3 eye = GetPosition();
 	glm::vec3 look = eye;
 	look += glm::vec3({1, 0, 0});
-	glm::vec3 up = upVector;
+	glm::vec3 up = GetUpVector();
 
 	glm::vec3 m_n = glm::normalize(eye - look);
 	glm::vec3 m_u = glm::normalize(glm::cross(up,m_n));

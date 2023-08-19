@@ -5,9 +5,6 @@ StaticMeshComponent::StaticMeshComponent(ComponentInitializer initializer) :
 {
 	BaseActor& actorOwner = GetActorOwner();
 	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
-	componentData.translationMatrix = translationMatrix;
-	componentData.rotationMatrix = rotationMatrix;
-	componentData.scaleMatrix = scaleMatrix;
 }
 
 void StaticMeshComponent::Init() {
@@ -27,10 +24,7 @@ void StaticMeshComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
 
 	if (material.has_value() && modelRef.has_value()) {
-		componentData.translationMatrix = translationMatrix;
-		componentData.rotationMatrix = rotationMatrix;
-		componentData.scaleMatrix = scaleMatrix;
-
+		componentData.modelMatrix = GetModelMatrix();
 		JackedEngine::GetRenderer().UpdateMeshUniformData(uniformReference, componentData);
 		JackedEngine::GetRenderer().Draw(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference, OBJECT3D);
 	}

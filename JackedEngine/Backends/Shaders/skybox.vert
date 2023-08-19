@@ -6,9 +6,7 @@ layout(set = 0, binding = 0) uniform FrameBufferUniform {
 } frameUniform;
 
 layout(set = 1, binding = 0) uniform ObjectDataUniform {
-    mat4 translationMatrix;
-    mat4 rotationMatrix;
-    mat4 scaleMatrix;
+    mat4 modelMatrix;
 } objectData;
 
 layout(location = 0) in vec4 inPosition;

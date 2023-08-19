@@ -11,5 +11,4 @@ int main() {
 	JackedEngine::GetWorld().CreateActor<SkyboxActor>("Skybox");
 	JackedEngine::GetWorld().CreateActor<DebugCameraActor>("Camera");
 	JackedEngine::MainLoop();
-
 }
