@@ -30,8 +30,12 @@ private:
 	void* buffer = nullptr;
 	GLFWwindow *window;
 	static void (*bufferCallback)(void*);
+	static double prevXpos;
+	static double prevYpos;
+	static bool firstMousePos;
 
 	static void BufferResizeCallback(GLFWwindow* window, int width, int height);
 	static void KeyPresseedCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
 };
 

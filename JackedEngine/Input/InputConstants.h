@@ -7,10 +7,13 @@ enum InputKey {
 	KEY_Q,
 	KEY_S,
 	KEY_W,
+	MOUSE_X,
+	MOUSE_Y
 };
 
 enum InputEvent {
 	START,
 	REPEAT,
-	END
+	END,
+	INSTANT
 };

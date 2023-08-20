@@ -13,10 +13,12 @@ public:
 	void MoveLaterally(float scaleValue);
 	void MoveStraight(float scaleValue);
 	void MoveVertically(float scaleValue);
+	void RotateHorizontally(float scaleValue);
+	void RotateVertically(float scaleValue);
 
 private:
 	PerspectiveCamera& camera;
 	InputComponent& inputComponent;
-	float deltaTime;
 	float movementSpeed = 1;
+	float rotationSpeed = 100;
 };

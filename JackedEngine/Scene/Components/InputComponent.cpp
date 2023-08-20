@@ -1,4 +1,5 @@
 #include "InputComponent.h"
+#include <iostream>
 
 InputComponent::InputComponent(ComponentInitializer initializer) :
 	BaseComponent(initializer)
@@ -21,17 +22,28 @@ void InputComponent::Tick(double deltaTime) {
 			axisBinding.binding(axisBinding.axisScaleValue * axisBinding.tickScaleValue * deltaTime);
 		}
 	}
+	std::set<InputKey> tmp = keysToRemoveEndTick;
+	for (InputKey keyToRemove : tmp) {
+		activeKeys.erase(activeKeys.find(keyToRemove));
+		keysToRemoveEndTick.erase(keysToRemoveEndTick.find(keyToRemove));
+	}
 }
 
 void InputComponent::OnInputReceived(InputKey key, InputEvent event, float scaleValue) {
-	if (event == START) {
+	if (event == START || event == INSTANT) {
 		activeKeys.insert(key);
 	}
-	if (event == START || event == REPEAT) {
-		for (AxisMapping mapping : axisBindings[key]) {
-			mapping.tickScaleValue = scaleValue;
+
+	if (event == START || event == INSTANT || event == REPEAT) {
+		for (int i = 0; i < axisBindings[key].size(); i++) {
+			axisBindings[key][i].tickScaleValue = scaleValue;
 		}
 	}
+
+	if (event == INSTANT) {
+		keysToRemoveEndTick.insert(key);
+	}
+
 	if (event == END) {
 		activeKeys.erase(activeKeys.find(key));
 	}

@@ -1,6 +1,10 @@
 #include "GLFWWindow.h"
 #include <iostream>
 
+double GLFWWindow::prevXpos = 0;
+double GLFWWindow::prevYpos = 0;
+bool GLFWWindow::firstMousePos = true;
+
 const std::unordered_map<int, InputKey> GLFWWindow::keyMap = {
 	{GLFW_KEY_A, KEY_A},
 	{GLFW_KEY_D, KEY_D},
@@ -28,6 +32,7 @@ GLFWWindow::GLFWWindow(const uint32_t w, const uint32_t h, const std::string win
 	glfwSetWindowUserPointer(window, this);
 	glfwSetFramebufferSizeCallback(window, BufferResizeCallback);
 	glfwSetKeyCallback(window, KeyPresseedCallback);
+	glfwSetCursorPosCallback(window, CursorPositionCallback);
 }
 
 GLFWWindow::~GLFWWindow() {
@@ -84,4 +89,20 @@ void GLFWWindow::KeyPresseedCallback(GLFWwindow* window, int key, int scancode, 
 			callback(actualKey->second, actualEvent->second, 1.0f);
 		}
 	}
+}
+
+void GLFWWindow::CursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
+	auto callbacks = reinterpret_cast<GLFWWindow*>(glfwGetWindowUserPointer(window))->callbacks;
+	if (firstMousePos) {
+		prevXpos = xpos;
+		prevYpos = ypos;
+		firstMousePos = false;
+	}
+
+	for (auto callback : callbacks) {
+		callback(MOUSE_X, INSTANT, static_cast<float>(xpos - prevXpos));
+		callback(MOUSE_Y, INSTANT, static_cast<float>(ypos - prevYpos));
+	}
+	prevXpos = xpos;
+	prevYpos = ypos;
 }

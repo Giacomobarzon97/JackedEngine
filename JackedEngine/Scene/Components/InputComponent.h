@@ -24,4 +24,5 @@ private:
 	std::unordered_map<InputKey, std::vector<std::function<void()>>> actionBindings;
 	std::unordered_map<InputKey, std::vector<AxisMapping>> axisBindings;
 	std::set<InputKey> activeKeys;
+	std::set<InputKey> keysToRemoveEndTick;
 };
