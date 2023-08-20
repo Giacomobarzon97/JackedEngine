@@ -10,6 +10,7 @@ std::optional<BaseCameraComponent*> JackedEngine::camera;
 std::unique_ptr<BaseWindow> JackedEngine::window = std::unique_ptr<GLFWWindow>(new GLFWWindow(WINDOW_WIDTH, WINDOW_HEIGHT, APP_NAME));
 std::unique_ptr<BaseBackend> JackedEngine::backend = std::unique_ptr<BaseBackend>(new VulkanBackend(*window));
 Renderer JackedEngine::renderer = Renderer(*backend);
+InputManager JackedEngine::inputManager(*window);
 
 void JackedEngine::MainLoop() {
 	FrameData frameData;
@@ -50,8 +51,8 @@ World& JackedEngine::GetWorld() {
 	return world;
 }
 
-BaseWindow& JackedEngine::GetWindow() {
-	return *window;
+InputManager& JackedEngine::GetInputManager() {
+	return inputManager;
 }
 
 void JackedEngine::SetActiveCamera(BaseCameraComponent& camera) {

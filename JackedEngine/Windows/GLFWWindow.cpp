@@ -81,7 +81,7 @@ void GLFWWindow::KeyPresseedCallback(GLFWwindow* window, int key, int scancode, 
 	auto actualEvent = eventMap.find(action);
 	if (actualKey != keyMap.end() && actualEvent != eventMap.end()) {
 		for (auto callback : callbacks) {
-			callback(actualKey->second, actualEvent->second);
+			callback(actualKey->second, actualEvent->second, 1.0f);
 		}
 	}
 }

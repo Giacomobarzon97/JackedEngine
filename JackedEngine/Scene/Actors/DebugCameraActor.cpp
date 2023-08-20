@@ -7,12 +7,22 @@ DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 {
 	JackedEngine::SetActiveCamera(camera);
 	camera.Translate({ 2, 0, 0 });
-	inputComponent.BindAction(KEY_W, std::bind(&DebugCameraActor::moveForward, this));
-	inputComponent.BindAction(KEY_A, std::bind(&DebugCameraActor::moveLeft, this));
-	inputComponent.BindAction(KEY_S, std::bind(&DebugCameraActor::moveBack, this));
-	inputComponent.BindAction(KEY_D, std::bind(&DebugCameraActor::moveRight, this));
-	inputComponent.BindAction(KEY_Q, std::bind(&DebugCameraActor::moveUp, this));
-	inputComponent.BindAction(KEY_E, std::bind(&DebugCameraActor::moveDown, this));
+
+	JackedEngine::GetInputManager().CreateAxis("Move Laterally");
+	JackedEngine::GetInputManager().AddMappingToaAxis("Move Laterally", KEY_A, 1.0f);
+	JackedEngine::GetInputManager().AddMappingToaAxis("Move Laterally", KEY_D, -1.0f);
+
+	JackedEngine::GetInputManager().CreateAxis("Move Straight");
+	JackedEngine::GetInputManager().AddMappingToaAxis("Move Straight", KEY_W, -1.0f);
+	JackedEngine::GetInputManager().AddMappingToaAxis("Move Straight", KEY_S, 1.0f);
+
+	JackedEngine::GetInputManager().CreateAxis("Move Vertically");
+	JackedEngine::GetInputManager().AddMappingToaAxis("Move Vertically", KEY_Q, -1.0f);
+	JackedEngine::GetInputManager().AddMappingToaAxis("Move Vertically", KEY_E, 1.0f);
+
+	inputComponent.BindAxis("Move Laterally", std::bind(&DebugCameraActor::MoveLaterally, this, std::placeholders::_1));
+	inputComponent.BindAxis("Move Straight", std::bind(&DebugCameraActor::MoveStraight, this, std::placeholders::_1));
+	inputComponent.BindAxis("Move Vertically", std::bind(&DebugCameraActor::MoveVertically, this, std::placeholders::_1));
 }
 
 void DebugCameraActor::Tick(float deltaTime) {
@@ -20,38 +30,20 @@ void DebugCameraActor::Tick(float deltaTime) {
 	this->deltaTime = deltaTime;
 }
 
-void DebugCameraActor::moveLeft() {
+void DebugCameraActor::MoveLaterally(float scaleValue) {
 	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();	
 	glm::vec3 direction{ cameraRotationMatrix[0][2], cameraRotationMatrix[1][2], cameraRotationMatrix[2][2] };
-	camera.Translate(direction * deltaTime * movementSpeed);
+	camera.Translate(direction * movementSpeed * scaleValue);
 }
 
-void DebugCameraActor::moveRight() {
-	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
-	glm::vec3 direction{ cameraRotationMatrix[0][2], cameraRotationMatrix[1][2], cameraRotationMatrix[2][2] };
-	camera.Translate(direction * deltaTime * -movementSpeed);
-}
-
-void DebugCameraActor::moveForward() {
+void DebugCameraActor::MoveStraight(float scaleValue) {
 	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
 	glm::vec3 direction{ cameraRotationMatrix[0][0], cameraRotationMatrix[1][0], cameraRotationMatrix[2][0] };
-	camera.Translate(direction * deltaTime * -movementSpeed);
+	camera.Translate(direction * movementSpeed * scaleValue);
 }
 
-void DebugCameraActor::moveBack() {
-	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
-	glm::vec3 direction{ cameraRotationMatrix[0][0], cameraRotationMatrix[1][0], cameraRotationMatrix[2][0] };
-	camera.Translate(direction * deltaTime * movementSpeed);
-}
-
-void DebugCameraActor::moveUp() {
+void DebugCameraActor::MoveVertically(float scaleValue) {
 	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
 	glm::vec3 direction{ cameraRotationMatrix[0][1], cameraRotationMatrix[1][1], cameraRotationMatrix[2][1] };
-	camera.Translate(direction * deltaTime * movementSpeed);
-}
-
-void DebugCameraActor::moveDown() {
-	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
-	glm::vec3 direction{ cameraRotationMatrix[0][1], cameraRotationMatrix[1][1], cameraRotationMatrix[2][1] };
-	camera.Translate(direction * deltaTime * -movementSpeed);
+	camera.Translate(direction * movementSpeed * scaleValue);
 }

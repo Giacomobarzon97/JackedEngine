@@ -30,6 +30,8 @@
     <ClCompile Include="Backends\Vulkan\Samplers\BaseSampler.cpp" />
     <ClCompile Include="Backends\Vulkan\Samplers\LinearRepeatSampler.cpp" />
     <ClCompile Include="Backends\Vulkan\VulkanBackend.cpp" />
+    <ClCompile Include="Input\InputConstants.cpp" />
+    <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="JackedEngine.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
@@ -80,7 +82,6 @@
     <ClCompile Include="Utils\Translator.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
-    <ClCompile Include="Windows\Input\InputConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Backends\BackendTypes.h" />
@@ -94,6 +95,8 @@
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUModel.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\BaseSampler.h" />
     <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h" />
+    <ClInclude Include="Input\InputConstants.h" />
+    <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="JackedEngine.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RenderTypes.h" />
@@ -143,7 +146,6 @@
     <ClInclude Include="Utils\Translator.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />
-    <ClInclude Include="Windows\Input\InputConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backends\Shaders\object.frag" />

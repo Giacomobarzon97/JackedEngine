@@ -6,6 +6,7 @@
 #include "Windows/BaseWindow.h"
 #include "Backends/BaseBackend.h"
 #include "Rendering/Renderer.h"
+#include "Input/InputManager.h"
 
 class JackedEngine {
 public:
@@ -17,7 +18,7 @@ public:
 	static void MainLoop();
 
 	static Renderer& GetRenderer();
-	static BaseWindow& GetWindow();
+	static InputManager& GetInputManager();
 	static World& GetWorld();
 	static void SetActiveCamera(BaseCameraComponent& camera);
 
@@ -32,4 +33,5 @@ private:
 	static std::unique_ptr <BaseWindow> window;
 	static std::unique_ptr <BaseBackend> backend;
 	static Renderer renderer;
+	static InputManager inputManager;
 };

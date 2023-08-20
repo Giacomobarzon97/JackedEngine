@@ -180,6 +180,12 @@
     <ClCompile Include="Utils\Translator.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Input\InputConstants.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -360,6 +366,12 @@
     <ClInclude Include="Utils\Translator.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Input\InputConstants.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -448,6 +460,9 @@
     </Filter>
     <Filter Include="Scene\Actors">
       <UniqueIdentifier>{6e3ad04d-b376-4dd5-ae14-0d9000db3527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{47bce5cf-2a22-4413-b2f6-13ddabad61d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

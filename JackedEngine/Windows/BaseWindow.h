@@ -3,7 +3,7 @@
 #include <string>
 #include <Windows.h>
 #include <functional>
-#include "Windows/Input/InputConstants.h"
+#include "Input/InputConstants.h"
 
 class BaseWindow {
 public:
@@ -12,7 +12,7 @@ public:
 	BaseWindow &operator=(BaseWindow &) = delete;
 
 	const std::string GetWindowName() const;
-	void BindCallback(std::function<void(InputKey, InputEvent)> binding);
+	void BindCallback(std::function<void(InputKey, InputEvent, float)> binding);
 
 	virtual ~BaseWindow() = 0;
 	virtual const bool ShouldClose() const = 0;
@@ -24,7 +24,7 @@ public:
 	virtual void WaitWhileMinimized() const = 0;
 
 protected:
-	std::vector<std::function<void(InputKey, InputEvent)>> callbacks;
+	std::vector<std::function<void(InputKey, InputEvent, float)>> callbacks;
 
 	const uint32_t width;
 	const uint32_t height;

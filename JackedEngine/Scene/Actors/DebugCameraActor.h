@@ -10,12 +10,9 @@ public:
 
 	virtual void Tick(float deltaTime) override;
 
-	void moveLeft();
-	void moveRight();
-	void moveForward();
-	void moveBack();
-	void moveUp();
-	void moveDown();
+	void MoveLaterally(float scaleValue);
+	void MoveStraight(float scaleValue);
+	void MoveVertically(float scaleValue);
 
 private:
 	PerspectiveCamera& camera;

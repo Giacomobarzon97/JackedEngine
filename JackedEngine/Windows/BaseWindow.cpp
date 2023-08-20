@@ -12,6 +12,6 @@ const std::string BaseWindow::GetWindowName() const{
 	return windowName;
 }
 
-void BaseWindow::BindCallback(std::function<void(InputKey, InputEvent)> binding) {
+void BaseWindow::BindCallback(std::function<void(InputKey, InputEvent, float)> binding) {
 	callbacks.push_back(binding);
 }
