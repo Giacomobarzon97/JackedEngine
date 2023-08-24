@@ -21,4 +21,5 @@ private:
 	InputComponent& inputComponent;
 	float movementSpeed = 1;
 	float rotationSpeed = 100;
+	float maxVerticalRotation = 89;
 };

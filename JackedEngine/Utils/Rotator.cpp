@@ -16,6 +16,30 @@ void Rotator::SetRotation(glm::vec3 rotation) {
 	this->rotation = {glm::radians(rotation.x), glm::radians(rotation.y), glm::radians(rotation.z)};
 }
 
+void Rotator::SetPitch(float value) {
+	rotation.x = value;
+}
+
+void Rotator::SetYaw(float value) {
+	rotation.y = value;
+}
+
+void Rotator::SetRoll(float value) {
+	rotation.z = value;
+}
+
+float Rotator::GetPitch() {
+	return rotation.x;
+}
+
+float Rotator::GetYaw() {
+	return rotation.y;
+}
+
+float Rotator::GetRoll() {
+	return rotation.z;
+}
+
 glm::mat4 Rotator::GetRotationMatrix() {
 	glm::mat4 tmpRotMat;
 	glm::mat4 rotMat(1);

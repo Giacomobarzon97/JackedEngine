@@ -1,5 +1,4 @@
 #include "GLFWWindow.h"
-#include <iostream>
 
 double GLFWWindow::prevXpos = 0;
 double GLFWWindow::prevYpos = 0;
@@ -30,6 +29,7 @@ GLFWWindow::GLFWWindow(const uint32_t w, const uint32_t h, const std::string win
 	window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
 
 	glfwSetWindowUserPointer(window, this);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetFramebufferSizeCallback(window, BufferResizeCallback);
 	glfwSetKeyCallback(window, KeyPresseedCallback);
 	glfwSetCursorPosCallback(window, CursorPositionCallback);

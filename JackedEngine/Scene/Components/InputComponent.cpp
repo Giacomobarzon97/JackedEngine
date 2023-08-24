@@ -1,5 +1,4 @@
 #include "InputComponent.h"
-#include <iostream>
 
 InputComponent::InputComponent(ComponentInitializer initializer) :
 	BaseComponent(initializer)

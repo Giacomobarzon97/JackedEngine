@@ -1,5 +1,4 @@
 #include "DebugCameraActor.h"
-#include <iostream>
 
 DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 	BaseActor(initializer),
