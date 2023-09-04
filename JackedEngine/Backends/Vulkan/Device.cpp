@@ -106,18 +106,12 @@ bool Device::checkValidationLayerSupport() {
 	vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
 
 	for (const char* layerName : validationLayers) {
-		bool layerFound = false;
-
 		for (const auto& layerProperties : availableLayers) {
 			if (strcmp(layerName, layerProperties.layerName) == 0) {
-				layerFound = true;
-				break;
+				return true;
 			}
 		}
-
-		if (!layerFound) {
-			return false;
-		}
+		return false;
 	}
 
 	return true;
