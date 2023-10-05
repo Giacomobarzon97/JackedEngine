@@ -1,34 +1,34 @@
 #pragma once
 #include <string>
 
-class BaseResourceReference {
+class BaseBackendResourceReference {
 public:
-	BaseResourceReference(const std::string id);
+	BaseBackendResourceReference(const std::string id);
 	const std::string GetId() const;
 private:
 	std::string id;
 };
 
-class PipelineReference : public BaseResourceReference {
+class BackendPipelineReference : public BaseBackendResourceReference {
 public:
-	PipelineReference();
-	PipelineReference(const std::string id);
+	BackendPipelineReference();
+	BackendPipelineReference(const std::string id);
 };
 
-class ModelReference : public BaseResourceReference {
+class BackendModelReference : public BaseBackendResourceReference {
 public:
-	ModelReference();
-	ModelReference(const std::string id);
+	BackendModelReference();
+	BackendModelReference(const std::string id);
 };
 
-class ImageReference : public BaseResourceReference {
+class BackendImageReference : public BaseBackendResourceReference {
 public:
-	ImageReference();
-	ImageReference(const std::string id);
+	BackendImageReference();
+	BackendImageReference(const std::string id);
 };
 
-class UniformReference : public BaseResourceReference {
+class BackendUniformReference : public BaseBackendResourceReference {
 public:
-	UniformReference();
-	UniformReference(const std::string id);
+	BackendUniformReference();
+	BackendUniformReference(const std::string id);
 };

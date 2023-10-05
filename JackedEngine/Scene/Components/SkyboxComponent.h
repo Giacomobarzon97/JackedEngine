@@ -17,7 +17,7 @@ public:
 
 private:
 	MeshUniformData componentData;
-	UniformReference uniformReference;
-	ModelReference modelRef;
+	BackendUniformReference uniformReference;
+	BackendModelReference modelRef;
 	std::optional<const CubemapMaterial*> material;
 };

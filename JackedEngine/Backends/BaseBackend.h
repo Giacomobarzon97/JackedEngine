@@ -33,17 +33,17 @@ class BaseBackend {
 public:
 	virtual ~BaseBackend();
 
-	virtual const PipelineReference CreatePipeline(PipelineCreateInfo createInfo) = 0;
-	virtual const ModelReference CreateModel(CPUBaseModel& model) = 0;
-	virtual const ImageReference CreateImage(CPUImage& image) = 0;
-	virtual const UniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) = 0;
+	virtual const BackendPipelineReference CreatePipeline(PipelineCreateInfo createInfo) = 0;
+	virtual const BackendModelReference CreateModel(CPUBaseModel& model) = 0;
+	virtual const BackendImageReference CreateImage(CPUImage& image) = 0;
+	virtual const BackendUniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) = 0;
 
-	virtual void UpdateUniform(const UniformReference uniform, const void* uniformData) = 0;
+	virtual void UpdateUniform(const BackendUniformReference uniform, const void* uniformData) = 0;
 
-	virtual void BindPipeline(const PipelineReference shader) = 0;
-	virtual void BindModel(const ModelReference model) = 0;
-	virtual void BindImage(const uint32_t location, const ImageReference image) = 0;
-	virtual void BindUniform(const uint32_t location, const UniformReference uniform) = 0;
+	virtual void BindPipeline(const BackendPipelineReference shader) = 0;
+	virtual void BindModel(const BackendModelReference model) = 0;
+	virtual void BindImage(const uint32_t location, const BackendImageReference image) = 0;
+	virtual void BindUniform(const uint32_t location, const BackendUniformReference uniform) = 0;
 
 	virtual void BeginFrame() = 0;
 	virtual void Draw() = 0;

@@ -39,15 +39,15 @@ Renderer::Renderer(BaseBackend& backend) :
 
 }
 
-const ModelReference Renderer::CreateModel(CPUBaseModel& model) {
+const BackendModelReference Renderer::CreateModel(CPUBaseModel& model) {
 	return backend.CreateModel(model);
 }
 
-const ImageReference Renderer::CreateImage(CPUImage& image) {
+const BackendImageReference Renderer::CreateImage(CPUImage& image) {
 	return backend.CreateImage(image);
 }
 
-const UniformReference Renderer::CreateMeshUniform(std::string name) {
+const BackendUniformReference Renderer::CreateMeshUniform(std::string name) {
 	return backend.CreateUniform(name, sizeof(MeshUniformData));
 }
 
@@ -59,11 +59,11 @@ void Renderer::UpdateFrameData(const FrameData& frameData) {
 	backend.UpdateUniform(frameUniform, &frameData);
 }
 
-void Renderer::UpdateMeshUniformData(const UniformReference uniformReference, const MeshUniformData& meshUniformData) {
+void Renderer::UpdateMeshUniformData(const BackendUniformReference uniformReference, const MeshUniformData& meshUniformData) {
 	backend.UpdateUniform(uniformReference, &meshUniformData);
 }
 
-void Renderer::Draw(const ModelReference modelReference, const ImageReference imageReference, const UniformReference uniformReference, const ShaderType shaderType) {
+void Renderer::Draw(const BackendModelReference modelReference, const BackendImageReference imageReference, const BackendUniformReference uniformReference, const ShaderType shaderType) {
 	backend.BindPipeline(pipelineMap[shaderType]);
 	backend.BindModel(modelReference);
 	backend.BindUniform(0, frameUniform);

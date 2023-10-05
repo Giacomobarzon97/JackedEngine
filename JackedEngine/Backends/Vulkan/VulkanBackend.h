@@ -16,17 +16,17 @@ public:
 
 	VulkanBackend& operator=(VulkanBackend&) = delete;
 
-	virtual const PipelineReference CreatePipeline(PipelineCreateInfo createInfo) override;
-	virtual const ModelReference CreateModel(CPUBaseModel& model) override;
-	virtual const ImageReference CreateImage(CPUImage& image) override;
-	virtual const UniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) override;
+	virtual const BackendPipelineReference CreatePipeline(PipelineCreateInfo createInfo) override;
+	virtual const BackendModelReference CreateModel(CPUBaseModel& model) override;
+	virtual const BackendImageReference CreateImage(CPUImage& image) override;
+	virtual const BackendUniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) override;
 
-	virtual void BindPipeline(const PipelineReference shader) override;
-	virtual void BindModel(const ModelReference model) override;
-	virtual void BindImage(const uint32_t location, const ImageReference image) override;
-	virtual void BindUniform(const uint32_t location, const UniformReference uniform) override;
+	virtual void BindPipeline(const BackendPipelineReference shader) override;
+	virtual void BindModel(const BackendModelReference model) override;
+	virtual void BindImage(const uint32_t location, const BackendImageReference image) override;
+	virtual void BindUniform(const uint32_t location, const BackendUniformReference uniform) override;
 
-	virtual void UpdateUniform(const UniformReference uniform, const void* uniformData) override;
+	virtual void UpdateUniform(const BackendUniformReference uniform, const void* uniformData) override;
 
 	virtual void BeginFrame() override;
 	virtual void Draw() override;

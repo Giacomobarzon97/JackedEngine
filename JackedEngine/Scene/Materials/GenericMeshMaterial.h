@@ -6,8 +6,8 @@ class GenericMeshMaterial : public BaseMaterial{
 public:
 	GenericMeshMaterial(const std::string diffuseTexturePath);
 
-	virtual const ImageReference GetDiffuseTexture() const override;
+	virtual const BackendImageReference GetDiffuseTexture() const override;
 private:
-	ImageReference diffuseTextureRef;
+	BackendImageReference diffuseTextureRef;
 
 };

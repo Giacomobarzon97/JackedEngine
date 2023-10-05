@@ -5,5 +5,5 @@ class BaseMaterial {
 public:
 	virtual ~BaseMaterial();
 
-	virtual const ImageReference GetDiffuseTexture() const = 0;
+	virtual const BackendImageReference GetDiffuseTexture() const = 0;
 };

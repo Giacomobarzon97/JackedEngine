@@ -98,7 +98,7 @@ VulkanBackend::~VulkanBackend() {
 	}
 }
 
-const PipelineReference VulkanBackend::CreatePipeline(PipelineCreateInfo createInfo) {
+const BackendPipelineReference VulkanBackend::CreatePipeline(PipelineCreateInfo createInfo) {
 	if (pipelineMap.find(createInfo.id) != pipelineMap.end()) {
 		throw std::runtime_error("Pipeline already created with the same Id");
 	}
@@ -137,18 +137,18 @@ const PipelineReference VulkanBackend::CreatePipeline(PipelineCreateInfo createI
 		vertexFormats
 	);
 
-	return PipelineReference(createInfo.id);
+	return BackendPipelineReference(createInfo.id);
 }
 
-const ModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
+const BackendModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
 	if (modelMap.find(model.GetId()) == modelMap.end()) {
 		model.LoadData();
 		modelMap[model.GetId()] = new GPUModel(allocationFactory, model);
 	}
-	return ModelReference(model.GetId());
+	return BackendModelReference(model.GetId());
 }
 
-const ImageReference VulkanBackend::CreateImage(CPUImage& cpuImage) {
+const BackendImageReference VulkanBackend::CreateImage(CPUImage& cpuImage) {
 	if (imageMap.find(cpuImage.GetId()) == imageMap.end()) {
 		cpuImage.LoadData();
 		imageMap[cpuImage.GetId()] = new GPUImage(allocationFactory, cpuImage);
@@ -164,10 +164,10 @@ const ImageReference VulkanBackend::CreateImage(CPUImage& cpuImage) {
 		);
 	}
 
-	return ImageReference(cpuImage.GetId());
+	return BackendImageReference(cpuImage.GetId());
 }
 
-const UniformReference VulkanBackend::CreateUniform(std::string uniformId, const uint32_t uniformSize) {
+const BackendUniformReference VulkanBackend::CreateUniform(std::string uniformId, const uint32_t uniformSize) {
 	if (uniformDescriptorPoolMap.find(uniformId) != uniformDescriptorPoolMap.end()) {
 		throw std::runtime_error("Uniform already created with the same Id");
 	}
@@ -184,38 +184,38 @@ const UniformReference VulkanBackend::CreateUniform(std::string uniformId, const
 		);
 	}
 
-	return UniformReference(uniformId);
+	return BackendUniformReference(uniformId);
 }
 
-void VulkanBackend::BindPipeline(const PipelineReference shader) {
+void VulkanBackend::BindPipeline(const BackendPipelineReference shader) {
 	if (pipelineMap.find(shader.GetId()) == pipelineMap.end()) {
 		throw std::runtime_error("Pipeline does not exist");
 	}
 	commandBuffers[currentFrame]->BindPipeline(*pipelineMap[shader.GetId()]);
 }
 
-void VulkanBackend::UpdateUniform(const UniformReference uniform, const void* uniformData) {
+void VulkanBackend::UpdateUniform(const BackendUniformReference uniform, const void* uniformData) {
 	if (uniformDescriptorSetsMap.find(uniform.GetId()) == uniformDescriptorSetsMap.end()) {
 		throw std::runtime_error("Uniform does not exist");
 	}
 	uniformDescriptorSetsMap[uniform.GetId()][currentFrame]->UpdateUniform(uniformData);
 }
 
-void VulkanBackend::BindModel(const ModelReference model) {
+void VulkanBackend::BindModel(const BackendModelReference model) {
 	if (modelMap.find(model.GetId()) == modelMap.end()) {
 		throw std::runtime_error("Model does not exist");
 	}
 	commandBuffers[currentFrame]->BindModel(*modelMap[model.GetId()]);
 }
 
-void VulkanBackend::BindImage(const uint32_t location, const ImageReference image) {
+void VulkanBackend::BindImage(const uint32_t location, const BackendImageReference image) {
 	if (imageDescriptorSetsMap.find(image.GetId()) == imageDescriptorSetsMap.end()) {
 		throw std::runtime_error("Image does not exist");
 	}
 	commandBuffers[currentFrame]->BindDescriptorSet(*imageDescriptorSetsMap[image.GetId()], location);
 }
 
-void VulkanBackend::BindUniform(const uint32_t location, const UniformReference uniform) {
+void VulkanBackend::BindUniform(const uint32_t location, const BackendUniformReference uniform) {
 	if (uniformDescriptorSetsMap.find(uniform.GetId()) == uniformDescriptorSetsMap.end()) {
 		throw std::runtime_error("Uniform does not exist");
 	}

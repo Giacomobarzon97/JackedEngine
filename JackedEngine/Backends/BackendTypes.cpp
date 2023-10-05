@@ -1,41 +1,41 @@
 #include "BackendTypes.h"
 
-BaseResourceReference::BaseResourceReference(const std::string id) :
+BaseBackendResourceReference::BaseBackendResourceReference(const std::string id) :
 	id(id)
 {}
 
-const std::string BaseResourceReference::GetId() const {
+const std::string BaseBackendResourceReference::GetId() const {
 	return id;
 }
 
-PipelineReference::PipelineReference() :
-	BaseResourceReference("")
+BackendPipelineReference::BackendPipelineReference() :
+	BaseBackendResourceReference("")
 {}
 
-PipelineReference::PipelineReference(const std::string id) :
-	BaseResourceReference(id)
+BackendPipelineReference::BackendPipelineReference(const std::string id) :
+	BaseBackendResourceReference(id)
 {}
 
-ModelReference::ModelReference() :
-	BaseResourceReference("")
+BackendModelReference::BackendModelReference() :
+	BaseBackendResourceReference("")
 {}
 
-ModelReference::ModelReference(const std::string id) :
-	BaseResourceReference(id)
+BackendModelReference::BackendModelReference(const std::string id) :
+	BaseBackendResourceReference(id)
 {}
 
-ImageReference::ImageReference() :
-	BaseResourceReference("")
+BackendImageReference::BackendImageReference() :
+	BaseBackendResourceReference("")
 {}
 
-ImageReference::ImageReference(const std::string id) :
-	BaseResourceReference(id)
+BackendImageReference::BackendImageReference(const std::string id) :
+	BaseBackendResourceReference(id)
 {}
 
-UniformReference::UniformReference(const std::string id) :
-	BaseResourceReference(id)
+BackendUniformReference::BackendUniformReference(const std::string id) :
+	BaseBackendResourceReference(id)
 {}
 
-UniformReference::UniformReference() :
-	BaseResourceReference("")
+BackendUniformReference::BackendUniformReference() :
+	BaseBackendResourceReference("")
 {}

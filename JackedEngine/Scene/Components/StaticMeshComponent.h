@@ -18,7 +18,7 @@ public:
 
 private:
 	MeshUniformData componentData;
-	UniformReference uniformReference;
+	BackendUniformReference uniformReference;
 	std::optional<const GenericMeshMaterial*> material;
-	std::optional<ModelReference> modelRef;
+	std::optional<BackendModelReference> modelRef;
 };
