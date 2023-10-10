@@ -18,7 +18,7 @@ void InputComponent::Tick(double deltaTime) {
 			actionBinding();
 		}
 		for (auto axisBinding : axisBindings[activeKey]) {
-			axisBinding.binding(axisBinding.axisScaleValue * axisBinding.tickScaleValue * deltaTime);
+			axisBinding.binding(axisBinding.axisScaleValue * axisBinding.tickScaleValue * static_cast<float>(deltaTime));
 		}
 	}
 	std::set<InputKey> tmp = keysToRemoveEndTick;

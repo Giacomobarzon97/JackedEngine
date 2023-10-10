@@ -18,7 +18,7 @@ void BaseActor::Init() {
 	}
 }
 
-void BaseActor::Tick(float deltaTime) {
+void BaseActor::Tick(double deltaTime) {
 	for (unsigned int i = 0; i < components.size(); i++) {
 		components[i]->Tick(deltaTime);
 	}

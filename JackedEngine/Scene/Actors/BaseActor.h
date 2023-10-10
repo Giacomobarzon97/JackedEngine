@@ -13,7 +13,7 @@ public:
 	virtual ~BaseActor();
 
 	virtual void Init();
-	virtual void Tick(float deltaTime);
+	virtual void Tick(double deltaTime);
 
 	std::string GetName();
 

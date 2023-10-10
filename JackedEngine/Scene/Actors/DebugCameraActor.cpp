@@ -32,7 +32,7 @@ DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 	inputComponent.BindAxis("Rotate Vertically", std::bind(&DebugCameraActor::RotateVertically, this, std::placeholders::_1));
 }
 
-void DebugCameraActor::Tick(float deltaTime) {
+void DebugCameraActor::Tick(double deltaTime) {
 	BaseActor::Tick(deltaTime);
 }
 

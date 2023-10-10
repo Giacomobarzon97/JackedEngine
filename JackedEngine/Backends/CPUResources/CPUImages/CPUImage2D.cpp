@@ -24,7 +24,7 @@ const std::string CPUImage2D::GetId() const {
 	return id;
 }
 
-const const void* CPUImage2D::GetPixelData() const {
+const void* CPUImage2D::GetPixelData() const {
 	return pixelData;
 }
 

@@ -236,7 +236,7 @@ void VulkanBackend::BindImage2D(const uint32_t location, const BackendImage2DRef
 
 void VulkanBackend::BindCubemap(const uint32_t location, const BackendCubemapReference image) {
 	if (imageDescriptorSetsMap.find(image.GetId()) == imageDescriptorSetsMap.end()) {
-		throw std::runtime_error("Image does not exist");
+		throw std::runtime_error("Cubemap does not exist");
 	}
 	commandBuffers[currentFrame]->BindDescriptorSet(*imageDescriptorSetsMap[image.GetId()], location);
 }

@@ -8,7 +8,7 @@ class DebugCameraActor : public BaseActor{
 public:
 	DebugCameraActor(ActorInitializer initializer);
 
-	virtual void Tick(float deltaTime) override;
+	virtual void Tick(double deltaTime) override;
 
 	void MoveLaterally(float scaleValue);
 	void MoveStraight(float scaleValue);

@@ -11,7 +11,7 @@ VikingRoomActor::VikingRoomActor(ActorInitializer initializer) :
 	vkingRoom.Rotate({ 90, 0, -90 });
 }
 
-void VikingRoomActor::Tick(float deltaTime) {
+void VikingRoomActor::Tick(double deltaTime) {
 	BaseActor::Tick(deltaTime);
 	vkingRoom.Rotate({ 0, 0, 10 * deltaTime });
 }
