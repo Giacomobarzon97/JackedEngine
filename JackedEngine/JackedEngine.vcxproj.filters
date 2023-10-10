@@ -73,9 +73,6 @@
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\BaseBufferAllocation.cpp">
-      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
-    </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.cpp">
       <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
     </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.cpp">
-      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp">
       <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
@@ -186,6 +180,24 @@
     <ClCompile Include="Input\InputManager.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\BaseStorageBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\StorageBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\VMAStorageBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\StorageBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\IndexBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\IndexBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\BaseVertexBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\VertexBufferAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\VMAVertexBufferAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\VertexBufferAllocations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -260,9 +272,6 @@
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\BaseBufferAllocation.h">
-      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
-    </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.h">
       <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
     </ClInclude>
@@ -292,9 +301,6 @@
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.h">
-      <Filter>Backends\Vulkan\Memory\Allocations\BufferAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.h">
       <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
@@ -372,6 +378,24 @@
     <ClInclude Include="Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\BaseStorageBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\StorageBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\VMAStorageBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\StorageBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\BaseIndexBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\IndexBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\VMAIndexBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\IndexBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\BaseVertexBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\VertexBufferAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\VMAVertexBufferAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\VertexBufferAllocations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -428,9 +452,6 @@
     <Filter Include="Backends\Vulkan\Memory\Allocations">
       <UniqueIdentifier>{c2e57072-cb49-465a-9cf6-82b571967d13}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Backends\Vulkan\Memory\Allocations\BufferAllocations">
-      <UniqueIdentifier>{33e9abbb-3b7d-4559-8443-c3f01cf85f95}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Backends\Vulkan\Memory\Allocations\ImageAllocations">
       <UniqueIdentifier>{72d591a4-53be-4150-bcf9-f9f858b86e9f}</UniqueIdentifier>
     </Filter>
@@ -463,6 +484,15 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{47bce5cf-2a22-4413-b2f6-13ddabad61d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations">
+      <UniqueIdentifier>{4280f098-1d4f-4b99-acd2-e3ccbbfe852e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations">
+      <UniqueIdentifier>{33e9abbb-3b7d-4559-8443-c3f01cf85f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations">
+      <UniqueIdentifier>{400a512e-b5fd-48b5-83c6-64264dc7635f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

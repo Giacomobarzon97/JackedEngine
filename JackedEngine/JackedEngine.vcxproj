@@ -21,6 +21,12 @@
   <ItemGroup>
     <ClCompile Include="Backends\BackendTypes.cpp" />
     <ClCompile Include="Backends\BaseBackend.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\BaseStorageBufferAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\VMAStorageBufferAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\BaseVertexBufferAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\VMAVertexBufferAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Pipelines\Pipeline.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUBaseModel.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUCubeModel.cpp" />
@@ -63,8 +69,6 @@
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.cpp" />
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\BaseBufferAllocation.cpp" />
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUImage.cpp" />
@@ -86,6 +90,12 @@
   <ItemGroup>
     <ClInclude Include="Backends\BackendTypes.h" />
     <ClInclude Include="Backends\BaseBackend.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\BaseIndexBufferAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\VMAIndexBufferAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\BaseStorageBufferAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\VMAStorageBufferAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\BaseVertexBufferAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\VMAVertexBufferAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Pipelines\Pipeline.h" />
     <ClInclude Include="Backends\Vulkan\VulkanBackend.h" />
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUBaseModel.h" />
@@ -127,8 +137,6 @@
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.h" />
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\BaseBufferAllocation.h" />
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\BufferAllocations\VMABufferAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h" />
     <ClInclude Include="Backends\CPUResources\CPUImage.h" />

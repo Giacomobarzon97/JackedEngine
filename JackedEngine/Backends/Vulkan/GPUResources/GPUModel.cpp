@@ -7,17 +7,15 @@ GPUModel::GPUModel(const BaseAllocationFactory& allocationFactory, const CPUBase
 	bufferAllocations.resize(data.vertexData.size());
 
 	for (unsigned int i = 0; i < data.vertexData.size(); i++) {
-		bufferAllocations[i] = allocationFactory.CreateBufferAllocation(
+		bufferAllocations[i] = allocationFactory.CreateVertexBufferAllocation(
 			data.vertexData[i].data,
-			data.vertexData[i].size,
-			VK_BUFFER_USAGE_VERTEX_BUFFER_BIT
+			data.vertexData[i].size
 		);
 	}
 
-	indexBufferAllocation = allocationFactory.CreateBufferAllocation(
+	indexBufferAllocation = allocationFactory.CreateIndexBufferAllocation(
 		data.indexData.data,
-		data.indexData.size,
-		VK_BUFFER_USAGE_INDEX_BUFFER_BIT
+		data.indexData.size
 	);
 
 	nVertices = data.numberOfIndices;
@@ -40,7 +38,7 @@ const std::vector<VkBuffer> GPUModel::GetBuffers() const{
 	return buffers;
 }
 
-const BaseBufferAllocation& GPUModel::GetIndexBufferAllocation() const {
+const BaseIndexBufferAllocation& GPUModel::GetIndexBufferAllocation() const {
 	return *indexBufferAllocation;
 }
 

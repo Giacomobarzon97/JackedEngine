@@ -1,6 +1,6 @@
-#include "VMABufferAllocation.h"
+#include "VMAVertexBufferAllocation.h"
 
-VMABufferAllocation::VMABufferAllocation(const VMAAllocator& allocator, const void* data, const uint32_t dataSize, VkBufferUsageFlags usage) :
+VMAVertexBufferAllocation::VMAVertexBufferAllocation(const VMAAllocator& allocator, const void* data, const uint32_t dataSize) :
 	allocator(allocator)
 {
 	VkBuffer stagingBuffer;
@@ -11,11 +11,11 @@ VMABufferAllocation::VMABufferAllocation(const VMAAllocator& allocator, const vo
 	allocator.MapMemory(stagingAllocation, stagingMemLoc);
 	memcpy(stagingMemLoc, data, dataSize);
 	allocator.UnMapMemory(stagingAllocation);
-	allocator.CreateBuffer(buffer, allocation, dataSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT | usage, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	allocator.CreateBuffer(buffer, allocation, dataSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 	allocator.CopyBuffer(stagingBuffer, buffer, dataSize);
 	allocator.DestroyBuffer(stagingBuffer, stagingAllocation);
 }
 
-VMABufferAllocation::~VMABufferAllocation() {
+VMAVertexBufferAllocation::~VMAVertexBufferAllocation() {
 	allocator.DestroyBuffer(buffer, allocation);
 }

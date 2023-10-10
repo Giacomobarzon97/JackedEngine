@@ -6,8 +6,12 @@ VMAAllocationFactory::VMAAllocationFactory(const Device& device) :
 
 VMAAllocationFactory::~VMAAllocationFactory(){}
 
-const VMABufferAllocation* VMAAllocationFactory::CreateBufferAllocation(const void* data, const uint32_t dataSize, VkBufferUsageFlags usage) const {
-	return new VMABufferAllocation(allocator, data, dataSize, usage);
+const VMAVertexBufferAllocation* VMAAllocationFactory::CreateVertexBufferAllocation(const void* data, const uint32_t dataSize) const {
+	return new VMAVertexBufferAllocation(allocator, data, dataSize);
+}
+
+const VMAIndexBufferAllocation* VMAAllocationFactory::CreateIndexBufferAllocation(const void* data, const uint32_t dataSize) const {
+	return new VMAIndexBufferAllocation(allocator, data, dataSize);
 }
 
 const VMAUniformAllocation* VMAAllocationFactory::CreateUniformAllocation(const uint32_t bufferSize) const {
