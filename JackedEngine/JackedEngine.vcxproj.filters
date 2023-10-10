@@ -28,9 +28,6 @@
     <ClCompile Include="Scene\Components\Cameras\PerspectiveCamera.cpp">
       <Filter>Scene\Components\Cameras</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\CPUResources\CPUImage.cpp">
-      <Filter>Backends\CPUResources</Filter>
-    </ClCompile>
     <ClCompile Include="Backends\CPUResources\CPUModels\CPUBaseModel.cpp">
       <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClCompile>
@@ -55,9 +52,6 @@
     <ClCompile Include="Backends\Vulkan\Samplers\LinearRepeatSampler.cpp">
       <Filter>Backends\Vulkan\Samplers</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImage.cpp">
-      <Filter>Backends\Vulkan\GPUResources</Filter>
-    </ClCompile>
     <ClCompile Include="Backends\Vulkan\GPUResources\GPUModel.cpp">
       <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClCompile>
@@ -73,9 +67,6 @@
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.cpp">
-      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
-    </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.cpp">
       <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
     </ClCompile>
@@ -88,12 +79,6 @@
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
-    </ClCompile>
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
@@ -102,9 +87,6 @@
     </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
-    </ClCompile>
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp">
-      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
     </ClCompile>
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.cpp">
       <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
@@ -198,6 +180,42 @@
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\VMAVertexBufferAllocation.cpp">
       <Filter>Backends\Vulkan\Memory\Allocations\VertexBufferAllocations</Filter>
     </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\BaseCubemapAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\CubemapAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\VMACubemapAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\CubemapAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\CPUResources\CPUImages\CPUBaseImage.cpp">
+      <Filter>Backends\CPUResources\CPUImages</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\CPUResources\CPUImages\CPUImage2D.cpp">
+      <Filter>Backends\CPUResources\CPUImages</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\CPUResources\CPUImages\CPUCubemap.cpp">
+      <Filter>Backends\CPUResources\CPUImages</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\BaseImage2DAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\Image2DAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\VMAImage2DAllocation.cpp">
+      <Filter>Backends\Vulkan\Memory\Allocations\Image2DAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUCubemap.cpp">
+      <Filter>Backends\Vulkan\GPUResources\GPUImages</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUImage2D.cpp">
+      <Filter>Backends\Vulkan\GPUResources\GPUImages</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUBaseImage.cpp">
+      <Filter>Backends\Vulkan\GPUResources\GPUImages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -227,9 +245,6 @@
     <ClInclude Include="Scene\Components\Cameras\PerspectiveCamera.h">
       <Filter>Scene\Components\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\CPUResources\CPUImage.h">
-      <Filter>Backends\CPUResources</Filter>
-    </ClInclude>
     <ClInclude Include="Backends\CPUResources\CPUModels\CPUBaseModel.h">
       <Filter>Backends\CPUResources\CPUModels</Filter>
     </ClInclude>
@@ -254,9 +269,6 @@
     <ClInclude Include="Backends\Vulkan\Samplers\LinearRepeatSampler.h">
       <Filter>Backends\Vulkan\Samplers</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImage.h">
-      <Filter>Backends\Vulkan\GPUResources</Filter>
-    </ClInclude>
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUModel.h">
       <Filter>Backends\Vulkan\GPUResources</Filter>
     </ClInclude>
@@ -272,9 +284,6 @@
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.h">
-      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
-    </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.h">
       <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
     </ClInclude>
@@ -287,12 +296,6 @@
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\BaseDescriptorSet.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h">
-      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
-    </ClInclude>
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
@@ -301,9 +304,6 @@
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h">
       <Filter>Backends\Vulkan\Memory\Allocators</Filter>
-    </ClInclude>
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.h">
-      <Filter>Backends\Vulkan\Memory\Allocations\ImageAllocations</Filter>
     </ClInclude>
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.h">
       <Filter>Backends\Vulkan\Memory\Allocations\UniformAllocations</Filter>
@@ -396,6 +396,42 @@
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations\VMAVertexBufferAllocation.h">
       <Filter>Backends\Vulkan\Memory\Allocations\VertexBufferAllocations</Filter>
     </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\BaseCubemapAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\CubemapAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\VMACubemapAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\CubemapAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\CPUResources\CPUImages\CPUBaseImage.h">
+      <Filter>Backends\CPUResources\CPUImages</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\CPUResources\CPUImages\CPUImage2D.h">
+      <Filter>Backends\CPUResources\CPUImages</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\CPUResources\CPUImages\CPUCubemap.h">
+      <Filter>Backends\CPUResources\CPUImages</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\BaseImage2DAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\Image2DAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\VMAImage2DAllocation.h">
+      <Filter>Backends\Vulkan\Memory\Allocations\Image2DAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorLayouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h">
+      <Filter>Backends\Vulkan\Descriptors\DescriptorPools</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUCubemap.h">
+      <Filter>Backends\Vulkan\GPUResources\GPUImages</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUImage2D.h">
+      <Filter>Backends\Vulkan\GPUResources\GPUImages</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUBaseImage.h">
+      <Filter>Backends\Vulkan\GPUResources\GPUImages</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -452,9 +488,6 @@
     <Filter Include="Backends\Vulkan\Memory\Allocations">
       <UniqueIdentifier>{c2e57072-cb49-465a-9cf6-82b571967d13}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Backends\Vulkan\Memory\Allocations\ImageAllocations">
-      <UniqueIdentifier>{72d591a4-53be-4150-bcf9-f9f858b86e9f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Backends\Vulkan\Memory\Allocations\UniformAllocations">
       <UniqueIdentifier>{c9ac6712-fa73-4c27-b025-c61ec9587a00}</UniqueIdentifier>
     </Filter>
@@ -493,6 +526,18 @@
     </Filter>
     <Filter Include="Backends\Vulkan\Memory\Allocations\VertexBufferAllocations">
       <UniqueIdentifier>{400a512e-b5fd-48b5-83c6-64264dc7635f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations">
+      <UniqueIdentifier>{4a1fbce8-8e27-4075-b7b4-4a6bf766c526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\CPUResources\CPUImages">
+      <UniqueIdentifier>{1af33a93-3900-42c6-bd2c-1af21e1ef536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations">
+      <UniqueIdentifier>{59283116-9110-42df-a6b4-f106be226999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backends\Vulkan\GPUResources\GPUImages">
+      <UniqueIdentifier>{1b2f4cc7-03f6-41cd-a65d-328f023d2834}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

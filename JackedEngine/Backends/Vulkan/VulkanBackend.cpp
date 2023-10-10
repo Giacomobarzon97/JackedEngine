@@ -148,10 +148,10 @@ const BackendModelReference VulkanBackend::CreateModel(CPUBaseModel& model) {
 	return BackendModelReference(model.GetId());
 }
 
-const BackendImageReference VulkanBackend::CreateImage(CPUImage& cpuImage) {
+const BackendImage2DReference VulkanBackend::CreateImage2D(CPUImage2D& cpuImage) {
 	if (imageMap.find(cpuImage.GetId()) == imageMap.end()) {
 		cpuImage.LoadData();
-		imageMap[cpuImage.GetId()] = new GPUImage(allocationFactory, cpuImage);
+		imageMap[cpuImage.GetId()] = new GPUImage2D(allocationFactory, cpuImage);
 
 		imageDescriptorPoolMap[cpuImage.GetId()] = new ImageDescriptorPool(device, 1);
 		imageDescriptorSetsMap[cpuImage.GetId()] = new ImageDescriptorSet(
@@ -164,7 +164,26 @@ const BackendImageReference VulkanBackend::CreateImage(CPUImage& cpuImage) {
 		);
 	}
 
-	return BackendImageReference(cpuImage.GetId());
+	return BackendImage2DReference(cpuImage.GetId());
+}
+
+const BackendCubemapReference VulkanBackend::CreateCubemap(CPUCubemap& cpuImage) {
+	if (imageMap.find(cpuImage.GetId()) == imageMap.end()) {
+		cpuImage.LoadData();
+		imageMap[cpuImage.GetId()] = new GPUCubemap(allocationFactory, cpuImage);
+
+		imageDescriptorPoolMap[cpuImage.GetId()] = new ImageDescriptorPool(device, 1);
+		imageDescriptorSetsMap[cpuImage.GetId()] = new ImageDescriptorSet(
+			device,
+			*static_cast<const ImageDescriptorLayout*>(descriptorLayoutMap[AttachmentType::IMAGE]),
+			*imageDescriptorPoolMap[cpuImage.GetId()],
+			allocationFactory,
+			*imageMap[cpuImage.GetId()],
+			sampler
+		);
+	}
+
+	return BackendCubemapReference(cpuImage.GetId());
 }
 
 const BackendUniformReference VulkanBackend::CreateUniform(std::string uniformId, const uint32_t uniformSize) {
@@ -208,7 +227,14 @@ void VulkanBackend::BindModel(const BackendModelReference model) {
 	commandBuffers[currentFrame]->BindModel(*modelMap[model.GetId()]);
 }
 
-void VulkanBackend::BindImage(const uint32_t location, const BackendImageReference image) {
+void VulkanBackend::BindImage2D(const uint32_t location, const BackendImage2DReference image) {
+	if (imageDescriptorSetsMap.find(image.GetId()) == imageDescriptorSetsMap.end()) {
+		throw std::runtime_error("Image does not exist");
+	}
+	commandBuffers[currentFrame]->BindDescriptorSet(*imageDescriptorSetsMap[image.GetId()], location);
+}
+
+void VulkanBackend::BindCubemap(const uint32_t location, const BackendCubemapReference image) {
 	if (imageDescriptorSetsMap.find(image.GetId()) == imageDescriptorSetsMap.end()) {
 		throw std::runtime_error("Image does not exist");
 	}

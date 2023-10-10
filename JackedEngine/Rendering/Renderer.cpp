@@ -43,8 +43,12 @@ const BackendModelReference Renderer::CreateModel(CPUBaseModel& model) {
 	return backend.CreateModel(model);
 }
 
-const BackendImageReference Renderer::CreateImage(CPUImage& image) {
-	return backend.CreateImage(image);
+const BackendImage2DReference Renderer::CreateImage2D(CPUImage2D & image) {
+	return backend.CreateImage2D(image);
+}
+
+const BackendCubemapReference Renderer::CreateCubemap(CPUCubemap& image) {
+	return backend.CreateCubemap(image);
 }
 
 const BackendUniformReference Renderer::CreateMeshUniform(std::string name) {
@@ -63,12 +67,21 @@ void Renderer::UpdateMeshUniformData(const BackendUniformReference uniformRefere
 	backend.UpdateUniform(uniformReference, &meshUniformData);
 }
 
-void Renderer::Draw(const BackendModelReference modelReference, const BackendImageReference imageReference, const BackendUniformReference uniformReference, const ShaderType shaderType) {
+void Renderer::Draw(const BackendModelReference modelReference, const BackendImage2DReference imageReference, const BackendUniformReference uniformReference, const ShaderType shaderType) {
 	backend.BindPipeline(pipelineMap[shaderType]);
 	backend.BindModel(modelReference);
 	backend.BindUniform(0, frameUniform);
 	backend.BindUniform(1, uniformReference);
-	backend.BindImage(2, imageReference);
+	backend.BindImage2D(2, imageReference);
+	backend.Draw();
+}
+
+void Renderer::Draw(const BackendModelReference modelReference, const BackendCubemapReference imageReference, const BackendUniformReference uniformReference, const ShaderType shaderType) {
+	backend.BindPipeline(pipelineMap[shaderType]);
+	backend.BindModel(modelReference);
+	backend.BindUniform(0, frameUniform);
+	backend.BindUniform(1, uniformReference);
+	backend.BindCubemap(2, imageReference);
 	backend.Draw();
 }
 

@@ -18,6 +18,10 @@ const VMAUniformAllocation* VMAAllocationFactory::CreateUniformAllocation(const 
 	return new VMAUniformAllocation(allocator, bufferSize);
 }
 
-const VMAImageAllocation* VMAAllocationFactory::CreateImageAllocation(const std::vector<const void*> data, const int width, const int height, VkImageViewType imageViewType, VkImageCreateFlags flags) const {
-	return new VMAImageAllocation(allocator, data, width, height, imageViewType, flags);
+const VMAImage2DAllocation* VMAAllocationFactory::CreateImage2DAllocation(const void* data, const int width, const int height) const {
+	return new VMAImage2DAllocation(allocator, data, width, height);
+}
+
+const VMACubemapAllocation* VMAAllocationFactory::CreateCubemapAllocation(const std::array<const void*, 6> data, const int width, const int height) const {
+	return new VMACubemapAllocation(allocator, data, width, height);
 }

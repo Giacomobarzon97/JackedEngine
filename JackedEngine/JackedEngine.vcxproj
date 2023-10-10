@@ -21,6 +21,18 @@
   <ItemGroup>
     <ClCompile Include="Backends\BackendTypes.cpp" />
     <ClCompile Include="Backends\BaseBackend.cpp" />
+    <ClCompile Include="Backends\CPUResources\CPUImages\CPUBaseImage.cpp" />
+    <ClCompile Include="Backends\CPUResources\CPUImages\CPUImage2D.cpp" />
+    <ClCompile Include="Backends\CPUResources\CPUImages\CPUCubemap.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUBaseImage.cpp" />
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUCubemap.cpp" />
+    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUImage2D.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\BaseCubemapAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\VMACubemapAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\BaseImage2DAllocation.cpp" />
+    <ClCompile Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\VMAImage2DAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\BaseIndexBufferAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\VMAIndexBufferAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\BaseStorageBufferAllocation.cpp" />
@@ -55,8 +67,6 @@
     <ClCompile Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\UniformDescriptorLayout.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp" />
-    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\UniformDescriptorPool.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\BaseDescriptorPool.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.cpp" />
@@ -65,15 +75,11 @@
     <ClCompile Include="Backends\Vulkan\Device.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\AllocationFactories\BaseAllocationFactory.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\AllocationFactories\VMAAllocationFactory.cpp" />
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.cpp" />
-    <ClCompile Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp" />
-    <ClCompile Include="Backends\CPUResources\CPUImage.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.cpp" />
-    <ClCompile Include="Backends\Vulkan\GPUResources\GPUImage.cpp" />
     <ClCompile Include="Scene\Components\SceneComponent.cpp" />
     <ClCompile Include="Scene\Components\SkyboxComponent.cpp" />
     <ClCompile Include="Scene\Components\StaticMeshComponent.cpp" />
@@ -90,6 +96,18 @@
   <ItemGroup>
     <ClInclude Include="Backends\BackendTypes.h" />
     <ClInclude Include="Backends\BaseBackend.h" />
+    <ClInclude Include="Backends\CPUResources\CPUImages\CPUBaseImage.h" />
+    <ClInclude Include="Backends\CPUResources\CPUImages\CPUImage2D.h" />
+    <ClInclude Include="Backends\CPUResources\CPUImages\CPUCubemap.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUBaseImage.h" />
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUCubemap.h" />
+    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUImage2D.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\BaseCubemapAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\CubemapAllocations\VMACubemapAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\BaseImage2DAllocation.h" />
+    <ClInclude Include="Backends\Vulkan\Memory\Allocations\Image2DAllocations\VMAImage2DAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\BaseIndexBufferAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\IndexBufferAllocations\VMAIndexBufferAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\StorageBufferAllocations\BaseStorageBufferAllocation.h" />
@@ -123,8 +141,6 @@
     <ClInclude Include="Backends\Vulkan\CommandBuffers\GraphicalCommandBuffer.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\BaseDescriptorLayout.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\UniformDescriptorLayout.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h" />
-    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\UniformDescriptorPool.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\BaseDescriptorPool.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\ImageDescriptorSet.h" />
@@ -133,15 +149,11 @@
     <ClInclude Include="Backends\Vulkan\Device.h" />
     <ClInclude Include="Backends\Vulkan\Memory\AllocationFactories\BaseAllocationFactory.h" />
     <ClInclude Include="Backends\Vulkan\Memory\AllocationFactories\VMAAllocationFactory.h" />
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\BaseImageAllocation.h" />
-    <ClInclude Include="Backends\Vulkan\Memory\Allocations\ImageAllocations\VMAImageAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\BaseUniformAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocations\UniformAllocations\VMAUniformAllocation.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h" />
-    <ClInclude Include="Backends\CPUResources\CPUImage.h" />
     <ClInclude Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.h" />
-    <ClInclude Include="Backends\Vulkan\GPUResources\GPUImage.h" />
     <ClInclude Include="Scene\Components\SceneComponent.h" />
     <ClInclude Include="Scene\Components\SkyboxComponent.h" />
     <ClInclude Include="Scene\Components\StaticMeshComponent.h" />

@@ -24,11 +24,19 @@ BackendModelReference::BackendModelReference(const std::string id) :
 	BaseBackendResourceReference(id)
 {}
 
-BackendImageReference::BackendImageReference() :
+BackendImage2DReference::BackendImage2DReference() :
 	BaseBackendResourceReference("")
 {}
 
-BackendImageReference::BackendImageReference(const std::string id) :
+BackendImage2DReference::BackendImage2DReference(const std::string id) :
+	BaseBackendResourceReference(id)
+{}
+
+BackendCubemapReference::BackendCubemapReference() :
+	BaseBackendResourceReference("")
+{}
+
+BackendCubemapReference::BackendCubemapReference(const std::string id) :
 	BaseBackendResourceReference(id)
 {}
 

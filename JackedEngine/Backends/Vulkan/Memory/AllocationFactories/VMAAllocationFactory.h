@@ -4,7 +4,8 @@
 #include "Backends/Vulkan/Memory/Allocations/IndexBufferAllocations/VMAIndexBufferAllocation.h"
 #include "Backends/Vulkan/Memory/Allocations/VertexBufferAllocations/VMAVertexBufferAllocation.h"
 #include "Backends/Vulkan/Memory/Allocations/UniformAllocations/VMAUniformAllocation.h"
-#include "Backends/Vulkan/Memory/Allocations/ImageAllocations/VMAImageAllocation.h"
+#include "Backends/Vulkan/Memory/Allocations/Image2DAllocations/VMAImage2DAllocation.h"
+#include "Backends/Vulkan/Memory/Allocations/CubemapAllocations/VMACubemapAllocation.h"
 
 class VMAAllocationFactory : public BaseAllocationFactory {
 public:
@@ -17,7 +18,8 @@ public:
 	virtual const VMAIndexBufferAllocation* CreateIndexBufferAllocation(const void* data, const uint32_t dataSize) const override;
 	virtual const VMAVertexBufferAllocation* CreateVertexBufferAllocation(const void* data, const uint32_t dataSize) const override;
 	virtual const VMAUniformAllocation* CreateUniformAllocation(const uint32_t dataSize) const override;
-	virtual const VMAImageAllocation* CreateImageAllocation(const std::vector<const void*> data, const int width, const int height, VkImageViewType imageViewType, VkImageCreateFlags flags) const override;
+	virtual const VMAImage2DAllocation* CreateImage2DAllocation(const void* data, const int width, const int height) const override;
+	virtual const VMACubemapAllocation* CreateCubemapAllocation(const std::array<const void*, 6> data, const int width, const int height) const override;
 
 private:
 	VMAAllocator allocator;

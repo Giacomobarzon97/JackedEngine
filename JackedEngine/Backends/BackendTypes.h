@@ -21,10 +21,16 @@ public:
 	BackendModelReference(const std::string id);
 };
 
-class BackendImageReference : public BaseBackendResourceReference {
+class BackendImage2DReference : public BaseBackendResourceReference {
 public:
-	BackendImageReference();
-	BackendImageReference(const std::string id);
+	BackendImage2DReference();
+	BackendImage2DReference(const std::string id);
+};
+
+class BackendCubemapReference : public BaseBackendResourceReference {
+public:
+	BackendCubemapReference();
+	BackendCubemapReference(const std::string id);
 };
 
 class BackendUniformReference : public BaseBackendResourceReference {

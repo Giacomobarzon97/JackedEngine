@@ -7,6 +7,8 @@
 #include "Backends/Vulkan//Memory/AllocationFactories/VMAAllocationFactory.h"
 #include "Backends/Vulkan//Samplers/LinearRepeatSampler.h"
 #include "Backends/Vulkan//Pipelines/Pipeline.h"
+#include "Backends/Vulkan/GPUResources/GPUImages/GPUImage2D.h"
+#include "Backends/Vulkan/GPUResources/GPUImages/GPUCubemap.h"
 
 class VulkanBackend : public BaseBackend {
 public:
@@ -18,12 +20,14 @@ public:
 
 	virtual const BackendPipelineReference CreatePipeline(PipelineCreateInfo createInfo) override;
 	virtual const BackendModelReference CreateModel(CPUBaseModel& model) override;
-	virtual const BackendImageReference CreateImage(CPUImage& image) override;
+	virtual const BackendImage2DReference CreateImage2D(CPUImage2D& image) override;
+	virtual const BackendCubemapReference CreateCubemap(CPUCubemap& image) override;
 	virtual const BackendUniformReference CreateUniform(const std::string uniformId, const uint32_t uniformSize) override;
 
 	virtual void BindPipeline(const BackendPipelineReference shader) override;
 	virtual void BindModel(const BackendModelReference model) override;
-	virtual void BindImage(const uint32_t location, const BackendImageReference image) override;
+	virtual void BindImage2D(const uint32_t location, const BackendImage2DReference image) override;
+	virtual void BindCubemap(const uint32_t location, const BackendCubemapReference image) override;
 	virtual void BindUniform(const uint32_t location, const BackendUniformReference uniform) override;
 
 	virtual void UpdateUniform(const BackendUniformReference uniform, const void* uniformData) override;
@@ -46,7 +50,7 @@ private:
 	std::vector<GraphicalCommandBuffer* > commandBuffers;
 	std::unordered_map<AttachmentType, const BaseDescriptorLayout*> descriptorLayoutMap;
 	std::unordered_map <std::string, const Pipeline*> pipelineMap;
-	std::unordered_map <std::string, const GPUImage*> imageMap;
+	std::unordered_map <std::string, const GPUBaseImage*> imageMap;
 	std::unordered_map <std::string, const GPUModel*> modelMap;
 	std::unordered_map <std::string, const ImageDescriptorPool*> imageDescriptorPoolMap;
 	std::unordered_map <std::string, const ImageDescriptorSet*> imageDescriptorSetsMap;

@@ -1,6 +1,6 @@
 #include "ImageDescriptorSet.h"
 
-ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescriptorLayout& descriptorLayout, const ImageDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUImage& image, const BaseSampler& sampler) :
+ImageDescriptorSet::ImageDescriptorSet(const Device& device, const ImageDescriptorLayout& descriptorLayout, const ImageDescriptorPool& descriptorPool, const BaseAllocationFactory& allocationFactory, const GPUBaseImage& image, const BaseSampler& sampler) :
 	BaseDescriptorSet(device),
 	image(image),
 	sampler(sampler)
