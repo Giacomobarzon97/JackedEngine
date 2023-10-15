@@ -20,4 +20,5 @@ private:
 	RendererMeshUniformReference uniformReference;
 	std::optional<const GenericMeshMaterial*> material;
 	std::optional<RendererModelReference> modelRef;
+	std::string modelPath;
 };

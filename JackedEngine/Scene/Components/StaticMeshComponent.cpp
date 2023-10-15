@@ -1,19 +1,21 @@
 #include "StaticMeshComponent.h"
 
 StaticMeshComponent::StaticMeshComponent(ComponentInitializer initializer) :
-	RenderableComponent(initializer),
-	uniformReference(JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName()))
+	RenderableComponent(initializer)
 {
 	BaseActor& actorOwner = GetActorOwner();
 }
 
 void StaticMeshComponent::Init() {
 	RenderableComponent::Init();
+
+	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
+	CPUGenericMesh mesh(modelPath, true, true);
+	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
 }
 
 void StaticMeshComponent::SetModelPath(const std::string modelPath) {
-	CPUGenericMesh mesh(modelPath, true, true);
-	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
+	this->modelPath = modelPath;
 }
 
 void StaticMeshComponent::SetMaterial(const GenericMeshMaterial& material) {

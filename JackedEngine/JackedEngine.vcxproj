@@ -24,6 +24,7 @@
     <ClCompile Include="Backends\CPUResources\CPUImages\CPUBaseImage.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUImages\CPUImage2D.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUImages\CPUCubemap.cpp" />
+    <ClCompile Include="Backends\CPUResources\CPUVertices\CPUNormalVertex.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\StorageBufferDescriptorLayout.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
@@ -62,6 +63,8 @@
     <ClCompile Include="Scene\Actors\VikingRoomActor.cpp" />
     <ClCompile Include="Scene\Components\Cameras\BaseCameraComponent.cpp" />
     <ClCompile Include="Scene\Components\InputComponent.cpp" />
+    <ClCompile Include="Scene\Components\Lights\BaseLightComponent.cpp" />
+    <ClCompile Include="Scene\Components\Lights\PointLightComponent.cpp" />
     <ClCompile Include="Scene\Components\RenderableComponent.cpp" />
     <ClCompile Include="Scene\Components\BaseComponent.cpp" />
     <ClCompile Include="Scene\Components\Cameras\PerspectiveCamera.cpp" />
@@ -101,6 +104,7 @@
     <ClInclude Include="Backends\CPUResources\CPUImages\CPUBaseImage.h" />
     <ClInclude Include="Backends\CPUResources\CPUImages\CPUImage2D.h" />
     <ClInclude Include="Backends\CPUResources\CPUImages\CPUCubemap.h" />
+    <ClInclude Include="Backends\CPUResources\CPUVertices\CPUNormalVertex.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\StorageBufferDescriptorLayout.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
@@ -138,6 +142,8 @@
     <ClInclude Include="Scene\Actors\VikingRoomActor.h" />
     <ClInclude Include="Scene\Components\Cameras\BaseCameraComponent.h" />
     <ClInclude Include="Scene\Components\InputComponent.h" />
+    <ClInclude Include="Scene\Components\Lights\BaseLightComponent.h" />
+    <ClInclude Include="Scene\Components\Lights\PointLightComponent.h" />
     <ClInclude Include="Scene\Components\RenderableComponent.h" />
     <ClInclude Include="Scene\Components\BaseComponent.h" />
     <ClInclude Include="Scene\Components\Cameras\PerspectiveCamera.h" />

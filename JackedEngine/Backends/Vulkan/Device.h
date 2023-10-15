@@ -6,8 +6,11 @@
 #include <set>
 #include <array>
 #include <vector>
-#include <iostream>
+#include <stdexcept>
 #include <vulkan/vulkan.h>
+#ifdef _DEBUG
+#include <iostream>
+#endif
 #include "Windows/BaseWindow.h"
 
 class Device {

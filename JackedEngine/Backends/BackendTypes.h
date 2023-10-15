@@ -1,6 +1,19 @@
 #pragma once
 #include <string>
 
+enum VertexType {
+	VERTEX_TYPE_UNDEFINED,
+	FLOAT_32,
+	INT_32
+};
+
+enum AttachmentType {
+	ATTACHMENT_TYPE_UNDEFINED,
+	IMAGE,
+	UNIFORM,
+	STORAGE_BUFFER,
+};
+
 class BaseBackendResourceReference {
 public:
 	BaseBackendResourceReference(const std::string id);

@@ -3,6 +3,7 @@
 #include <string>
 #include "Backends/CPUResources/CPUVertices/CPUPositionVertex.h"
 #include "Backends/CPUResources/CPUVertices/CPUTextureVertex.h"
+#include "Backends/CPUResources/CPUVertices/CPUNormalVertex.h"
 
 struct BufferData {
 	const void* data;

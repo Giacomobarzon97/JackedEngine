@@ -171,10 +171,6 @@ void Device::pickPhysicalDevice() {
 	queueFamilyIndices = findQueueFamilies(physicalDevice);
 
 	vkGetPhysicalDeviceProperties(physicalDevice, &properties);
-	std::cout << "Using the following Graphics card\n";
-	std::cout << properties.deviceName;
-	std::cout << '\n';
-
 	vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProperties);
 }
 

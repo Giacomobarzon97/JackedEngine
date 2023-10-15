@@ -2,7 +2,7 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-CPUGenericMesh::CPUGenericMesh(const std::string objPath, const bool includePositions, const bool includeTexcoords) :
+CPUGenericMesh::CPUGenericMesh(const std::string objPath, const bool includePositions, const bool includeTexcoords, const bool includeNormals) :
 	objPath(objPath),
 	includePositions(includePositions),
 	includeTexcoords(includeTexcoords)
@@ -28,17 +28,23 @@ void CPUGenericMesh::LoadData() {
 		for (const auto& index : shape.mesh.indices) {
 			positions.push_back(
 				CPUPositionVertex({
-						attrib.vertices[3 * index.vertex_index + 0],
+						attrib.vertices[3 * index.vertex_index],
 						attrib.vertices[3 * index.vertex_index + 1],
-						attrib.vertices[3 * index.vertex_index + 2],
-						1
-					})
+						attrib.vertices[3 * index.vertex_index + 2]
+				})
 			);
 			texCoords.push_back(
 				CPUTextureVertex({
-					attrib.texcoords[2 * index.texcoord_index + 0],
+					attrib.texcoords[2 * index.texcoord_index],
 					1.0f - attrib.texcoords[2 * index.texcoord_index + 1]
-					})
+				})
+			);
+			normals.push_back(
+				CPUNormalVertex({
+					attrib.normals[3 * index.normal_index],
+					attrib.normals[3 * index.normal_index + 1],
+					attrib.normals[3 * index.normal_index + 2],
+				})
 			);
 
 			indices.push_back(static_cast<uint32_t>(indices.size()));

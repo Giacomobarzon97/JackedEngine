@@ -222,6 +222,15 @@
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\StorageBufferDescriptorSet.cpp">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Components\Lights\BaseLightComponent.cpp">
+      <Filter>Scene\Components\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\Lights\PointLightComponent.cpp">
+      <Filter>Scene\Components\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Backends\CPUResources\CPUVertices\CPUNormalVertex.cpp">
+      <Filter>Backends\CPUResources\CPUVertices</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -444,6 +453,15 @@
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\StorageBufferDescriptorSet.h">
       <Filter>Backends\Vulkan\Descriptors\DescriptorSets</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Components\Lights\BaseLightComponent.h">
+      <Filter>Scene\Components\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\Lights\PointLightComponent.h">
+      <Filter>Scene\Components\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\CPUResources\CPUVertices\CPUNormalVertex.h">
+      <Filter>Backends\CPUResources\CPUVertices</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backends">
@@ -550,6 +568,9 @@
     </Filter>
     <Filter Include="Backends\Vulkan\GPUResources\GPUImages">
       <UniqueIdentifier>{1b2f4cc7-03f6-41cd-a65d-328f023d2834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Components\Lights">
+      <UniqueIdentifier>{4bb094d2-0b94-49a8-98f9-37a776ae7e3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include <stdexcept>
 #include "Backends/BaseBackend.h"
 #include "Scene/Components/Cameras/BaseCameraComponent.h"
 
@@ -7,12 +8,14 @@ class RendererModelReference;
 class RendererImage2DReference;
 class RendererCubemapReference;
 class RendererMeshUniformReference;
+class RendererPointLightReference;
 
 class Renderer {
 	friend class RendererModelReference;
 	friend class RendererImage2DReference;
 	friend class RendererCubemapReference;
 	friend class RendererMeshUniformReference;
+	friend class RendererPointLightReference;
 
 public:
 	Renderer(BaseBackend& backend);
@@ -21,6 +24,7 @@ public:
 	const RendererImage2DReference CreateImage2D(CPUImage2D& image);
 	const RendererCubemapReference CreateCubemap(CPUCubemap& image);
 	const RendererMeshUniformReference CreateMeshUniform(std::string name);
+	const RendererPointLightReference CreatePointLight();
 
 	void BeginFrame();
 	void UpdateViewMatrix(glm::mat4 view);
@@ -33,6 +37,7 @@ private:
 	struct FrameData {
 		glm::mat4 viewMatrix;
 		glm::mat4 projectionMatrix;
+		uint32_t nLights;
 	};
 	struct PointLightData {
 		glm::vec3 position;
@@ -42,8 +47,11 @@ private:
 	};
 
 	uint32_t maxPointLights = 64;
+
 	FrameData frameData;
-		 
+	std::vector<PointLightData> pointLights;
+	uint32_t currentLightsNumber = 0;
+
 	BaseBackend& backend;
 	BackendPipelineReference meshPipeline;
 	BackendPipelineReference skyboxPipeline;
@@ -97,4 +105,16 @@ private:
 	Renderer::MeshUniformData meshData;
 	Renderer* renderer;
 	BackendUniformReference uniformReference;
+};
+
+class RendererPointLightReference {
+	friend Renderer;
+public:
+	RendererPointLightReference();
+	RendererPointLightReference(Renderer& renderer, Renderer::PointLightData& pointLightData);
+
+	void UpdatePosition(glm::vec3 position);
+private:
+	Renderer::PointLightData* pointLightData;
+	Renderer* renderer;
 };

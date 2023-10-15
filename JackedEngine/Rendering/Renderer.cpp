@@ -17,10 +17,10 @@ Renderer::Renderer(BaseBackend& backend) :
 	pipelineCreateInfo.attachments[2] = AttachmentType::IMAGE;
 	pipelineCreateInfo.attachments[3] = AttachmentType::STORAGE_BUFFER;
 	pipelineCreateInfo.vertices.resize(2);
-	pipelineCreateInfo.vertices[0].type = FLOAT_32;
-	pipelineCreateInfo.vertices[0].size = 4;
-	pipelineCreateInfo.vertices[1].type = FLOAT_32;
-	pipelineCreateInfo.vertices[1].size = 2;
+	pipelineCreateInfo.vertices[0].type = CPUPositionVertex::GetVertexType();
+	pipelineCreateInfo.vertices[0].size = CPUPositionVertex::GetNumberOfComponents();
+	pipelineCreateInfo.vertices[1].type = CPUTextureVertex::GetVertexType();
+	pipelineCreateInfo.vertices[1].size = CPUTextureVertex::GetNumberOfComponents();
 
 	meshPipeline = backend.CreatePipeline(pipelineCreateInfo);
 
@@ -34,11 +34,12 @@ Renderer::Renderer(BaseBackend& backend) :
 	pipelineCreateInfo.attachments[2] = AttachmentType::IMAGE;
 	pipelineCreateInfo.vertices.clear();
 	pipelineCreateInfo.vertices.resize(1);
-	pipelineCreateInfo.vertices[0].type = FLOAT_32;
-	pipelineCreateInfo.vertices[0].size = 4;
+	pipelineCreateInfo.vertices[0].type = CPUPositionVertex::GetVertexType();
+	pipelineCreateInfo.vertices[0].size = CPUPositionVertex::GetNumberOfComponents();
 
 	skyboxPipeline = backend.CreatePipeline(pipelineCreateInfo);
 
+	pointLights.resize(maxPointLights);
 }
 
 const RendererModelReference Renderer::CreateModel(CPUBaseModel& model) {
@@ -57,8 +58,18 @@ const RendererMeshUniformReference Renderer::CreateMeshUniform(std::string name)
 	return RendererMeshUniformReference(*this, backend.CreateUniform("MeshUniform_" + name, sizeof(MeshUniformData)));
 }
 
+const RendererPointLightReference Renderer::CreatePointLight() {
+	if (currentLightsNumber >= maxPointLights) {
+		throw std::runtime_error("Max point lights number exceeded");
+	}
+	RendererPointLightReference reference(*this, pointLights[currentLightsNumber]);
+	currentLightsNumber++;
+	return reference;
+}
+
 void Renderer::BeginFrame() {
 	backend.BeginFrame();
+	frameData.nLights = currentLightsNumber;
 	backend.UpdateUniform(frameUniform, &frameData);
 }
 
@@ -71,6 +82,7 @@ void Renderer::UpdateProjectionMatrix(glm::mat4 proj) {
 }
 
 void Renderer::DrawTextured3DMesh(const RendererModelReference modelReference, const RendererImage2DReference imageReference, const RendererMeshUniformReference uniformReference) {
+	backend.UpdateStorageBuffer(pointLightsBuffer, pointLights.data(), currentLightsNumber);
 	backend.BindPipeline(meshPipeline);
 	backend.BindModel(modelReference.modelReference);
 	backend.BindUniform(0, frameUniform);
@@ -121,4 +133,13 @@ void RendererMeshUniformReference::SetModelMatrix(glm::mat4 model) {
 }
 void RendererMeshUniformReference::Update() const {
 	renderer->backend.UpdateUniform(uniformReference, &meshData);
+}
+
+RendererPointLightReference::RendererPointLightReference(){}
+RendererPointLightReference::RendererPointLightReference(Renderer& renderer, Renderer::PointLightData& pointLightData) :
+	renderer(&renderer),
+	pointLightData(&pointLightData)
+{}
+void RendererPointLightReference::UpdatePosition(glm::vec3 position){
+	pointLightData->position = position;
 }

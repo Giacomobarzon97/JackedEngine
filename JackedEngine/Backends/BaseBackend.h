@@ -5,19 +5,6 @@
 #include "Scene/Components/Cameras/BaseCameraComponent.h"
 #include "Backends/BackendTypes.h"
 
-enum VertexType {
-	VERTEX_TYPE_UNDEFINED,
-	FLOAT_32,
-	INT_32
-};
-
-enum AttachmentType {
-	ATTACHMENT_TYPE_UNDEFINED,
-	IMAGE,
-	UNIFORM,
-	STORAGE_BUFFER,
-};
-
 struct VertexInfo {
 	uint8_t size;
 	VertexType type;

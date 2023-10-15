@@ -1,13 +1,13 @@
 #include "SkyboxComponent.h"
 
 SkyboxComponent::SkyboxComponent(ComponentInitializer initializer) :
-	RenderableComponent(initializer),
-	uniformReference(JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName()))
+	RenderableComponent(initializer)
 {}
 
 void SkyboxComponent::Init() {
 	RenderableComponent::Init();
 
+	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
 	CPUCubeModel mesh;
 	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
 }

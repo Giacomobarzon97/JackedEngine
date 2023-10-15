@@ -3,13 +3,13 @@
 #include <glm/glm.hpp>
 #include "Backends/BackendTypes.h"
 
-class CPUPositionVertex {
+class CPUNormalVertex {
 public:
-	CPUPositionVertex(const glm::vec3 position);
+	CPUNormalVertex(const glm::vec3 normal);
 
 	static uint8_t GetNumberOfComponents();
 	static VertexType GetVertexType();
 
 private:
-	glm::vec3 position;
+	glm::vec3 normal;
 };

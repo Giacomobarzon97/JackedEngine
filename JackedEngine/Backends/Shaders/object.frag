@@ -1,7 +1,21 @@
 #version 450
 #extension GL_KHR_vulkan_glsl : enable
 
+struct PointLight {
+    vec3 position;
+};
+
+layout(set = 0, binding = 0) uniform FrameBufferUniform {
+    mat4 viewMatrix;
+    mat4 projectionMatrix;
+    uint nLights;
+} frameUniform;
+
 layout(set = 2, binding = 0) uniform sampler2D texSampler;
+
+layout(set = 3, binding = 0) readonly buffer PointLights{
+	PointLight lights[];
+} pointLights;
 
 layout(location = 0) in vec2 fragTexCoord;
 
