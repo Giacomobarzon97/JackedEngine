@@ -25,7 +25,10 @@
     <ClCompile Include="Backends\CPUResources\CPUImages\CPUImage2D.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUImages\CPUCubemap.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorLayouts\StorageBufferDescriptorLayout.cpp" />
     <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorPools\StorageBufferDescriptorPool.cpp" />
+    <ClCompile Include="Backends\Vulkan\Descriptors\DescriptorSets\StorageBufferDescriptorSet.cpp" />
     <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUBaseImage.cpp" />
     <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUCubemap.cpp" />
     <ClCompile Include="Backends\Vulkan\GPUResources\GPUImages\GPUImage2D.cpp" />
@@ -100,7 +103,10 @@
     <ClInclude Include="Backends\CPUResources\CPUImages\CPUImage2D.h" />
     <ClInclude Include="Backends\CPUResources\CPUImages\CPUCubemap.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\ImageDescriptorLayout.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorLayouts\StorageBufferDescriptorLayout.h" />
     <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\ImageDescriptorPool.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorPools\StorageBufferDescriptorPool.h" />
+    <ClInclude Include="Backends\Vulkan\Descriptors\DescriptorSets\StorageBufferDescriptorSet.h" />
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUBaseImage.h" />
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUCubemap.h" />
     <ClInclude Include="Backends\Vulkan\GPUResources\GPUImages\GPUImage2D.h" />

@@ -14,15 +14,25 @@ public:
 	const BackendUniformReference CreateMeshUniform(std::string name);
 
 	void BeginFrame();
-	void UpdateFrameData(const FrameData& frameData);
+	void UpdateViewMatrix(glm::mat4 view);
+	void UpdateProjectionMatrix(glm::mat4 proj);
 	void UpdateMeshUniformData(const BackendUniformReference uniformReference, const MeshUniformData& meshUniformData);
-	void Draw(const BackendModelReference modelReference, const BackendImage2DReference imageReference, const BackendUniformReference uniformReference, const ShaderType shaderType);
-	void Draw(const BackendModelReference modelReference, const BackendCubemapReference imageReference, const BackendUniformReference uniformReference, const ShaderType shaderType);
+	void DrawMesh(const BackendModelReference modelReference, const BackendImage2DReference imageReference, const BackendUniformReference uniformReference);
+	void DrawSkybox(const BackendModelReference modelReference, const BackendCubemapReference imageReference, const BackendUniformReference uniformReference);
 	void EndFrame();
 
 private:
-	BaseBackend& backend;
-	std::unordered_map<ShaderType, BackendPipelineReference> pipelineMap;
+	struct FrameData {
+		glm::mat4 viewMatrix;
+		glm::mat4 projectionMatrix;
+	};
 
+	uint32_t maxPointLights = 64;
+	FrameData frameData;
+		 
+	BaseBackend& backend;
+	BackendPipelineReference meshPipeline;
+	BackendPipelineReference skyboxPipeline;
 	BackendUniformReference frameUniform;
+	BackendStorageBufferReference pointLightsBuffer;
 };

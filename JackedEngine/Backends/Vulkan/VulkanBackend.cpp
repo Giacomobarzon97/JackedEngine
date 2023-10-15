@@ -48,6 +48,7 @@ VulkanBackend::VulkanBackend(BaseWindow& window) :
 {
 	descriptorLayoutMap[AttachmentType::IMAGE] = new ImageDescriptorLayout(device);
 	descriptorLayoutMap[AttachmentType::UNIFORM] = new UniformDescriptorLayout(device);
+	descriptorLayoutMap[AttachmentType::STORAGE_BUFFER] = new StorageBufferDescriptorLayout(device);
 
 	commandBuffers.resize(maxFramesInFlight);
 	for (size_t i = 0; i < maxFramesInFlight; i++) {
@@ -62,11 +63,9 @@ VulkanBackend::~VulkanBackend() {
 	for (auto it = modelMap.begin(); it != modelMap.end(); it++) {
 		delete it->second;
 	}
-
 	for (auto it = imageMap.begin(); it != imageMap.end(); it++) {
 		delete it->second;
 	}
-
 	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
 		delete commandBuffers[i];
 	}
@@ -74,7 +73,6 @@ VulkanBackend::~VulkanBackend() {
 	for (auto it = imageDescriptorSetsMap.begin(); it != imageDescriptorSetsMap.end(); it++) {
 		delete it->second;
 	}
-
 	for (auto it = imageDescriptorPoolMap.begin(); it != imageDescriptorPoolMap.end(); it++) {
 		delete it->second;
 	}
@@ -84,15 +82,22 @@ VulkanBackend::~VulkanBackend() {
 			delete it->second[i];
 		}
 	}
-
 	for (auto it = uniformDescriptorPoolMap.begin(); it != uniformDescriptorPoolMap.end(); it++) {
+		delete it->second;
+	}
+
+	for (auto it = storageBufferDescriptorSetsMap.begin(); it != storageBufferDescriptorSetsMap.end(); it++) {
+		for (unsigned int i = 0; i < it->second.size(); i++) {
+			delete it->second[i];
+		}
+	}
+	for (auto it = storageBufferDescriptorPoolMap.begin(); it != storageBufferDescriptorPoolMap.end(); it++) {
 		delete it->second;
 	}
 	
 	for (auto it = pipelineMap.begin(); it != pipelineMap.end(); it++) {
 		delete it->second;
 	}
-
 	for (auto it = descriptorLayoutMap.begin(); it != descriptorLayoutMap.end(); it++) {
 		delete it->second;
 	}
@@ -206,11 +211,25 @@ const BackendUniformReference VulkanBackend::CreateUniform(std::string uniformId
 	return BackendUniformReference(uniformId);
 }
 
-void VulkanBackend::BindPipeline(const BackendPipelineReference shader) {
-	if (pipelineMap.find(shader.GetId()) == pipelineMap.end()) {
-		throw std::runtime_error("Pipeline does not exist");
+const BackendStorageBufferReference VulkanBackend::CreateStorageBuffer(const std::string storageId, const uint32_t elementSize, const uint32_t maxElements) {
+	if (storageBufferDescriptorPoolMap.find(storageId) != storageBufferDescriptorPoolMap.end()) {
+		throw std::runtime_error("Uniform already created with the same Id");
 	}
-	commandBuffers[currentFrame]->BindPipeline(*pipelineMap[shader.GetId()]);
+
+	storageBufferDescriptorPoolMap[storageId] = new StorageBufferDescriptorPool(device, maxFramesInFlight);
+	storageBufferDescriptorSetsMap[storageId] = std::vector<const StorageBufferDescriptorSet*>(maxFramesInFlight);
+	for (unsigned int i = 0; i < maxFramesInFlight; i++) {
+		storageBufferDescriptorSetsMap[storageId][i] = new StorageBufferDescriptorSet(
+			device,
+			*static_cast<const StorageBufferDescriptorLayout*>(descriptorLayoutMap[AttachmentType::STORAGE_BUFFER]),
+			*storageBufferDescriptorPoolMap[storageId],
+			allocationFactory,
+			elementSize,
+			maxElements
+		);
+	}
+
+	return BackendStorageBufferReference(storageId);
 }
 
 void VulkanBackend::UpdateUniform(const BackendUniformReference uniform, const void* uniformData) {
@@ -218,6 +237,21 @@ void VulkanBackend::UpdateUniform(const BackendUniformReference uniform, const v
 		throw std::runtime_error("Uniform does not exist");
 	}
 	uniformDescriptorSetsMap[uniform.GetId()][currentFrame]->UpdateUniform(uniformData);
+}
+
+void VulkanBackend::UpdateStorageBuffer(const BackendStorageBufferReference storage, const void* storageData, const uint32_t nElements) {
+	if (storageBufferDescriptorSetsMap.find(storage.GetId()) == storageBufferDescriptorSetsMap.end()) {
+		throw std::runtime_error("Storage does not exist");
+	}
+	storageBufferDescriptorSetsMap[storage.GetId()][currentFrame]->UpdateBuffer(storageData, nElements);
+}
+
+
+void VulkanBackend::BindPipeline(const BackendPipelineReference shader) {
+	if (pipelineMap.find(shader.GetId()) == pipelineMap.end()) {
+		throw std::runtime_error("Pipeline does not exist");
+	}
+	commandBuffers[currentFrame]->BindPipeline(*pipelineMap[shader.GetId()]);
 }
 
 void VulkanBackend::BindModel(const BackendModelReference model) {
@@ -246,6 +280,13 @@ void VulkanBackend::BindUniform(const uint32_t location, const BackendUniformRef
 		throw std::runtime_error("Uniform does not exist");
 	}
 	commandBuffers[currentFrame]->BindDescriptorSet(*uniformDescriptorSetsMap[uniform.GetId()][currentFrame], location);
+}
+
+void VulkanBackend::BindStorageBuffer(const uint32_t location, const BackendStorageBufferReference storage) {
+	if (storageBufferDescriptorSetsMap.find(storage.GetId()) == storageBufferDescriptorSetsMap.end()) {
+		throw std::runtime_error("Uniform does not exist");
+	}
+	commandBuffers[currentFrame]->BindDescriptorSet(*storageBufferDescriptorSetsMap[storage.GetId()][currentFrame], location);
 }
 
 void VulkanBackend::BeginFrame() {

@@ -4,7 +4,6 @@ layout(set = 0, binding = 0) uniform FrameBufferUniform {
     mat4 viewMatrix;
     mat4 projectionMatrix;
 } frameUniform;
-
 layout(set = 1, binding = 0) uniform ObjectDataUniform {
     mat4 modelMatrix;
 } objectData;

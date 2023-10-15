@@ -18,6 +18,10 @@ const VMAUniformAllocation* VMAAllocationFactory::CreateUniformAllocation(const 
 	return new VMAUniformAllocation(allocator, bufferSize);
 }
 
+const VMAStorageBufferAllocation* VMAAllocationFactory::CreateStorageBufferAllocation(const uint32_t elementSize, const uint32_t nElements) const {
+	return new VMAStorageBufferAllocation(allocator, elementSize, nElements);
+}
+
 const VMAImage2DAllocation* VMAAllocationFactory::CreateImage2DAllocation(const void* data, const int width, const int height) const {
 	return new VMAImage2DAllocation(allocator, data, width, height);
 }

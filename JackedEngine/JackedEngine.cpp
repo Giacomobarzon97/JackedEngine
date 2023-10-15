@@ -13,30 +13,25 @@ Renderer JackedEngine::renderer = Renderer(*backend);
 InputManager JackedEngine::inputManager(*window);
 
 void JackedEngine::MainLoop() {
-	FrameData frameData;
 	std::chrono::steady_clock::time_point prevFrameTime = std::chrono::high_resolution_clock::now();
 
 	while (!window->ShouldClose()) {
 		double deltaTime = std::chrono::duration<float, std::chrono::milliseconds::period>(std::chrono::high_resolution_clock::now() - prevFrameTime).count();
 		std::vector<BaseActor*> actors = world.GetActors();
-		renderer.BeginFrame();
 
 		if (camera.has_value()) {
 			int width, height;
 			window.get()->GetFrameBufferSize(&width, &height);
-
 			if (width > 0 && height > 0) {
-				frameData.viewMatrix = camera.value()->GetViewMatrix();
-				frameData.projectionMatrix = camera.value()->GetProjectionMatrix(width, height);
-				renderer.UpdateFrameData(frameData);
-
+				renderer.UpdateViewMatrix(camera.value()->GetViewMatrix());
+				renderer.UpdateProjectionMatrix(camera.value()->GetProjectionMatrix(width, height));
+				renderer.BeginFrame();
 				for (BaseActor* actor : actors) {
 					actor->Tick(deltaTime);
 				}
+				renderer.EndFrame();
 			}
 		}
-
-		renderer.EndFrame();
 
 		window->PollEvents();
 		prevFrameTime = std::chrono::high_resolution_clock::now();

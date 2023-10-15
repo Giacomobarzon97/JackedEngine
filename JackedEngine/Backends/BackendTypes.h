@@ -38,3 +38,9 @@ public:
 	BackendUniformReference();
 	BackendUniformReference(const std::string id);
 };
+
+class BackendStorageBufferReference : public BaseBackendResourceReference {
+public:
+	BackendStorageBufferReference();
+	BackendStorageBufferReference(const std::string id);
+};

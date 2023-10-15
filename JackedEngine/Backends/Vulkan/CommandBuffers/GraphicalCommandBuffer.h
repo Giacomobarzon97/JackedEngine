@@ -3,8 +3,7 @@
 #include "Backends/Vulkan/Device.h"
 #include "Backends/Vulkan/GPUResources/GPUModel.h"
 #include "Backends/Vulkan/Pipelines/Pipeline.h"
-#include "Backends/Vulkan/Descriptors/DescriptorSets/UniformDescriptorSet.h"
-#include "Backends/Vulkan/Descriptors/DescriptorSets/ImageDescriptorSet.h"
+#include "Backends/Vulkan/Descriptors/DescriptorSets/BaseDescriptorSet.h"
 #include "Backends/Vulkan/CommandBuffers/BaseCommandBuffer.h"
 
 class GraphicalCommandBuffer : public BaseCommandBuffer{

@@ -23,6 +23,6 @@ void SkyboxComponent::Tick(double deltaTime) {
 	if (material.has_value()) {
 		componentData.modelMatrix = GetModelMatrix();
 		JackedEngine::GetRenderer().UpdateMeshUniformData(uniformReference, componentData);
-		JackedEngine::GetRenderer().Draw(modelRef, material.value()->GetDiffuseTexture(), uniformReference, SKYBOX);
+		JackedEngine::GetRenderer().DrawSkybox(modelRef, material.value()->GetDiffuseTexture(), uniformReference);
 	}
 }
