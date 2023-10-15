@@ -1,10 +1,10 @@
 #include "StaticMeshComponent.h"
 
 StaticMeshComponent::StaticMeshComponent(ComponentInitializer initializer) :
-	RenderableComponent(initializer)
+	RenderableComponent(initializer),
+	uniformReference(JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName()))
 {
 	BaseActor& actorOwner = GetActorOwner();
-	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
 }
 
 void StaticMeshComponent::Init() {
@@ -24,8 +24,8 @@ void StaticMeshComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
 
 	if (material.has_value() && modelRef.has_value()) {
-		componentData.modelMatrix = GetModelMatrix();
-		JackedEngine::GetRenderer().UpdateMeshUniformData(uniformReference, componentData);
-		JackedEngine::GetRenderer().DrawMesh(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference);
+		uniformReference.SetModelMatrix(GetModelMatrix());
+		uniformReference.Update();
+		JackedEngine::GetRenderer().DrawTextured3DMesh(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference);
 	}
 }

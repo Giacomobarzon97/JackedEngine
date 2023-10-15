@@ -5,6 +5,6 @@ GenericMeshMaterial::GenericMeshMaterial(const std::string diffuseTexturePath) {
 	diffuseTextureRef = JackedEngine::GetRenderer().CreateImage2D(texture);
 }
 
-const BackendImage2DReference GenericMeshMaterial::GetDiffuseTexture() const {
+const RendererImage2DReference GenericMeshMaterial::GetDiffuseTexture() const {
 	return diffuseTextureRef;
 }

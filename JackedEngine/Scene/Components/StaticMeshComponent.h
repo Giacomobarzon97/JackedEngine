@@ -17,8 +17,7 @@ public:
 	void SetMaterial(const GenericMeshMaterial& material);
 
 private:
-	MeshUniformData componentData;
-	BackendUniformReference uniformReference;
+	RendererMeshUniformReference uniformReference;
 	std::optional<const GenericMeshMaterial*> material;
-	std::optional<BackendModelReference> modelRef;
+	std::optional<RendererModelReference> modelRef;
 };

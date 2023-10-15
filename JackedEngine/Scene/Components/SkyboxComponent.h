@@ -16,8 +16,7 @@ public:
 	void SetMaterial(const CubemapMaterial& material);
 
 private:
-	MeshUniformData componentData;
-	BackendUniformReference uniformReference;
-	BackendModelReference modelRef;
+	RendererMeshUniformReference uniformReference;
+	RendererModelReference modelRef;
 	std::optional<const CubemapMaterial*> material;
 };

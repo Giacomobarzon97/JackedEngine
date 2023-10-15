@@ -1,10 +1,9 @@
 #include "SkyboxComponent.h"
 
 SkyboxComponent::SkyboxComponent(ComponentInitializer initializer) :
-	RenderableComponent(initializer)
-{
-	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
-}
+	RenderableComponent(initializer),
+	uniformReference(JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName()))
+{}
 
 void SkyboxComponent::Init() {
 	RenderableComponent::Init();
@@ -21,8 +20,8 @@ void SkyboxComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
 
 	if (material.has_value()) {
-		componentData.modelMatrix = GetModelMatrix();
-		JackedEngine::GetRenderer().UpdateMeshUniformData(uniformReference, componentData);
+		uniformReference.SetModelMatrix(GetModelMatrix());
+		uniformReference.Update();
 		JackedEngine::GetRenderer().DrawSkybox(modelRef, material.value()->GetDiffuseTexture(), uniformReference);
 	}
 }

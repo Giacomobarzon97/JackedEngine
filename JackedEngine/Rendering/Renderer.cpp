@@ -41,20 +41,20 @@ Renderer::Renderer(BaseBackend& backend) :
 
 }
 
-const BackendModelReference Renderer::CreateModel(CPUBaseModel& model) {
-	return backend.CreateModel(model);
+const RendererModelReference Renderer::CreateModel(CPUBaseModel& model) {
+	return RendererModelReference(*this, backend.CreateModel(model));
 }
 
-const BackendImage2DReference Renderer::CreateImage2D(CPUImage2D & image) {
-	return backend.CreateImage2D(image);
+const RendererImage2DReference Renderer::CreateImage2D(CPUImage2D & image) {
+	return RendererImage2DReference(*this, backend.CreateImage2D(image));
 }
 
-const BackendCubemapReference Renderer::CreateCubemap(CPUCubemap& image) {
-	return backend.CreateCubemap(image);
+const RendererCubemapReference Renderer::CreateCubemap(CPUCubemap& image) {
+	return RendererCubemapReference(*this, backend.CreateCubemap(image));
 }
 
-const BackendUniformReference Renderer::CreateMeshUniform(std::string name) {
-	return backend.CreateUniform("MeshUniform_" + name, sizeof(MeshUniformData));
+const RendererMeshUniformReference Renderer::CreateMeshUniform(std::string name) {
+	return RendererMeshUniformReference(*this, backend.CreateUniform("MeshUniform_" + name, sizeof(MeshUniformData)));
 }
 
 void Renderer::BeginFrame() {
@@ -70,29 +70,55 @@ void Renderer::UpdateProjectionMatrix(glm::mat4 proj) {
 	frameData.projectionMatrix = proj;
 }
 
-void Renderer::UpdateMeshUniformData(const BackendUniformReference uniformReference, const MeshUniformData& meshUniformData) {
-	backend.UpdateUniform(uniformReference, &meshUniformData);
-}
-
-void Renderer::DrawMesh(const BackendModelReference modelReference, const BackendImage2DReference imageReference, const BackendUniformReference uniformReference) {
+void Renderer::DrawTextured3DMesh(const RendererModelReference modelReference, const RendererImage2DReference imageReference, const RendererMeshUniformReference uniformReference) {
 	backend.BindPipeline(meshPipeline);
-	backend.BindModel(modelReference);
+	backend.BindModel(modelReference.modelReference);
 	backend.BindUniform(0, frameUniform);
-	backend.BindUniform(1, uniformReference);
-	backend.BindImage2D(2, imageReference);
+	backend.BindUniform(1, uniformReference.uniformReference);
+	backend.BindImage2D(2, imageReference.imageReference);
 	backend.BindStorageBuffer(3, pointLightsBuffer);
 	backend.Draw();
 }
 
-void Renderer::DrawSkybox(const BackendModelReference modelReference, const BackendCubemapReference imageReference, const BackendUniformReference uniformReference) {
+void Renderer::DrawSkybox(const RendererModelReference modelReference, const RendererCubemapReference imageReference, const RendererMeshUniformReference uniformReference) {
 	backend.BindPipeline(skyboxPipeline);
-	backend.BindModel(modelReference);
+	backend.BindModel(modelReference.modelReference);
 	backend.BindUniform(0, frameUniform);
-	backend.BindUniform(1, uniformReference);
-	backend.BindCubemap(2, imageReference);
+	backend.BindUniform(1, uniformReference.uniformReference);
+	backend.BindCubemap(2, imageReference.cubemapReference);
 	backend.Draw();
 }
 
 void Renderer::EndFrame() {
 	backend.EndFrame();
+}
+
+RendererModelReference::RendererModelReference(){}
+RendererModelReference::RendererModelReference(Renderer& renderer, BackendModelReference modelReference) :
+	renderer(&renderer),
+	modelReference(modelReference)
+{}
+
+RendererImage2DReference::RendererImage2DReference() {}
+RendererImage2DReference::RendererImage2DReference(Renderer& renderer, BackendImage2DReference imageReference) :
+	renderer(&renderer),
+	imageReference(imageReference)
+{}
+
+RendererCubemapReference::RendererCubemapReference() {}
+RendererCubemapReference::RendererCubemapReference(Renderer& renderer, BackendCubemapReference cubemapReference) :
+	renderer(&renderer),
+	cubemapReference(cubemapReference)
+{}
+
+RendererMeshUniformReference::RendererMeshUniformReference() {}
+RendererMeshUniformReference::RendererMeshUniformReference(Renderer& renderer, BackendUniformReference uniformReference) :
+	renderer(&renderer),
+	uniformReference(uniformReference)
+{}
+void RendererMeshUniformReference::SetModelMatrix(glm::mat4 model) {
+	meshData.modelMatrix = model;
+}
+void RendererMeshUniformReference::Update() const {
+	renderer->backend.UpdateUniform(uniformReference, &meshData);
 }

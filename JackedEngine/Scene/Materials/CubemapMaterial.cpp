@@ -5,6 +5,6 @@ CubemapMaterial::CubemapMaterial(const std::string front, const std::string back
 	diffuseTextureRef = JackedEngine::GetRenderer().CreateCubemap(texture);
 }
 
-const BackendCubemapReference CubemapMaterial::GetDiffuseTexture() const {
+const RendererCubemapReference CubemapMaterial::GetDiffuseTexture() const {
 	return diffuseTextureRef;
 }

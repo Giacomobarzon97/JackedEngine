@@ -132,9 +132,6 @@
     <ClCompile Include="Rendering\Renderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\RenderTypes.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Actors\BaseActor.cpp">
       <Filter>Scene\Actors</Filter>
     </ClCompile>
@@ -355,9 +352,6 @@
       <Filter>Backends\Vulkan\Pipelines</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Renderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\RenderTypes.h">
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Actors\BaseActor.h">
