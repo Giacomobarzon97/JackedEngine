@@ -28,6 +28,11 @@ void StaticMeshComponent::Tick(double deltaTime) {
 	if (material.has_value() && modelRef.has_value()) {
 		uniformReference.SetModelMatrix(GetModelMatrix());
 		uniformReference.Update();
-		JackedEngine::GetRenderer().DrawTextured3DMesh(modelRef.value(), material.value()->GetDiffuseTexture(), uniformReference);
+		JackedEngine::GetRenderer().DrawTextured3DMesh(
+			modelRef.value(),
+			material.value()->GetDiffuseTexture(),
+			uniformReference,
+			material.value()->GetMaterialReference()
+		);
 	}
 }

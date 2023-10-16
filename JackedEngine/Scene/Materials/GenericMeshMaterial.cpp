@@ -1,6 +1,8 @@
 #include "GenericMeshMaterial.h"
 
-GenericMeshMaterial::GenericMeshMaterial(const std::string diffuseTexturePath) {
+GenericMeshMaterial::GenericMeshMaterial(const std::string name, const std::string diffuseTexturePath) : 
+	BaseMaterial(name)
+{
 	CPUImage2D texture(diffuseTexturePath);
 	diffuseTextureRef = JackedEngine::GetRenderer().CreateImage2D(texture);
 }

@@ -3,10 +3,10 @@
 
 VikingRoomActor::VikingRoomActor(ActorInitializer initializer) : 
 	BaseActor(initializer),
-	meshMaterial("../Assets/Textures/viking_room.png"),
+	meshMaterial("VKingRoomTexture","../Assets/Textures/earth.jpg"),
 	vkingRoom(CreateComponent<StaticMeshComponent>("Viking Room"))
 {
-	vkingRoom.SetModelPath("../Assets/Models/viking_room.obj");
+	vkingRoom.SetModelPath("../Assets/Models/sphere.obj");
 	vkingRoom.SetMaterial(meshMaterial);
 	vkingRoom.Rotate({ 90, 0, -90 });
 }

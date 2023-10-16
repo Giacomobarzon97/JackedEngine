@@ -4,6 +4,7 @@
 SkyboxActor::SkyboxActor(ActorInitializer initializer) :
 	BaseActor(initializer),
 	skyboxMaterial(
+		"Skybox",
 		"../Assets/Textures/Skybox/front.png",
 		"../Assets/Textures/Skybox/back.png",
 		"../Assets/Textures/Skybox/top.png",

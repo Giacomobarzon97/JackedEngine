@@ -6,6 +6,7 @@ BaseLightComponent::BaseLightComponent(ComponentInitializer initializer) :
 
 void BaseLightComponent::Init() {
 	SceneComponent::Init();
+	lightReference = JackedEngine::GetRenderer().CreateLight();
 }
 
 void BaseLightComponent::Tick(double deltaTime) {

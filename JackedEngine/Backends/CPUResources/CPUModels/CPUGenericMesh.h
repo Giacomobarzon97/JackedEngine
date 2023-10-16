@@ -11,6 +11,7 @@ public:
 private:
 	const bool includePositions;
 	const bool includeTexcoords;
+	const bool includeNormals;
 	const std::string objPath;
 
 	std::vector<CPUPositionVertex> positions;

@@ -8,7 +8,7 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 	JackedEngine::GetWorld().CreateActor<VikingRoomActor>("Viking Room");
-	JackedEngine::GetWorld().CreateActor<SkyboxActor>("Skybox");
+	//JackedEngine::GetWorld().CreateActor<SkyboxActor>("Skybox");
 	JackedEngine::GetWorld().CreateActor<DebugCameraActor>("Camera");
 	JackedEngine::MainLoop();
 }

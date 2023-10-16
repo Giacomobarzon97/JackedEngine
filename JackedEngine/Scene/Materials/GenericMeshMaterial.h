@@ -4,7 +4,7 @@
 
 class GenericMeshMaterial : public BaseMaterial{
 public:
-	GenericMeshMaterial(const std::string diffuseTexturePath);
+	GenericMeshMaterial(const std::string name, const std::string diffuseTexturePath);
 
 	const RendererImage2DReference GetDiffuseTexture() const;
 

@@ -5,7 +5,8 @@
 CPUGenericMesh::CPUGenericMesh(const std::string objPath, const bool includePositions, const bool includeTexcoords, const bool includeNormals) :
 	objPath(objPath),
 	includePositions(includePositions),
-	includeTexcoords(includeTexcoords)
+	includeTexcoords(includeTexcoords),
+	includeNormals(includeNormals)
 {}
 
 
@@ -73,6 +74,15 @@ const ModelData CPUGenericMesh::GetModelData() const {
 			BufferData{
 				texCoords.data(),
 				static_cast<uint32_t>(sizeof(CPUTextureVertex) * texCoords.size())
+			}
+		);
+	}
+
+	if (includeNormals) {
+		data.vertexData.push_back(
+			BufferData{
+				normals.data(),
+				static_cast<uint32_t>(sizeof(CPUNormalVertex) * normals.size())
 			}
 		);
 	}

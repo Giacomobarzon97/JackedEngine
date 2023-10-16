@@ -8,7 +8,4 @@ public:
 
 	virtual void Init() override;
 	virtual void Tick(double deltaTime) override;
-
-private:
-	RendererPointLightReference pointLightReference;
 };
