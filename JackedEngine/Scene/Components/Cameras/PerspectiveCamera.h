@@ -17,7 +17,17 @@ public:
 	virtual const glm::mat4 GetViewMatrix() const override;
 	virtual const glm::mat4 GetProjectionMatrix(const uint32_t width, const uint32_t height) const override;
 
+	virtual const glm::vec3 getXAxis() const override;
+	virtual const glm::vec3 getYAxis() const override;
+	virtual const glm::vec3 getZAxis() const override;
+
 private:
+	float fov = 70.0f;
+
+	glm::vec3 m_n;
+	glm::vec3 m_u;
+	glm::vec3 m_v;
+
 	double drawDistance = 2;
 	static void rotAxes(glm::vec3& axis_a, glm::vec3& axis_b, double angle);
 };

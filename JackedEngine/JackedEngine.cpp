@@ -23,12 +23,12 @@ void JackedEngine::MainLoop() {
 			int width, height;
 			window.get()->GetFrameBufferSize(&width, &height);
 			if (width > 0 && height > 0) {
-				renderer.UpdateViewMatrix(camera.value()->GetViewMatrix());
-				renderer.UpdateProjectionMatrix(camera.value()->GetProjectionMatrix(width, height));
 				renderer.BeginFrame();
 				for (BaseActor* actor : actors) {
 					actor->Tick(deltaTime);
 				}
+				renderer.UpdateViewMatrix(camera.value()->GetViewMatrix());
+				renderer.UpdateProjectionMatrix(camera.value()->GetProjectionMatrix(width, height));
 				renderer.EndFrame();
 			}
 		}

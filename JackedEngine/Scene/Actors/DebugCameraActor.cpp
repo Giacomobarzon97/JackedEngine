@@ -1,4 +1,5 @@
 #include "DebugCameraActor.h"
+#include <iostream>
 
 DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 	BaseActor(initializer),
@@ -30,7 +31,7 @@ DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 
 	JackedEngine::GetInputManager().CreateAxis("Rotate Vertically");
 	JackedEngine::GetInputManager().AddMappingToaAxis("Rotate Vertically", MOUSE_Y, 1.0f);
-	inputComponent.BindAxis("Rotate Vertically", std::bind(&DebugCameraActor::RotateVertically, this, std::placeholders::_1));
+	//inputComponent.BindAxis("Rotate Vertically", std::bind(&DebugCameraActor::RotateVertically, this, std::placeholders::_1));
 }
 
 void DebugCameraActor::Tick(double deltaTime) {
@@ -39,21 +40,15 @@ void DebugCameraActor::Tick(double deltaTime) {
 }
 
 void DebugCameraActor::MoveLaterally(float scaleValue) {
-	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();	
-	glm::vec3 direction{ cameraRotationMatrix[0][2], cameraRotationMatrix[1][2], cameraRotationMatrix[2][2] };
-	camera.Translate(direction * movementSpeed * scaleValue);
+	camera.Translate(camera.getYAxis() * movementSpeed * scaleValue);
 }
 
 void DebugCameraActor::MoveStraight(float scaleValue) {
-	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
-	glm::vec3 direction{ cameraRotationMatrix[0][0], cameraRotationMatrix[1][0], cameraRotationMatrix[2][0] };
-	camera.Translate(direction * movementSpeed * scaleValue);
+	camera.Translate(camera.getXAxis() * movementSpeed * scaleValue * -1.0f);
 }
 
 void DebugCameraActor::MoveVertically(float scaleValue) {
-	glm::mat4 cameraRotationMatrix = Rotator(camera.GetRotation()).GetRotationMatrix();
-	glm::vec3 direction{ cameraRotationMatrix[0][1], cameraRotationMatrix[1][1], cameraRotationMatrix[2][1] };
-	camera.Translate(direction * movementSpeed * scaleValue);
+	camera.Translate(camera.getZAxis() * movementSpeed * scaleValue * -1.0f);
 }
 
 void DebugCameraActor::RotateHorizontally(float scaleValue) {
@@ -61,5 +56,10 @@ void DebugCameraActor::RotateHorizontally(float scaleValue) {
 }
 
 void DebugCameraActor::RotateVertically(float scaleValue) {
-	camera.Rotate({ 0, rotationSpeed * scaleValue, 0 });
+	float yRotation = rotationSpeed * scaleValue;
+	float currentYaw = camera.GetRotation().y;
+	if (abs(currentYaw + yRotation) >= maxVerticalRotation) {
+		yRotation = ((currentYaw > 0) - (currentYaw < 0)) * maxVerticalRotation - camera.GetRotation().y;
+	}
+	camera.Rotate({ 0, yRotation, 0 });
 }
