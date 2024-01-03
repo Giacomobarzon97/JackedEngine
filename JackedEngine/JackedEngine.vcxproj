@@ -59,6 +59,7 @@
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Scene\Actors\BaseActor.cpp" />
     <ClCompile Include="Scene\Actors\DebugCameraActor.cpp" />
+    <ClCompile Include="Scene\Actors\RotatingPosLightActor.cpp" />
     <ClCompile Include="Scene\Actors\SkyboxActor.cpp" />
     <ClCompile Include="Scene\Actors\VikingRoomActor.cpp" />
     <ClCompile Include="Scene\Components\Cameras\BaseCameraComponent.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Scene\Actors\BaseActor.h" />
     <ClInclude Include="Scene\Actors\DebugCameraActor.h" />
+    <ClInclude Include="Scene\Actors\RotatingPosLightActor.h" />
     <ClInclude Include="Scene\Actors\SkyboxActor.h" />
     <ClInclude Include="Scene\Actors\VikingRoomActor.h" />
     <ClInclude Include="Scene\Components\Cameras\BaseCameraComponent.h" />

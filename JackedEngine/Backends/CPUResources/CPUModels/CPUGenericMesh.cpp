@@ -17,6 +17,7 @@ void CPUGenericMesh::LoadData() {
 	positions.clear();
 	texCoords.clear();
 	indices.clear();
+	normals.clear();
 
 	tinyobj::attrib_t attrib;
 	std::vector<tinyobj::shape_t> shapes;

@@ -231,6 +231,9 @@
     <ClCompile Include="Backends\CPUResources\CPUVertices\CPUNormalVertex.cpp">
       <Filter>Backends\CPUResources\CPUVertices</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Actors\RotatingPosLightActor.cpp">
+      <Filter>Scene\Actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -461,6 +464,9 @@
     </ClInclude>
     <ClInclude Include="Backends\CPUResources\CPUVertices\CPUNormalVertex.h">
       <Filter>Backends\CPUResources\CPUVertices</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actors\RotatingPosLightActor.h">
+      <Filter>Scene\Actors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

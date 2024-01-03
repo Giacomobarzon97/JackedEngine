@@ -21,5 +21,6 @@ void main() {
     gl_Position =  frameUniform.projectionMatrix * frameUniform.viewMatrix * objectData.modelMatrix * vec4(inPosition,1);
     outPosition = (objectData.modelMatrix * vec4(inPosition,1)).xyz;
     outTexCoord = inTexCoord;
-    outNormal = inNormal;
+    mat4 normalMatrix = transpose(inverse(objectData.modelMatrix));
+    outNormal = (normalMatrix * vec4(inNormal,1)).xyz;
 }

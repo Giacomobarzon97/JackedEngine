@@ -4,8 +4,7 @@
 DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 	BaseActor(initializer),
 	camera(CreateComponent<PerspectiveCamera>("Camera")),
-	inputComponent(CreateComponent<InputComponent>("InputComponent")),
-	pointLightComponent(CreateComponent<PointLightComponent>("PointLightComponent"))
+	inputComponent(CreateComponent<InputComponent>("InputComponent"))
 {
 	JackedEngine::SetActiveCamera(camera);
 	camera.Translate({ 2, 0, 0 });
@@ -36,7 +35,6 @@ DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 
 void DebugCameraActor::Tick(double deltaTime) {
 	BaseActor::Tick(deltaTime);
-	pointLightComponent.SetPosition(camera.GetPosition());
 }
 
 void DebugCameraActor::MoveLaterally(float scaleValue) {

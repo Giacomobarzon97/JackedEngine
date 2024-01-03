@@ -37,9 +37,12 @@ void main() {
 
 	for(int i = 0; i < frameUniform.nLights; i++){
 		Light light = lights.lights[i];
-		vec3 lightDir = normalize(light.position.xyz - inPosition);
+		vec3 lightDir = normalize(inPosition - light.position.xyz);
+		float diffuseRate = max(dot(normal, lightDir), 0.0);
+
 		vec3 ambient = light.lightColor * materialUniform.kAmbient;
-		totalIntensity = totalIntensity + ambient;
+		vec3 diffuse = light.lightColor * diffuseRate;
+		totalIntensity = totalIntensity + diffuse + ambient;
 	}
     
 	outColor = vec4((totalIntensity * objectColor.xyz),1);
