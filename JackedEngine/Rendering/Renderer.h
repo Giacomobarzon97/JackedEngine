@@ -43,19 +43,17 @@ private:
 		uint32_t nLights;
 	};
 	struct LightData {
-		glm::vec4 position{ 0, 0, 0, 1};
-		glm::vec3 lightColor{ 1, 1, 1 };
-		float constantAttenuation{ 1 };
-		float linearAttenuation{ 0 };
-		float quadraticAttenuation{ 0 };
+		glm::vec4 position;
+		glm::vec4 lightColor;
 	};
 	struct MeshUniformData {
 		glm::mat4 modelMatrix{1};
 	};
 	struct MaterialUniformData {
-		glm::vec3 kAmbient{ 0.1, 0.1, 0.1 };
-		glm::vec3 kDiffuse{ 0.1, 0.1, 0.1 };
-		glm::vec3 kSpecular{ 0.1, 0.1, 0.1 };
+		glm::vec4 kAmbient;
+		glm::vec4 kDiffuse;
+		glm::vec4 kSpecular;
+		uint32_t shininess;
 	};
 
 	uint32_t maxLights = 64;
@@ -128,6 +126,7 @@ public:
 	void SetAmbientCoefficients(glm::vec3 coefficients);
 	void SetDiffuseCoefficients(glm::vec3 coefficients);
 	void SetSpecularCoefficients(glm::vec3 coefficients);
+	void SetShininess(uint32_t shininess);
 
 private:
 	Renderer::MaterialUniformData materialData;
@@ -143,9 +142,6 @@ public:
 
 	void SetPosition(glm::vec4 position);
 	void SetLightColor(glm::vec3 color);
-	void SetConstantAttenuation(float attenuation);
-	void SetLinearAttenuation(float attenuation);
-	void SetQuadraticAttenuation(float attenuation);
 private:
 	Renderer::LightData* lightData;
 	Renderer* renderer;

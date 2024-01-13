@@ -62,6 +62,7 @@ const RendererMeshUniformReference Renderer::CreateMeshUniform(std::string name)
 }
 
 const RendererMaterialUniformReference Renderer::CreateMaterialUniformReference(std::string name) {
+	int asd = sizeof(MaterialUniformData);
 	return RendererMaterialUniformReference(*this, backend.CreateUniform("MaterialUniform_" + name, sizeof(MaterialUniformData)));
 }
 
@@ -150,13 +151,16 @@ RendererMaterialUniformReference::RendererMaterialUniformReference(Renderer& ren
 	uniformReference(uniformReference)
 {}
 void RendererMaterialUniformReference::SetAmbientCoefficients(glm::vec3 coefficients) {
-	materialData.kAmbient = coefficients;
+	materialData.kAmbient = { coefficients, 1 };
 }
 void RendererMaterialUniformReference::SetDiffuseCoefficients(glm::vec3 coefficients) {
-	materialData.kDiffuse = coefficients;
+	materialData.kDiffuse = { coefficients, 1 };
 }
 void RendererMaterialUniformReference::SetSpecularCoefficients(glm::vec3 coefficients) {
-	materialData.kSpecular = coefficients;
+	materialData.kSpecular = { coefficients, 1 };
+}
+void RendererMaterialUniformReference::SetShininess(uint32_t shininess) {
+	materialData.shininess = shininess;
 }
 
 RendererLightReference::RendererLightReference(){}
@@ -168,14 +172,5 @@ void RendererLightReference::SetPosition(glm::vec4 position){
 	lightData->position = position;
 }
 void RendererLightReference::SetLightColor(glm::vec3 color) {
-	lightData->lightColor = color;
-}
-void RendererLightReference::SetConstantAttenuation(float attenuation) {
-	lightData->constantAttenuation = attenuation;
-}
-void RendererLightReference::SetLinearAttenuation(float attenuation) {
-	lightData->linearAttenuation = attenuation;
-}
-void RendererLightReference::SetQuadraticAttenuation(float attenuation) {
-	lightData->quadraticAttenuation = attenuation;
+	lightData->lightColor = { color, 1 };
 }

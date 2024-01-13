@@ -6,6 +6,7 @@ PointLightComponent::PointLightComponent(ComponentInitializer initializer) :
 
 void PointLightComponent::Init() {
 	BaseLightComponent::Init();
+	lightReference.SetLightColor({ 1,1,1 });
 }
 
 void PointLightComponent::Tick(double deltaTime) {

@@ -1,12 +1,10 @@
 #version 450
 #extension GL_KHR_vulkan_glsl : enable
+#extension GL_EXT_debug_printf : enable
 
 struct Light {
     vec4 position;
-    vec3 lightColor;
-	float constantAttenuation;
-	float linearAttenuation;
-	float quadraticAttenuation;
+    vec4 lightColor;
 };
 
 layout(set = 0, binding = 0) uniform FrameBufferUniform {
@@ -19,9 +17,10 @@ layout(set = 3, binding = 0) readonly buffer Lights{
 	Light lights[];
 } lights;
 layout(set = 4, binding = 0) uniform MaterialUniform {
-    vec3 kAmbient;
-	vec3 kDiffuse;
-	vec3 kSpecular;
+    vec4 kAmbient;
+	vec4 kDiffuse;
+	vec4 kSpecular;
+	uint shinininess;
 } materialUniform;
 
 layout(location = 0) in vec3 inPosition;
@@ -34,15 +33,20 @@ void main() {
 	vec3 totalIntensity = {0,0,0};
 	vec4 objectColor = texture(texSampler, inTexCoord);
 	vec3 normal = normalize(inNormal);
+	vec3 cameraPosition = inverse(frameUniform.viewMatrix)[3].xyz;
+	vec3 viewDir = normalize(cameraPosition - inPosition);
 
 	for(int i = 0; i < frameUniform.nLights; i++){
 		Light light = lights.lights[i];
 		vec3 lightDir = normalize(inPosition - light.position.xyz);
 		float diffuseRate = max(dot(normal, lightDir), 0.0);
+		vec3 reflectDir = reflect(-lightDir, normal);
+		float spec = pow(max(dot(viewDir, reflectDir), 0.0), materialUniform.shinininess);
 
-		vec3 ambient = light.lightColor * materialUniform.kAmbient;
-		vec3 diffuse = light.lightColor * diffuseRate;
-		totalIntensity = totalIntensity + diffuse + ambient;
+		vec3 ambient = light.lightColor.xyz * materialUniform.kAmbient.xyz * materialUniform.kAmbient.xyz;
+		vec3 diffuse = light.lightColor.xyz * diffuseRate * materialUniform.kDiffuse.xyz;
+		vec3 specular = materialUniform.kSpecular.xyz * spec * light.lightColor.xyz;  
+		totalIntensity = totalIntensity + diffuse + ambient + specular;
 	}
     
 	outColor = vec4((totalIntensity * objectColor.xyz),1);
