@@ -2,11 +2,8 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-CPUGenericMesh::CPUGenericMesh(const std::string objPath, const bool includePositions, const bool includeTexcoords, const bool includeNormals) :
-	objPath(objPath),
-	includePositions(includePositions),
-	includeTexcoords(includeTexcoords),
-	includeNormals(includeNormals)
+CPUGenericMesh::CPUGenericMesh(const std::string objPath) :
+	objPath(objPath)
 {}
 
 
@@ -61,32 +58,26 @@ const ModelData CPUGenericMesh::GetModelData() const {
 
 	ModelData data{};
 
-	if (includePositions) {
-		data.vertexData.push_back(
-			BufferData{
-				positions.data(),
-				static_cast<uint32_t>(sizeof(CPUPositionVertex) * positions.size())
-			}
-		);
-	}
+	data.vertexData.push_back(
+		BufferData{
+			positions.data(),
+			static_cast<uint32_t>(sizeof(CPUPositionVertex) * positions.size())
+		}
+	);
 
-	if (includeTexcoords) {
-		data.vertexData.push_back(
-			BufferData{
-				texCoords.data(),
-				static_cast<uint32_t>(sizeof(CPUTextureVertex) * texCoords.size())
-			}
-		);
-	}
+	data.vertexData.push_back(
+		BufferData{
+			texCoords.data(),
+			static_cast<uint32_t>(sizeof(CPUTextureVertex) * texCoords.size())
+		}
+	);
 
-	if (includeNormals) {
-		data.vertexData.push_back(
-			BufferData{
-				normals.data(),
-				static_cast<uint32_t>(sizeof(CPUNormalVertex) * normals.size())
-			}
-		);
-	}
+	data.vertexData.push_back(
+		BufferData{
+			normals.data(),
+			static_cast<uint32_t>(sizeof(CPUNormalVertex) * normals.size())
+		}
+	);
 
 	data.indexData.data = indices.data();
 	data.indexData.size = sizeof(uint32_t) * static_cast<uint32_t>(indices.size());

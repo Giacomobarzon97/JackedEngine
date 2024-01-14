@@ -5,7 +5,7 @@ Translator::Translator() :
 {}
 
 Translator::Translator(glm::vec3 translation) :
-	translation({glm::radians(translation.x), glm::radians(translation.y), glm::radians(translation.z)})
+	translation(translation)
 {}
 
 glm::vec3 Translator::GetTranslation() const {
@@ -13,7 +13,7 @@ glm::vec3 Translator::GetTranslation() const {
 }
 
 void Translator::SetTranslation(glm::vec3 translation) {
-	this->translation = {glm::radians(translation.x), glm::radians(translation.y), glm::radians(translation.z)};
+	this->translation = translation;
 }
 
 glm::mat4 Translator::GetTranslationMatrix() {

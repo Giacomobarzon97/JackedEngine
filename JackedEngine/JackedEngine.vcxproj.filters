@@ -234,6 +234,18 @@
     <ClCompile Include="Scene\Actors\RotatingPosLightActor.cpp">
       <Filter>Scene\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="Backends\CPUResources\CPUModels\CPUQuadModel.cpp">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Actors\PlaneActor.cpp">
+      <Filter>Scene\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\QuadMeshComponent.cpp">
+      <Filter>Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Scaler.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows\BaseWindow.h">
@@ -467,6 +479,18 @@
     </ClInclude>
     <ClInclude Include="Scene\Actors\RotatingPosLightActor.h">
       <Filter>Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Backends\CPUResources\CPUModels\CPUQuadModel.h">
+      <Filter>Backends\CPUResources\CPUModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actors\PlaneActor.h">
+      <Filter>Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\QuadMeshComponent.h">
+      <Filter>Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Scaler.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

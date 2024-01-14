@@ -1,28 +1,24 @@
-#include "StaticMeshComponent.h"
+#include "QuadMeshComponent.h"
 
-StaticMeshComponent::StaticMeshComponent(ComponentInitializer initializer) :
+QuadMeshComponent::QuadMeshComponent(ComponentInitializer initializer) :
 	RenderableComponent(initializer)
 {
 	BaseActor& actorOwner = GetActorOwner();
 }
 
-void StaticMeshComponent::Init() {
+void QuadMeshComponent::Init() {
 	RenderableComponent::Init();
 
 	uniformReference = JackedEngine::GetRenderer().CreateMeshUniform(GetActorOwner().GetName() + GetName());
-	CPUGenericMesh mesh(modelPath);
+	CPUQuadModel mesh{};
 	modelRef = JackedEngine::GetRenderer().CreateModel(mesh);
 }
 
-void StaticMeshComponent::SetModelPath(const std::string modelPath) {
-	this->modelPath = modelPath;
-}
-
-void StaticMeshComponent::SetMaterial(const GenericMeshMaterial& material) {
+void QuadMeshComponent::SetMaterial(const GenericMeshMaterial& material) {
 	this->material = &material;
 }
 
-void StaticMeshComponent::Tick(double deltaTime) {
+void QuadMeshComponent::Tick(double deltaTime) {
 	RenderableComponent::Tick(deltaTime);
 
 	if (material.has_value() && modelRef.has_value()) {

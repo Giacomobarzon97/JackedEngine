@@ -26,8 +26,9 @@ void SceneComponent::Rotate(glm::vec3 rotation) {
 	currentRotation += rotation;
 }
 
-void SceneComponent::Scale(const double x, const double y, const double z) {
-
+void SceneComponent::Scale(glm::vec3 scale) {
+	modelMatrix *= Scaler(scale).GetScaleMatrix();
+	currentRotation += scale;
 }
 
 void SceneComponent::SetPosition(glm::vec3 translation) {
@@ -42,8 +43,10 @@ void SceneComponent::SetRotation(glm::vec3 rotation) {
 	currentRotation = rotation;
 }
 
-void SceneComponent::SetScale(const double x, const double y, const double z) {
-
+void SceneComponent::SetScale(glm::vec3 scale) {
+	glm::vec3 newScale = scale - currentRotation;
+	modelMatrix *= Scaler(newScale).GetScaleMatrix();
+	currentRotation = scale;
 }
 
 glm::vec3 SceneComponent::GetRotation() const {
