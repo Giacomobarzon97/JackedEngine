@@ -2,6 +2,7 @@
 #include "Scene/Actors/BaseActor.h"
 #include "Scene/Components/Cameras/PerspectiveCamera.h"
 #include "Scene/Components/InputComponent.h"
+#include "Scene/Components/Lights/PointLightComponent.h"
 #include "JackedEngine.h"
 
 class DebugCameraActor : public BaseActor{
@@ -19,7 +20,7 @@ public:
 private:
 	PerspectiveCamera& camera;
 	InputComponent& inputComponent;
-	float movementSpeed = 1;
+	float movementSpeed = 3;
 	float rotationSpeed = 100;
 	float maxVerticalRotation = 89;
 };

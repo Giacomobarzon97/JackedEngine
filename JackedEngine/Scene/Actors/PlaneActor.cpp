@@ -9,7 +9,7 @@ PlaneActor::PlaneActor(ActorInitializer initializer) :
 
 	plane.SetMaterial(meshMaterial);
 	plane.Translate({ 0,-1.5,0 });
-	//plane.Scale({ 1, 0 , 1 });
+	plane.Scale({ 5, 1 , 5 });
 }
 
 void PlaneActor::Tick(double deltaTime) {

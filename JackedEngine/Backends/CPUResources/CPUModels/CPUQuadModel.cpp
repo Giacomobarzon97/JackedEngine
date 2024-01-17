@@ -22,10 +22,10 @@ const std::array<CPUTextureVertex, 4> CPUQuadModel::texCoordData = {
 };
 
 const std::array<CPUNormalVertex, 4> CPUQuadModel::normalData = {
-	CPUNormalVertex({1, 1, 0}),
-	CPUNormalVertex({1, 1, 0}),
-	CPUNormalVertex({1, 1, 0}),
-	CPUNormalVertex({1, 1, 0})
+	CPUNormalVertex({0, -1, 0}),
+	CPUNormalVertex({0, -1, 0}),
+	CPUNormalVertex({0, -1, 0}),
+	CPUNormalVertex({0, -1, 0})
 };
 
 void CPUQuadModel::LoadData() {

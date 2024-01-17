@@ -72,7 +72,7 @@ void PerspectiveCamera::rotAxes(glm::vec3& io_a, glm::vec3& io_b, double angle) 
 }
 
 const glm::mat4 PerspectiveCamera::GetProjectionMatrix(const uint32_t width, const uint32_t height) const {
-	glm::mat4 proj = glm::perspective(glm::radians(fov), width / (float)height, 0.1f, 10.0f);
+	glm::mat4 proj = glm::perspective(glm::radians(fov), width / (float)height, 0.1f, 100.0f);
 	proj[1][1] *= -1;
 	return proj;
 }
