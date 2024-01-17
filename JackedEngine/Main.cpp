@@ -11,7 +11,7 @@ int main() {
 #endif
 	JackedEngine::GetWorld().CreateActor<VikingRoomActor>("Viking Room");
 	JackedEngine::GetWorld().CreateActor<PlaneActor>("Plane Actor");
-	JackedEngine::GetWorld().CreateActor<SkyboxActor>("Skybox");
+	//JackedEngine::GetWorld().CreateActor<SkyboxActor>("Skybox");
 	JackedEngine::GetWorld().CreateActor<DebugCameraActor>("Camera");
 	JackedEngine::GetWorld().CreateActor<RotatingPosLightActor>("Light");
 

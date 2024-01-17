@@ -45,6 +45,7 @@ private:
 	struct LightData {
 		glm::vec4 position;
 		glm::vec4 lightColor;
+		float radius;
 	};
 	struct MeshUniformData {
 		glm::mat4 modelMatrix{1};
@@ -142,6 +143,7 @@ public:
 
 	void SetPosition(glm::vec4 position);
 	void SetLightColor(glm::vec3 color);
+	void SetRadius(float radius);
 private:
 	Renderer::LightData* lightData;
 	Renderer* renderer;

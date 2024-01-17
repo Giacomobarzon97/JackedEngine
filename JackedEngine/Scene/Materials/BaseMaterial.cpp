@@ -4,8 +4,8 @@ BaseMaterial::BaseMaterial(std::string name) :
 	name(name)
 {
 	materialReference = JackedEngine::GetRenderer().CreateMaterialUniformReference(name);
-	materialReference.SetAmbientCoefficients({0.1, 0.1, 0.1});
-	materialReference.SetDiffuseCoefficients({ 0.5, 0.5, 0.5 });
+	materialReference.SetAmbientCoefficients({0.0, 0.0, 0.0});
+	materialReference.SetDiffuseCoefficients({ 0.8, 0.8, 0.8 });
 	materialReference.SetSpecularCoefficients({ 1, 1, 1 });
 	materialReference.SetShininess(32);
 }

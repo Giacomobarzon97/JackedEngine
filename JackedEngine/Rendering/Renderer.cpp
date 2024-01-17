@@ -174,3 +174,6 @@ void RendererLightReference::SetPosition(glm::vec4 position){
 void RendererLightReference::SetLightColor(glm::vec3 color) {
 	lightData->lightColor = { color, 1 };
 }
+void RendererLightReference::SetRadius(float radius) {
+	lightData->radius = radius;
+}

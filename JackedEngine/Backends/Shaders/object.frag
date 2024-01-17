@@ -5,6 +5,7 @@
 struct Light {
     vec4 position;
     vec4 lightColor;
+	float radius;
 };
 
 layout(set = 0, binding = 0) uniform FrameBufferUniform {
@@ -39,14 +40,20 @@ void main() {
 	for(int i = 0; i < frameUniform.nLights; i++){
 		Light light = lights.lights[i];
 		vec3 lightDir = normalize(inPosition - light.position.xyz);
-		float diffuseRate = max(dot(normal, lightDir), 0.0);
-		vec3 reflectDir = reflect(-lightDir, normal);
-		float spec = pow(max(dot(viewDir, reflectDir), 0.0), materialUniform.shinininess);
 
 		vec3 ambient = light.lightColor.xyz * materialUniform.kAmbient.xyz * materialUniform.kAmbient.xyz;
+
+		float diffuseRate = max(dot(normal, lightDir), 0.0);
 		vec3 diffuse = light.lightColor.xyz * diffuseRate * materialUniform.kDiffuse.xyz;
-		vec3 specular = materialUniform.kSpecular.xyz * spec * light.lightColor.xyz;  
-		totalIntensity = totalIntensity + diffuse + ambient + specular;
+
+		vec3 reflectDir = reflect(-lightDir, normal);
+		float spec = pow(max(dot(viewDir, reflectDir), 0.0), materialUniform.shinininess);
+		vec3 specular = materialUniform.kSpecular.xyz * spec * light.lightColor.xyz;
+
+		vec3 currentIntensity = diffuse + ambient + specular;
+		float lightDistance = distance(inPosition, light.position.xyz);
+		float attenuation = 1 / pow((lightDistance/light.radius)+1,2);
+		totalIntensity = totalIntensity + currentIntensity * attenuation;
 	}
     
 	outColor = vec4((totalIntensity * objectColor.xyz),1);
