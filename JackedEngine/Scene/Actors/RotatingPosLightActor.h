@@ -10,7 +10,7 @@ public:
 	virtual void Tick(double deltaTime) override;
 
 private:
-	float radius = 3;
+	float radius = 6;
 	float rotationSpeed = 0.5;
 	float alpha = 0;
 	PointLightComponent& pointLightComponent;

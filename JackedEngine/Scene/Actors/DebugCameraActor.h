@@ -20,6 +20,8 @@ public:
 private:
 	PerspectiveCamera& camera;
 	InputComponent& inputComponent;
+	PointLightComponent* light;
+	bool has_light = false;
 	float movementSpeed = 3;
 	float rotationSpeed = 100;
 	float maxVerticalRotation = 89;

@@ -21,7 +21,7 @@ layout(set = 4, binding = 0) uniform MaterialUniform {
     vec4 kAmbient;
 	vec4 kDiffuse;
 	vec4 kSpecular;
-	uint shinininess;
+	uint shininess;
 } materialUniform;
 
 layout(location = 0) in vec3 inPosition;
@@ -31,30 +31,29 @@ layout(location = 2) in vec3 inNormal;
 layout (location = 0) out vec4 outColor;
 
 void main() {
-	vec3 totalIntensity = {0,0,0};
-	vec4 objectColor = texture(texSampler, inTexCoord);
-	vec3 normal = normalize(inNormal);
-	vec3 cameraPosition = inverse(frameUniform.viewMatrix)[3].xyz;
-	vec3 viewDir = normalize(cameraPosition - inPosition);
+    vec3 totalIntensity = {0,0,0};
+    vec4 objectColor = texture(texSampler, inTexCoord);
+    vec3 normal = normalize(inNormal);
+    vec3 cameraPosition = inverse(frameUniform.viewMatrix)[3].xyz;
+    vec3 viewDir = normalize(cameraPosition - inPosition);
 
-	for(int i = 0; i < frameUniform.nLights; i++){
-		Light light = lights.lights[i];
-		vec3 lightDir = normalize(inPosition - light.position.xyz);
+    for(int i = 0; i < frameUniform.nLights; i++){
+    	Light light = lights.lights[i];
+        vec3 lightDir = light.position.xyz - inPosition;
+        float lightDistance = length(lightDir);
+        lightDir = lightDir/lightDistance;
+        vec3 halfLight = normalize(lightDir + viewDir);
 
-		vec3 ambient = light.lightColor.xyz * materialUniform.kAmbient.xyz * materialUniform.kAmbient.xyz;
+        vec3 ambient = light.lightColor.xyz * materialUniform.kAmbient.xyz;
+        vec3 diffuse = light.lightColor.xyz * materialUniform.kDiffuse.xyz * max(dot(normal,lightDir),0);
+        vec3 specular = light.lightColor.xyz * materialUniform.kSpecular.xyz * pow(max(dot(normal, halfLight), 0.0), materialUniform.shininess);
 
-		float diffuseRate = max(dot(normal, lightDir), 0.0);
-		vec3 diffuse = light.lightColor.xyz * diffuseRate * materialUniform.kDiffuse.xyz;
+		float d = max(lightDistance - light.radius, 0);
+		float attenuation = 1/pow((d/light.radius)+1,2);
 
-		vec3 reflectDir = reflect(-lightDir, normal);
-		float spec = pow(max(dot(viewDir, reflectDir), 0.0), materialUniform.shinininess);
-		vec3 specular = materialUniform.kSpecular.xyz * spec * light.lightColor.xyz;
+        vec3 intensity = (ambient + diffuse + specular) * attenuation;
+        totalIntensity = totalIntensity + intensity;
+    }
+     outColor = vec4((totalIntensity * objectColor.xyz),1);
 
-		vec3 currentIntensity = diffuse + ambient + specular;
-		float lightDistance = distance(inPosition, light.position.xyz);
-		float attenuation = 1 / pow((lightDistance/light.radius)+1,2);
-		totalIntensity = totalIntensity + currentIntensity * attenuation;
-	}
-    
-	outColor = vec4((totalIntensity * objectColor.xyz),1);
 }

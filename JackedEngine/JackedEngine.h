@@ -24,8 +24,8 @@ public:
 
 private:
 	static const std::string APP_NAME;
-	static const uint32_t  WINDOW_WIDTH = 800;
-	static const uint32_t  WINDOW_HEIGHT = 600;
+	static const uint32_t  WINDOW_WIDTH = 1920;
+	static const uint32_t  WINDOW_HEIGHT = 1080;
 	const int MAX_FRAMES_IN_FLIGHT = 2;
 
 	static World world;

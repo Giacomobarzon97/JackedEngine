@@ -169,7 +169,7 @@ RendererLightReference::RendererLightReference(Renderer& renderer, Renderer::Lig
 	lightData(&pointLightData)
 {}
 void RendererLightReference::SetPosition(glm::vec4 position){
-	lightData->position = position;
+	lightData->position = {-position.x, position.y, -position.z, position.w};
 }
 void RendererLightReference::SetLightColor(glm::vec3 color) {
 	lightData->lightColor = { color, 1 };

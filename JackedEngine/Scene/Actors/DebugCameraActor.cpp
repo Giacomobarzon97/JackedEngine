@@ -31,10 +31,17 @@ DebugCameraActor::DebugCameraActor(ActorInitializer initializer) :
 	JackedEngine::GetInputManager().CreateAxis("Rotate Vertically");
 	JackedEngine::GetInputManager().AddMappingToaAxis("Rotate Vertically", MOUSE_Y, 1.0f);
 	//inputComponent.BindAxis("Rotate Vertically", std::bind(&DebugCameraActor::RotateVertically, this, std::placeholders::_1));
+
+	if (has_light) {
+		light = &CreateComponent<PointLightComponent>("LightComponent");
+	}
 }
 
 void DebugCameraActor::Tick(double deltaTime) {
 	BaseActor::Tick(deltaTime);
+	if (has_light) {
+		light->SetPosition(camera.GetPosition());
+	}
 }
 
 void DebugCameraActor::MoveLaterally(float scaleValue) {
