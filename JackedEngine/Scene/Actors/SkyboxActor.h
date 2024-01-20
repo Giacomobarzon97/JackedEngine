@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene/Actors/BaseActor.h"
-#include "Scene/Components/SkyboxComponent.h"
+#include "Scene/Components/Renderables/SkyboxComponent.h"
 
 class SkyboxActor : public BaseActor{
 public:

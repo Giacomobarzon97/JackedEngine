@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include "Scene/Components/BaseComponent.h"
-#include "Utils/Rotator.h"
-#include "Utils/Translator.h"
-#include "Utils/Scaler.h"
+#include "Utils/Math/Rotator.h"
+#include "Utils/Math/Translator.h"
+#include "Utils/Math/Scaler.h"
 
 class SceneComponent : public BaseComponent {
 public:

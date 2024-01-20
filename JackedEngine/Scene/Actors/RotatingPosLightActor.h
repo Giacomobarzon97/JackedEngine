@@ -1,7 +1,6 @@
 #pragma once
 #include <math.h>
 #include "Scene/Actors/BaseActor.h"
-#include "Scene/Components/StaticMeshComponent.h"
 #include "Scene/Components/Lights/PointLightComponent.h"
 
 class RotatingPosLightActor : public BaseActor{

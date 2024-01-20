@@ -10,16 +10,10 @@
     <ClCompile Include="Utils\FileIO.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Components\RenderableComponent.cpp">
-      <Filter>Scene\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Components\BaseComponent.cpp">
       <Filter>Scene\Components</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Components\SceneComponent.cpp">
-      <Filter>Scene\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Components\StaticMeshComponent.cpp">
       <Filter>Scene\Components</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Components\Cameras\BaseCameraComponent.cpp">
@@ -97,9 +91,6 @@
     <ClCompile Include="Backends\Vulkan\VulkanBackend.cpp">
       <Filter>Backends\Vulkan</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Components\SkyboxComponent.cpp">
-      <Filter>Scene\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Materials\BaseMaterial.cpp">
       <Filter>Scene\Materials</Filter>
     </ClCompile>
@@ -146,12 +137,6 @@
     </ClCompile>
     <ClCompile Include="Scene\Components\InputComponent.cpp">
       <Filter>Scene\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\Rotator.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\Translator.cpp">
-      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Input\InputConstants.cpp">
       <Filter>Input</Filter>
@@ -240,11 +225,26 @@
     <ClCompile Include="Scene\Actors\PlaneActor.cpp">
       <Filter>Scene\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Components\QuadMeshComponent.cpp">
-      <Filter>Scene\Components</Filter>
+    <ClCompile Include="Utils\Math\Rotator.cpp">
+      <Filter>Utils\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\Scaler.cpp">
-      <Filter>Utils</Filter>
+    <ClCompile Include="Utils\Math\Scaler.cpp">
+      <Filter>Utils\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Math\Translator.cpp">
+      <Filter>Utils\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\Renderables\QuadMeshComponent.cpp">
+      <Filter>Scene\Components\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\Renderables\RenderableComponent.cpp">
+      <Filter>Scene\Components\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\Renderables\SkyboxComponent.cpp">
+      <Filter>Scene\Components\Renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Components\Renderables\StaticMeshComponent.cpp">
+      <Filter>Scene\Components\Renderables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,16 +257,10 @@
     <ClInclude Include="Utils\FileIOr.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Components\RenderableComponent.h">
-      <Filter>Scene\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Components\BaseComponent.h">
       <Filter>Scene\Components</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Components\SceneComponent.h">
-      <Filter>Scene\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Components\StaticMeshComponent.h">
       <Filter>Scene\Components</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Components\Cameras\BaseCameraComponent.h">
@@ -344,9 +338,6 @@
     <ClInclude Include="Backends\Vulkan\VulkanBackend.h">
       <Filter>Backends\Vulkan</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Components\SkyboxComponent.h">
-      <Filter>Scene\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Materials\BaseMaterial.h">
       <Filter>Scene\Materials</Filter>
     </ClInclude>
@@ -392,12 +383,6 @@
     </ClInclude>
     <ClInclude Include="Scene\Components\InputComponent.h">
       <Filter>Scene\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Rotator.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Translator.h">
-      <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Input\InputConstants.h">
       <Filter>Input</Filter>
@@ -486,11 +471,26 @@
     <ClInclude Include="Scene\Actors\PlaneActor.h">
       <Filter>Scene\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Components\QuadMeshComponent.h">
-      <Filter>Scene\Components</Filter>
+    <ClInclude Include="Utils\Math\Rotator.h">
+      <Filter>Utils\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\Scaler.h">
-      <Filter>Utils</Filter>
+    <ClInclude Include="Utils\Math\Scaler.h">
+      <Filter>Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Math\Translator.h">
+      <Filter>Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\Renderables\QuadMeshComponent.h">
+      <Filter>Scene\Components\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\Renderables\RenderableComponent.h">
+      <Filter>Scene\Components\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\Renderables\SkyboxComponent.h">
+      <Filter>Scene\Components\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Components\Renderables\StaticMeshComponent.h">
+      <Filter>Scene\Components\Renderables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -601,6 +601,12 @@
     </Filter>
     <Filter Include="Scene\Components\Lights">
       <UniqueIdentifier>{4bb094d2-0b94-49a8-98f9-37a776ae7e3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Math">
+      <UniqueIdentifier>{eedf86a9-4d4e-4f34-8115-9ee667d038b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Components\Renderables">
+      <UniqueIdentifier>{51519322-4dbc-48c2-840d-e3af54538098}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

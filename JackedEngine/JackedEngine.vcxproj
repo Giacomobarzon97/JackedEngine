@@ -68,8 +68,6 @@
     <ClCompile Include="Scene\Components\InputComponent.cpp" />
     <ClCompile Include="Scene\Components\Lights\BaseLightComponent.cpp" />
     <ClCompile Include="Scene\Components\Lights\PointLightComponent.cpp" />
-    <ClCompile Include="Scene\Components\QuadMeshComponent.cpp" />
-    <ClCompile Include="Scene\Components\RenderableComponent.cpp" />
     <ClCompile Include="Scene\Components\BaseComponent.cpp" />
     <ClCompile Include="Scene\Components\Cameras\PerspectiveCamera.cpp" />
     <ClCompile Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.cpp" />
@@ -89,17 +87,19 @@
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.cpp" />
     <ClCompile Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.cpp" />
     <ClCompile Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.cpp" />
+    <ClCompile Include="Scene\Components\Renderables\QuadMeshComponent.cpp" />
+    <ClCompile Include="Scene\Components\Renderables\RenderableComponent.cpp" />
+    <ClCompile Include="Scene\Components\Renderables\SkyboxComponent.cpp" />
+    <ClCompile Include="Scene\Components\Renderables\StaticMeshComponent.cpp" />
     <ClCompile Include="Scene\Components\SceneComponent.cpp" />
-    <ClCompile Include="Scene\Components\SkyboxComponent.cpp" />
-    <ClCompile Include="Scene\Components\StaticMeshComponent.cpp" />
     <ClCompile Include="Scene\Materials\BaseMaterial.cpp" />
     <ClCompile Include="Scene\Materials\CubemapMaterial.cpp" />
     <ClCompile Include="Scene\Materials\GenericMeshMaterial.cpp" />
     <ClCompile Include="Scene\World.cpp" />
     <ClCompile Include="Utils\FileIO.cpp" />
-    <ClCompile Include="Utils\Rotator.cpp" />
-    <ClCompile Include="Utils\Scaler.cpp" />
-    <ClCompile Include="Utils\Translator.cpp" />
+    <ClCompile Include="Utils\Math\Rotator.cpp" />
+    <ClCompile Include="Utils\Math\Scaler.cpp" />
+    <ClCompile Include="Utils\Math\Translator.cpp" />
     <ClCompile Include="Windows\BaseWindow.cpp" />
     <ClCompile Include="Windows\GLFWWindow.cpp" />
   </ItemGroup>
@@ -152,8 +152,6 @@
     <ClInclude Include="Scene\Components\InputComponent.h" />
     <ClInclude Include="Scene\Components\Lights\BaseLightComponent.h" />
     <ClInclude Include="Scene\Components\Lights\PointLightComponent.h" />
-    <ClInclude Include="Scene\Components\QuadMeshComponent.h" />
-    <ClInclude Include="Scene\Components\RenderableComponent.h" />
     <ClInclude Include="Scene\Components\BaseComponent.h" />
     <ClInclude Include="Scene\Components\Cameras\PerspectiveCamera.h" />
     <ClInclude Include="Backends\Vulkan\CommandBuffers\BaseCommandBuffer.h" />
@@ -173,17 +171,19 @@
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\BaseAllocator.h" />
     <ClInclude Include="Backends\Vulkan\Memory\Allocators\VMAAllocator.h" />
     <ClInclude Include="Backends\CPUResources\CPUVertices\CPUPositionVertex.h" />
+    <ClInclude Include="Scene\Components\Renderables\QuadMeshComponent.h" />
+    <ClInclude Include="Scene\Components\Renderables\RenderableComponent.h" />
+    <ClInclude Include="Scene\Components\Renderables\SkyboxComponent.h" />
+    <ClInclude Include="Scene\Components\Renderables\StaticMeshComponent.h" />
     <ClInclude Include="Scene\Components\SceneComponent.h" />
-    <ClInclude Include="Scene\Components\SkyboxComponent.h" />
-    <ClInclude Include="Scene\Components\StaticMeshComponent.h" />
     <ClInclude Include="Scene\Materials\BaseMaterial.h" />
     <ClInclude Include="Scene\Materials\CubemapMaterial.h" />
     <ClInclude Include="Scene\Materials\GenericMeshMaterial.h" />
     <ClInclude Include="Scene\World.h" />
     <ClInclude Include="Utils\FileIOr.h" />
-    <ClInclude Include="Utils\Rotator.h" />
-    <ClInclude Include="Utils\Scaler.h" />
-    <ClInclude Include="Utils\Translator.h" />
+    <ClInclude Include="Utils\Math\Rotator.h" />
+    <ClInclude Include="Utils\Math\Scaler.h" />
+    <ClInclude Include="Utils\Math\Translator.h" />
     <ClInclude Include="Windows\BaseWindow.h" />
     <ClInclude Include="Windows\GLFWWindow.h" />
   </ItemGroup>

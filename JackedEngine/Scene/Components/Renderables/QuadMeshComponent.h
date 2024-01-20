@@ -1,24 +1,22 @@
 #pragma once
 #include <string>
 #include <optional>
-#include "Scene/Components/RenderableComponent.h"
+#include "Scene/Components/Renderables/RenderableComponent.h"
 #include "Scene/Materials/GenericMeshMaterial.h"
-#include "Backends/CPUResources/CPUModels/CPUGenericMesh.h"
+#include "Backends/CPUResources/CPUModels/CPUQuadModel.h"
 #include "Scene/Actors/BaseActor.h"
 
-class StaticMeshComponent : public RenderableComponent {
+class QuadMeshComponent : public RenderableComponent {
 public:
-	StaticMeshComponent(ComponentInitializer initializer);
+	QuadMeshComponent(ComponentInitializer initializer);
 
 	virtual void Init() override;
 	virtual void Tick(double deltaTime) override;
 
-	void SetModelPath(const std::string modelPath);
 	void SetMaterial(const GenericMeshMaterial& material);
 
 private:
 	RendererMeshUniformReference uniformReference;
 	std::optional<const GenericMeshMaterial*> material;
 	std::optional<RendererModelReference> modelRef;
-	std::string modelPath;
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include <optional>
 #include <string>
-#include "Scene/Components/RenderableComponent.h"
+#include "Scene/Components/Renderables/RenderableComponent.h"
 #include "Scene/Materials/CubemapMaterial.h"
 #include "Backends/CPUResources/CPUModels/CPUCubeModel.h"
 #include "Scene/Actors/BaseActor.h"

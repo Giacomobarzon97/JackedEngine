@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene/Actors/BaseActor.h"
-#include "Scene/Components/QuadMeshComponent.h"
+#include "Scene/Components/Renderables/QuadMeshComponent.h"
 
 class PlaneActor : public BaseActor{
 public:

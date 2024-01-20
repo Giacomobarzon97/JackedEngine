@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene/Actors/BaseActor.h"
-#include "Scene/Components/StaticMeshComponent.h"
+#include "Scene/Components/Renderables/StaticMeshComponent.h"
 
 class VikingRoomActor : public BaseActor{
 public:
